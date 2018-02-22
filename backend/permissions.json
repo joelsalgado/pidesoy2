@@ -1,0 +1,30 @@
+{
+    "permissions": {
+        "SiteController": {
+            "actions": [
+                "index",
+                "change-password"
+            ]
+        },
+        "UserController": {
+            "actions": [
+                "index",
+                "create",
+                "update"
+            ]
+        }
+    },
+    "menu": {
+        "SiteController": {
+            "url": "",
+            "label": "Inicio",
+            "icon": "home"
+        },
+        "UserController": {
+            "url": "users/user",
+            "label": "Usuarios",
+            "icon": "user"
+        }
+
+    }
+}
