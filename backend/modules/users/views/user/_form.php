@@ -4,6 +4,7 @@ use yii\widgets\ActiveForm;?>
 <div class="user-form">
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?php if($model->isNewRecord):?>
         <?= $form->field($model, 'password_hash')->passwordInput(['value' => '']) ?>
     <?php endif;?>
@@ -11,6 +12,7 @@ use yii\widgets\ActiveForm;?>
     <?php if(!$model->isNewRecord):?>
         <?= $form->field($model, 'status')->radioList(Yii::$app->params['estatus']);?>
     <?php endif;?>
+    <?= $form->field($model, 'role')->radioList(Yii::$app->params['roles']);?>
     <h2 class="subtitulo">Permisos</h2>
      <table class="table table-bordered">
     <tr>

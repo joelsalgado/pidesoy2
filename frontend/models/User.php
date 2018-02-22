@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace frontend\models;
 
 use common\behaviors\AuthKeyBehavior;
 use yii\behaviors\BlameableBehavior;

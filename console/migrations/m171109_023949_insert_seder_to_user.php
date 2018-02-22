@@ -21,6 +21,8 @@ class m171109_023949_insert_seder_to_user extends Migration
                 'email' => 'joelsalgado1302@gmail.com',
                 'role' => 10,
                 'status' => 10,
+                'created_by' => 1,
+                'updated_by' => 1,
                 'created_at' => time(),
                 'updated_at' => time()
             ]);
