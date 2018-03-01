@@ -16,10 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
     <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p class="pull-right">
-        <?= Html::a('Crear Usuario', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
+    <div class="table-responsive">
+        <p class="pull-right">
+            <?= Html::a('Crear Usuario', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -38,12 +39,24 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'role',
                 'value' => function($data){
-                    $role =($data->role == 20)? 'Administrador' : 'Capturista';
+                    $role = "";
+                    switch ($data->role){
+                        case 10:
+                            $role = 'Capturista';
+                            break;
+                        case 20:
+                            $role = 'Supervisor';
+                            break;
+                        case 30:
+                            $role = 'Administrador';
+                            break;
+                    }
                     return $role;
                 },
                 'filter' => Html::activeDropDownList($searchModel, 'role',
                     [
-                        '20' => 'Administrador',
+                        '30' => 'Administrador',
+                        '20' => 'Supervisor',
                         '10' => 'Capturista',
                     ],
                     ['class'=>'form-control','prompt' => 'Seleccione un rol']),
@@ -69,5 +82,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    </div>
     <?php Pjax::end(); ?>
 </div>

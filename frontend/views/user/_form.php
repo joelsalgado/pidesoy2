@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\User */
 /* @var $form yii\widgets\ActiveForm */
@@ -25,6 +26,16 @@ use yii\widgets\ActiveForm;
     <?php endif;?>
 
     <?= $form->field($model, 'role')->radioList(Yii::$app->params['roles']);?>
+    <div class="region">
+        <?= $form->field($model, 'region_id')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(\common\models\Regiones::getRegionesActivas(),
+                'id', 'desc_region'),
+            'options' => ['placeholder' => 'Selecciona una Región'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]) ?>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
@@ -33,3 +44,8 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?=$this->registerJsFile(
+    '@web/frontend/assets/js/users.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+);?>

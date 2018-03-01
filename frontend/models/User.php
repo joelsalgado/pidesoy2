@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use common\behaviors\AuthKeyBehavior;
+use common\models\Regiones;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -40,7 +41,8 @@ class User extends \yii\db\ActiveRecord
             [['username'], 'string', 'max' => 32],
             [['name'], 'string', 'max' => 150],
             [['email'], 'string', 'max' => 255],
-            [['status', 'role'],'safe']
+            [['status', 'role'],'safe'],
+            [['region_id'],'integer']
         ];
     }
 
@@ -58,6 +60,7 @@ class User extends \yii\db\ActiveRecord
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Correo Electronico',
             'role' => 'Rol',
+            'region_id' => 'Region',
             'status' => 'Estado',
             'created_by' => 'Editado Por',
             'updated_by' => 'Creado Por',
@@ -79,5 +82,10 @@ class User extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
             ]
         ];
+    }
+
+    public function getRegion()
+    {
+        return $this->hasMany(Regiones::className(), ['region_id' => 'id']);
     }
 }

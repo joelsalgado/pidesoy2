@@ -1,13 +1,13 @@
 <aside class="main-sidebar">
 
     <section class="sidebar">
-
+        <?php if(Yii::$app->user->id): ?>
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header'], 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Usuarios', 'icon' => 'file-code-o', 'url' => ['/user']],
+                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header'], 'visible' => $user = (Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20) ? true : false],
+                    ['label' => 'Usuarios', 'icon' => 'user', 'url' => ['/user']],
                     ['label' => 'home', 'icon' => 'dashboard', 'url' => ['/']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
@@ -39,6 +39,7 @@
                 ],
             ]
         ) ?>
+        <?php endif; ?>
 
     </section>
 

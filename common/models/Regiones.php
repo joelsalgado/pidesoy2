@@ -31,6 +31,7 @@ class Regiones extends \yii\db\ActiveRecord
         return [
             [['desc_region', 'nombre_region'], 'required'],
             [['desc_region', 'nombre_region'], 'string', 'max' => 150],
+            [['status'], 'integer'],
         ];
     }
 
@@ -43,6 +44,7 @@ class Regiones extends \yii\db\ActiveRecord
             'id' => 'ID',
             'desc_region' => 'Desc Region',
             'nombre_region' => 'Nombre Region',
+            'status' => 'Estado',
         ];
     }
 
@@ -52,5 +54,14 @@ class Regiones extends \yii\db\ActiveRecord
     public function getCatMunicipios()
     {
         return $this->hasMany(Municpios::className(), ['reg_fuertes_id' => 'id']);
+    }
+
+    public static function getRegionesActivas(){
+        $regiones_activas = self::find()
+            ->select(['id', 'desc_region'])
+            ->where(['status' => 1])
+            ->orderBy(['desc_region' => 'DESC'])
+            ->all();
+        return $regiones_activas;
     }
 }
