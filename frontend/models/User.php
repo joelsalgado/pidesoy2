@@ -36,14 +36,26 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'email','password_hash', 'name'], 'required'],
-            [['username', 'email'] ,'unique'],
+            [['username', 'email','password_hash', 'name'], 'required', 'message' => 'Campo obligatorio'],
+            [['username', 'email'] ,'unique', 'message' => 'Ya existe un registro con este valor'],
             [['username'], 'string', 'max' => 32],
             [['name'], 'string', 'max' => 150],
             [['email'], 'string', 'max' => 255],
             [['status', 'role'],'safe'],
-            [['region_id'],'integer']
+            [['region_id'],'integer'],
+            ['status','validateRegion']
         ];
+    }
+
+    public function validateRegion(){
+        //var_dump($this->role); die;
+        if ($this->role != 30) {
+
+            if ($this->region_id == null) {
+                $this->addError('region_id', 'Campo Oblogatorio');
+            }
+        }
+
     }
 
     /**
@@ -86,6 +98,6 @@ class User extends \yii\db\ActiveRecord
 
     public function getRegion()
     {
-        return $this->hasMany(Regiones::className(), ['region_id' => 'id']);
+        return $this->hasMany(Regiones::className(), ['id' => 'region_id']);
     }
 }

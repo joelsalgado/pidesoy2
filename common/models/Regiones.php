@@ -56,12 +56,22 @@ class Regiones extends \yii\db\ActiveRecord
         return $this->hasMany(Municpios::className(), ['reg_fuertes_id' => 'id']);
     }
 
-    public static function getRegionesActivas(){
-        $regiones_activas = self::find()
-            ->select(['id', 'desc_region'])
-            ->where(['status' => 1])
-            ->orderBy(['desc_region' => 'DESC'])
-            ->all();
+    public static function getRegionesOk(){
+        if(Yii::$app->user->identity->role == 30){
+            $regiones_activas = self::find()
+                ->select(['id', 'desc_region'])
+                ->where(['status' => 1])
+                ->orderBy(['desc_region' => 'DESC'])
+                ->all();
+        }else{
+            $regiones_activas = self::find()
+                ->select(['id', 'desc_region'])
+                ->where(['status' => 1])
+                ->andWhere(['id' => Yii::$app->user->identity->region_id ])
+                ->orderBy(['desc_region' => 'DESC'])
+                ->all();
+        }
+
         return $regiones_activas;
     }
 }

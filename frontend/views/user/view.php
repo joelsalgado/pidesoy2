@@ -31,17 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'username',
             'name',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
             'email:email',
-            'role',
-            'status',
-            'created_by',
-            'updated_by',
-            'created_at',
-            'updated_at',
-        ],
+        ]
     ]) ?>
 
 </div>

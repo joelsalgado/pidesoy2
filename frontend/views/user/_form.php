@@ -24,11 +24,13 @@ use yii\helpers\ArrayHelper;
     <?php if(!$model->isNewRecord):?>
         <?= $form->field($model, 'status')->radioList(Yii::$app->params['estatus']);?>
     <?php endif;?>
+    <?php if(Yii::$app->user->identity->role ==30):?>
+        <?= $form->field($model, 'role')->radioList(Yii::$app->params['rolesAdmin']);?>
+    <?php endif;?>
 
-    <?= $form->field($model, 'role')->radioList(Yii::$app->params['roles']);?>
     <div class="region">
         <?= $form->field($model, 'region_id')->widget(Select2::classname(), [
-            'data' => ArrayHelper::map(\common\models\Regiones::getRegionesActivas(),
+            'data' => ArrayHelper::map(\common\models\Regiones::getRegionesOk(),
                 'id', 'desc_region'),
             'options' => ['placeholder' => 'Selecciona una Región'],
             'pluginOptions' => [
