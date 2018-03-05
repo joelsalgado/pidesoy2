@@ -50,10 +50,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 return $role;
                             },
-                            'filter' => Html::activeDropDownList($searchModel, 'role',
-                                $roles = (Yii::$app->user->identity->role == 30) ? Yii::$app->params['rolesAdmin']:
-                                    Yii::$app->params['rolesSup'],
-                                ['class'=>'form-control','prompt' => 'Seleccione un rol']),
+                            'filter' => Html::activeDropDownList($searchModel, 'region_id',
+                                \yii\helpers\ArrayHelper::map(\common\models\Regiones::getRegionesOk(), 'id', 'desc_region'),
+                                ['class'=>'form-control','prompt' => 'Seleccione una region']),
                         ],
                         [
                             'attribute' => 'role',
@@ -108,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 },
 
                                 'borrar' => function ($url, $model) {
-                                    if(Yii::$app->user->identity->role == 30){
+                                    if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20){
                                     return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
                                         'title' => Yii::t('app', 'borrar'),
                                     ]);

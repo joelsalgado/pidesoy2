@@ -6,8 +6,8 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header'], 'visible' => $user = (Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20) ? true : false],
-                    ['label' => 'Usuarios', 'icon' => 'user', 'url' => ['/user']],
+                    ['label' => 'Menu', 'options' => ['class' => 'header']],
+                    ['label' => 'Usuarios', 'icon' => 'user', 'url' => ['/user'], 'visible' => $user = (Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20) ? true : false],
                     ['label' => 'home', 'icon' => 'dashboard', 'url' => ['/']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
