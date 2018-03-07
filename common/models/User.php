@@ -27,12 +27,9 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
 
     const ROLE_USER = 10;
-    const ROLE_ADMIN = 20;
+    const ROLE_SUP = 20;
+    const ROLE_ADMIN =30;
 
-
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return '{{%user}}';

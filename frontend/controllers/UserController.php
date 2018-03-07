@@ -4,7 +4,9 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\User;
+use common\models\User as Usuarios;
 use frontend\models\UserSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +22,21 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $valid_roles = [Usuarios::ROLE_ADMIN, Usuarios::ROLE_SUP];
+                            return Usuarios::roleInArray($valid_roles);
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -51,6 +68,7 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        die;
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -72,7 +90,7 @@ class UserController extends Controller
                 ->generatePasswordHash($password);
             $model->status = 10;
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['indez']);
             }
         }
 
@@ -102,7 +120,7 @@ class UserController extends Controller
                 $model->password_hash = $model->password_hash;
             }
             if($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
 
