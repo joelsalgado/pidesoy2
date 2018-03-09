@@ -59,17 +59,26 @@ class SolicitantesController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Solicitantes model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new Solicitantes();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $periodo = Yii::$app->formatter->asDate('now', 'yyyy');
+            $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+            $fecha_nac =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
+
+            $model->periodo = $periodo;
+            $model->fecha_nacimiento = $fecha_nac;
+            $model->status = 1;
+            $model->created_at = $fecha;
+            $model->updated_at = $fecha;
+
+            if ($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
         }
 
         return $this->render('create', [
@@ -77,18 +86,22 @@ class SolicitantesController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Solicitantes model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->fecha_nacimiento = Yii::$app->formatter->asDate($model->fecha_nacimiento, 'dd-MM-yyyy');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+            $fecha_nac =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
+
+            $model->fecha_nacimiento = $fecha_nac;
+            $model->updated_at = $fecha;
+
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
         }
 
         return $this->render('update', [
