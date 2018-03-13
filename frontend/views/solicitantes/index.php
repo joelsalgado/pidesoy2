@@ -20,8 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php Pjax::begin(); ?>
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-            <p>
-                <?= Html::a('Create Solicitantes', ['create'], ['class' => 'btn btn-success']) ?>
+            <p class="pull-right">
+                <?= Html::a('Crear Participante', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?php try {
@@ -29,20 +29,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
+                    'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
+                    'emptyText' => "No se encontró ningún elemento",
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
 
-                        'id',
-                        'periodo',
-                        'entidad_id',
-                        'region_id',
-                        'mun_id',
+                        //'id',
+                        //'periodo',
+                        //'entidad_id',
+                        //'region_id',
+                        //'mun_id',
                         //'loc_id',
-                        //'nombre',
-                        //'apellido_paterno',
-                        //'apellido_materno',
+                        'nombre',
+                        'apellido_paterno',
+                        'apellido_materno',
                         //'edo_civil_id',
-                        //'fecha_nacimiento',
+                        'fecha_nacimiento',
                         //'edad',
                         //'sexo',
                         //'telefono',

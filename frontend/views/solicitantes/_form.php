@@ -40,24 +40,37 @@ use kartik\date\DatePicker;
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <?= $form->field($model, 'mun_id')->widget(DepDrop::classname(), [
+                    <?=!$model->isNewRecord ? $form->field($model, 'mun_id')->widget(DepDrop::classname(), [
                         'options' => ['id'=>'mun_id'],
                         'type'=>DepDrop::TYPE_SELECT2,
-                        'data'=>$datap = (!$model->isNewRecord)? [$model->mun_id=>$model->mun->nombre_mun]: "",
+                        'data'=>[$model->mun_id=>$model->mun->nombre_mun],
                         'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
                         'pluginOptions'=>[
                             'depends'=>['reg_id'],
                             'placeholder' => 'Selecciona un Municipio',
                             'url' => Url::to(['solicitantes/municipios']),
                         ]
-                    ])?>
+                    ]) :
+                        $form->field($model, 'mun_id')->widget(DepDrop::classname(), [
+                            'options' => ['id'=>'mun_id'],
+                            'type'=>DepDrop::TYPE_SELECT2,
+                            'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
+                            'pluginOptions'=>[
+                                'depends'=>['reg_id'],
+                                'placeholder' => 'Selecciona un Municipio',
+                                'url' => Url::to(['solicitantes/municipios']),
+                            ]
+                        ])
+
+                    ?>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
 
-                    <?= $form->field($model, 'loc_id')->widget(DepDrop::classname(), [
+                    <?= !$model->isNewRecord ?  $form->field($model, 'loc_id')->widget(DepDrop::classname(), [
                         'options' => ['id'=>'loc_id'],
+                        'data'=>[$model->loc_id=>$model->loc->desc_loc],
                         'type'=>DepDrop::TYPE_SELECT2,
                         'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
                         'pluginOptions'=>[
@@ -65,7 +78,18 @@ use kartik\date\DatePicker;
                             'placeholder' => 'Selecciona una Localidad',
                             'url' => Url::to(['solicitantes/localidades']),
                         ]
-                    ])?>
+                    ]) :
+                        $form->field($model, 'loc_id')->widget(DepDrop::classname(), [
+                            'options' => ['id'=>'loc_id'],
+                            'type'=>DepDrop::TYPE_SELECT2,
+                            'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
+                            'pluginOptions'=>[
+                                'depends'=>['mun_id'],
+                                'placeholder' => 'Selecciona una Localidad',
+                                'url' => Url::to(['solicitantes/localidades']),
+                            ]
+                        ])
+                    ?>
                 </div>
             </div>
         </div>

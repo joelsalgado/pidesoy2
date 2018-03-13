@@ -64,7 +64,14 @@ class SolicitantesController extends Controller
         $model = new Solicitantes();
 
         if ($model->load(Yii::$app->request->post())) {
-
+            $model->nombre = trim(strtoupper($model->nombre));
+            $model->apellido_paterno = trim(strtoupper($model->apellido_paterno));
+            $model->apellido_materno = trim(strtoupper($model->apellido_materno));
+            $model->calle = trim(strtoupper($model->calle));
+            $model->colonia = trim(strtoupper($model->colonia));
+            $model->num_ext = trim(strtoupper($model->num_ext));
+            $model->num_int = trim(strtoupper($model->num_int));
+            $model->otra_referencia = trim(strtoupper($model->otra_referencia));
             $periodo = Yii::$app->formatter->asDate('now', 'yyyy');
             $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
             $fecha_nac =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
@@ -92,6 +99,14 @@ class SolicitantesController extends Controller
         $model->fecha_nacimiento = Yii::$app->formatter->asDate($model->fecha_nacimiento, 'dd-MM-yyyy');
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->nombre = trim(strtoupper($model->nombre));
+            $model->apellido_paterno = trim(strtoupper($model->apellido_paterno));
+            $model->apellido_materno = trim(strtoupper($model->apellido_materno));
+            $model->calle = trim(strtoupper($model->calle));
+            $model->colonia = trim(strtoupper($model->colonia));
+            $model->num_ext = trim(strtoupper($model->num_ext));
+            $model->num_int = trim(strtoupper($model->num_int));
+            $model->otra_referencia = trim(strtoupper($model->otra_referencia));
             $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
             $fecha_nac =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
 
