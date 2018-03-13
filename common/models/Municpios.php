@@ -101,4 +101,18 @@ class Municpios extends \yii\db\ActiveRecord
     {
         return $this->hasOne(CatRegionalizacion::className(), ['id' => 'regionalizacion_id']);
     }
+
+    public static function getMun($cat_id){
+        $sections = self::find()
+            ->select(['id', 'desc_mun'])
+            ->where(['reg_fuertes_id'=> $cat_id])
+            ->asArray()
+            ->all();
+        $sec = [];
+        foreach ($sections as $value){
+            $sec[] = ["id"=> $value['id'], "name"=>$value['desc_mun']];
+        }
+
+        return $sec;
+    }
 }

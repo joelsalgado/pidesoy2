@@ -79,4 +79,21 @@ class Localidades extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Municpios::className(), ['id' => 'mun_id']);
     }
+
+
+    public static function getLoc($cat_id)
+    {
+        $sections = self::find()
+            ->select(['localidad_id', 'desc_loc'])
+            ->where(['mun_id'=> $cat_id])
+            ->andWhere('loc_fuertes_id > 0 ')
+            ->asArray()
+            ->all();
+        $sec = [];
+        foreach ($sections as $value){
+            $sec[] = ["id"=> $value['localidad_id'], "name"=>$value['desc_loc']];
+        }
+
+        return $sec;
+    }
 }

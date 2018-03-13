@@ -46,4 +46,13 @@ class EstadoCivil extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
+    public static function getEstados(){
+        $estados = self::find()
+            ->select(['id', 'desc_edo_civil'])
+            ->where(['status' => 1])
+            ->orderBy(['desc_edo_civil' => 'DESC'])
+            ->all();
+        return $estados;
+    }
 }
