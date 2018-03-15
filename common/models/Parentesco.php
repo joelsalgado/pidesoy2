@@ -46,4 +46,14 @@ class Parentesco extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
+    public static function getParentescoOk(){
+        $vivienda = self::find()
+            ->select(['id', 'desc_parentesco'])
+            ->where(['status' => 1])
+            ->orderBy(['desc_parentesco' => 'DESC'])
+            ->all();
+
+        return $vivienda;
+    }
 }
