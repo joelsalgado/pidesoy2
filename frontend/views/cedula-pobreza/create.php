@@ -12,10 +12,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cedula-pobreza-create">
 
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Crear Cedula de Pobreza</h3>
+        </div>
+        <div class="box-body">
 
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 
 </div>
