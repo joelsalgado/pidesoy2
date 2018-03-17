@@ -124,4 +124,29 @@ class Solicitantes extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Regiones::className(), ['id' => 'region_id']);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        if($insert){
+            $cedula = new CedulaPobreza();
+
+            $cedula->solicitante_id = $this->id;
+            $cedula->entidad_id = $this->entidad_id;
+            $cedula->region_id = $this->region_id;
+            $cedula->region_id = $this->region_id;
+            $cedula->mun_id = $this->mun_id;
+            $cedula->loc_id = $this->loc_id;
+            $cedula->created_at = $this->created_at;
+            $cedula->updated_at = $this->updated_at;
+
+            if ($cedula->save()){
+                echo "se guardo perro";
+            }else{
+                die;
+            }
+        }
+
+
+    }
 }

@@ -39,7 +39,7 @@ $(document).ready(function() {
         $('.muros').hide();
     }
 
-    if (aguap == 0 || aguap == undefined){
+    if (aguap == 1 || aguap == undefined){
         $('.aguap').hide();
     }
 
@@ -59,7 +59,7 @@ $(document).ready(function() {
         $('.chimenea').hide();
     }
 
-    if (otro == 1 || otro == undefined) {
+    if (otro == 0 || otro == undefined) {
         $('.otro').hide();
     }
 
@@ -90,7 +90,7 @@ $(document).ready(function() {
         $('.tiene_serv_med').hide();
     }
 
-    if (otro_serv_med == 1 || otro_serv_med == undefined) {
+    if (otro_serv_med == 0 || otro_serv_med == undefined) {
         $('.otro_serv_med').hide();
     }
 
