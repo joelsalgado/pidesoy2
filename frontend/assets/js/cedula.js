@@ -16,6 +16,16 @@ $(document).ready(function() {
     prim_icomp_15_mas = $('input:radio[name="CedulaPobreza[prim_icomp_15_mas]"]:checked').val();
     no_asiste_esc_6_14 = $('input:radio[name="CedulaPobreza[no_asiste_esc_6_14]"]:checked').val();
 
+    tiene_serv_med = $('input:radio[name="CedulaPobreza[tiene_serv_med]"]:checked').val();
+    otro_serv_med = $('input:checkbox[name="CedulaPobreza[otro_serv_med]"]:checked').val();
+    cronico_degenerativa = $('input:radio[name="CedulaPobreza[cronico_degenerativa]"]:checked').val();
+    trabaja_formalmente = $('input:radio[name="CedulaPobreza[trabaja_formalmente]"]:checked').val();
+    autoingreso = $('input:radio[name="CedulaPobreza[autoingreso]"]:checked').val();
+    apoyo_gobierno = $('input:radio[name="CedulaPobreza[apoyo_gobierno]"]:checked').val();
+    apoyo_extranjero = $('input:radio[name="CedulaPobreza[apoyo_extranjero]"]:checked').val();
+    pension = $('input:radio[name="CedulaPobreza[pension]"]:checked').val();
+    programa_desarrollo_social = $('input:radio[name="CedulaPobreza[programa_desarrollo_social]"]:checked').val();
+
 
     if (piso == 1 || piso == undefined){
         $('.piso').hide();
@@ -53,6 +63,7 @@ $(document).ready(function() {
         $('.otro').hide();
     }
 
+
     //otros
 
     if (trunca_3_15 == 0 || trunca_3_15 == undefined){
@@ -73,6 +84,42 @@ $(document).ready(function() {
 
     if (no_asiste_esc_6_14 == 0 || no_asiste_esc_6_14 == undefined){
         $('.no_asiste_esc_6_14').hide();
+    }
+
+    if (tiene_serv_med == 0 || tiene_serv_med == undefined){
+        $('.tiene_serv_med').hide();
+    }
+
+    if (otro_serv_med == 1 || otro_serv_med == undefined) {
+        $('.otro_serv_med').hide();
+    }
+
+    if (cronico_degenerativa == 0 || cronico_degenerativa == undefined){
+        $('.cronico_degenerativa').hide();
+    }
+
+    if (trabaja_formalmente == 0 || trabaja_formalmente == undefined){
+        $('.trabaja_formalmente').hide();
+    }
+
+    if (autoingreso == 0 || autoingreso == undefined){
+        $('.autoingreso').hide();
+    }
+
+    if (apoyo_gobierno == 0 || apoyo_gobierno == undefined){
+        $('.apoyo_gobierno').hide();
+    }
+
+    if (apoyo_extranjero == 0 || apoyo_extranjero == undefined){
+        $('.apoyo_extranjero').hide();
+    }
+
+    if (pension == 0 || pension == undefined){
+        $('.pension').hide();
+    }
+
+    if (programa_desarrollo_social == 0 || programa_desarrollo_social == undefined){
+        $('.programa_desarrollo_social').hide();
     }
 
 });
@@ -244,7 +291,6 @@ $(function() {
     });
     //otros
 
-
     $('input:radio[name="CedulaPobreza[educ_trunca_3_15]"]').change(function() {
         if ($(this).val() == 0) {
             $('.trunca_3_15').hide();
@@ -291,8 +337,87 @@ $(function() {
         }
     });
 
+    $('input:radio[name="CedulaPobreza[tiene_serv_med]"]').change(function() {
+        if ($(this).val() == 0) {
+            $('.tiene_serv_med').hide();
+            $('input[name = "CedulaPobreza[especifique]"]').val('');
+            $('input[name = "CedulaPobreza[num_miemb_recibe]"]').val('');
+        } else {
+            $('.tiene_serv_med').show();
+        }
+    });
 
+    $('input[name="CedulaPobreza[otro_serv_med]').change(function() {
+        if ($(this).is(':checked')) {
+            $('.otro_serv_med').show();
+        } else {
+            $('.otro_serv_med').hide();
+            $('input[name = "CedulaPobreza[especifique]"]').val('');
+        }
+    });
 
+    $('input:radio[name="CedulaPobreza[cronico_degenerativa]"]').change(function() {
+        if ($(this).val() == 0) {
+            $('.cronico_degenerativa').hide();
+            $('input[name = "CedulaPobreza[cual_cronico_deg]"]').val('');
+        } else {
+            $('.cronico_degenerativa').show();
+        }
+    });
 
+    $('input:radio[name="CedulaPobreza[trabaja_formalmente]"]').change(function() {
+        if ($(this).val() == 0) {
+            $('.trabaja_formalmente').hide();
+        } else {
+            $('.trabaja_formalmente').show();
+        }
+    });
+
+    $('input:radio[name="CedulaPobreza[autoingreso]"]').change(function() {
+        if ($(this).val() == 0) {
+            $('.autoingreso').hide();
+            $('input[name = "CedulaPobreza[monto_autoingreso]"]').val('');
+            $('input[name = "CedulaPobreza[actividad_autoingreso]"]').val('');
+        } else {
+            $('.autoingreso').show();
+        }
+    });
+
+    $('input:radio[name="CedulaPobreza[apoyo_gobierno]"]').change(function() {
+        if ($(this).val() == 0) {
+            $('.apoyo_gobierno').hide();
+            $('input[name = "CedulaPobreza[cual_apoyo]"]').val('');
+            $('input[name = "CedulaPobreza[monto_apoyo]"]').val('');
+        } else {
+            $('.apoyo_gobierno').show();
+        }
+    });
+
+    $('input:radio[name="CedulaPobreza[apoyo_extranjero]"]').change(function() {
+        if ($(this).val() == 0) {
+            $('.apoyo_extranjero').hide();
+            $('input[name = "CedulaPobreza[monto_extranjero]"]').val('');
+        } else {
+            $('.apoyo_extranjero').show();
+        }
+    });
+
+    $('input:radio[name="CedulaPobreza[pension]"]').change(function() {
+        if ($(this).val() == 0) {
+            $('.pension').hide();
+            $('input[name = "CedulaPobreza[monto_pension]"]').val('');
+        } else {
+            $('.pension').show();
+        }
+    });
+
+    $('input:radio[name="CedulaPobreza[programa_desarrollo_social]"]').change(function() {
+        if ($(this).val() == 0) {
+            $('.programa_desarrollo_social').hide();
+            $('input[name = "CedulaPobreza[nombre_recibe_programa]"]').val('');
+        } else {
+            $('.programa_desarrollo_social').show();
+        }
+    });
 
 });

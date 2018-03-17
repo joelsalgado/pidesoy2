@@ -388,124 +388,436 @@ use yii\helpers\ArrayHelper;
             </div>
         </div>
 
-        <?= $form->field($model, 'tiene_serv_med')->radioList([0 => 'No', 1 => 'Si']) ?>
 
-        <?= $form->field($model, 'seguro_popular')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+        <div class="row">
+            <div class="alert alert-info">
+                <strong>VI. SALUD</strong>
+                <i class="fa fa-hospital-o" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="control-label" style="font-size: medium">VI.1 Acceso a los servicios de salud</label>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $form->field($model, 'tiene_serv_med')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="tiene_serv_med">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <?= $form->field($model, 'seguro_popular')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <?= $form->field($model, 'issemyn')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <?= $form->field($model, 'imss')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <?= $form->field($model, 'marina_sedena')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <?= $form->field($model, 'isste')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <?= $form->field($model, 'pemex')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                        </div>
+                    </div>
 
-        <?= $form->field($model, 'issemyn')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'imss')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'marina_sedena')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'isste')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'pemex')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'otro_serv_med')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'especifique')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'num_miemb_recibe')->textInput() ?>
-
-        <?= $form->field($model, 'cronico_degenerativa')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'cual_cronico_deg')->textInput(['maxlength' => true]) ?>
-
-
-        <?= $form->field($model, 'trabaja_formalmente')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'seguridad_social')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'no_SS_65_mas')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-
-        <?= $form->field($model, 'cuantos_ingresos')->textInput() ?>
-
-        <?= $form->field($model, 'jefe_familia')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'jefa_familia')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'hijo')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-
-        <?= $form->field($model, 'ingreso_total')->textInput() ?>
-
-        <?= $form->field($model, 'autoingreso')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'monto_autoingreso')->textInput() ?>
-
-        <?= $form->field($model, 'actividad_autoingreso')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'apoyo_gobierno')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'cual_apoyo')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'monto_apoyo')->textInput() ?>
-
-        <?= $form->field($model, 'apoyo_extranjero')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'monto_extranjero')->textInput() ?>
-
-        <?= $form->field($model, 'pension')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'monto_pension')->textInput() ?>
-
-        <?= $form->field($model, 'madre_soltera_labora')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-
-        <?= $form->field($model, 'menor_poca_variedad')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'menor_falta_alimentos')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'menor_menor_porcion')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'menor_hambre')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'menor_acosto_hambre')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'menor_sin_comer_dia')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'adulto_poca_variedad')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'adulto_falta_alimentos')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'adulto_menor_porcion')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'quedaron_sin_comida')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'adulto_hambre')->radioList([0 => 'No', 1 => 'Si']) ?>
-
-        <?= $form->field($model, 'adulto_sin_comer_dia')->radioList([0 => 'No', 1 => 'Si']) ?>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <?= $form->field($model, 'otro_serv_med')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                        </div>
+                    </div>
+                    <div class="otro_serv_med">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <?= $form->field($model, 'especifique')->textInput(['maxlength' => true]) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <?= $form->field($model, 'num_miemb_recibe')->textInput() ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="form-group">
+                        <?= $form->field($model, 'cronico_degenerativa')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="cronico_degenerativa">
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <?= $form->field($model, 'cual_cronico_deg')->textInput(['maxlength' => true]) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-        <?= $form->field($model, 'tarjeta_liconsa')->radioList([0 => 'No', 1 => 'Si']) ?>
+        <div class="row">
+            <div class="alert alert-info">
+                <strong>VII. SEGURIDAD SOCIAL</strong>
+                <i class="fa fa-group" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="control-label" style="font-size: medium">VII.1 Acceso a la Seguridad Social</label>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'trabaja_formalmente')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="trabaja_formalmente">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <?= $form->field($model, 'seguridad_social')->radioList([1 => 'Si', 0 => 'No']) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $form->field($model, 'no_SS_65_mas')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert alert-info">
+                <strong>VIII. EMPLEO E INGRESOS</strong>
+                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                <i class="fa fa-usd" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="control-label" style="font-size: medium">VIII.1 Empleo e ingresos</label>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $form->field($model, 'cuantos_ingresos')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="control-label">Especifique quien es:</label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <?= $form->field($model, 'jefe_familia')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <?= $form->field($model, 'jefa_familia')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <?= $form->field($model, 'hijo')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $form->field($model, 'ingreso_total',[
+                            'template' =>
+                                '{label}<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>{input}</div>{error}'
 
-        <?= $form->field($model, 'acceso_tienda_diconsa')->radioList([0 => 'No', 1 => 'Si']) ?>
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <?= $form->field($model, 'autoingreso')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="autoingreso">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <?= $form->field($model, 'monto_autoingreso',[
+                                'template' =>
+                                    '{label}<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>{input}</div>{error}'
 
-        <?= $form->field($model, 'abastece_tienda_diconsa')->radioList([0 => 'No', 1 => 'Si']) ?>
+                            ]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <?= $form->field($model, 'actividad_autoingreso')->textInput(['maxlength' => true]) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <?= $form->field($model, 'apoyo_gobierno')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="apoyo_gobierno">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <?= $form->field($model, 'cual_apoyo')->textInput(['maxlength' => true]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <?= $form->field($model, 'monto_apoyo',[
+                                'template' =>
+                                    '{label}<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>{input}</div>{error}'
 
-        <?= $form->field($model, 'comedor_comunitario')->radioList([0 => 'No', 1 => 'Si']) ?>
+                            ]) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'apoyo_extranjero')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="apoyo_extranjero">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <?= $form->field($model, 'monto_extranjero',[
+                                'template' =>
+                                    '{label}<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>{input}</div>{error}'
 
-        <?= $form->field($model, 'programa_desarrollo_social')->radioList([0 => 'No', 1 => 'Si']) ?>
+                            ]) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'pension')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="pension">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <?= $form->field($model, 'monto_pension',[
+                                'template' =>
+                                    '{label}<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>{input}</div>{error}'
 
-        <?= $form->field($model, 'cual_programa')->textInput()->label('pendiente programas combo') ?>
+                            ]) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $form->field($model, 'madre_soltera_labora')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert alert-info">
+                <strong>IX. ALIMENTACIÓN</strong>
+                <i class="fa fa-apple" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="control-label" style="font-size: medium">IX.1 Acceso a la alimentación menores </label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="control-label">En los últimos tres meses, por falta de dinero o recursos:</label>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'menor_poca_variedad')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'menor_falta_alimentos')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'menor_menor_porcion')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'menor_hambre')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'menor_acosto_hambre')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'menor_sin_comer_dia')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
 
-        <?= $form->field($model, 'nombre_recibe_programa')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'parentesco_recibe_programa')->widget(Select2::classname(), [
-            'data' => ArrayHelper::map(\common\models\Parentesco::getParentescoOk(),
-                'id', 'desc_parentesco'),
-            'options' => ['placeholder' => 'Selecciona un Parentesco', 'id' => 'desc_parentesco'],
-            'pluginOptions' => [
-                'allowClear' => true
-            ],
-        ]) ?>
-
-        <?= $form->field($model, 'prospera')->radioList([0 => 'No', 1 => 'Si']) ?>
-
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="control-label" style="font-size: medium">IX.2 Acceso a la alimentación adultos</label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="control-label">En los últimos tres meses, por falta de dinero o recursos:</label>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'adulto_poca_variedad')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'adulto_falta_alimentos')->radioList([1 => 'Si', 0 => 'No'])?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'adulto_menor_porcion')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'quedaron_sin_comida')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'adulto_hambre')->radioList([1 => 'Si', 0 => 'No'])?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'adulto_sin_comer_dia')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert alert-info">
+                <strong>X. VINCULACIÓN A PROGRAMAS DE DESARROLLO SOCIAL (FEDERALES Y ESTATALES)</strong>
+                <i class="fa fa-random" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'tarjeta_liconsa')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acceso_tienda_diconsa')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'abastece_tienda_diconsa')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'comedor_comunitario')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'asiste_comedor_comunitario')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_desarrollo_social')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="programa_desarrollo_social">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <?= $form->field($model, 'cual_programa')->widget(Select2::classname(), [
+                                'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                    'id', 'desc_programa'),
+                                'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa'],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ],
+                            ]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <?= $form->field($model, 'nombre_recibe_programa')->textInput(['maxlength' => true]) ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <?= $form->field($model, 'parentesco_recibe_programa')->widget(Select2::classname(), [
+                                'data' => ArrayHelper::map(\common\models\Parentesco::getParentescoOk(),
+                                    'id', 'desc_parentesco'),
+                                'options' => ['placeholder' => 'Selecciona un Parentesco', 'id' => 'desc_parentesco'],
+                                'pluginOptions' => [
+                                    'allowClear' => true
+                                ],
+                            ]) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $form->field($model, 'prospera')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="form-group">
-            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
