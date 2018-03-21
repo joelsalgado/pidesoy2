@@ -130,8 +130,10 @@ class Solicitantes extends \yii\db\ActiveRecord
         parent::afterSave($insert, $changedAttributes);
         if($insert){
             $cedula = new CedulaPobreza();
+            $cedula->scenario = 'PARTICIPANTES';
 
             $cedula->solicitante_id = $this->id;
+            $cedula->periodo = $this->periodo;
             $cedula->entidad_id = $this->entidad_id;
             $cedula->region_id = $this->region_id;
             $cedula->region_id = $this->region_id;

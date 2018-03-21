@@ -83,7 +83,7 @@ class SolicitantesController extends Controller
             $model->updated_at = $fecha;
 
             if ($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);
             }
 
         }
@@ -114,7 +114,7 @@ class SolicitantesController extends Controller
             $model->updated_at = $fecha;
 
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);
             }
 
         }
