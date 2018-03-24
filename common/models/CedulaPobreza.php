@@ -275,4 +275,42 @@ class CedulaPobreza extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Programas::className(), ['id' => 'cual_programa']);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        if($insert){
+
+            $piso = ($this->piso_firme == 0)? 1: 0;
+            $techo = ($this->techo_firme == 0)? 1:0;
+            $muros = ($this->muros_firme == 0)? 1:0;
+            $cal_hac = $this->num_personas/$this->num_habitaciones;
+            $hacinamiento = ($cal_hac >= 2.5)? 1 : 0;
+            $sum_calidad = $piso+$techo+$muros+$hacinamiento;
+            $calidad = ($sum_calidad >= 1)? 1 : 0;
+
+
+
+
+
+        }
+
+        if($changedAttributes){
+            $piso = ($this->piso_firme == 0)? 1: 0;
+            $techo = ($this->techo_firme == 0)? 1:0;
+            $muros = ($this->muros_firme == 0)? 1:0;
+            $cal_hac = $this->num_personas/$this->num_habitaciones;
+            $hacinamiento = ($cal_hac >= 2.5)? 1 : 0;
+            $sum_calidad = $piso+$techo+$muros+$hacinamiento;
+            $calidad = ($sum_calidad >= 1)? 1 : 0;
+
+            $agua_pub = ($this->agua_publica == 0) ? 1 : 0;
+            $agua_int = ($this->agua_interior_viv == 0) ? 1 : 0;
+            $drenaje_pub = ($this->drenaje_puclico == 0) ? 1 : 0;
+            $drenaje_desem = ($this->drenaje_desemboque == 0) ? 1 : 0;
+            $luz = ($this->energia_electrica == 0) ? 1 : 0;
+            $chimenea = ($this->chimenea == 0) ? 1 : 0;
+        }
+    }
+
 }

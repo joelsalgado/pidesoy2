@@ -125,6 +125,10 @@ class Solicitantes extends \yii\db\ActiveRecord
         return $this->hasOne(Regiones::className(), ['id' => 'region_id']);
     }
 
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
@@ -145,6 +149,8 @@ class Solicitantes extends \yii\db\ActiveRecord
             if ($cedula->save()){
                 echo "se guardo perro";
             }else{
+                $mal = self::findOne($this->id);
+                echo "Error folio".$mal->id;
                 die;
             }
         }
