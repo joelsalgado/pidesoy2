@@ -75,6 +75,7 @@ class PobrezaMultidimensional extends \yii\db\ActiveRecord
             'ss_adultos_may_sin' => 'Ss Adultos May Sin',
             'alimentacion' => 'Alimentacion',
             'alimentacion_val' => 'Alimentacion Val',
+
             'vinc_prog_liconsa' => 'Vinc Prog Liconsa',
             'vinc_prog_diconsa' => 'Vinc Prog Diconsa',
             'vinc_prog_abastece_diconsa' => 'Vinc Prog Abastece Diconsa',

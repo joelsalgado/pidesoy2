@@ -279,37 +279,244 @@ class CedulaPobreza extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        if($insert){
-
-            $piso = ($this->piso_firme == 0)? 1: 0;
-            $techo = ($this->techo_firme == 0)? 1:0;
-            $muros = ($this->muros_firme == 0)? 1:0;
-            $cal_hac = $this->num_personas/$this->num_habitaciones;
-            $hacinamiento = ($cal_hac >= 2.5)? 1 : 0;
-            $sum_calidad = $piso+$techo+$muros+$hacinamiento;
-            $calidad = ($sum_calidad >= 1)? 1 : 0;
-
-
-
-
-
-        }
-
         if($changedAttributes){
             $piso = ($this->piso_firme == 0)? 1: 0;
             $techo = ($this->techo_firme == 0)? 1:0;
             $muros = ($this->muros_firme == 0)? 1:0;
-            $cal_hac = $this->num_personas/$this->num_habitaciones;
-            $hacinamiento = ($cal_hac >= 2.5)? 1 : 0;
+            if($this->num_habitaciones == 0){
+                $hacinamiento = 0;
+            }else{
+                $cal_hac = $this->num_personas/$this->num_habitaciones;
+                $hacinamiento = ($cal_hac >= 2.5)? 1 : 0;
+            }
             $sum_calidad = $piso+$techo+$muros+$hacinamiento;
             $calidad = ($sum_calidad >= 1)? 1 : 0;
 
             $agua_pub = ($this->agua_publica == 0) ? 1 : 0;
             $agua_int = ($this->agua_interior_viv == 0) ? 1 : 0;
+            $suma_agua = $agua_int+$agua_pub;
             $drenaje_pub = ($this->drenaje_puclico == 0) ? 1 : 0;
             $drenaje_desem = ($this->drenaje_desemboque == 0) ? 1 : 0;
+            $suma_drenaje = $drenaje_desem+$drenaje_pub;
             $luz = ($this->energia_electrica == 0) ? 1 : 0;
             $chimenea = ($this->chimenea == 0) ? 1 : 0;
+            $sum_serv_basicos = $suma_agua+$suma_drenaje+$luz+$chimenea;
+            $serv_basicos =  ($sum_serv_basicos >= 1)? 1 : 0;
+
+            $excusado = ($this->excusado == 0) ? 1 : 0;
+            $refrigerador = ($this->refrigerador == 0) ? 1 : 0;
+            $lavadora = ($this->lavadora == 0) ? 1 : 0;
+
+            $edu_trunca_3_15 =($this->educ_trunca_3_15 == 1) ? 1 : 0;
+            $edu_no_asiste_esc_3_15 =($this->no_asiste_esc_3_15 == 1) ? 1 : 0;
+            $edu_prim_icomp_35_mas =($this->prim_icomp_35_mas == 1) ? 1 : 0;
+            $edu_sec_icomp_16_35 =($this->sec_icomp_16_35 == 1) ? 1 : 0;
+            $suma_educ = $edu_trunca_3_15+$edu_no_asiste_esc_3_15+$edu_prim_icomp_35_mas+$edu_sec_icomp_16_35;
+            $educacion =  ($suma_educ >= 1)? 1 : 0;
+
+            $edu_analfabetas_may_15 =($this->analfabetas_may_15 == 1) ? 1 : 0;
+            $edu_prim_icomp_15_mas =($this->prim_icomp_15_mas == 1) ? 1 : 0;
+            $edu_no_asiste_esc_6_14 =($this->no_asiste_esc_6_14 == 1) ? 1 : 0;
+
+            $recibe_salud = ($this->tiene_serv_med == 0) ? 1 : 0;
+            $salud = ($recibe_salud >= 1) ? 1 : 0;
+
+            $seguridad_social_formal =($this->trabaja_formalmente == 0) ? 1 : 0;
+            $seguridad_social_sin =($this->seguridad_social == 0) ? 1 : 0;
+            $seguridad_social_may_sin =($this->no_SS_65_mas == 0) ? 1 : 0;
+            $sum_ss = $seguridad_social_formal + $seguridad_social_sin + $seguridad_social_may_sin;
+            $seguridad_social = ($sum_ss >= 1) ? 1 : 0;
+
+            $al_menor_poca_variedad = ($this->menor_poca_variedad == 1) ? 1 : 0;
+            $al_menor_falta_alimentos = ($this->menor_falta_alimentos == 1) ? 1 : 0;
+            $al_menor_menor_porcion = ($this->menor_menor_porcion == 1) ? 1 : 0;
+            $al_menor_hambre = ($this->menor_hambre == 1) ? 1 : 0;
+            $al_menor_acosto_hambre = ($this->menor_acosto_hambre == 1) ? 1 : 0;
+            $al_menor_sin_comer_dia = ($this->menor_sin_comer_dia == 1) ? 1 : 0;
+            $al_adulto_poca_variedad = ($this->adulto_poca_variedad == 1) ? 1 : 0;
+            $al_adulto_falta_alimentos = ($this->adulto_falta_alimentos == 1) ? 1 : 0;
+            $al_adulto_menor_porcion = ($this->adulto_menor_porcion == 1) ? 1 : 0;
+            $al_quedaron_sin_comida = ($this->quedaron_sin_comida == 1) ? 1 : 0;
+            $al_adulto_hambre = ($this->adulto_hambre == 1) ? 1 : 0;
+            $al_adulto_sin_comer_dia = ($this->adulto_sin_comer_dia == 1) ? 1 : 0;
+            $suma_al = $al_menor_poca_variedad + $al_menor_falta_alimentos + $al_menor_menor_porcion + $al_menor_hambre + $al_menor_acosto_hambre + $al_menor_sin_comer_dia + $al_adulto_poca_variedad + $al_adulto_falta_alimentos + $al_adulto_menor_porcion + $al_quedaron_sin_comida + $al_adulto_hambre + $al_adulto_sin_comer_dia;
+            $alimentacion = ($suma_al >= 1) ? 1 : 0;
+
+            $suma_carencias = $alimentacion + $seguridad_social + $salud + $educacion + $serv_basicos + $calidad;
+
+            if ($suma_carencias == 0){
+                $carencias_desc = 'No pobre por carencia';
+                $carencia_val = 0;
+            }
+            elseif ($suma_carencias >=1 && $suma_carencias < 3){
+                $carencias_desc = 'Vulnerable por carencias';
+                $carencia_val = 1;
+            }elseif ($suma_carencias >= 3){
+                $carencias_desc = 'Pobre por carencia';
+                $carencia_val = 2;
+            }
+
+
+            $canasta_alimentaria = 0;
+            $canasta_al_mas_no_aliemantaria = 0;
+
+            if($this->loc->tipo_loc == 'R'){
+                $canasta_alimentaria = 1041.97;
+                $canasta_al_mas_no_aliemantaria= 1915.01;
+            }else{
+                $canasta_alimentaria = 1472.94;
+                $canasta_al_mas_no_aliemantaria= 2974.46;
+            }
+
+            $ingreso_total =($this->ingreso_total == 0) ? 0 : $this->ingreso_total;
+            $ingreso_auto =($this->monto_autoingreso == 0) ? 0 : $this->monto_autoingreso;
+            $ingreso_apoyo =($this->monto_apoyo == 0) ? 0 : $this->monto_apoyo;
+            $ingreso_extranjero =($this->monto_extranjero == 0) ? 0 : $this->monto_extranjero;
+            $ingreso_pension =($this->monto_pension == 0) ? 0 : $this->monto_pension;
+
+            $suma_ingresos = $ingreso_total + $ingreso_auto + $ingreso_apoyo + $ingreso_extranjero + $ingreso_pension;
+
+            if($this->num_personas){
+                $ingreso = $suma_ingresos/$this->num_personas;
+            }else{
+                $ingreso = 0;
+            }
+
+            if ($ingreso >= $canasta_al_mas_no_aliemantaria)
+            {
+                $indicador_ingresos_desc = "No Pobre por Ingresos";
+                $indicador_ingresos_val = 0;
+            }
+            elseif ($ingreso >= $canasta_alimentaria)
+            {
+                $indicador_ingresos_desc = "Vulnerable por Ingresos";
+                $indicador_ingresos_val = 1;
+            }
+            elseif ($ingreso < $canasta_alimentaria){
+                $indicador_ingresos_desc = "Pobreza por Ingresos";
+                $indicador_ingresos_val = 2;
+            }
+
+
+            if ($carencia_val == 0 && $indicador_ingresos_val == 0){
+                $resultado = "NO POBRE NO VULNERABLE";
+                $resultado_val = 0;
+            }
+            elseif ($carencia_val == 1 && $indicador_ingresos_val == 0){
+                $resultado = "VULNERABLE POR CARENCIAS SOCIALES";
+                $resultado_val = 1;
+            }
+            elseif ($carencia_val == 2 && $indicador_ingresos_val == 0){
+                $resultado = "VULNERABLE POR CARENCIAS SOCIALES";
+                $resultado_val = 1;
+            }
+            elseif ($carencia_val == 0 && $indicador_ingresos_val == 1){
+                $resultado = "VULNERABLE POR INGRESOS";
+                $resultado_val = 2;
+            }
+            elseif ($carencia_val == 1 && $indicador_ingresos_val == 1){
+                $resultado = "POBREZA MODERADA";
+                $resultado_val = 3;
+            }
+            elseif ($carencia_val == 2 && $indicador_ingresos_val == 1){
+                $resultado = "POBREZA MODERADA";
+                $resultado_val = 3;
+            }
+            elseif ($carencia_val == 0 && $indicador_ingresos_val == 2){
+                $resultado = "POBREZA MODERADA";
+                $resultado_val = 3;
+            }
+            elseif ($carencia_val == 2 && $indicador_ingresos_val == 2){
+                $resultado = "POBREZA EXTREMA";
+                $resultado_val = 4;
+            }
+            elseif ($carencia_val == 1 && $indicador_ingresos_val == 2){
+                $resultado = "POBREZA MODERADA";
+                $resultado_val = 3;
+            }
+
+            $pobreza = PobrezaMultidimensional::find()->where(['solicitante_id' => $this->solicitante_id])->one();
+
+            if($pobreza){
+                $model = $pobreza;
+            }else{
+                $model = new PobrezaMultidimensional();
+            }
+
+            $model->solicitante_id = $this->solicitante_id;
+            $model->cedula_pobreza_id = $this->id;
+            $model->periodo = $this->periodo;
+            $model->entidad_id = $this->entidad_id;
+            $model->region_id = $this->region_id;
+            $model->region_id = $this->region_id;
+            $model->mun_id = $this->mun_id;
+            $model->loc_id = $this->loc_id;
+            $model->created_at = $this->created_at;
+            $model->updated_at = $this->updated_at;
+
+            $model->calidad_vivienda = $calidad;
+            $model->calidad_vivienda_piso = $piso;
+            $model->calidad_vivienda_techo = $techo;
+            $model->calidad_vivienda_muros = $muros;
+            $model->calidad_vivienda_hacentamiento = $hacinamiento;
+
+            $model->serv_basicos = $serv_basicos;
+            $model->serv_basicos_agua = $suma_agua;
+            $model->serv_basicos_drenaje = $suma_drenaje;
+            $model->serv_basicos_electricidad = $luz;
+            $model->serv_basicos_chimenea = $chimenea;
+            $model->serv_basicos_excusado = $excusado;
+            $model->serv_basicos_reefrigerador = $refrigerador;
+            $model->serv_basicos_lavadora = $lavadora;
+
+            $model->educ =$educacion;
+            $model->educ_trunca_3_15 = $edu_trunca_3_15;
+            $model->educ_no_asiste_3_15 = $edu_no_asiste_esc_3_15;
+            $model->educ_no_prim_35 = $edu_prim_icomp_35_mas;
+            $model->educ_sec_inc_16_35 =$edu_sec_icomp_16_35 ;
+            $model->educ_analfabeta_may_15 = $edu_analfabetas_may_15;
+            $model->educ_prim_inc_may_15 = $edu_prim_icomp_15_mas;
+            $model->educ_no_asiste_6_14 = $edu_no_asiste_esc_6_14;
+
+            $model->salud = $salud;
+            $model->salud_recibe = $recibe_salud;
+
+            $model->ss = $seguridad_social;
+            $model->ss_trabajo_formal = $seguridad_social_formal;
+            $model->ss_trabajo_sin = $seguridad_social_sin;
+            $model->ss_adultos_may_sin = $seguridad_social_may_sin;
+
+            $model->alimentacion = $alimentacion;
+            $model->alimentacion_val = $suma_al;
+
+            $model->vinc_prog_liconsa = ($this->tarjeta_liconsa == 0) ? 0 : 1;;
+            $model->vinc_prog_diconsa = ($this->acceso_tienda_diconsa == 0) ? 0 : 1;;
+            $model->vinc_prog_abastece_diconsa = ($this->abastece_tienda_diconsa == 0) ? 0 : 1;;
+            $model->vinc_prog_comedor = ($this->comedor_comunitario == 0) ? 0 : 1;;
+            $model->vinc_prog_asiste_comedor = ($this->asiste_comedor_comunitario == 0) ? 0 : 1;;
+            $model->vinc_prog_acceso = ($this->programa_desarrollo_social == 0) ? 0 : 1;;
+            $model->vinc_prog_prospera = ($this->prospera == 0) ? 0 : 1;;
+            $model->vinc_prog_mujeres_solt = ($this->madre_soltera_labora == 0) ? 0 : 1;;
+            $model->vinc_prog_adult_may = ($this->per_65_mas >= 0) ? 0 : 1;
+
+            $model->carencia_soc = $suma_carencias;
+            $model->carencia_soc_desc = $carencia_val;
+            $model->indicador_ingresos = $indicador_ingresos_val;
+            $model->indicador_ingresos_desc = $indicador_ingresos_val;
+            $model->resultado = $resultado_val;
+            $model->resultado_val = $resultado_val;
+            $model->status = 1;
+
+            if($model->save())
+            {
+                echo "bien";
+            }else{
+                echo "mal"; die;
+            }
+
+
+
+
         }
     }
 
