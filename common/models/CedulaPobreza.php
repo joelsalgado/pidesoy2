@@ -26,7 +26,17 @@ class CedulaPobreza extends \yii\db\ActiveRecord
         }
         else{
             return [
-                [['solicitante_id', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'created_at', 'updated_at', 'num_personas'], 'required', 'message' => '{attribute} Es un campo Requerido'],
+                [['solicitante_id', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'created_at', 'updated_at',
+                    'num_personas', 'piso_firme', 'techo_firme', 'muros_firme', 'num_habitaciones','agua_publica',
+                    'agua_interior_viv','drenaje_puclico','drenaje_desemboque','energia_electrica', 'educ_trunca_3_15',
+                    'no_asiste_esc_3_15','prim_icomp_35_mas','sec_icomp_16_35', 'tiene_serv_med','trabaja_formalmente',
+                    'no_SS_65_mas', 'madre_soltera_labora','menor_poca_variedad',
+                    'menor_falta_alimentos', 'menor_menor_porcion','menor_hambre','menor_acosto_hambre',
+                    'menor_sin_comer_dia','adulto_poca_variedad','adulto_falta_alimentos','adulto_menor_porcion',
+                    'quedaron_sin_comida','adulto_hambre','adulto_sin_comer_dia', 'tarjeta_liconsa',
+                    'acceso_tienda_diconsa','abastece_tienda_diconsa','comedor_comunitario','asiste_comedor_comunitario',
+                    'programa_desarrollo_social','prospera',
+                    ], 'required', 'message' => '{attribute} Es un campo Requerido'],
                 [['solicitante_id', 'periodo', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'num_personas', 'per_0_15', 'per_16_17', 'per_18_64', 'per_65_mas', 'tiempo_hab_anios', 'tiempo_hab_meses', 'vivienda_es_id', 'num_familias', 'piso_firme', 'techo_firme', 'muros_firme', 'num_habitaciones', 'agua_publica', 'agua_interior_viv', 'drenaje_puclico', 'drenaje_desemboque', 'energia_electrica', 'cocina_gas', 'cocina_electricidad', 'cocina_lena', 'cocina_carbon', 'cocina_otro', 'chimenea', 'excusado', 'refrigerador', 'lavadora', 'educ_trunca_3_15', 'no_asiste_esc_3_15', 'prim_icomp_35_mas', 'sec_icomp_16_35', 'analfabetas_may_15', 'analfabentas_num', 'prim_icomp_15_mas', 'num_15_mas', 'no_asiste_esc_6_14', 'num_6_14', 'tiene_serv_med', 'seguro_popular', 'issemyn', 'imss', 'marina_sedena', 'isste', 'pemex', 'otro_serv_med', 'num_miemb_recibe', 'cronico_degenerativa', 'trabaja_formalmente', 'seguridad_social', 'no_SS_65_mas', 'cuantos_ingresos', 'jefe_familia', 'jefa_familia', 'hijo', 'ingreso_total', 'autoingreso', 'monto_autoingreso', 'apoyo_gobierno', 'monto_apoyo', 'apoyo_extranjero', 'monto_extranjero', 'pension', 'monto_pension', 'madre_soltera_labora', 'menor_poca_variedad', 'menor_falta_alimentos', 'menor_menor_porcion', 'menor_hambre', 'menor_acosto_hambre', 'menor_sin_comer_dia', 'adulto_poca_variedad', 'adulto_falta_alimentos', 'adulto_menor_porcion', 'quedaron_sin_comida', 'adulto_hambre', 'adulto_sin_comer_dia', 'tarjeta_liconsa', 'acceso_tienda_diconsa', 'abastece_tienda_diconsa', 'comedor_comunitario','asiste_comedor_comunitario', 'programa_desarrollo_social', 'cual_programa', 'parentesco_recibe_programa', 'prospera', 'status', 'created_by', 'updated_by'], 'integer', 'message' => '{attribute} Debe ser númerico'],
                 [['created_at', 'updated_at'], 'safe'],
                 [['piso_material', 'techo_material', 'muros_material', 'agua_obtenida', 'cocina_otro_esp', 'causa_trunca_3_15', 'causa_no_asiste_3_15', 'causa_6_14', 'especifique', 'cual_cronico_deg', 'actividad_autoingreso', 'cual_apoyo'], 'string', 'max' => 50],
@@ -284,7 +294,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             $techo = ($this->techo_firme == 0)? 1:0;
             $muros = ($this->muros_firme == 0)? 1:0;
             if($this->num_habitaciones == 0){
-                $hacinamiento = 0;
+                $hacinamiento = 1;
             }else{
                 $cal_hac = $this->num_personas/$this->num_habitaciones;
                 $hacinamiento = ($cal_hac >= 2.5)? 1 : 0;
@@ -296,10 +306,19 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             $agua_int = ($this->agua_interior_viv == 0) ? 1 : 0;
             $suma_agua = $agua_int+$agua_pub;
             $drenaje_pub = ($this->drenaje_puclico == 0) ? 1 : 0;
-            $drenaje_desem = ($this->drenaje_desemboque == 0) ? 1 : 0;
-            $suma_drenaje = $drenaje_desem+$drenaje_pub;
+            if($drenaje_pub == 0){
+                $drenaje_desem = 0;
+            }else{
+                $drenaje_desem = ($this->drenaje_desemboque == 0) ? 0 : 1;
+            }
+            $suma_drenaje = $drenaje_desem+$drenaje_pub+$drenaje_desem;
             $luz = ($this->energia_electrica == 0) ? 1 : 0;
-            $chimenea = ($this->chimenea == 0) ? 1 : 0;
+            if($this->chimenea == null){
+                $chimenea = 0;
+            }else{
+                $chimenea = ($this->chimenea == 0) ? 1 : 0;
+            }
+
             $sum_serv_basicos = $suma_agua+$suma_drenaje+$luz+$chimenea;
             $serv_basicos =  ($sum_serv_basicos >= 1)? 1 : 0;
 
@@ -323,7 +342,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
 
             $seguridad_social_formal =($this->trabaja_formalmente == 0) ? 1 : 0;
             $seguridad_social_sin =($this->seguridad_social == 0) ? 1 : 0;
-            $seguridad_social_may_sin =($this->no_SS_65_mas == 0) ? 1 : 0;
+            $seguridad_social_may_sin =($this->no_SS_65_mas == 1) ? 1 : 0;
             $sum_ss = $seguridad_social_formal + $seguridad_social_sin + $seguridad_social_may_sin;
             $seguridad_social = ($sum_ss >= 1) ? 1 : 0;
 
