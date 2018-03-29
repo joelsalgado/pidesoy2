@@ -85,50 +85,31 @@ class Solicitantes extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getEdoCivil()
     {
         return $this->hasOne(EstadoCivil::className(), ['id' => 'edo_civil_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getEntidad()
     {
         return $this->hasOne(EntidadNacimiento::className(), ['id' => 'entidad_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getLoc()
     {
         return $this->hasOne(Localidades::className(), ['localidad_id' => 'loc_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getMun()
     {
         return $this->hasOne(Municpios::className(), ['id' => 'mun_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getRegion()
     {
         return $this->hasOne(Regiones::className(), ['id' => 'region_id']);
     }
 
-    /**
-     * @param bool $insert
-     * @param array $changedAttributes
-     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
