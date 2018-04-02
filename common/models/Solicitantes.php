@@ -28,7 +28,7 @@ class Solicitantes extends \yii\db\ActiveRecord
             [['periodo', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'edo_civil_id', 'edad', 'codigo_postal',
                 'status', 'created_by', 'updated_by'], 'integer', 'message' => 'Debe ser un numero entero'],
             [['region_id', 'nombre', 'apellido_paterno', 'apellido_materno', 'edo_civil_id', 'fecha_nacimiento',
-                'edad', 'sexo', 'telefono', 'calle', 'colonia', 'num_ext', 'num_int', 'codigo_postal',
+                'sexo', 'telefono', 'calle', 'colonia', 'num_ext', 'num_int', 'codigo_postal',
                 'otra_referencia', 'created_at', 'updated_at'], 'required', 'message' => 'Campo requerido'],
             [['fecha_nacimiento', 'created_at', 'updated_at'], 'string'],
             [['nombre', 'apellido_paterno', 'apellido_materno'], 'string', 'max' => 60],
@@ -37,6 +37,8 @@ class Solicitantes extends \yii\db\ActiveRecord
             [['otra_referencia'], 'string', 'max' => 100],
             [['calle', 'colonia'], 'string', 'max' => 80],
             [['num_ext', 'num_int'], 'string', 'max' => 40],
+            ['otra_referencia', 'validateDuplicados'],
+            ['fecha_nacimiento', 'validateFecha'],
             //[['edo_civil_id'], 'exist', 'skipOnError' => true, 'targetClass' => EstadoCivil::className(), 'targetAttribute' => ['edo_civil_id' => 'id']],
             //[['entidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => EntidadNacimiento::className(), 'targetAttribute' => ['entidad_id' => 'id']],
             //[['loc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Localidades::className(), 'targetAttribute' => ['loc_id' => 'localidad_id']],
@@ -50,6 +52,36 @@ class Solicitantes extends \yii\db\ActiveRecord
             [['codigo_postal'], 'integer', 'max' => 58000, 'message' => 'Debe ser de 5 digitos'],
         ];
     }
+
+    public function validateDuplicados(){
+        if ($this->isNewRecord) {
+            $dup = self::find()->where([
+                'apellido_paterno' => $this->apellido_paterno,
+                'apellido_materno' => $this->apellido_materno,
+                'nombre' => $this->nombre,
+                'fecha_nacimiento' => $this->fecha_nacimiento,
+                'mun_id' => $this->mun_id,
+                'created_by' => Yii::$app->user->id
+            ])->all();
+            if ($dup) {
+                $this->addError('otra_referencia', 'Este registro ya se encuentra en base de datos');
+            }
+        }
+    }
+
+    public function validateFecha()
+    {
+        $fecha = $this->fecha_nacimiento;
+        $fecha_esp = str_replace("-", "", $fecha);
+        $anio = substr($fecha_esp, 0, 4);
+        if ($anio < 1940 || $anio > 2000){
+            $this->addError('fecha_nacimiento', 'Fecha de Naciemiento incorrecta');
+            $fecha_nac =  Yii::$app->formatter->asDate($this->fecha_nacimiento, 'yyyy-MM-dd');
+            $this->fecha_nacimiento = $fecha_nac;
+        }
+    }
+
+
 
     /**
      * @inheritdoc

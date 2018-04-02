@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use common\models\Localidades;
 use common\models\Municpios;
+use common\models\PobrezaMultidimensional;
+use kartik\mpdf\Pdf;
 use Yii;
 use common\models\Solicitantes;
 use common\models\SolicitantesSearch;
@@ -130,6 +132,7 @@ class SolicitantesController extends Controller
      * @param integer $id
      * @return mixed
      */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -137,6 +140,37 @@ class SolicitantesController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionPobreza($id) {
+        $model = PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
+        if ($model){
+            $content = $this->renderPartial('_reportView', [
+                'model'=> $model
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'ponreza'.$model->id.'.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 10,
+                'marginBottom'=> 13,
+                'orientation' => Pdf::ORIENT_LANDSCAPE,
+                'options' => [
+                    'title' => 'Pobreza'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'methods' => [
+                    'SetFooter' => ['|Pagina {PAGENO}|'],
+                ]
+            ]);
+            return $pdf->render();
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
+    }
     /**
      * Finds the Solicitantes model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

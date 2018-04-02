@@ -131,7 +131,7 @@ use kartik\date\DatePicker;
                     ]) ?>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <?= $form->field($model, 'fecha_nacimiento')->widget(DatePicker::className(), [
                         'name' => 'dp_2',
@@ -141,17 +141,14 @@ use kartik\date\DatePicker;
                         'pluginOptions' => [
                             'autoclose'=>true,
                             'format' => 'dd-mm-yyyy',
+                            'startDate' => '01-01-1940',
+                            'endDate' => '01-01-2000',
                             //'value' => '22-10-1999'
                             ]
                     ]) ?>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <?= $form->field($model, 'edad')->textInput() ?>
-                </div>
-            </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <div class="form-group">
                     <?= $form->field($model, 'sexo')->radioList(['H' => 'Hombre', 'M' => 'Mujer']) ?>
                 </div>

@@ -60,7 +60,50 @@ $this->params['breadcrumbs'][] = $this->title;
                         //'created_at',
                         //'updated_at',
 
-                        ['class' => 'yii\grid\ActionColumn'],
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'header' => 'Acciones',
+                            'headerOptions' => ['style' => 'color:#337ab7'],
+                            'template' => '{update}{borrar}{pobreza}',
+                            'buttons' => [
+                                'update' => function ($url, $model) {
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                        'title' => Yii::t('app', 'editar'),
+                                    ]);
+                                },
+                                'pobreza' => function ($url, $model) {
+                                    return Html::a('<span class="glyphicon glyphicon-file"></span>', $url, [
+                                        'title' => Yii::t('app', 'pobreza'),
+                                    ]);
+                                },
+
+                                'borrar' => function ($url, $model) {
+                                    if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20){
+                                        return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
+                                            'title' => Yii::t('app', 'borrar'),
+                                        ]);
+                                    }
+                                    else {
+                                        return "";
+                                    }
+                                }
+
+                            ],
+                            'urlCreator' => function ($action, $model, $key, $index) {
+                                if ($action === 'update') {
+                                    $url =Yii::$app->homeUrl.'solicitantes/update?id='.$model->id;
+                                    return $url;
+                                }
+                                if ($action === 'borrar') {
+                                    $url =Yii::$app->homeUrl.'solicitantes/delete?id='.$model->id;
+                                    return $url;
+                                }
+                                if ($action === 'pobreza') {
+                                    $url =Yii::$app->homeUrl.'solicitantes/pobreza?id='.$model->id;
+                                    return $url;
+                                }
+                            }
+                        ],
                     ],
                 ]);
             } catch (Exception $e) {

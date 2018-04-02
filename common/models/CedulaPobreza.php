@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
 
 class CedulaPobreza extends \yii\db\ActiveRecord
 {
@@ -12,6 +13,15 @@ class CedulaPobreza extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'cedula_de_pobreza';
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::className(),
+            ]
+        ];
     }
 
     /**
