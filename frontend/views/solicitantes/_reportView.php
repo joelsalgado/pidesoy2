@@ -6,6 +6,7 @@
         <td align="center">
             <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
             <p align="center" style="font-size: small"> Detección de Necesidades</p>
+            <p align="center" style="font-size: small">FAMILIAS FUERTES COMUNIDADES CON TODO</p>
         </td>
         <td align="right">
             <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
@@ -203,7 +204,7 @@
     </tr>
     <tr>
         <td style="background-color: #c9c9c9"><b>EDAD</b></td>
-        <td></td>
+        <td><?= $edad ?></td>
         <td style="background-color: #c9c9c9"><b>TELEFONO</b></td>
         <td><?= $model->solicitante->telefono ?></td>
     </tr>

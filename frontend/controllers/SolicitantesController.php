@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Apartados;
 use common\models\Localidades;
 use common\models\Municpios;
 use common\models\PobrezaMultidimensional;
@@ -99,7 +100,7 @@ class SolicitantesController extends Controller
     {
         $model = $this->findModel($id);
         $model->fecha_nacimiento = Yii::$app->formatter->asDate($model->fecha_nacimiento, 'dd-MM-yyyy');
-
+        $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
         if ($model->load(Yii::$app->request->post())) {
             $model->nombre = trim(strtoupper($model->nombre));
             $model->apellido_paterno = trim(strtoupper($model->apellido_paterno));
@@ -123,6 +124,7 @@ class SolicitantesController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'apartado' => $apartado
         ]);
     }
 
@@ -143,8 +145,23 @@ class SolicitantesController extends Controller
     public function actionPobreza($id) {
         $model = PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
         if ($model){
+            $birthday = $model->solicitante->fecha_nacimiento;
+            list($year, $month, $day) = explode("-", $birthday);
+            $year_diff  = date("Y") - $year;
+            $month_diff = date("m") - $month;
+            $day_diff   = date("d") - $day;
+            if($month_diff < 0)
+            {
+                $year_diff--;
+            }
+            else if(($month_diff == 0) && ($day_diff < 0))
+            {
+                $year_diff--;
+            }
+
             $content = $this->renderPartial('_reportView', [
-                'model'=> $model
+                'model'=> $model,
+                'edad' => $year_diff
             ]);
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts

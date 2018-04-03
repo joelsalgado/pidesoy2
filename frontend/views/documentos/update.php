@@ -2,24 +2,23 @@
 
 use yii\helpers\Html;
 use frontend\widgets\Apartados\Apartados;
-
 /* @var $this yii\web\View */
-/* @var $model common\models\CedulaPobreza */
+/* @var $model common\models\Documentos */
 
-$this->title = 'Actualizar Cedula Pobreza';
+$this->title = 'Documentos';
 ?>
-<div class="cedula-pobreza-update">
+<div class="documentos-update">
 
     <div class="box">
         <?=
         Apartados::widget([
-                'tipo'=>2,
-                'apartado' => $apartado,
-                'id' => $model->solicitante_id,
+            'tipo'=>3,
+            'apartado' => $apartado,
+            'id' => $model->solicitante_id,
         ])
         ?>
         <div class="box-header with-border">
-            <h3 class="box-title">Actualizar Participante</h3>
+            <h3 class="box-title">Documentos</h3>
         </div>
         <div class="box-body">
             <?= $this->render('_form', [

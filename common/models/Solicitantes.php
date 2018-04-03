@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\models\Apartados;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 
@@ -74,7 +75,7 @@ class Solicitantes extends \yii\db\ActiveRecord
         $fecha = $this->fecha_nacimiento;
         $fecha_esp = str_replace("-", "", $fecha);
         $anio = substr($fecha_esp, 0, 4);
-        if ($anio < 1940 || $anio > 2000){
+        if ($anio < 1909 || $anio > 2004){
             $this->addError('fecha_nacimiento', 'Fecha de Naciemiento incorrecta');
             $fecha_nac =  Yii::$app->formatter->asDate($this->fecha_nacimiento, 'yyyy-MM-dd');
             $this->fecha_nacimiento = $fecha_nac;
@@ -159,8 +160,27 @@ class Solicitantes extends \yii\db\ActiveRecord
             $cedula->created_at = $this->created_at;
             $cedula->updated_at = $this->updated_at;
 
-            if ($cedula->save()){
-                echo "se guardo perro";
+            $documentos = new Documentos();
+            $documentos->solicitante_id = $this->id;
+            $documentos->periodo = $this->periodo;
+            $documentos->entidad_id = $this->entidad_id;
+            $documentos->region_id = $this->region_id;
+            $documentos->region_id = $this->region_id;
+            $documentos->mun_id = $this->mun_id;
+            $documentos->loc_id = $this->loc_id;
+            $documentos->created_at = $this->created_at;
+            $documentos->updated_at = $this->updated_at;
+
+            $apartados = new Apartados();
+            $apartados->solicitante_id = $this->id;
+            $apartados->periodo = $this->periodo;
+            $apartados->apartado1 = 1;
+            $apartados->created_at = $this->created_at;
+            $apartados->updated_at = $this->updated_at;
+
+
+            if ($cedula->save() && $documentos->save() && $apa){
+                echo "se guardo";
             }else{
                 $mal = self::findOne($this->id);
                 echo "Error folio".$mal->id;

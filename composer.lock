@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b4cbc59f8fc453a9cb8aee41f40c6b8",
+    "content-hash": "6ddb519aed9ca0bfd92304f6917930c9",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -86,7 +86,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2017-10-03 15:15:17"
+            "time": "2017-10-03T15:15:17+00:00"
         },
         {
             "name": "bower-asset/inputmask",
@@ -225,7 +225,7 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "time": "2017-08-22 10:13:04"
+            "time": "2017-08-22T10:13:04+00:00"
         },
         {
             "name": "cebe/yii2-gravatar",
@@ -382,7 +382,7 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2017-07-24 09:37:08"
+            "time": "2017-07-24T09:37:08+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -537,6 +537,117 @@
             "time": "2016-10-24T15:52:54+00:00"
         },
         {
+            "name": "imagine/imagine",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avalanche123/Imagine.git",
+                "reference": "f2919909f5c43ddf0aea373f460d86f1ea45811c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/f2919909f5c43ddf0aea373f460d86f1ea45811c",
+                "reference": "f2919909f5c43ddf0aea373f460d86f1ea45811c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "sami/sami": "^3.3",
+                "symfony/phpunit-bridge": "^3.2 || ^4.0"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD implementation",
+                "ext-gmagick": "to use the Gmagick implementation",
+                "ext-imagick": "to use the Imagick implementation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Imagine": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
+                }
+            ],
+            "description": "Image processing for PHP 5.3",
+            "homepage": "http://imagine.readthedocs.org/",
+            "keywords": [
+                "drawing",
+                "graphics",
+                "image manipulation",
+                "image processing"
+            ],
+            "time": "2018-02-12T12:28:52+00:00"
+        },
+        {
+            "name": "kartik-v/bootstrap-fileinput",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
+                "reference": "e44f771e4a7d5836add79d52a016cf6a500c37c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/e44f771e4a7d5836add79d52a016cf6a500c37c1",
+                "reference": "e44f771e4a7d5836add79d52a016cf6a500c37c1",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\fileinput\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced HTML 5 file input for Bootstrap 3.x with features for file preview for many file types, multiple selection, ajax uploads, and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+            "keywords": [
+                "ajax",
+                "bootstrap",
+                "delete",
+                "file",
+                "image",
+                "input",
+                "jquery",
+                "multiple",
+                "preview",
+                "progress",
+                "upload"
+            ],
+            "time": "2018-03-23T10:12:29+00:00"
+        },
+        {
             "name": "kartik-v/dependent-dropdown",
             "version": "dev-master",
             "source": {
@@ -581,7 +692,7 @@
                 "option",
                 "select"
             ],
-            "time": "2017-08-01 11:43:55"
+            "time": "2017-08-01T11:43:55+00:00"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -632,7 +743,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-11-17 06:34:33"
+            "time": "2017-11-17T06:34:33+00:00"
         },
         {
             "name": "kartik-v/yii2-mpdf",
@@ -684,7 +795,7 @@
                 "utf8",
                 "yii2"
             ],
-            "time": "2017-07-19 09:51:02"
+            "time": "2017-07-19T09:51:02+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
@@ -738,7 +849,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-06 06:18:08"
+            "time": "2017-09-06T06:18:08+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-depdrop",
@@ -787,7 +898,62 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-02-20 09:27:10"
+            "time": "2018-02-20T09:27:10+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-fileinput",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-fileinput.git",
+                "reference": "c5495641c8a86690713eb562e544bf5eaaf727cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/c5495641c8a86690713eb562e544bf5eaaf727cb",
+                "reference": "c5495641c8a86690713eb562e544bf5eaaf727cb",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-fileinput": "~4.4",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\file\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced FileInput widget for Bootstrap 3.x with file preview, multiple selection, and more features (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-fileinput",
+            "keywords": [
+                "extension",
+                "file",
+                "form",
+                "input",
+                "jquery",
+                "plugin",
+                "upload",
+                "widget",
+                "yii2"
+            ],
+            "time": "2017-12-06T12:34:31+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -840,7 +1006,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-02-24 05:28:25"
+            "time": "2018-02-24T05:28:25+00:00"
         },
         {
             "name": "mpdf/mpdf",
@@ -907,7 +1073,7 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2018-03-09 09:51:52"
+            "time": "2018-03-09T09:51:52+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1002,7 +1168,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -1158,7 +1324,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-11-08 00:14:48"
+            "time": "2017-11-08T00:14:48+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -1258,7 +1424,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-11-07 16:20:14"
+            "time": "2017-11-07T16:20:14+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1304,7 +1470,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2017-10-19 10:18:15"
+            "time": "2017-10-19T10:18:15+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1354,7 +1520,55 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2017-08-01 14:22:25"
+            "time": "2017-08-01T14:22:25+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-imagine",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-imagine.git",
+                "reference": "a8a1a068862a86e3395e665bc86e63d5c9b60841"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-imagine/zipball/a8a1a068862a86e3395e665bc86e63d5c9b60841",
+                "reference": "a8a1a068862a86e3395e665bc86e63d5c9b60841",
+                "shasum": ""
+            },
+            "require": {
+                "imagine/imagine": "~0.6.0 | ~0.7.1",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\imagine\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "amigo.cobos@gmail.com"
+                }
+            ],
+            "description": "The Imagine integration for the Yii framework",
+            "keywords": [
+                "helper",
+                "image",
+                "imagine",
+                "yii2"
+            ],
+            "time": "2018-02-22T11:57:06+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -1404,7 +1618,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2017-11-03 11:01:32"
+            "time": "2017-11-03T11:01:32+00:00"
         },
         {
             "name": "yiister/yii2-gentelella",
@@ -1523,7 +1737,7 @@
                 "gherkin",
                 "parser"
             ],
-            "time": "2017-08-30 11:04:59"
+            "time": "2017-08-30T11:04:59+00:00"
         },
         {
             "name": "bower-asset/typeahead.js",
@@ -1634,7 +1848,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2017-09-29 00:03:44"
+            "time": "2017-09-29T00:03:44+00:00"
         },
         {
             "name": "codeception/verify",
@@ -1722,7 +1936,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2017-09-19 12:41:22"
+            "time": "2017-09-19T12:41:22+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -1772,7 +1986,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-11-06 09:42:24"
+            "time": "2017-11-06T09:42:24+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1837,7 +2051,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-10-07 03:19:56"
+            "time": "2017-10-07T03:19:56+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1937,7 +2151,7 @@
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
-            "time": "2017-04-07 07:07:10"
+            "time": "2017-04-07T07:07:10+00:00"
         },
         {
             "name": "phar-io/version",
@@ -2038,7 +2252,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2017-09-11 18:02:19"
+            "time": "2017-09-11T18:02:19+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2168,7 +2382,7 @@
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "time": "2016-04-07 12:29:16"
+            "time": "2016-04-07T12:29:16+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -2231,7 +2445,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2017-11-07 12:00:44"
+            "time": "2017-11-07T12:00:44+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2295,7 +2509,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-11-03 13:55:28"
+            "time": "2017-11-03T13:55:28+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2342,7 +2556,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2017-10-30 04:21:02"
+            "time": "2017-10-30T04:21:02+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -2432,7 +2646,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-03-07 15:42:04"
+            "time": "2017-03-07T15:42:04+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -2481,7 +2695,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-08-20 05:47:52"
+            "time": "2017-08-20T05:47:52+00:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -2565,7 +2779,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-11-08 11:26:09"
+            "time": "2017-11-08T11:26:09+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2624,7 +2838,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2017-11-05 14:01:03"
+            "time": "2017-11-05T14:01:03+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2674,7 +2888,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2719,7 +2933,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2017-03-04 10:23:55"
+            "time": "2017-03-04T10:23:55+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -2783,7 +2997,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-11-03 07:16:52"
+            "time": "2017-11-03T07:16:52+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -2835,7 +3049,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-10-05 13:24:46"
+            "time": "2017-10-05T13:24:46+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -2885,7 +3099,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2017-07-01 08:51:00"
+            "time": "2017-07-01T08:51:00+00:00"
         },
         {
             "name": "sebastian/exporter",
@@ -2952,7 +3166,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2017-04-03 13:19:02"
+            "time": "2017-04-03T13:19:02+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -3003,7 +3217,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2017-04-27 15:39:26"
+            "time": "2017-04-27T15:39:26+00:00"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -3050,7 +3264,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2017-08-03 12:35:26"
+            "time": "2017-08-03T12:35:26+00:00"
         },
         {
             "name": "sebastian/object-reflector",
@@ -3095,7 +3309,7 @@
             ],
             "description": "Allows reflection of object attributes, including inherited and non-public ones",
             "homepage": "https://github.com/sebastianbergmann/object-reflector/",
-            "time": "2017-03-29 09:07:27"
+            "time": "2017-03-29T09:07:27+00:00"
         },
         {
             "name": "sebastian/recursion-context",
@@ -3148,7 +3362,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2017-03-07 15:09:59"
+            "time": "2017-03-07T15:09:59+00:00"
         },
         {
             "name": "sebastian/resource-operations",
@@ -3190,7 +3404,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "time": "2016-10-03 07:43:09"
+            "time": "2016-10-03T07:43:09+00:00"
         },
         {
             "name": "sebastian/version",
@@ -3233,7 +3447,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2016-10-03 07:35:21"
+            "time": "2016-10-03T07:35:21+00:00"
         },
         {
             "name": "stecman/symfony-console-completion",
@@ -3335,7 +3549,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-07 14:20:24"
+            "time": "2017-11-07T14:20:24+00:00"
         },
         {
             "name": "symfony/console",
@@ -3404,7 +3618,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-07 14:20:24"
+            "time": "2017-11-07T14:20:24+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -3457,7 +3671,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-05 16:10:10"
+            "time": "2017-11-05T16:10:10+00:00"
         },
         {
             "name": "symfony/debug",
@@ -3513,7 +3727,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-24 14:12:06"
+            "time": "2017-10-24T14:12:06+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -3569,7 +3783,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-05 16:10:10"
+            "time": "2017-11-05T16:10:10+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -3632,7 +3846,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-07 20:33:43"
+            "time": "2017-11-07T20:33:43+00:00"
         },
         {
             "name": "symfony/finder",
@@ -3681,7 +3895,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-05 16:10:10"
+            "time": "2017-11-05T16:10:10+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -3740,7 +3954,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-10-11 12:05:26"
+            "time": "2017-10-11T12:05:26+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -3798,7 +4012,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-09 14:52:13"
+            "time": "2017-10-09T14:52:13+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -3888,7 +4102,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-11-23 20:04:41"
+            "time": "2016-11-23T20:04:41+00:00"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -3935,7 +4149,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2017-11-08 21:02:11"
+            "time": "2017-11-08T21:02:11+00:00"
         },
         {
             "name": "yiisoft/yii2-faker",
@@ -3982,7 +4196,7 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2017-08-02 13:01:06"
+            "time": "2017-08-02T13:01:06+00:00"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -4035,7 +4249,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2017-10-19 20:56:59"
+            "time": "2017-10-19T20:56:59+00:00"
         }
     ],
     "aliases": [],
@@ -4043,7 +4257,9 @@
     "stability-flags": {
         "kartik-v/yii2-widget-depdrop": 20,
         "kartik-v/yii2-widget-select2": 20,
-        "kartik-v/yii2-widget-datepicker": 20
+        "kartik-v/yii2-widget-datepicker": 20,
+        "kartik-v/yii2-widget-fileinput": 20,
+        "yiisoft/yii2-imagine": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
