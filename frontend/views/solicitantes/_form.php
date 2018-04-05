@@ -13,7 +13,7 @@ use kartik\date\DatePicker;
 <div class="container-fluid">
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
-        <div class="alert alert-info">
+        <div class="alert alert-success-alt">
             <strong>IDENTIFICAIÓN GEOFRÁFICA</strong>
             <i class="fa fa-globe" aria-hidden="true"></i>
         </div>
@@ -96,7 +96,7 @@ use kartik\date\DatePicker;
     </div>
 
     <div class="row">
-        <div class="alert alert-info">
+        <div class="alert alert-success-alt">
             <strong>DATOS PERSONALES</strong>
             <i class="fa fa-user" aria-hidden="true"></i>
         </div>
@@ -141,8 +141,8 @@ use kartik\date\DatePicker;
                         'pluginOptions' => [
                             'autoclose'=>true,
                             'format' => 'dd-mm-yyyy',
-                            'startDate' => '01-01-1940',
-                            'endDate' => '01-01-2000',
+                            'startDate' => '01-01-1910',
+                            'endDate' => '01-01-2003',
                             //'value' => '22-10-1999'
                             ]
                     ]) ?>
@@ -163,7 +163,7 @@ use kartik\date\DatePicker;
         </div>
     </div>
     <div class="row">
-        <div class="alert alert-info">
+        <div class="alert alert-success-alt">
             <strong>DIRECCIÓN DE LA VIVIENDA</strong>
             <i class="fa fa-home" aria-hidden="true"></i>
         </div>
@@ -206,7 +206,7 @@ use kartik\date\DatePicker;
             </div>
         </div>
         <div class="form-group">
-            <?= Html::submitButton('<i class="fa fa-save" aria-hidden="true"></i> Guardar', ['class' => 'btn btn-primary btn-block']) ?>
+            <?= Html::submitButton('<i class="fa fa-save" aria-hidden="true"></i> Guardar', ['class' => 'btn btn-success btn-block']) ?>
         </div>
         <?php ActiveForm::end(); ?>
     </div>

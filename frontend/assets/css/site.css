@@ -118,3 +118,26 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.skin-green .main-header .navbar {
+    background-color: #9e9d24  !important;
+}
+
+.skin-green .main-header .logo{
+    background-color: #9e9d24  !important;
+}
+
+.skin-green .main-header .navbar .sidebar-toggle:hover{
+    background-color: #827717  !important;
+}
+
+.skin-green .main-header li.user-header {
+    background-color: #827717 !important;
+}
+
+
+.alert-success-alt {
+    color: #f9fbe7 ;
+    background-color: #9e9d24;
+    border-color: #cab652;
+}

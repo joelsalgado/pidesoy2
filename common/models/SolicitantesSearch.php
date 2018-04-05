@@ -44,6 +44,10 @@ class SolicitantesSearch extends Solicitantes
         $query = Solicitantes::find();
 
         // add conditions that should always apply here
+        if (Yii::$app->user->identity->role != 30){
+            $region = Yii::$app->user->identity->region_id;
+            $query->where(['region_id' => $region]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

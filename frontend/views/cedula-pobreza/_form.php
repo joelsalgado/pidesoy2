@@ -15,7 +15,7 @@ use yii\helpers\ArrayHelper;
         <?php $form = ActiveForm::begin(); ?>
 
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>II. IDENTIFICACIÓN DE HOGARES Y RESIDENTES</strong>
                 <i class="fa fa-home" aria-hidden="true"></i>
             </div>
@@ -98,7 +98,7 @@ use yii\helpers\ArrayHelper;
 
 
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>III. CALIDAD Y ESPACIOS DE LA VIVIENDA (CARACTERÍSTICAS DE LA VIVIENDA)</strong>
                 <i class="fa fa-home" aria-hidden="true"></i>
             </div>
@@ -166,7 +166,7 @@ use yii\helpers\ArrayHelper;
 
         </div>
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>IV. ACCESO A LOS SERVICIOS BÁSICOS EN LA VIVIENDA</strong>
                 <i class="fa fa-home" aria-hidden="true"></i>
             </div>
@@ -290,7 +290,7 @@ use yii\helpers\ArrayHelper;
         </div>
 
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>V. EDUCACIÓN</strong>
                 <i class="fa fa-university" aria-hidden="true"></i>
             </div>
@@ -390,7 +390,7 @@ use yii\helpers\ArrayHelper;
 
 
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>VI. SALUD</strong>
                 <i class="fa fa-hospital-o" aria-hidden="true"></i>
             </div>
@@ -476,7 +476,7 @@ use yii\helpers\ArrayHelper;
 
 
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>VII. SEGURIDAD SOCIAL</strong>
                 <i class="fa fa-group" aria-hidden="true"></i>
             </div>
@@ -506,7 +506,7 @@ use yii\helpers\ArrayHelper;
             </div>
         </div>
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>VIII. EMPLEO E INGRESOS</strong>
                 <i class="fa fa-briefcase" aria-hidden="true"></i>
                 <i class="fa fa-usd" aria-hidden="true"></i>
@@ -643,7 +643,7 @@ use yii\helpers\ArrayHelper;
             </div>
         </div>
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>IX. ALIMENTACIÓN</strong>
                 <i class="fa fa-apple" aria-hidden="true"></i>
             </div>
@@ -734,7 +734,7 @@ use yii\helpers\ArrayHelper;
             </div>
         </div>
         <div class="row">
-            <div class="alert alert-info">
+            <div class="alert alert-success-alt">
                 <strong>X. VINCULACIÓN A PROGRAMAS DE DESARROLLO SOCIAL (FEDERALES Y ESTATALES)</strong>
                 <i class="fa fa-random" aria-hidden="true"></i>
             </div>
@@ -817,7 +817,7 @@ use yii\helpers\ArrayHelper;
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('<i class="fa fa-save" aria-hidden="true"></i> Guardar', ['class' => 'btn btn-success btn-block']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
