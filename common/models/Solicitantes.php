@@ -49,7 +49,7 @@ class Solicitantes extends \yii\db\ActiveRecord
             [['apellido_paterno','apellido_materno', 'nombre'], 'match', 'pattern' => '/^[a-zñ\s]+$/i',
                 'message' => 'Sólo se aceptan letras sin acentos'],
             [['fecha_nacimiento'],'date', 'format'=>'yyyy-MM-dd', 'message' => 'Formato no valido'],
-            [['telefono'], 'match', 'pattern' => '/^[0-9+\s]+$/i', 'message' => 'Solo se aceptan números'],
+            //[['telefono'], 'match', 'pattern' => '/^[0-9+\s]+$/i', 'message' => 'Solo se aceptan números'],
             [['codigo_postal'], 'match', 'pattern' => '/^[0-9]{5}/i', 'message' => 'Deben ser 5 digitos'],
             [['codigo_postal'], 'integer', 'max' => 90000,'tooBig' => '{attribute} no debe ser mayor a 9000' ],
         ];
@@ -64,7 +64,8 @@ class Solicitantes extends \yii\db\ActiveRecord
                 ->andWhere(['apellido_materno' => $this->apellido_materno])
                 ->andWhere(['nombre' => $this->nombre])
                 ->andWhere(['fecha_nacimiento' => $this->fecha_nacimiento])
-                ->andWhere(['mun_id' => $this->mun_id,])
+                ->andWhere(['mun_id' => $this->mun_id])
+                ->andWhere(['status' => 1])
                 ->all();
             if ($dup) {
                 echo "dup";

@@ -3,9 +3,11 @@
 namespace frontend\controllers;
 
 use common\models\Apartados;
+use common\models\CedulaPobreza;
 use common\models\Localidades;
 use common\models\Municpios;
 use common\models\PobrezaMultidimensional;
+use common\models\Documentos;
 use kartik\mpdf\Pdf;
 use Yii;
 use common\models\Solicitantes;
@@ -14,6 +16,7 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * SolicitantesController implements the CRUD actions for Solicitantes model.
@@ -26,10 +29,21 @@ class SolicitantesController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'delete', 'pobreza'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'update', 'delete', 'pobreza'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -86,6 +100,7 @@ class SolicitantesController extends Controller
             $model->updated_at = $fecha;
 
             if ($model->save()){
+                Yii::$app->session->setFlash('success', 'Se guardo correctamente');
                 return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);
             }
 
@@ -137,9 +152,28 @@ class SolicitantesController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $solicitantes = Solicitantes::findOne($id);
+        $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+        $solicitantes->status = 0;
+        $solicitantes->updated_at = $fecha;
+        $cedula = CedulaPobreza::find()->where(['solicitante_id' => $id])->one();
+        $cedula->status = 0;
+        $cedula->updated_at = $fecha;
+        $docs = Documentos::find()->where(['solicitante_id' => $id])->one();
+        $docs->status = 0;
+        $docs->updated_at = $fecha;
+        $pobreza = PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
+        $pobreza->status = 0;
+        $pobreza->updated_at = $fecha;
 
-        return $this->redirect(['index']);
+        if($solicitantes->save(false) && $cedula->save(false) && $docs->save(false) && $pobreza->save(false)){
+            Yii::$app->session->setFlash('error', 'Se borro correctamente');
+            return $this->redirect(['index']);
+        }
+        else{
+            return $this->redirect(['index']);
+        }
+
     }
 
     public function actionPobreza($id) {

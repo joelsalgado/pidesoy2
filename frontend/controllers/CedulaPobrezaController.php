@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * CedulaPobrezaController implements the CRUD actions for CedulaPobreza model.
@@ -21,6 +22,17 @@ class CedulaPobrezaController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -87,7 +99,11 @@ class CedulaPobrezaController extends Controller
         if($model){
             $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
             if ($model->load(Yii::$app->request->post())) {
+                $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
                 $apartado->apartado2 = 1;
+                $apartado->updated_at = $fecha;
+                $model->updated_at = $fecha;
+
                 if ($model->save() && $apartado->save()){
                     return $this->redirect(['documentos/update', 'id' => $model->solicitante_id]);
                 }

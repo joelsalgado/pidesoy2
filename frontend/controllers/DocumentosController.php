@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Apartados;
 use common\models\CedulaPobreza;
 use Yii;
+use yii\filters\AccessControl;
 use common\models\Documentos;
 use common\models\DocumentosSearch;
 use yii\helpers\FileHelper;
@@ -24,6 +25,17 @@ class DocumentosController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'delete', 'view'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'update', 'delete', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -90,12 +102,17 @@ class DocumentosController extends Controller
         if($model){
             $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
             if ($model->load(Yii::$app->request->post())) {
+                $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
                 $apartado->apartado3 = 1;
+                $apartado->updated_at = $fecha;
                 $model->documento = $this->loadImage('documento', 'imageTemp', $model, 'documento');
                 $model->foto = $this->loadImage('foto', 'imageTemp2', $model, 'foto');
                 $model->status = 1;
+                $model->updated_at = $fecha;
+
                 if ($model->save() && $apartado->save()){
-                    return $this->redirect(['view', 'id' => $model->id]);
+                    Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
+                    return $this->redirect(['solicitantes/index']);
                 }
             }
 

@@ -38,13 +38,50 @@ $this->params['breadcrumbs'][] = $this->title;
                         //'periodo',
                         //'entidad_id',
                         //'region_id',
+                        [
+                            'attribute' => 'mun_id',
+                            'value' => function($data){
+                                $role = "";
+                                if($data->mun_id == null){
+                                    $role = "";
+                                }else {
+                                    $reg = \common\models\Municpios::find()->where(['id' => $data->mun_id])->one();
+                                    $role = $reg->desc_mun;
+                                }
+
+                                return $role;
+                            },
+                            'filter' => Html::activeDropDownList($searchModel, 'mun_id',
+                                \yii\helpers\ArrayHelper::map(\common\models\Municpios::getMunOk(), 'id', 'desc_mun'),
+                                ['class'=>'form-control','prompt' => 'Seleccione un municipio']),
+                        ],
+                        [
+                            'attribute' => 'loc_id',
+                            'value' => function($data){
+                                $role = "";
+                                if($data->loc_id == null){
+                                    $role = "";
+                                }else {
+                                    $reg = \common\models\Localidades::find()->where(['localidad_id' => $data->loc_id])->one();
+                                    $role = $reg->desc_loc;
+                                }
+
+                                return $role;
+                            },
+                            'filter' => Html::activeDropDownList($searchModel, 'loc_id',
+                                \yii\helpers\ArrayHelper::map(\common\models\Localidades::find()
+                                    ->where(['>','loc_fuertes_id',0])
+                                    ->orderBy('desc_loc')
+                                    ->all(), 'localidad_id', 'desc_loc'),
+                                ['class'=>'form-control','prompt' => 'Seleccione una Localidad']),
+                        ],
                         //'mun_id',
                         //'loc_id',
                         'nombre',
                         'apellido_paterno',
                         'apellido_materno',
                         //'edo_civil_id',
-                        'fecha_nacimiento',
+                        //'fecha_nacimiento',
                         //'edad',
                         //'sexo',
                         //'telefono',
@@ -80,6 +117,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'borrar' => function ($url, $model) {
                                     if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20){
                                         return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
+                                            'data' => [
+                                                'confirm' => 'Estas seguro de borrar a este usuario',
+                                            ],
                                             'title' => Yii::t('app', 'borrar'),
                                         ]);
                                     }
