@@ -11,6 +11,7 @@ namespace console\controllers;
 ini_set('max_execution_time', "0");
 ini_set("memory_limit", "-1");
 
+use common\models\Solicitantes;
 use Yii;
 use yii\console\Controller;
 use yii\helpers\Json;
@@ -28,13 +29,21 @@ class PidesoController extends Controller
             $municipio = $data['cveMunicipio'];
             $loc = Localidades::find()->where(['loc_grandes_id' => $data['cveLocalidad']])->one();
 
+            if ($loc){
+                $localidad = $loc->localidad_id;
+            }
+            else{
+                $muni = Localidades::find()->where(['mun_id' => $municipio])->one();
+                $localidad = $muni->localidad_id;
+            }
+
             $nomb = trim(strtoupper($data['nombre']));
             $pat = trim(strtoupper($data['primerApellido']));
             $mat = trim(strtoupper($data['segundoApellido']));
 
-            $nombres = ($nomb == null ) ? '': $nomb;
-            $paterno = ($pat == null ) ? '': $pat;
-            $materno = ($mat == null ) ? '': $mat;
+            $nombres = ($nomb == null ) ? 'XX': $nomb;
+            $paterno = ($pat == null ) ? 'XX': $pat;
+            $materno = ($mat == null ) ? 'XX': $mat;
 
             switch ($data['estadoCivil']){
                 case 'CASADO':
@@ -292,7 +301,7 @@ class PidesoController extends Controller
 
             switch ($data['sinSS65oMas']){
                 case 'SI':
-                    $no_SS_65_mas= 1;
+                    $no_SS_65_mas = 1;
                     break;
                 case 'NO':
                     $no_SS_65_mas = 0;
@@ -305,24 +314,133 @@ class PidesoController extends Controller
             $jefe = ($data['jefeConIngresos'] == 'SI') ? 1 : 0;
             $jefa = ($data['jefaConIngresos'] == 'SI') ? 1 : 0;
             $hijos = ($data['hijosConIngresos'] == 'SI') ? 1 : 0;
-            $cuantos_ingresos = ($data['ingresoTotal'] == null) ? 0 : $data['ingresoTotal'];
+            $ingreso_total = ($data['ingresoTotal'] == null) ? 0 : $data['ingresoTotal'];
+
+
+            switch ($data['autoIngreso']){
+                case 'SI':
+                    $auto_ingreso = 1;
+                    break;
+                case 'NO':
+                    $auto_ingreso = 0;
+                    break;
+                default:
+                    $auto_ingreso = 0;
+            }
+
+            $monto_autoingreso = ($data['montoAutoIngreso'] == null) ? 0 : $data['montoAutoIngreso'];
+            $actividad_autoingreso = ($data['actividadAutoIngreso'] == null) ? '' : $data['montoAutoIngreso'];
+
+            switch ($data['apoyoGobierno']){
+                case 'SI':
+                    $apoyo_gob = 1;
+                    break;
+                case 'NO':
+                    $apoyo_gob = 0;
+                    break;
+                default:
+                    $apoyo_gob = 0;
+            }
+
+            $monto_gob = ($data['montoApoyoGobierno'] == null) ? 0 : $data['montoApoyoGobierno'];
+            $que_programa = ($data['quePrograma'] == null) ? '' : $data['quePrograma'];
+
+            switch ($data['apoyoExtranjero']){
+                case 'SI':
+                    $apoyo_ext = 1;
+                    break;
+                case 'NO':
+                    $apoyo_ext = 0;
+                    break;
+                default:
+                    $apoyo_ext = 0;
+            }
+
+            $monto_ext = ($data['montoApoyoExtranjero'] == null) ? 0 : $data['montoApoyoExtranjero'];
+
+            switch ($data['pension']){
+                case 'SI':
+                    $pension = 1;
+                    break;
+                case 'NO':
+                    $pension = 0;
+                    break;
+                default:
+                    $pension = 0;
+            }
+
+            $monto_pension = ($data['montoPension'] == null) ? 0 : $data['montoPension'];
+
+            switch ($data['madreSolteraTrabajadora']){
+                case 'SI':
+                    $madre_soltero = 1;
+                    break;
+                case 'NO':
+                    $madre_soltero = 0;
+                    break;
+                default:
+                    $madre_soltero = 0;
+            }
+
+            $menor_poca_variedad = ($data['menorConPocaVariedad'] == 'SI') ? 1 : 0;
+            $menor_falta_aliemntacion = ($data['menorConFaltaDeAlimentos'] == 'SI') ? 1 : 0;
+            $menor_menor_porcion = ($data['menorConMenosPorcion'] == 'SI') ? 1 : 0;
+            $menor_hambre = ($data['menorConHambre'] == 'SI') ? 1 : 0;
+            $menor_acosto_hambre = ($data['menorSeAcostoConHambre'] == 'SI') ? 1 : 0;
+            $menor_sin_comer_dia = ($data['menorSinComerUnDia'] == 'SI') ? 1 : 0;
+            $adulto_poca_variedad  = ($data['adultoConPocaVariedad'] == 'SI') ? 1 : 0;
+            $adulto_falta_alimentos = ($data['adultoConFaltaDeAlimentos'] == 'SI') ? 1 : 0;
+            $adulto_menor_porcion = ($data['adultoConMenosPorcion'] == 'SI') ? 1 : 0;
+            $adulto_sin_comida = ($data['sinComida'] == 'SI') ? 1 : 0;
+            $adulto_hambre = ($data['adultoConHambre'] == 'SI') ? 1 : 0;
+            $adulto_sin_comer_dia = ($data['adultoSinComerUnDia'] == 'SI') ? 1 : 0;
+
+            $liconsa = ($data['tarjetaLiconsa'] == 'SI') ? 1 : 0;
+            $diconsa = ($data['accesoTiendaDiconsa'] == 'SI') ? 1 : 0;
+            $abastece_diconsa = ($data['compraTiendaDiconsa'] == 'SI') ? 1 : 0;
+            $comedor_comunitario = ($data['comedorComunitarioCercano'] == 'SI') ? 1 : 0;
+            $usa_comedor_comunitario = ($data['usaComedorComunitario'] == 'SI') ? 1 : 0;
+            $pds = ($data['accesoPds'] == 'SI') ? 1 : 0;
+            $prospera = ($data['prospera'] == 'SI') ? 1 : 0;
+
+
+            $solicitante = new Solicitantes();
+            $solicitante->periodo = 2017;
+            $solicitante->entidad_id = $entidad;
+            $solicitante->region_id = $region;
+            $solicitante->mun_id = $municipio;
+            $solicitante->loc_id = $localidad;
+            $solicitante->nombre = $nombres;
+            $solicitante->apellido_paterno = $paterno;
+            $solicitante->apellido_materno = $materno;
+            $solicitante->edo_civil_id = $edo_civil;
+            $solicitante->fecha_nacimiento = $fecha_nac;
+            $solicitante->sexo = $sexo;
+            $solicitante->telefono = $telefono;
+            $solicitante->calle = $calle;
+            $solicitante->colonia = $colonia;
+            $solicitante->num_ext = $ext;
+            $solicitante->num_int = $int;
+            $solicitante->codigo_postal = $codigo_postal;
+            $solicitante->otra_referencia = $otra_referencia;
+            $solicitante->status = 1;
+            $solicitante->created_at = '2017-11-28 20:41:06';
+            $solicitante->updated_at = '2017-11-28 20:41:06';
+            $solicitante->created_by = 1;
+            $solicitante->updated_by = 1;
+
+            if($solicitante->save())
+            {
+                echo "bien";
+            }
+            else{
+                echo "error";
+            }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-            //echo $cocina_gas;
         }
     }
 }
