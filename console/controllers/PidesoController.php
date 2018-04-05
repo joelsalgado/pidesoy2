@@ -11,17 +11,20 @@ namespace console\controllers;
 ini_set('max_execution_time', "0");
 ini_set("memory_limit", "-1");
 
+use common\models\CedulaPobreza;
 use common\models\Solicitantes;
 use Yii;
 use yii\console\Controller;
 use yii\helpers\Json;
 use common\models\Localidades;
+use common\models\Apartados;
 
 class PidesoController extends Controller
 {
     public function actionIndex()
     {
-        $datos = Json::decode(file_get_contents('./pideso10.json'));
+        $datos = Json::decode(file_get_contents('./pideso01.json', false));
+        var_dump($datos);die;
         foreach ($datos['rows'] as $data) {
 
             $entidad = ($data['cveEntidad'] == null) ? 15 : $data['cveEntidad'];
@@ -431,10 +434,124 @@ class PidesoController extends Controller
 
             if($solicitante->save())
             {
-                echo "bien";
+                $cedula = CedulaPobreza::find()->where(['solicitante_id' => $solicitante->id])->one();
+                $cedula->num_personas = $cuantos_habitan;
+                $cedula->per_0_15 = $personas_0_15;
+                $cedula->per_16_17 = $personas_16_17;
+                $cedula->per_18_64 = $personas_18_74;
+                $cedula->per_65_mas = $personas_65_mas;
+                $cedula->tiempo_hab_anios = $tiempo_anios;
+                $cedula->tiempo_hab_meses = $tiempo_meses;
+                $cedula->vivienda_es_id = $vivienda_es;
+                $cedula->num_familias = $familias_vivienda;
+
+
+                $cedula->piso_firme = $piso_firme;
+                $cedula->piso_material = $piso_material;
+                $cedula->techo_firme = $techo_firme;
+                $cedula->techo_material = $techo_material;
+                $cedula->muros_firme = $muro_firme;
+                $cedula->muros_material = $muro_material;
+                $cedula->num_habitaciones = $habitaciones;
+
+                $cedula->agua_publica = $agua_publica;
+                $cedula->agua_obtenida = $fuente_agua;
+                $cedula->agua_interior_viv = $agua_interior;
+                $cedula->drenaje_puclico = $drenaje;
+                $cedula->drenaje_desemboque = $desemboque;
+                $cedula->energia_electrica = $luz;
+                $cedula->cocina_gas = $cocina_gas;
+                $cedula->cocina_electricidad = $cocina_luz;
+                $cedula->cocina_lena = $cocina_lena;
+                $cedula->cocina_carbon = $cocina_carbon;
+                $cedula->cocina_otro = $cocina_otro;
+                $cedula->cocina_otro_esp = $cocina_otro_c;
+                if($chimenea == 1 || $chimenea == 0){
+                    $cedula->chimenea = $chimenea;
+                }
+
+
+                $cedula->educ_trunca_3_15 = $edu_trunca_3_15;
+                $cedula->causa_trunca_3_15 = $causa_3_15;
+                $cedula->no_asiste_esc_3_15 = $no_asiste;
+                $cedula->causa_no_asiste_3_15 = $causa_no_asiste;
+                $cedula->prim_icomp_35_mas = $prim_incompleta;
+                $cedula->sec_icomp_16_35 = $sec_incompleta;
+
+
+                $cedula->tiene_serv_med = $serv_medicos;
+                $cedula->seguro_popular = $seguro_popular;
+                $cedula->issemyn = $issemym;
+                $cedula->imss = $imss;
+                $cedula->marina_sedena = $sedena;
+                $cedula->isste = $issste;
+                $cedula->pemex = $pemex;
+                $cedula->otro_serv_med = $otro_serv_med;
+                $cedula->especifique = $otro_serv_med_desc;
+
+                $cedula->trabaja_formalmente = $trabaja_formalmente;
+                $cedula->seguridad_social = $seguridad_social;
+                $cedula->no_SS_65_mas = $no_SS_65_mas;
+
+                $cedula->cuantos_ingresos = $cuantos_ingresos;
+                $cedula->jefe_familia = $jefe;
+                $cedula->jefa_familia = $jefa;
+                $cedula->hijo = $hijos;
+                $cedula->ingreso_total = $ingreso_total;
+                $cedula->autoingreso = $auto_ingreso;
+                $cedula->monto_autoingreso = $monto_autoingreso;
+                $cedula->actividad_autoingreso = $actividad_autoingreso;
+                $cedula->apoyo_gobierno = $apoyo_gob;
+                $cedula->monto_apoyo = $monto_gob;
+                $cedula->cual_apoyo = $que_programa;
+                $cedula->apoyo_extranjero = $apoyo_ext;
+                $cedula->monto_extranjero = $monto_ext;
+                $cedula->pension = $pension;
+                $cedula->monto_pension = $monto_pension;
+                $cedula->madre_soltera_labora = $madre_soltero;
+
+                $cedula->menor_poca_variedad = $menor_poca_variedad;
+                $cedula->menor_falta_alimentos = $menor_falta_aliemntacion;
+                $cedula->menor_menor_porcion = $menor_menor_porcion;
+                $cedula->menor_hambre = $menor_hambre;
+                $cedula->menor_acosto_hambre = $menor_acosto_hambre;
+                $cedula->menor_sin_comer_dia = $menor_sin_comer_dia;
+                $cedula->adulto_poca_variedad = $adulto_poca_variedad;
+                $cedula->adulto_falta_alimentos = $adulto_falta_alimentos;
+                $cedula->adulto_menor_porcion = $adulto_menor_porcion;
+                $cedula->quedaron_sin_comida = $adulto_sin_comida;
+                $cedula->adulto_hambre = $adulto_hambre;
+                $cedula->adulto_sin_comer_dia = $adulto_sin_comer_dia;
+
+                $cedula->tarjeta_liconsa = $liconsa;
+                $cedula->acceso_tienda_diconsa = $diconsa;
+                $cedula->abastece_tienda_diconsa = $abastece_diconsa;
+                $cedula->comedor_comunitario = $comedor_comunitario;
+                $cedula->asiste_comedor_comunitario = $usa_comedor_comunitario;
+                $cedula->programa_desarrollo_social = $pds;
+                $cedula->prospera = $prospera;
+
+                $cedula->status = 1;
+                $cedula->created_by = 1;
+                $cedula->updated_by = 1;
+
+                if($cedula->save(false)){
+                    $apartados = Apartados::find()->where(['solicitante_id' => $cedula->solicitante_id])->one();
+                    $apartados->apartado2 = 1;
+                    if ($apartados->save()){
+                        echo " BIEN |";
+                    }
+                    else{
+                        echo "\r\n ERROR NAV".$data['id']."\r\n";
+                    }
+
+                }
+                else{
+                    echo "\r\n ERROR CEDULA".$data['id']."\r\n";
+                }
             }
             else{
-                echo "error";
+                echo "\r\n ERROR PART ".$data['id']."\r\n";
             }
 
 

@@ -153,6 +153,7 @@ class Solicitantes extends \yii\db\ActiveRecord
             $cedula->region_id = $this->region_id;
             $cedula->mun_id = $this->mun_id;
             $cedula->loc_id = $this->loc_id;
+            $cedula->status = 1;
             $cedula->created_at = $this->created_at;
             $cedula->updated_at = $this->updated_at;
 
@@ -164,6 +165,7 @@ class Solicitantes extends \yii\db\ActiveRecord
             $documentos->region_id = $this->region_id;
             $documentos->mun_id = $this->mun_id;
             $documentos->loc_id = $this->loc_id;
+            $documentos->status = 1;
             $documentos->created_at = $this->created_at;
             $documentos->updated_at = $this->updated_at;
 
