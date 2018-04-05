@@ -23,9 +23,12 @@ class PidesoController extends Controller
 {
     public function actionIndex()
     {
-        $datos = Json::decode(file_get_contents('./pideso01.json', false));
-        var_dump($datos);die;
-        foreach ($datos['rows'] as $data) {
+        //$datos = Json::decode(file_get_contents('./pideso01.json', false));
+        //var_dump($datos);die;
+
+        die;
+
+        foreach ($TablaDesconocida  as $data) {
 
             $entidad = ($data['cveEntidad'] == null) ? 15 : $data['cveEntidad'];
             $region = $data['cveRegion'];
@@ -44,9 +47,9 @@ class PidesoController extends Controller
             $pat = trim(strtoupper($data['primerApellido']));
             $mat = trim(strtoupper($data['segundoApellido']));
 
-            $nombres = ($nomb == null ) ? 'XX': $nomb;
-            $paterno = ($pat == null ) ? 'XX': $pat;
-            $materno = ($mat == null ) ? 'XX': $mat;
+            $nombres = ($nomb == null || $nomb == '') ? 'XX': $nomb;
+            $paterno = ($pat == null || $pat == '' ) ? 'XX': $pat;
+            $materno = ($mat == null || $mat == '') ? 'XX': $mat;
 
             switch ($data['estadoCivil']){
                 case 'CASADO':
@@ -61,13 +64,13 @@ class PidesoController extends Controller
 
             $fecha_nac = ($data['fechaDeNacimiento'] == null) ? '1910-01-01' : $data['fechaDeNacimiento'];
             $sexo = ($data['sexo'] == 'MUJER')? 'M' : 'H';
-            $telefono = ($data['telefonoFijo'] == null ) ? '123':$data['telefonoFijo'];
-            $calle = ($data['calle'] == null ) ? 'SIN CALLE':$data['calle'];
-            $colonia = ($data['colonia'] == null ) ? 'COLONIA':$data['colonia'];
-            $ext = ($data['numeroExterior'] == null ) ? 'S/N':$data['numeroExterior'];
-            $int = ($data['numeroInterior'] == null ) ? 'S/N':$data['numeroInterior'];
+            $telefono = ($data['telefonoFijo'] == null || $data['telefonoFijo']  == '' ) ? '123':$data['telefonoFijo'];
+            $calle = ($data['calle'] == null || $data['calle'] == '') ? 'SIN CALLE':$data['calle'];
+            $colonia = ($data['colonia'] == null || $data['colonia'] == '' ) ? 'COLONIA':$data['colonia'];
+            $ext = ($data['numeroExterior'] == null || $data['numeroExterior'] == '' ) ? 'S/N':$data['numeroExterior'];
+            $int = ($data['numeroInterior'] == null || $data['numeroInterior'] == '') ? 'S/N':$data['numeroInterior'];
             $codigo_postal = ($data['codigoPostal'] == null ) ? 50000 :$data['codigoPostal'];
-            $otra_referencia = ($data['otraReferencia'] == null ) ? 'NO' :$data['otraReferencia'];
+            $otra_referencia = ($data['otraReferencia'] == null || $data['otraReferencia'] == '') ? 'NO' :$data['otraReferencia'];
 
             $cuantos_habitan = ($data['cuantosHabitan'] == null ) ? 1 :$data['cuantosHabitan'];
             $personas_0_15 = ($data['personas0a15'] == null ) ? 0 :$data['personas0a15'];
