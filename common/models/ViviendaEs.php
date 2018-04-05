@@ -43,4 +43,13 @@ class ViviendaEs extends \yii\db\ActiveRecord
             'desc_vivienda_es' => 'Desc Vivienda Es',
         ];
     }
+
+    public static function getViviendaOk(){
+        $vivienda = self::find()
+            ->select(['id', 'desc_vivienda_es'])
+            ->orderBy(['desc_vivienda_es' => 'DESC'])
+            ->all();
+
+        return $vivienda;
+    }
 }

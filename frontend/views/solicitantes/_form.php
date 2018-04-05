@@ -13,7 +13,7 @@ use kartik\date\DatePicker;
 <div class="container-fluid">
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
-        <div class="alert alert-info">
+        <div class="alert alert-success-alt">
             <strong>IDENTIFICAIÓN GEOFRÁFICA</strong>
             <i class="fa fa-globe" aria-hidden="true"></i>
         </div>
@@ -96,7 +96,7 @@ use kartik\date\DatePicker;
     </div>
 
     <div class="row">
-        <div class="alert alert-info">
+        <div class="alert alert-success-alt">
             <strong>DATOS PERSONALES</strong>
             <i class="fa fa-user" aria-hidden="true"></i>
         </div>
@@ -131,7 +131,7 @@ use kartik\date\DatePicker;
                     ]) ?>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <?= $form->field($model, 'fecha_nacimiento')->widget(DatePicker::className(), [
                         'name' => 'dp_2',
@@ -141,17 +141,14 @@ use kartik\date\DatePicker;
                         'pluginOptions' => [
                             'autoclose'=>true,
                             'format' => 'dd-mm-yyyy',
+                            'startDate' => '01-01-1910',
+                            'endDate' => '01-01-2003',
                             //'value' => '22-10-1999'
                             ]
                     ]) ?>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <?= $form->field($model, 'edad')->textInput() ?>
-                </div>
-            </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <div class="form-group">
                     <?= $form->field($model, 'sexo')->radioList(['H' => 'Hombre', 'M' => 'Mujer']) ?>
                 </div>
@@ -166,7 +163,7 @@ use kartik\date\DatePicker;
         </div>
     </div>
     <div class="row">
-        <div class="alert alert-info">
+        <div class="alert alert-success-alt">
             <strong>DIRECCIÓN DE LA VIVIENDA</strong>
             <i class="fa fa-home" aria-hidden="true"></i>
         </div>
@@ -209,7 +206,7 @@ use kartik\date\DatePicker;
             </div>
         </div>
         <div class="form-group">
-            <?= Html::submitButton('<i class="fa fa-save" aria-hidden="true"></i> Guardar', ['class' => 'btn btn-primary btn-block']) ?>
+            <?= Html::submitButton('<i class="fa fa-save" aria-hidden="true"></i> Guardar', ['class' => 'btn btn-success btn-block']) ?>
         </div>
         <?php ActiveForm::end(); ?>
     </div>

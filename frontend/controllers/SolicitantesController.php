@@ -2,8 +2,13 @@
 
 namespace frontend\controllers;
 
+use common\models\Apartados;
+use common\models\CedulaPobreza;
 use common\models\Localidades;
 use common\models\Municpios;
+use common\models\PobrezaMultidimensional;
+use common\models\Documentos;
+use kartik\mpdf\Pdf;
 use Yii;
 use common\models\Solicitantes;
 use common\models\SolicitantesSearch;
@@ -11,6 +16,7 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * SolicitantesController implements the CRUD actions for Solicitantes model.
@@ -23,10 +29,21 @@ class SolicitantesController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'update', 'delete', 'pobreza'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'update', 'delete', 'pobreza'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -83,7 +100,8 @@ class SolicitantesController extends Controller
             $model->updated_at = $fecha;
 
             if ($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                Yii::$app->session->setFlash('success', 'Se guardo correctamente');
+                return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);
             }
 
         }
@@ -97,7 +115,7 @@ class SolicitantesController extends Controller
     {
         $model = $this->findModel($id);
         $model->fecha_nacimiento = Yii::$app->formatter->asDate($model->fecha_nacimiento, 'dd-MM-yyyy');
-
+        $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
         if ($model->load(Yii::$app->request->post())) {
             $model->nombre = trim(strtoupper($model->nombre));
             $model->apellido_paterno = trim(strtoupper($model->apellido_paterno));
@@ -114,13 +132,14 @@ class SolicitantesController extends Controller
             $model->updated_at = $fecha;
 
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);
             }
 
         }
 
         return $this->render('update', [
             'model' => $model,
+            'apartado' => $apartado
         ]);
     }
 
@@ -130,13 +149,79 @@ class SolicitantesController extends Controller
      * @param integer $id
      * @return mixed
      */
+
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $solicitantes = Solicitantes::findOne($id);
+        $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+        $solicitantes->status = 0;
+        $solicitantes->updated_at = $fecha;
+        $cedula = CedulaPobreza::find()->where(['solicitante_id' => $id])->one();
+        $cedula->status = 0;
+        $cedula->updated_at = $fecha;
+        $docs = Documentos::find()->where(['solicitante_id' => $id])->one();
+        $docs->status = 0;
+        $docs->updated_at = $fecha;
+        $pobreza = PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
+        $pobreza->status = 0;
+        $pobreza->updated_at = $fecha;
 
-        return $this->redirect(['index']);
+        if($solicitantes->save(false) && $cedula->save(false) && $docs->save(false) && $pobreza->save(false)){
+            Yii::$app->session->setFlash('error', 'Se borro correctamente');
+            return $this->redirect(['index']);
+        }
+        else{
+            return $this->redirect(['index']);
+        }
+
     }
 
+    public function actionPobreza($id) {
+        $model = PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
+        if ($model){
+            $birthday = $model->solicitante->fecha_nacimiento;
+            list($year, $month, $day) = explode("-", $birthday);
+            $year_diff  = date("Y") - $year;
+            $month_diff = date("m") - $month;
+            $day_diff   = date("d") - $day;
+            if($month_diff < 0)
+            {
+                $year_diff--;
+            }
+            else if(($month_diff == 0) && ($day_diff < 0))
+            {
+                $year_diff--;
+            }
+
+            $content = $this->renderPartial('_reportView', [
+                'model'=> $model,
+                'edad' => $year_diff
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'ponreza'.$model->id.'.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 10,
+                'marginBottom'=> 13,
+                'orientation' => Pdf::ORIENT_LANDSCAPE,
+                'options' => [
+                    'title' => 'Pobreza'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'methods' => [
+                    'SetFooter' => ['|Pagina {PAGENO}|'],
+                ]
+            ]);
+            return $pdf->render();
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
+    }
     /**
      * Finds the Solicitantes model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

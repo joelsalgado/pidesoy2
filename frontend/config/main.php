@@ -11,6 +11,7 @@ return [
     'name' => 'PIDESO',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'solicitantes',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'view' => [

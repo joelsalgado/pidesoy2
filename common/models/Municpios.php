@@ -115,4 +115,21 @@ class Municpios extends \yii\db\ActiveRecord
 
         return $sec;
     }
+
+    public static function getMunOk(){
+        if(Yii::$app->user->identity->role == 30){
+            $mun_id = self::find()
+                ->select(['id', 'desc_mun'])
+                ->orderBy(['desc_mun' => 'DESC'])
+                ->all();
+        }else{
+            $mun_id = self::find()
+                ->select(['id', 'desc_mun'])
+                ->andWhere(['reg_fuertes_id' => Yii::$app->user->identity->region_id ])
+                ->orderBy(['desc_mun' => 'DESC'])
+                ->all();
+        }
+
+        return $mun_id;
+    }
 }
