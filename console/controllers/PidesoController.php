@@ -47,15 +47,15 @@ class PidesoController extends Controller
                     $edo_civil = 8;
             }
 
-            $fecha_nac = ($data['fechaDeNacimiento'] == null) ? 1910-01-01 : $data['fechaDeNacimiento'];
+            $fecha_nac = ($data['fechaDeNacimiento'] == null) ? '1910-01-01' : $data['fechaDeNacimiento'];
             $sexo = ($data['sexo'] == 'MUJER')? 'M' : 'H';
-            $telefono = ($data['telefonoFijo'] == null ) ? '':$data['telefonoFijo'];
-            $calle = ($data['calle'] == null ) ? '':$data['calle'];
-            $colonia = ($data['colonia'] == null ) ? '':$data['colonia'];
-            $ext = ($data['numeroExterior'] == null ) ? '':$data['numeroExterior'];
-            $int = ($data['numeroInterior'] == null ) ? '':$data['numeroInterior'];
+            $telefono = ($data['telefonoFijo'] == null ) ? '123':$data['telefonoFijo'];
+            $calle = ($data['calle'] == null ) ? 'SIN CALLE':$data['calle'];
+            $colonia = ($data['colonia'] == null ) ? 'COLONIA':$data['colonia'];
+            $ext = ($data['numeroExterior'] == null ) ? 'S/N':$data['numeroExterior'];
+            $int = ($data['numeroInterior'] == null ) ? 'S/N':$data['numeroInterior'];
             $codigo_postal = ($data['codigoPostal'] == null ) ? 50000 :$data['codigoPostal'];
-            $otra_referencia = ($data['otraReferencia'] == null ) ? '' :$data['otraReferencia'];
+            $otra_referencia = ($data['otraReferencia'] == null ) ? 'NO' :$data['otraReferencia'];
 
             $cuantos_habitan = ($data['cuantosHabitan'] == null ) ? 1 :$data['cuantosHabitan'];
             $personas_0_15 = ($data['personas0a15'] == null ) ? 0 :$data['personas0a15'];
@@ -137,7 +137,175 @@ class PidesoController extends Controller
             }
 
             $fuente_agua = ($data['fuenteDeAgua'] == null ) ? '' :$data['fuenteDeAgua'];
-            
+
+            switch ($data['aguaEnInterior']){
+                case 'SI':
+                    $agua_interior = 1;
+                    break;
+                case 'NO':
+                    $agua_interior = 0;
+                    break;
+                default:
+                    $agua_interior = 0;
+            }
+
+            switch ($data['drenajePublico']){
+                case 'SI':
+                    $drenaje = 1;
+                    break;
+                case 'NO':
+                    $drenaje = 0;
+                    break;
+                default:
+                    $drenaje = 0;
+            }
+
+            switch ($data['desemboque']){
+                case 'SI':
+                    $desemboque = 1;
+                    break;
+                case 'NO':
+                    $desemboque = 0;
+                    break;
+                default:
+                    $desemboque = 0;
+            }
+
+            switch ($data['energiaElectrica']){
+                case 'SI':
+                    $luz = 1;
+                    break;
+                case 'NO':
+                    $luz = 0;
+                    break;
+                default:
+                    $luz = 0;
+            }
+
+            $cocina_gas = ($data['cocinaConGas'] == 'SI') ? 1 : 0;
+            $cocina_luz = ($data['cocinaConElectricidad'] == 'SI') ? 1 : 0;
+            $cocina_lena = ($data['cocinaConLena'] == 'SI') ? 1 : 0;
+            $cocina_carbon = ($data['cocinaConCarbon'] == 'SI') ? 1 : 0;
+            $cocina_otro = ($data['cocinaConOtro'] == 'SI') ? 1 : 0;
+            $cocina_otro_c = ($data['otroCombustible'] == null) ? '' : $data['otroCombustible'];
+
+            switch ($data['chimenea']){
+                case 'SI':
+                    $chimenea = 1;
+                    break;
+                case 'NO':
+                    $chimenea = 0;
+                    break;
+                default:
+                    $chimenea = 8;
+            }
+
+            switch ($data['educacionTrunca3a15']){
+                case 'SI':
+                    $edu_trunca_3_15 = 1;
+                    break;
+                case 'NO':
+                    $edu_trunca_3_15 = 0;
+                    break;
+                default:
+                    $edu_trunca_3_15 = 0;
+            }
+
+            $causa_3_15 = ($data['causa3a15'] == null) ? '' : $data['causa3a15'];
+
+            switch ($data['noAsisteEscuela3a15']){
+                case 'SI':
+                    $no_asiste = 1;
+                    break;
+                case 'NO':
+                    $no_asiste = 0;
+                    break;
+                default:
+                    $no_asiste = 0;
+            }
+
+            $causa_no_asiste= ($data['causaInasistencia3a15'] == null) ? '' : $data['causaInasistencia3a15'];
+
+            switch ($data['primariaIncompleta33oMas']){
+                case 'SI':
+                    $prim_incompleta = 1;
+                    break;
+                case 'NO':
+                    $prim_incompleta = 0;
+                    break;
+                default:
+                    $prim_incompleta = 0;
+            }
+
+            switch ($data['secundariaIncompleta16a33']){
+                case 'SI':
+                    $sec_incompleta = 1;
+                    break;
+                case 'NO':
+                    $sec_incompleta = 0;
+                    break;
+                default:
+                    $sec_incompleta = 0;
+            }
+
+            switch ($data['tieneServiciosMedicos']){
+                case 'SI':
+                    $serv_medicos = 1;
+                    break;
+                case 'NO':
+                    $serv_medicos = 0;
+                    break;
+                default:
+                    $serv_medicos = 0;
+            }
+
+            $seguro_popular = ($data['seguroPopular'] == 'SI') ? 1 : 0;
+            $issemym = ($data['issemym'] == 'SI') ? 1 : 0;
+            $imss = ($data['imss'] == 'SI') ? 1 : 0;
+            $sedena= ($data['marinaSedena'] == 'SI') ? 1 : 0;
+            $issste = ($data['issste'] == 'SI') ? 1 : 0;
+            $pemex = ($data['pemex'] == 'SI') ? 1 : 0;
+            $otro_serv_med = ($data['otroServicio'] == 'SI') ? 1 : 0;
+            $otro_serv_med_desc = ($data['otroServicioMedico'] == null) ? '' : $data['otroServicioMedico'];
+
+            switch ($data['trabajaIntegrante']){
+                case 'SI':
+                    $trabaja_formalmente = 1;
+                    break;
+                case 'NO':
+                    $trabaja_formalmente = 0;
+                    break;
+                default:
+                    $trabaja_formalmente = 0;
+            }
+
+            switch ($data['seguridadSocial']){
+                case 'SI':
+                    $seguridad_social = 1;
+                    break;
+                case 'NO':
+                    $seguridad_social = 0;
+                    break;
+                default:
+                    $seguridad_social = 0;
+            }
+
+            switch ($data['sinSS65oMas']){
+                case 'SI':
+                    $no_SS_65_mas= 1;
+                    break;
+                case 'NO':
+                    $no_SS_65_mas = 0;
+                    break;
+                default:
+                    $no_SS_65_mas = 0;
+            }
+
+            $cuantos_ingresos = ($data['cuantosIngresos'] == null) ? 0 : $data['cuantosIngresos'];
+            $jefe = ($data['jefeConIngresos'] == 'SI') ? 1 : 0;
+            $jefa = ($data['jefaConIngresos'] == 'SI') ? 1 : 0;
+            $hijos = ($data['hijosConIngresos'] == 'SI') ? 1 : 0;
+            $cuantos_ingresos = ($data['ingresoTotal'] == null) ? 0 : $data['ingresoTotal'];
 
 
 
@@ -148,7 +316,13 @@ class PidesoController extends Controller
 
 
 
-            echo $data['personas16a17'];
-        }die;
+
+
+
+
+
+
+            //echo $cocina_gas;
+        }
     }
 }

@@ -540,7 +540,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             {
                 echo "bien";
             }else{
-                echo "mal"; die;
+                echo "mal";
             }
 
 
