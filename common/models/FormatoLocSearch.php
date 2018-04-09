@@ -41,9 +41,13 @@ class FormatoLocSearch extends FormatoLoc
      */
     public function search($params)
     {
-        $query = FormatoLoc::find();
+        $query = FormatoLoc::find()->where(['status' => 1]);;
 
         // add conditions that should always apply here
+        if (Yii::$app->user->identity->role != 30){
+            $region = Yii::$app->user->identity->region_id;
+            $query->andWhere(['region_id' => $region]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

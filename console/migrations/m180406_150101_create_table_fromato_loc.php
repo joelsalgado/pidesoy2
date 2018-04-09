@@ -17,7 +17,7 @@ class m180406_150101_create_table_fromato_loc extends Migration
 
             'region_id' => $this->integer()->notNull(),
             'mun_id' => $this->integer()->notNull(),
-            'loc_id' => $this->integer()->notNull(),
+            'loc_id' => $this->integer()->notNull()->unique(),
             'num_habitantes' => $this->smallInteger(),
             'ocupantes_por_vivienda' => $this->smallInteger(),
             'indice_marginacion' => $this->string(),

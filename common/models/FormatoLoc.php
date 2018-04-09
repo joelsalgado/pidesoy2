@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
 
 class FormatoLoc extends \yii\db\ActiveRecord
 {
@@ -11,11 +12,21 @@ class FormatoLoc extends \yii\db\ActiveRecord
         return 'formato_loc';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::className(),
+            ]
+        ];
+    }
+
     public function rules()
     {
         return [
-            [['region_id', 'mun_id', 'loc_id', 'created_at', 'updated_at'], 'required'],
-            [['region_id', 'mun_id', 'loc_id', 'num_habitantes', 'ocupantes_por_vivienda', 'status', 'created_by', 'updated_by'], 'integer'],
+            [['region_id', 'mun_id', 'loc_id', 'created_at', 'updated_at'], 'required', 'message' =>  'Campo requerido'],
+            ['loc_id', 'unique', 'message' => 'Esta Localidad ya se encuentra'],
+            [['region_id', 'mun_id', 'loc_id', 'num_habitantes', 'ocupantes_por_vivienda', 'status', 'created_by', 'updated_by'], 'integer', 'message' => 'Debe ser numerico'],
             [['created_at', 'updated_at'], 'safe'],
             [['indice_marginacion', 'indentificacion_hogares', 'calidad_vivienda', 'serv_basicos', 'acceso_edu', 'salud', 'seguridad_social', 'ingresos', 'alimentacion', 'vinculacion', 'acceso_terrestre'], 'string', 'max' => 255],
             [['region_id'], 'exist', 'skipOnError' => true, 'targetClass' => Regiones::className(), 'targetAttribute' => ['region_id' => 'id']],

@@ -101,29 +101,29 @@ use kartik\select2\Select2;
         </div>
     </div>
     <div class="row">
-        <?= $form->field($model, 'indentificacion_hogares')->textarea() ?>
+        <?= $form->field($model, 'indentificacion_hogares')->textarea(['class' => 'form-control']) ?>
 
-        <?= $form->field($model, 'calidad_vivienda')->textarea() ?>
+        <?= $form->field($model, 'calidad_vivienda')->textarea(['class' => 'form-control']) ?>
 
-        <?= $form->field($model, 'serv_basicos')->textarea() ?>
+        <?= $form->field($model, 'serv_basicos')->textarea(['class' => 'form-control']) ?>
 
-        <?= $form->field($model, 'acceso_edu')->textarea() ?>
+        <?= $form->field($model, 'acceso_edu')->textarea(['class' => 'form-control']) ?>
 
-        <?= $form->field($model, 'salud')->textarea() ?>
+        <?= $form->field($model, 'salud')->textarea(['class' => 'form-control']) ?>
 
-        <?= $form->field($model, 'seguridad_social')->textarea() ?>
+        <?= $form->field($model, 'seguridad_social')->textarea(['class' => 'form-control']) ?>
 
-        <?= $form->field($model, 'ingresos')->textarea() ?>
+        <?= $form->field($model, 'ingresos')->textarea(['class' => 'form-control']) ?>
 
-        <?= $form->field($model, 'alimentacion')->textarea()?>
+        <?= $form->field($model, 'alimentacion')->textarea(['class' => 'form-control'])?>
 
-        <?= $form->field($model, 'vinculacion')->textarea() ?>
+        <?= $form->field($model, 'vinculacion')->textarea(['class' => 'form-control']) ?>
 
-        <?= $form->field($model, 'acceso_terrestre')->textarea()?>
+        <?= $form->field($model, 'acceso_terrestre')->textarea(['class' => 'form-control'])?>
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('<i class="fa fa-save" aria-hidden="true"></i> Guardar', ['class' => 'btn btn-success btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

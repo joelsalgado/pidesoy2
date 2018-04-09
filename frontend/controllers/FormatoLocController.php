@@ -23,7 +23,7 @@ class FormatoLocController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -51,6 +51,7 @@ class FormatoLocController extends Controller
      */
     public function actionView($id)
     {
+        die;
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -65,8 +66,16 @@ class FormatoLocController extends Controller
     {
         $model = new FormatoLoc();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+            $model->status = 1;
+            $model->created_at = $fecha;
+            $model->updated_at = $fecha;
+            if($model->save()){
+                Yii::$app->session->setFlash('success', 'Se guardo correctamente');
+                return $this->redirect(['index']);
+            }
+
         }
 
         return $this->render('create', [
@@ -84,8 +93,14 @@ class FormatoLocController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+            $model->updated_at = $fecha;
+            if($model->save()){
+                Yii::$app->session->setFlash('success', 'Se actualizo correctamente');
+                return $this->redirect(['index']);
+            }
+
         }
 
         return $this->render('update', [
@@ -101,9 +116,15 @@ class FormatoLocController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = FormatoLoc::findOne($id);
+        $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+        $model->status =0;
+        $model->updated_at = $fecha;
+        if($model->save()){
+            Yii::$app->session->setFlash('error', 'Se borro correctamente');
+            return $this->redirect(['index']);
+        }
 
-        return $this->redirect(['index']);
     }
 
     /**
