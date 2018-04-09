@@ -109,6 +109,10 @@ use kartik\select2\Select2;
 
         <?= $form->field($model, 'acceso_edu')->textarea(['class' => 'form-control']) ?>
 
+        <?= $form->field($model, 'preescolar')->textInput(['class' => 'form-control']) ?>
+        <?= $form->field($model, 'primaria')->textInput(['class' => 'form-control']) ?>
+        <?= $form->field($model, 'secundaria')->textInput(['class' => 'form-control']) ?>
+
         <?= $form->field($model, 'salud')->textarea(['class' => 'form-control']) ?>
 
         <?= $form->field($model, 'seguridad_social')->textarea(['class' => 'form-control']) ?>
@@ -119,8 +123,37 @@ use kartik\select2\Select2;
 
         <?= $form->field($model, 'vinculacion')->textarea(['class' => 'form-control']) ?>
 
+        <?= $form->field($model, 'liconsa')->radioList([1 => 'Si', 0 => 'No']) ?>
+        <?= $form->field($model, 'diconsa')->radioList([1 => 'Si', 0 => 'No']) ?>
+
         <?= $form->field($model, 'acceso_terrestre')->textarea(['class' => 'form-control'])?>
     </div>
+
+    <div class="row">
+        <label>REPRESENTACIÓN EN LA LOCALIDAD</label><br>
+        <?= $form->field($model, 'delegacion_municipal')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'copaci')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'comisariado')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'vigilancia')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'agua')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'comite_prospera')->textInput(['class' => 'form-control'])?>
+    </div>
+    <div class="row">
+        <?= $form->field($model, 'necesidades')->textarea(['class' => 'form-control'])?>
+    </div>
+    <div class="row">
+        <label> DATOS GENERALES DEL AYUNTAMIENTO</label><br>
+        <?= $form->field($model, 'nombre_presidente')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'domicilio_presidente')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'contacto_presidente')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'nombre_integrante')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'domicilio_integrante')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'contacto_integrante')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'nombre_director')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'domicilio_director')->textInput(['class' => 'form-control'])?>
+        <?= $form->field($model, 'contacto_director')->textInput(['class' => 'form-control'])?>
+    </div>
+
 
     <div class="form-group">
         <?= Html::submitButton('<i class="fa fa-save" aria-hidden="true"></i> Guardar', ['class' => 'btn btn-success btn-block']) ?>

@@ -27,11 +27,37 @@ class m180406_150101_create_table_fromato_loc extends Migration
             'serv_basicos' => $this->string(),
             'acceso_edu' => $this->string(),
             'salud' => $this->string(),
+            'preescolar' => $this->string(),
+            'primaria' => $this->string(),
+            'secundaria' => $this->string(),
             'seguridad_social' => $this->string(),
             'ingresos' => $this->string(),
             'alimentacion' => $this->string(),
             'vinculacion' => $this->string(),
+            'liconsa' => $this->smallInteger(),
+            'diconsa' => $this->smallInteger(),
             'acceso_terrestre' => $this->string(),
+
+            'delegacion_municipal' => $this->string(),
+            'copaci' => $this->string(),
+            'comisariado' => $this->string(),
+            'vigilancia' => $this->string(),
+            'agua' => $this->string(),
+            'comite_prospera' => $this->string(),
+
+            'necesidades' => $this->string(),
+
+            'nombre_presidente' => $this->string(),
+            'domicilio_presidente' => $this->string(),
+            'contacto_presidente' => $this->string(),
+
+            'nombre_integrante' => $this->string(),
+            'domicilio_integrante' => $this->string(),
+            'contacto_integrante' => $this->string(),
+
+            'nombre_director' => $this->string(),
+            'domicilio_director' => $this->string(),
+            'contacto_director' => $this->string(),
 
             'status' => $this->smallInteger(),
             'created_by' => $this->integer(),

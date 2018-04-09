@@ -90,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'class' => 'yii\grid\ActionColumn',
                             'header' => 'Acciones',
                             'headerOptions' => ['style' => 'color:#337ab7'],
-                            'template' => '{update}{borrar}{format}',
+                            'template' => '{update}{borrar}{formato}',
                             'buttons' => [
                                 'update' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [

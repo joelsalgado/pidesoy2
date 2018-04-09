@@ -29,7 +29,7 @@ class Solicitantes extends \yii\db\ActiveRecord
         return [
             [['periodo', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'edo_civil_id', 'edad', 'codigo_postal',
                 'status', 'created_by', 'updated_by'], 'integer', 'message' => 'Debe ser un numero entero'],
-            [['region_id', 'nombre', 'apellido_paterno', 'apellido_materno', 'edo_civil_id', 'fecha_nacimiento',
+            [['region_id', 'mun_id', 'loc_id','nombre', 'apellido_paterno', 'apellido_materno', 'edo_civil_id', 'fecha_nacimiento',
                 'sexo', 'calle', 'colonia', 'num_ext', 'num_int', 'codigo_postal',
                 'otra_referencia', 'created_at', 'updated_at'], 'required', 'message' => 'Campo requerido'],
             [['fecha_nacimiento', 'created_at', 'updated_at'], 'string'],
@@ -46,7 +46,7 @@ class Solicitantes extends \yii\db\ActiveRecord
             //[['loc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Localidades::className(), 'targetAttribute' => ['loc_id' => 'localidad_id']],
             //[['mun_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municpios::className(), 'targetAttribute' => ['mun_id' => 'id']],
             //[['region_id'], 'exist', 'skipOnError' => true, 'targetClass' => Regiones::className(), 'targetAttribute' => ['region_id' => 'id']],
-            [['apellido_paterno','apellido_materno', 'nombre'], 'match', 'pattern' => '/^[a-zñ\s]+$/i',
+            [['apellido_paterno','apellido_materno', 'nombre'], 'match', 'pattern' => '/^[a-zñÑ\s]+$/i',
                 'message' => 'Sólo se aceptan letras sin acentos'],
             [['fecha_nacimiento'],'date', 'format'=>'yyyy-MM-dd', 'message' => 'Formato no valido'],
             //[['telefono'], 'match', 'pattern' => '/^[0-9+\s]+$/i', 'message' => 'Solo se aceptan números'],

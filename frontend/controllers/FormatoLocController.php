@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use kartik\mpdf\Pdf;
 use Yii;
 use common\models\FormatoLoc;
 use common\models\FormatoLocSearch;
@@ -125,6 +126,37 @@ class FormatoLocController extends Controller
             return $this->redirect(['index']);
         }
 
+    }
+
+    public function actionFormato($id)
+    {
+        $model = FormatoLoc::find()->where(['id' => $id])->one();
+        if ($model){
+
+            $content = $this->renderPartial('_reportView', [
+                'model'=> $model
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'formato '.$model->id.'.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 10,
+                'marginBottom'=> 13,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Formato'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            ]);
+            return $pdf->render();
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 
     /**

@@ -202,7 +202,7 @@ class SolicitantesController extends Controller
                 'format' => Pdf::FORMAT_A4,
                 'destination' => Pdf::DEST_BROWSER,
                 'content' => $content,
-                'filename' => 'ponreza'.$model->id.'.pdf',
+                'filename' => 'cedula '.$model->id.'.pdf',
                 'marginLeft'=> 10,
                 'marginRight'=> 10,
                 'marginTop'=> 10,
