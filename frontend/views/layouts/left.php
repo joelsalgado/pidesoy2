@@ -9,6 +9,7 @@
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
                     ['label' => 'Usuarios', 'icon' => 'address-book', 'url' => ['/user'], 'visible' => $user = (Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20) ? true : false],
                     ['label' => 'Participantes', 'icon' => 'user', 'url' => ['/solicitantes']],
+                    ['label' => 'Formato de Localidades', 'icon' => 'folder', 'url' => ['/formato-loc']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     ['label' => 'Cerrar Sesión', 'icon' => 'power-off', 'url' => ['/site/logout'],
                         'template' => '<a href="{url}" data-method="post"><span class="glyphicon glyphicon-off"></span>{label}</a>'

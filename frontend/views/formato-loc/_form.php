@@ -100,30 +100,30 @@ use kartik\select2\Select2;
             </div>
         </div>
     </div>
+    <div class="row">
+        <?= $form->field($model, 'indentificacion_hogares')->textarea() ?>
 
-    <?= $form->field($model, 'indentificacion_hogares')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'calidad_vivienda')->textarea() ?>
 
-    <?= $form->field($model, 'calidad_vivienda')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'serv_basicos')->textarea() ?>
 
-    <?= $form->field($model, 'serv_basicos')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'acceso_edu')->textarea() ?>
 
-    <?= $form->field($model, 'acceso_edu')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'salud')->textarea() ?>
 
-    <?= $form->field($model, 'salud')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'seguridad_social')->textarea() ?>
 
-    <?= $form->field($model, 'seguridad_social')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'ingresos')->textarea() ?>
 
-    <?= $form->field($model, 'ingresos')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'alimentacion')->textarea()?>
 
-    <?= $form->field($model, 'alimentacion')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'vinculacion')->textarea() ?>
 
-    <?= $form->field($model, 'vinculacion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'acceso_terrestre')->textInput(['maxlength' => true]) ?>
-
+        <?= $form->field($model, 'acceso_terrestre')->textarea()?>
+    </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
