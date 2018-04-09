@@ -56,6 +56,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
                 [['num_personas','per_0_15', 'per_16_17', 'per_18_64', 'per_65_mas', 'num_habitaciones',
                     'cuantos_ingresos'], 'integer', 'max' => 90000, 'tooBig' => '{attribute} es demasiado grande'],
                 ['num_personas', 'validateSuma'],
+                ['cuantos_ingresos', 'validateIngresos'],
                 [['ingreso_total', 'monto_autoingreso', 'monto_apoyo', 'monto_extranjero', 'monto_pension'], 'integer', 'max' => 10000000, 'tooBig' => '{attribute} es demasiado grande'],
                 [['region_id'], 'exist', 'skipOnError' => true, 'targetClass' => Regiones::className(), 'targetAttribute' => ['region_id' => 'id']],
                 [['entidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => EntidadNacimiento::className(), 'targetAttribute' => ['entidad_id' => 'id']],
@@ -65,6 +66,12 @@ class CedulaPobreza extends \yii\db\ActiveRecord
                 [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
                 [['vivienda_es_id'], 'exist', 'skipOnError' => true, 'targetClass' => ViviendaEs::className(), 'targetAttribute' => ['vivienda_es_id' => 'id']],
             ];
+        }
+    }
+
+    public function  validateIngresos(){
+        if($this->cuantos_ingresos > $this->num_personas){
+            $this->addError('cuantos_ingresos', 'No corresponde con el numero de habitantes');
         }
     }
 
