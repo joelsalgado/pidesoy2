@@ -39,7 +39,7 @@ class Localidades extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entidad_federativa_id', 'mun_id', 'localidad_id', 'regionalizacion_id', 'loc_grandes_id', 'loc_fuertes_id'], 'integer'],
+            [['entidad_federativa_id', 'mun_id', 'region_id', 'localidad_id', 'regionalizacion_id', 'loc_grandes_id', 'loc_fuertes_id'], 'integer'],
             [['desc_loc', 'nombre_loc', 'tipo_loc'], 'required'],
             [['latitud_loc', 'longitud_loc'], 'number'],
             [['desc_loc', 'nombre_loc'], 'string', 'max' => 150],
@@ -59,6 +59,7 @@ class Localidades extends \yii\db\ActiveRecord
             'id' => 'ID',
             'entidad_federativa_id' => 'Entidad Federativa ID',
             'mun_id' => 'Mun ID',
+            'region_id' => 'Mun ID',
             'localidad_id' => 'Localidad ID',
             'desc_loc' => 'Desc Loc',
             'nombre_loc' => 'Nombre Loc',
