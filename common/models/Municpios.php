@@ -120,6 +120,15 @@ class Municpios extends \yii\db\ActiveRecord
         if(Yii::$app->user->identity->role == 30){
             $mun_id = self::find()
                 ->select(['id', 'desc_mun'])
+                ->where(['reg_fuertes_id' => 2])
+                ->orWhere(['reg_fuertes_id' => 6])
+                ->orWhere(['reg_fuertes_id' => 7])
+                ->orWhere(['reg_fuertes_id' => 10])
+                ->orWhere(['reg_fuertes_id' => 13])
+                ->orWhere(['reg_fuertes_id' => 15])
+                ->orWhere(['reg_fuertes_id' => 17])
+                ->orWhere(['reg_fuertes_id' => 18])
+                ->orWhere(['reg_fuertes_id' => 19])
                 ->orderBy(['desc_mun' => 'DESC'])
                 ->all();
         }else{

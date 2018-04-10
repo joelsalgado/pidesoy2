@@ -4,38 +4,13 @@ namespace common\models;
 
 use Yii;
 
-/**
- * This is the model class for table "cat_localidades".
- *
- * @property int $id
- * @property int $entidad_federativa_id
- * @property int $mun_id
- * @property int $localidad_id
- * @property string $desc_loc
- * @property string $nombre_loc
- * @property string $tipo_loc
- * @property double $latitud_loc
- * @property double $longitud_loc
- * @property int $regionalizacion_id
- * @property int $loc_grandes_id
- * @property int $loc_fuertes_id
- * @property string $cieps_desc
- *
- * @property CatMunicipios $mun
- */
 class Localidades extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return 'cat_localidades';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -46,20 +21,17 @@ class Localidades extends \yii\db\ActiveRecord
             [['tipo_loc'], 'string', 'max' => 1],
             [['cieps_desc'], 'string', 'max' => 50],
             [['localidad_id'], 'unique'],
-            [['mun_id'], 'exist', 'skipOnError' => true, 'targetClass' => CatMunicipios::className(), 'targetAttribute' => ['mun_id' => 'id']],
+            [['mun_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municpios::className(), 'targetAttribute' => ['mun_id' => 'id']],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
             'entidad_federativa_id' => 'Entidad Federativa ID',
             'mun_id' => 'Mun ID',
-            'region_id' => 'Mun ID',
+            'region_id' => 'Region',
             'localidad_id' => 'Localidad ID',
             'desc_loc' => 'Desc Loc',
             'nombre_loc' => 'Nombre Loc',
@@ -73,9 +45,6 @@ class Localidades extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getMun()
     {
         return $this->hasOne(Municpios::className(), ['id' => 'mun_id']);
@@ -96,5 +65,23 @@ class Localidades extends \yii\db\ActiveRecord
         }
 
         return $sec;
+    }
+
+    public static function getLocOk(){
+        if(Yii::$app->user->identity->role == 30){
+            $loc = self::find()
+                ->select(['localidad_id', 'desc_loc'])
+                ->where(['>','loc_fuertes_id',0])
+                ->orderBy('desc_loc')
+                ->all();
+        }else{
+            $loc = self::find()
+                ->select(['localidad_id', 'desc_loc'])
+                ->andWhere(['region_id' => Yii::$app->user->identity->region_id ])
+                ->orderBy(['desc_loc' => 'DESC'])
+                ->all();
+        }
+
+        return $loc;
     }
 }

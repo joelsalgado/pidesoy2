@@ -60,10 +60,7 @@ $this->title = 'Formato Localidadades';
                                 return $role;
                             },
                             'filter' => Html::activeDropDownList($searchModel, 'loc_id',
-                                \yii\helpers\ArrayHelper::map(\common\models\Localidades::find()
-                                    ->where(['>','loc_fuertes_id',0])
-                                    ->orderBy('desc_loc')
-                                    ->all(), 'localidad_id', 'desc_loc'),
+                                \yii\helpers\ArrayHelper::map(\common\models\Localidades::getLocOk(), 'localidad_id', 'desc_loc'),
                                 ['class'=>'form-control','prompt' => 'Seleccione una Localidad']),
                         ],
                         //'num_habitantes',
