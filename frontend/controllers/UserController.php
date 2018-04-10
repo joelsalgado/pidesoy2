@@ -90,7 +90,7 @@ class UserController extends Controller
                 ->generatePasswordHash($password);
             $model->status = 10;
             if($model->save()){
-                return $this->redirect(['indez']);
+                return $this->redirect(['index']);
             }
         }
 

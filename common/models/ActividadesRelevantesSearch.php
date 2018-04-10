@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\FormatoLoc;
+use common\models\ActividadesRelevantes;
 
 /**
- * FormatoLocSearch represents the model behind the search form of `common\models\FormatoLoc`.
+ * ActividadesRelevantesSearch represents the model behind the search form of `common\models\ActividadesRelevantes`.
  */
-class FormatoLocSearch extends FormatoLoc
+class ActividadesRelevantesSearch extends ActividadesRelevantes
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class FormatoLocSearch extends FormatoLoc
     public function rules()
     {
         return [
-            [['id', 'region_id', 'mun_id', 'loc_id', 'num_habitantes', 'ocupantes_por_vivienda', 'status', 'created_by', 'updated_by'], 'integer'],
-            [['indice_marginacion', 'indentificacion_hogares', 'calidad_vivienda', 'serv_basicos', 'acceso_edu', 'salud', 'seguridad_social', 'ingresos', 'alimentacion', 'vinculacion', 'acceso_terrestre', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'region_id', 'mun_id', 'loc_id', 'obra_comunitaria', 'status', 'created_by', 'updated_by'], 'integer'],
+            [['fecha', 'descripcion', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class FormatoLocSearch extends FormatoLoc
      */
     public function search($params)
     {
-        $query = FormatoLoc::find()->where(['status' => 1]);
+        $query = ActividadesRelevantes::find()->where(['status' => 1]);
 
         // add conditions that should always apply here
         if (Yii::$app->user->identity->role != 30){
@@ -67,8 +67,8 @@ class FormatoLocSearch extends FormatoLoc
             'region_id' => $this->region_id,
             'mun_id' => $this->mun_id,
             'loc_id' => $this->loc_id,
-            'num_habitantes' => $this->num_habitantes,
-            'ocupantes_por_vivienda' => $this->ocupantes_por_vivienda,
+            'obra_comunitaria' => $this->obra_comunitaria,
+            'fecha' => $this->fecha,
             'status' => $this->status,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
@@ -76,17 +76,7 @@ class FormatoLocSearch extends FormatoLoc
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'indice_marginacion', $this->indice_marginacion])
-            ->andFilterWhere(['like', 'indentificacion_hogares', $this->indentificacion_hogares])
-            ->andFilterWhere(['like', 'calidad_vivienda', $this->calidad_vivienda])
-            ->andFilterWhere(['like', 'serv_basicos', $this->serv_basicos])
-            ->andFilterWhere(['like', 'acceso_edu', $this->acceso_edu])
-            ->andFilterWhere(['like', 'salud', $this->salud])
-            ->andFilterWhere(['like', 'seguridad_social', $this->seguridad_social])
-            ->andFilterWhere(['like', 'ingresos', $this->ingresos])
-            ->andFilterWhere(['like', 'alimentacion', $this->alimentacion])
-            ->andFilterWhere(['like', 'vinculacion', $this->vinculacion])
-            ->andFilterWhere(['like', 'acceso_terrestre', $this->acceso_terrestre]);
+        $query->andFilterWhere(['like', 'descripcion', $this->descripcion]);
 
         return $dataProvider;
     }

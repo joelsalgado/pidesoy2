@@ -7,9 +7,6 @@ use frontend\widgets\Apartados\Apartados;
 /* @var $model common\models\Solicitantes */
 
 $this->title = 'Actualizar Participante';
-$this->params['breadcrumbs'][] = ['label' => 'Solicitantes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="solicitantes-update">
 

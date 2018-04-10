@@ -131,27 +131,97 @@ use kartik\select2\Select2;
 
     <div class="row">
         <label>REPRESENTACIÓN EN LA LOCALIDAD</label><br>
-        <?= $form->field($model, 'delegacion_municipal')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'copaci')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'comisariado')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'vigilancia')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'agua')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'comite_prospera')->textInput(['class' => 'form-control'])?>
+        <div class=row>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'delegacion_municipal')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'copaci')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'comisariado')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+        </div>
+        <div class=row>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'vigilancia')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'agua')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'comite_prospera')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <?= $form->field($model, 'necesidades')->textarea(['class' => 'form-control'])?>
     </div>
     <div class="row">
         <label> DATOS GENERALES DEL AYUNTAMIENTO</label><br>
-        <?= $form->field($model, 'nombre_presidente')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'domicilio_presidente')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'contacto_presidente')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'nombre_integrante')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'domicilio_integrante')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'contacto_integrante')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'nombre_director')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'domicilio_director')->textInput(['class' => 'form-control'])?>
-        <?= $form->field($model, 'contacto_director')->textInput(['class' => 'form-control'])?>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'nombre_presidente')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'domicilio_presidente')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'contacto_presidente')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'nombre_integrante')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'domicilio_integrante')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'contacto_integrante')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'nombre_director')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'domicilio_director')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'contacto_director')->textInput(['class' => 'form-control'])?>
+                </div>
+            </div>
+        </div>
     </div>
 
 

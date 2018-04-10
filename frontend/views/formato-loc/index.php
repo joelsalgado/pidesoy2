@@ -7,14 +7,13 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\FormatoLocSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Formato Locs';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Formato Localidadades';
 ?>
 <div class="formato-loc-index">
 
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Participantes</h3>
+            <h3 class="box-title">Formato Localidadades</h3>
         </div>
         <div class="box-body">
             <p class="pull-right">

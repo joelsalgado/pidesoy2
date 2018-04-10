@@ -8,8 +8,6 @@ use frontend\widgets\Apartados\Apartados;
 /* @var $model common\models\Solicitantes */
 
 $this->title = 'Crear Participante';
-$this->params['breadcrumbs'][] = ['label' => 'Participante', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitantes-create">
 
