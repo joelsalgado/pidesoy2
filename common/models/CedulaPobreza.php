@@ -334,7 +334,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             }
             $suma_drenaje = $drenaje_desem+$drenaje_pub+$drenaje_desem;
             $luz = ($this->energia_electrica == 0) ? 1 : 0;
-            if($this->chimenea == null){
+            if(is_null($this->chimenea)){
                 $chimenea = 0;
             }else{
                 $chimenea = ($this->chimenea == 0) ? 1 : 0;

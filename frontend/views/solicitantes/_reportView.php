@@ -48,7 +48,7 @@
             <td> </td>
             <?php endif;?>
 
-            <?php if($model->serv_basicos_drenaje == 2): ?>
+            <?php if($model->serv_basicos_drenaje == 3): ?>
             <td>Falta conectar drenaje a red pública</td>
             <?php elseif ($model->serv_basicos_drenaje == 1): ?>
             <td>Falta Drenaje</td>
