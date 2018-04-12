@@ -57,6 +57,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
                     'cuantos_ingresos'], 'integer', 'max' => 90000, 'tooBig' => '{attribute} es demasiado grande'],
                 ['num_personas', 'validateSuma'],
                 ['cuantos_ingresos', 'validateIngresos'],
+                ['num_miemb_recibe', 'validateSalud'],
                 [['ingreso_total', 'monto_autoingreso', 'monto_apoyo', 'monto_extranjero', 'monto_pension'], 'integer', 'max' => 10000000, 'tooBig' => '{attribute} es demasiado grande'],
                 [['region_id'], 'exist', 'skipOnError' => true, 'targetClass' => Regiones::className(), 'targetAttribute' => ['region_id' => 'id']],
                 [['entidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => EntidadNacimiento::className(), 'targetAttribute' => ['entidad_id' => 'id']],
@@ -72,6 +73,12 @@ class CedulaPobreza extends \yii\db\ActiveRecord
     public function  validateIngresos(){
         if($this->cuantos_ingresos > $this->num_personas){
             $this->addError('cuantos_ingresos', 'No corresponde con el numero de habitantes');
+        }
+    }
+
+    public function  validateSalud(){
+        if($this->num_miemb_recibe > $this->num_personas){
+            $this->addError('num_miemb_recibe', 'No corresponde con el numero de habitantes');
         }
     }
 
@@ -189,7 +196,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             'pemex' => 'Pemex',
             'otro_serv_med' => 'Otro',
             'especifique' => 'Especifique',
-            'num_miemb_recibe' => 'Número de integrantes del hogar que reciben servicios médicos',
+            'num_miemb_recibe' => 'Número de integrantes del hogar que no reciben servicios médicos',
             'cronico_degenerativa' => '¿Algún Integrante del hogar padece de una enfermedad crónico degenerativa?',
             'cual_cronico_deg' => 'Cual?',
 

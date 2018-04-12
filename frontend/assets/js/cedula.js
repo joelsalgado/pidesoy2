@@ -341,7 +341,6 @@ $(function() {
         if ($(this).val() == 0) {
             $('.tiene_serv_med').hide();
             $('input[name = "CedulaPobreza[especifique]"]').val('');
-            $('input[name = "CedulaPobreza[num_miemb_recibe]"]').val('');
         } else {
             $('.tiene_serv_med').show();
         }

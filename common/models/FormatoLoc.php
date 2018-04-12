@@ -53,7 +53,7 @@ class FormatoLoc extends \yii\db\ActiveRecord
             'loc_id' => 'LOCALIDAD',
             'num_habitantes' => 'No. DE HABITANTES',
             'ocupantes_por_vivienda' => 'OCUPANTES PROMEDIO POR VIVIENDA',
-            'indice_marginacion' => 'ÍNDICE DE MARGINACIÓN',
+            'indice_marginacion' => 'ÍNDICE DE DESARROLLO SOCIAL Y HUMANO',
             'indentificacion_hogares' => '1. Identificación de hogares y residentes:',
             'calidad_vivienda' => '2. Calidad y espacios de la vivienda',
             'serv_basicos' => '3. Acceso a servicios básicos.',

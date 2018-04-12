@@ -95,7 +95,8 @@ use kartik\select2\Select2;
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <?= $form->field($model, 'indice_marginacion')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'indice_marginacion')->dropDownList(['MUY ALTO' => 'MUY ALTO',
+                        'ALTO' => 'ALTO', 'MEDIO' => 'MEDIO' , 'BAJO' => 'BAJO', 'MUY BAJO' => 'MUY BAJO']) ?>
                 </div>
             </div>
         </div>

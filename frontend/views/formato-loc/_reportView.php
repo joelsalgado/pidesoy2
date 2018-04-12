@@ -42,7 +42,7 @@
     <tr>
         <td colspan="2" align="center" style="background-color:#a4a4a7"><b>No. DE HABITANTES</b></td>
         <td colspan="2" align="center" style="background-color:#a4a4a7"><b>OCUPANTES PROMEDIO POR VIVIENDA</b></td>
-        <td colspan="2" align="center" style="background-color:#a4a4a7"><b>ÍNDICE DE MARGINACIÓN</b></td>
+        <td colspan="2" align="center" style="background-color:#a4a4a7"><b>ÍNDICE DE DESARROLLO SOCIAL Y HUMANO</b></td>
     </tr>
     <tr>
         <td colspan="2" align="center"><?= $model->num_habitantes ?></td>

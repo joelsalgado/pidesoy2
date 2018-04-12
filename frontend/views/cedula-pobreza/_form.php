@@ -451,10 +451,12 @@ use yii\helpers\ArrayHelper;
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <?= $form->field($model, 'num_miemb_recibe')->textInput() ?>
-                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <?= $form->field($model, 'num_miemb_recibe')->textInput() ?>
                     </div>
                 </div>
             </div>
