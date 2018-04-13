@@ -160,12 +160,12 @@
         <td colspan="6"><?= $model->necesidades ?></td>
     </tr>
     <tr>
-        <td colspan="6" style="background-color:#a4a4a7" align="center"><b>DATOS GENERALES DEL AYUNTAMIENTO,</b></td>
+        <td colspan="6" style="background-color:#a4a4a7" align="center"><b>DATOS GENERALES DEL AYUNTAMIENTO</b></td>
     </tr>
     <tr>
-        <td colspan="2">Nombre del Presidente Municipal</td>
-        <td colspan="2">Domicilio del Presidente Municipal</td>
-        <td colspan="2">Contacto del Presidente Municipal</td>
+        <td colspan="2"><b>Nombre del Presidente Municipal</b></td>
+        <td colspan="2"><b>Domicilio del Presidente Municipal</b></td>
+        <td colspan="2"><b>Contacto del Presidente Municipal</b></td>
     </tr>
     <tr>
         <td colspan="2"><?= $model->nombre_presidente ?></td>
@@ -173,25 +173,67 @@
         <td colspan="2"><?= $model->contacto_presidente ?></td>
     </tr>
     <tr>
-        <td colspan="2">Nombre del Integrante del Cabildo</td>
-        <td colspan="2">Domicilio del Integrante del Cabildo</td>
-        <td colspan="2">Contacto del Integrante del Cabildo</td>
+        <td colspan="2"><b>Nombre del Integrante del Cabildo</b></td>
+        <td colspan="2"><b>Domicilio del Integrante del Cabildo</b></td>
+        <td colspan="2"><b>Contacto del Integrante del Cabildo</b></td>
+    </tr>
+    <?php if($cabildo): ?>
+        <?php foreach ($cabildo as $cabil){ ?>
+    <tr>
+        <td colspan="2"><?= $cabil->nombre_cabildo ?></td>
+        <td colspan="2"><?= $cabil->domicilio_cabildo ?></td>
+        <td colspan="2"><?= $cabil->contacto_cabildo ?></td>
+    </tr>
+        <?php } ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="2"> </td>
+            <td colspan="2"> </td>
+            <td colspan="2"> </td>
+        </tr>
+    <?php endif; ?>
+    <tr>
+        <td colspan="2"><b>Nombre del Director Municipal</b></td>
+        <td colspan="2"><b>Domicilio del Director Municipal</b></td>
+        <td colspan="2"><b>Contacto del Director Municipal</b></td>
+    </tr>
+    <?php if($directores): ?>
+    <?php foreach ($directores as $dir){ ?>
+    <tr>
+        <td colspan="2"><?= $dir->nombre_director ?></td>
+        <td colspan="2"><?= $dir->domicilio_director ?></td>
+        <td colspan="2"><?= $dir->contacto_director ?></td>
+    </tr>
+    <?php } ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="2"> </td>
+            <td colspan="2"> </td>
+            <td colspan="2"> </td>
+        </tr>
+    <?php endif; ?>
+    <tr>
+        <td colspan="6" style="background-color:#a4a4a7" align="center"><b>ACTIVIDADES RELEVANTES</b></td>
     </tr>
     <tr>
-        <td colspan="2"><?= $model->nombre_integrante ?></td>
-        <td colspan="2"><?= $model->domicilio_integrante ?></td>
-        <td colspan="2"><?= $model->contacto_integrante ?></td>
+        <td colspan="3"><b>FECHA</b></td>
+        <td colspan="3"><b>DESCRIPCIÓN</b></td>
     </tr>
-    <tr>
-        <td colspan="2">Nombre del Director Municipa</td>
-        <td colspan="2">Domicilio del Director Municipal</td>
-        <td colspan="2">Contacto del Director Municipal</td>
-    </tr>
-    <tr>
-        <td colspan="2"><?= $model->nombre_director ?></td>
-        <td colspan="2"><?= $model->domicilio_director ?></td>
-        <td colspan="2"><?= $model->contacto_director ?></td>
-    </tr>
+    <?php if($actividades): ?>
+        <?php foreach ($actividades as $act){ ?>
+            <tr>
+                <td colspan="3"><?= $act->fecha ?></td>
+                <td colspan="3"><?= $act->descripcion ?></td>
+            </tr>
+        <?php } ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="3"> </td>
+            <td colspan="3"> </td>
+        </tr>
+    <?php endif; ?>
+
+
 
 
 </table>

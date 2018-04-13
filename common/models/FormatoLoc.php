@@ -74,7 +74,7 @@ class FormatoLoc extends \yii\db\ActiveRecord
             'copaci' => 'Copaci',
             'comisariado' => 'Comisariado Ejidal o Bienes Comunales',
             'vigilancia' => 'Consejo de Vigilancia',
-            'agua' => 'omité de Agua Potable',
+            'agua' => 'Comité de Agua Potable',
             'comite_prospera' => ' Comité de Prospera',
 
             'necesidades' => 'PRINCIPALES NECESIDADES',

@@ -189,40 +189,6 @@ use kartik\select2\Select2;
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'nombre_integrante')->textInput(['class' => 'form-control'])?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'domicilio_integrante')->textInput(['class' => 'form-control'])?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'contacto_integrante')->textInput(['class' => 'form-control'])?>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'nombre_director')->textInput(['class' => 'form-control'])?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'domicilio_director')->textInput(['class' => 'form-control'])?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'contacto_director')->textInput(['class' => 'form-control'])?>
-                </div>
-            </div>
-        </div>
     </div>
 
 

@@ -2,6 +2,9 @@
 
 namespace frontend\controllers;
 
+use common\models\ActividadesRelevantes;
+use common\models\Cabildo;
+use common\models\DirectoresMunicipales;
 use kartik\mpdf\Pdf;
 use Yii;
 use common\models\FormatoLoc;
@@ -77,7 +80,7 @@ class FormatoLocController extends Controller
             $model->updated_at = $fecha;
             if($model->save()){
                 Yii::$app->session->setFlash('success', 'Se guardo correctamente');
-                return $this->redirect(['index']);
+                return $this->redirect(['/cabildo', 'id' => $model->id]);
             }
 
         }
@@ -102,13 +105,14 @@ class FormatoLocController extends Controller
             $model->updated_at = $fecha;
             if($model->save()){
                 Yii::$app->session->setFlash('success', 'Se actualizo correctamente');
-                return $this->redirect(['index']);
+                return $this->redirect(['/cabildo', 'id' => $id]);
             }
 
         }
 
         return $this->render('update', [
             'model' => $model,
+            'id' => $id
         ]);
     }
 
@@ -134,10 +138,36 @@ class FormatoLocController extends Controller
     public function actionFormato($id)
     {
         $model = FormatoLoc::find()->where(['id' => $id])->one();
+
         if ($model){
+            $cabildo = Cabildo::find()->where(['formato_id' => $id])->all();
+            $directores = DirectoresMunicipales::find()->where(['formato_id' => $id])->all();
+            $actividades = ActividadesRelevantes::find()->where(['loc_id' => $model->loc_id, 'status' => 1])->all();
+
+            if($cabildo){
+                $cab = $cabildo;
+            }else{
+                $cab = null;
+            }
+
+            if ($directores){
+                $dir = $directores;
+            }else{
+                $dir = null;
+            }
+
+            if($actividades){
+                $act = $actividades;
+            }
+            else{
+                $act = null;
+            }
 
             $content = $this->renderPartial('_reportView', [
-                'model'=> $model
+                'model'=> $model,
+                'cabildo' => $cab,
+                'directores' => $dir,
+                'actividades' => $act
             ]);
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
