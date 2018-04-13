@@ -29,8 +29,8 @@ class Solicitantes extends \yii\db\ActiveRecord
         return [
             [['periodo', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'edo_civil_id', 'edad', 'codigo_postal',
                 'status', 'created_by', 'updated_by'], 'integer', 'message' => 'Debe ser un numero entero'],
-            [['region_id', 'mun_id', 'loc_id','nombre', 'apellido_paterno', 'apellido_materno', 'edo_civil_id', 'fecha_nacimiento',
-                'sexo', 'calle', 'colonia', 'num_ext', 'num_int', 'codigo_postal',
+            [['region_id', 'mun_id', 'loc_id','nombre', 'apellido_paterno', 'edo_civil_id', 'fecha_nacimiento',
+                'sexo', 'calle', 'colonia', 'num_ext', 'codigo_postal',
                 'otra_referencia', 'created_at', 'updated_at'], 'required', 'message' => 'Campo requerido'],
             [['fecha_nacimiento', 'created_at', 'updated_at'], 'string'],
             [['nombre', 'apellido_paterno', 'apellido_materno'], 'string', 'max' => 60],
