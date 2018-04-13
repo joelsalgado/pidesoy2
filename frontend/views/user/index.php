@@ -108,6 +108,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'borrar' => function ($url, $model) {
                                     if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20){
                                     return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
+                                        'data' => [
+                                            'confirm' => 'Estas seguro de borrar a este usuario',
+                                            'method' => 'POST'
+                                        ],
                                         'title' => Yii::t('app', 'borrar'),
                                     ]);
                                     }

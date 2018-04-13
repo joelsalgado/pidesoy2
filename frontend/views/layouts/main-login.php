@@ -18,7 +18,7 @@ dmstr\web\AdminLteAsset::register($this);
     <link rel="shortcut icon" href="<?php echo Yii::$app->request->baseUrl; ?>/logopideso.ico" type="image/x-icon" />
     <?php $this->head() ?>
 </head>
-<body class="login-page">
+<body  background="<?= Yii::$app->homeUrl ?>images/fondo.jpg">
 
 <?php $this->beginBody() ?>
 
