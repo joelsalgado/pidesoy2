@@ -107,26 +107,36 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if (Yii::$app->user->identity->role != 30) {
+            $model = User::find()->where(['id' => $id, 'region_id' => Yii::$app->user->identity->region_id])->one();
+        }else{
+            $model = $this->findModel($id);
+        }
+        if($model){
+            if ($model->load(Yii::$app->request->post())) {
+                $password = Yii::$app->request->post()['User']["password_hash"];
+                if(!empty($password)) {
+                    $model->password_hash = Yii::$app
+                        ->security
+                        ->generatePasswordHash($password);
+                }
+                else{
+                    $model->password_hash = $model->password_hash;
+                }
+                if($model->save()) {
+                    return $this->redirect(['index']);
+                }
+            }
 
-        if ($model->load(Yii::$app->request->post())) {
-            $password = Yii::$app->request->post()['User']["password_hash"];
-            if(!empty($password)) {
-                $model->password_hash = Yii::$app
-                    ->security
-                    ->generatePasswordHash($password);
-            }
-            else{
-                $model->password_hash = $model->password_hash;
-            }
-            if($model->save()) {
-                return $this->redirect(['index']);
-            }
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+
     }
 
     /**

@@ -113,34 +113,47 @@ class SolicitantesController extends Controller
 
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-        $model->fecha_nacimiento = Yii::$app->formatter->asDate($model->fecha_nacimiento, 'dd-MM-yyyy');
-        $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
-        if ($model->load(Yii::$app->request->post())) {
-            $model->nombre = trim(strtoupper($model->nombre));
-            $model->apellido_paterno = trim(strtoupper($model->apellido_paterno));
-            $model->apellido_materno = trim(strtoupper($model->apellido_materno));
-            $model->calle = trim(strtoupper($model->calle));
-            $model->colonia = trim(strtoupper($model->colonia));
-            $model->num_ext = trim(strtoupper($model->num_ext));
-            $model->num_int = trim(strtoupper($model->num_int));
-            $model->otra_referencia = trim(strtoupper($model->otra_referencia));
-            $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
-            $fecha_nac =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
 
-            $model->fecha_nacimiento = $fecha_nac;
-            $model->updated_at = $fecha;
+        if (Yii::$app->user->identity->role != 30) {
+            $model = Solicitantes::find()->where(['id' => $id,
+                'region_id' => Yii::$app->user->identity->region_id,
+                'status' => 1])->one();
+        }else{
+            $model = $this->findModel($id);
+        }
+        if($model){
+            $model->fecha_nacimiento = Yii::$app->formatter->asDate($model->fecha_nacimiento, 'dd-MM-yyyy');
+            $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->nombre = trim(strtoupper($model->nombre));
+                $model->apellido_paterno = trim(strtoupper($model->apellido_paterno));
+                $model->apellido_materno = trim(strtoupper($model->apellido_materno));
+                $model->calle = trim(strtoupper($model->calle));
+                $model->colonia = trim(strtoupper($model->colonia));
+                $model->num_ext = trim(strtoupper($model->num_ext));
+                $model->num_int = trim(strtoupper($model->num_int));
+                $model->otra_referencia = trim(strtoupper($model->otra_referencia));
+                $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+                $fecha_nac =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
 
-            if($model->save()){
-                return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);
+                $model->fecha_nacimiento = $fecha_nac;
+                $model->updated_at = $fecha;
+
+                if($model->save()){
+                    return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);
+                }
+
             }
 
+            return $this->render('update', [
+                'model' => $model,
+                'apartado' => $apartado
+            ]);
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
         }
 
-        return $this->render('update', [
-            'model' => $model,
-            'apartado' => $apartado
-        ]);
     }
 
     /**
@@ -152,26 +165,35 @@ class SolicitantesController extends Controller
 
     public function actionDelete($id)
     {
-        $solicitantes = Solicitantes::findOne($id);
-        $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
-        $solicitantes->status = 0;
-        $solicitantes->updated_at = $fecha;
-        $cedula = CedulaPobreza::find()->where(['solicitante_id' => $id])->one();
-        $cedula->status = 0;
-        $cedula->updated_at = $fecha;
-        $docs = Documentos::find()->where(['solicitante_id' => $id])->one();
-        $docs->status = 0;
-        $docs->updated_at = $fecha;
-        $pobreza = PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
-        $pobreza->status = 0;
-        $pobreza->updated_at = $fecha;
+        if (Yii::$app->user->identity->role != 30) {
+            $solicitantes = Solicitantes::find()->where(['id' => $id, 'region_id' => Yii::$app->user->identity->region_id])->one();
+        }else{
+            $solicitantes = Solicitantes::findOne($id);
+        }
+        if($solicitantes){
+            $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+            $solicitantes->status = 0;
+            $solicitantes->updated_at = $fecha;
+            $cedula = CedulaPobreza::find()->where(['solicitante_id' => $id])->one();
+            $cedula->status = 0;
+            $cedula->updated_at = $fecha;
+            $docs = Documentos::find()->where(['solicitante_id' => $id])->one();
+            $docs->status = 0;
+            $docs->updated_at = $fecha;
+            $pobreza = PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
+            $pobreza->status = 0;
+            $pobreza->updated_at = $fecha;
 
-        if($solicitantes->save(false) && $cedula->save(false) && $docs->save(false) && $pobreza->save(false)){
-            Yii::$app->session->setFlash('error', 'Se borro correctamente');
-            return $this->redirect(['index']);
+            if($solicitantes->save(false) && $cedula->save(false) && $docs->save(false) && $pobreza->save(false)){
+                Yii::$app->session->setFlash('error', 'Se borro correctamente');
+                return $this->redirect(['index']);
+            }
+            else{
+                return $this->redirect(['index']);
+            }
         }
         else{
-            return $this->redirect(['index']);
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
         }
 
     }

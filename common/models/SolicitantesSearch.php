@@ -48,6 +48,7 @@ class SolicitantesSearch extends Solicitantes
             $region = Yii::$app->user->identity->region_id;
             $query->andWhere(['region_id' => $region]);
         }
+        $query->orderBy(['updated_at' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
