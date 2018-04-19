@@ -30,7 +30,7 @@ $total = 0;
                     <?php $total= $data->total + $total; } ?>
                 <tr>
                     <td><b>Total</b></td>
-                    <td><?= $total ?></td>
+                    <td><b><?= $total ?></b></td>
                 </tr>
 
                 </tbody>
