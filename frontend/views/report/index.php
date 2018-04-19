@@ -7,6 +7,7 @@
  */
 
 $this->title = 'Reporte';
+$total = 0;
 ?>
 
 <div class="box">
@@ -22,14 +23,19 @@ $this->title = 'Reporte';
                 </thead>
                 <tbody>
                 <?php foreach ($model as $data){ ?>
+                    <tr>
+                        <td><?= $data->desc_region ?></td>
+                        <td><?= $data->total ?></td>
+                    </tr>
+                    <?php $total= $data->total + $total; } ?>
                 <tr>
-                    <td><?= $data->desc_region ?></td>
-                    <td><?= $data->total ?></td>
+                    <td><b>Total</b></td>
+                    <td><?= $total ?></td>
                 </tr>
+
+                </tbody>
+            </table>
         </div>
-        <?php } ?>
-        </tbody>
-        </table>
     </div>
 </div>
 
