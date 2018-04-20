@@ -8,6 +8,9 @@
 
 namespace frontend\controllers;
 
+use common\models\LocDesg;
+use common\models\MunDesg;
+use common\models\RegDesg;
 use common\models\TotalReg;
 use Yii;
 use common\models\User as Usuarios;
@@ -28,10 +31,10 @@ class ReportController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'create', 'update', 'delete'],
+                'only' => ['index', 'region', 'municipio', 'localidad', 'total'],
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index', 'region', 'municipio', 'localidad', 'total'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -58,6 +61,38 @@ class ReportController extends Controller
     {
         $model = TotalReg::find()->all();
         return $this->render('index', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionRegion()
+    {
+        $model = RegDesg::find()->all();
+        return $this->render('region', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionMunicipio()
+    {
+        $model = MunDesg::find()->all();
+        return $this->render('municipio', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionLocalidad()
+    {
+        $model = LocDesg::find()->all();
+        return $this->render('localidad', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionTotal()
+    {
+        $model = TotalReg::find()->all();
+        return $this->render('total', [
             'model' => $model,
         ]);
     }
