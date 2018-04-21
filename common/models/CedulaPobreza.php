@@ -197,8 +197,8 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             'otro_serv_med' => 'Otro',
             'especifique' => 'Especifique',
             'num_miemb_recibe' => 'Número de integrantes del hogar que no reciben servicios médicos',
-            'cronico_degenerativa' => '¿Algún Integrante del hogar padece de una enfermedad crónico degenerativa?',
-            'cual_cronico_deg' => 'Cual?',
+            'cronico_degenerativa' => '¿Algún o algunos Integrante del hogar padecen de una enfermedad crónico degenerativa o alguna discapacidad?',
+            'cual_cronico_deg' => 'Cual o Cuales?',
 
             'trabaja_formalmente' => '¿Algún integrante de la familia trabaja formalmente?',
             'seguridad_social' => '¿Recibe seguridad social por su actividad laboral?l',

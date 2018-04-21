@@ -410,13 +410,6 @@ $(function() {
         }
     });
 
-    $('input:radio[name="CedulaPobreza[programa_desarrollo_social]"]').change(function() {
-        if ($(this).val() == 0) {
-            $('.programa_desarrollo_social').hide();
-            $('input[name = "CedulaPobreza[nombre_recibe_programa]"]').val('');
-        } else {
-            $('.programa_desarrollo_social').show();
-        }
-    });
+
 
 });

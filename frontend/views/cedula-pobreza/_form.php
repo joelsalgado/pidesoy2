@@ -778,35 +778,7 @@ use yii\helpers\ArrayHelper;
             </div>
             <div class="row">
                 <div class="programa_desarrollo_social">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <?= $form->field($model, 'cual_programa')->widget(Select2::classname(), [
-                                'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
-                                    'id', 'desc_programa'),
-                                'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa'],
-                                'pluginOptions' => [
-                                    'allowClear' => true
-                                ],
-                            ]) ?>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <?= $form->field($model, 'nombre_recibe_programa')->textInput(['maxlength' => true]) ?>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <?= $form->field($model, 'parentesco_recibe_programa')->widget(Select2::classname(), [
-                                'data' => ArrayHelper::map(\common\models\Parentesco::getParentescoOk(),
-                                    'id', 'desc_parentesco'),
-                                'options' => ['placeholder' => 'Selecciona un Parentesco', 'id' => 'desc_parentesco'],
-                                'pluginOptions' => [
-                                    'allowClear' => true
-                                ],
-                            ]) ?>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="row">
