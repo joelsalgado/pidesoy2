@@ -83,10 +83,17 @@ class ReportController extends Controller
 
     public function actionMunicipio()
     {
-        $model = MunDesg::find()->all();
-        return $this->render('municipio', [
-            'model' => $model,
-        ]);
+        if (Yii::$app->request->post()) {
+            $post_array = Yii::$app->request->post();
+            $model = MunDesg::find()
+                ->where(['id' => $post_array['municipios']])
+                ->all();
+            return $this->render('municipio', [
+                'model' => $model,
+            ]);
+        }else{
+            return $this->render('mun');
+        }
     }
 
     public function actionLocalidad()
@@ -118,5 +125,10 @@ class ReportController extends Controller
     public function actionLoc()
     {
         return $this->render('loc');
+    }
+
+    public function actionMun()
+    {
+        return $this->render('mun');
     }
 }
