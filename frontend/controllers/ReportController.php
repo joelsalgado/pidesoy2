@@ -67,10 +67,8 @@ class ReportController extends Controller
 
     public function actionRegion()
     {
-
         if (Yii::$app->request->post()){
             $post_array = Yii::$app->request->post();
-
             $model = RegDesg::find()
                 ->where(['id' => $post_array['regiones']])
                 ->all();
@@ -81,7 +79,6 @@ class ReportController extends Controller
         else{
             return $this->render('reg');
         }
-
     }
 
     public function actionMunicipio()
@@ -94,10 +91,15 @@ class ReportController extends Controller
 
     public function actionLocalidad()
     {
-        $model = LocDesg::find()->all();
-        return $this->render('localidad', [
-            'model' => $model,
-        ]);
+        if (Yii::$app->request->post()){
+            $post_array = Yii::$app->request->post();
+            $model = LocDesg::find()->where(['desc_loc' => $post_array['localidades']])->all();
+            return $this->render('localidad', [
+                'model' => $model,
+            ]);
+        }else{
+            return $this->render('loc');
+        }
     }
 
     public function actionTotal()
@@ -108,13 +110,13 @@ class ReportController extends Controller
         ]);
     }
 
-
-
     public function actionReg()
     {
-        $model = TotalReg::find()->all();
-        return $this->render('reg', [
-            'model' => $model,
-        ]);
+        return $this->render('reg');
+    }
+
+    public function actionLoc()
+    {
+        return $this->render('loc');
     }
 }
