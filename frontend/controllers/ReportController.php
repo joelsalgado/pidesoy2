@@ -67,10 +67,21 @@ class ReportController extends Controller
 
     public function actionRegion()
     {
-        $model = RegDesg::find()->all();
-        return $this->render('region', [
-            'model' => $model,
-        ]);
+
+        if (Yii::$app->request->post()){
+            $post_array = Yii::$app->request->post();
+
+            $model = RegDesg::find()
+                ->where(['id' => $post_array['regiones']])
+                ->all();
+            return $this->render('region', [
+                'model' => $model,
+            ]);
+        }
+        else{
+            return $this->render('reg');
+        }
+
     }
 
     public function actionMunicipio()
@@ -93,6 +104,16 @@ class ReportController extends Controller
     {
         $model = TotalReg::find()->all();
         return $this->render('total', [
+            'model' => $model,
+        ]);
+    }
+
+
+
+    public function actionReg()
+    {
+        $model = TotalReg::find()->all();
+        return $this->render('reg', [
             'model' => $model,
         ]);
     }
