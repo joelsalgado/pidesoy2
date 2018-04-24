@@ -68,9 +68,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                     return $role;
                                 },
-                                'filter' => Html::activeDropDownList($searchModel, 'loc_id',
-                                    \yii\helpers\ArrayHelper::map(\common\models\Localidades::getLocOk(),
+                                'filter' =>
+                                    Html::activeDropDownList($searchModel, 'loc_id',
+                                    \yii\helpers\ArrayHelper::map(\common\models\Localidades::getLocIndex($searchModel->mun_id),
                                         'localidad_id', 'desc_loc'),
+
                                     ['class'=>'form-control','prompt' => 'Seleccione una Localidad']),
                             ],
                             //'mun_id',

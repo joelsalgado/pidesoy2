@@ -8,6 +8,8 @@
 
 
 $this->title = 'Localidades';
+$total_sin_piso = 0;
+$total_sin_techo = 0;
 ?>
 
 <div class="box">
@@ -68,7 +70,9 @@ $this->title = 'Localidades';
                     <tr>
                         <td><b><?= $data->desc_loc ?></b></td>
                         <td><?= $data->sin_piso ?></td>
+                        <?php $total_sin_piso = $total_sin_piso + $data->sin_piso; ?>
                         <td><?= $data->sin_techo ?></td>
+                        <?php $total_sin_techo = $total_sin_techo + $data->sin_techo; ?>
                         <td><?= $data->sin_muro ?></td>
                         <td><?= $data->hacentamiento ?></td>
                         <td><?= $data->agua_interior ?></td>
@@ -112,8 +116,13 @@ $this->title = 'Localidades';
                         <td><?= $data->vinc_prog_prospera ?></td>
                     </tr>
                 <?php } ?>
+                    <tr>
+                        <td><b>TOTAL</b></td>
+                        <td><b><?= $total_sin_piso ?></b></td>
+                        <td><b><?= $total_sin_techo ?></b></td>
 
 
+                    </tr>
                 </tbody>
             </table>
         </div>

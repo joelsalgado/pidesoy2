@@ -67,6 +67,22 @@ class Localidades extends \yii\db\ActiveRecord
         return $sec;
     }
 
+    public static function getLocIndex($cat_id)
+    {
+        if($cat_id){
+            $sections = self::find()
+                ->select(['localidad_id', 'desc_loc'])
+                ->where(['mun_id'=> $cat_id])
+                ->andWhere('loc_fuertes_id > 0 ')
+                ->all();
+            return $sections;
+        }
+        else{
+            return [];
+        }
+
+    }
+
     public static function getLocOk(){
         if(Yii::$app->user->identity->role == 30){
             $loc = self::find()
