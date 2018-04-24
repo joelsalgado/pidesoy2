@@ -30,9 +30,8 @@ $this->title = 'Regiones';
             <div class="row">
                 <?=  Select2::widget([
                     'name' => 'regiones[]',
-                    'data' => \yii\helpers\ArrayHelper::map(\common\models\Regiones::find()
-                    ->where(['status' => 1])
-                    ->all(),'id','desc_region') ,
+                    'data' => \yii\helpers\ ArrayHelper::map(\common\models\Regiones::getRegionesOk(),
+                            'id', 'desc_region'),
                     'maintainOrder' => true,
                     'options' => ['required' => true, 'placeholder' => 'Selecciona una region', 'multiple' => true],
                     'pluginOptions' => [
