@@ -34,7 +34,7 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "yiisoft/yii2-imagine": "^2.0@dev",
         "yii2mod/yii2-sweet-alert": "*",
-        "codemix/yii2-excelexport": "dev-master"
+        "codemix/yii2-excelexport": "^2.7"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
