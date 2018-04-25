@@ -19,5 +19,9 @@ $total = 0;
         <?= \yii\helpers\Html::a('Desgloce por Regiones',['/report/region']) ?><br>
         <?= \yii\helpers\Html::a('Desgloce por Municipios',['/report/municipio']) ?><br>
         <?= \yii\helpers\Html::a('Desgloce por Localidades',['/report/localidad']) ?><br>
+        <?= \yii\helpers\Html::a('Resultados por Regiones',['/report/regiontotal']) ?><br>
+        <?= \yii\helpers\Html::a('Resultados por Municipios',['/report/municipiototal']) ?><br>
+        <?= \yii\helpers\Html::a('Resultados por Localidades',['/report/localidadtotal']) ?><br>
+    </div>
     </div>
 </div>

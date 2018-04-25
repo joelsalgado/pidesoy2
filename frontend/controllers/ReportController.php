@@ -9,8 +9,11 @@
 namespace frontend\controllers;
 
 use common\models\LocDesg;
+use common\models\LocTot;
 use common\models\MunDesg;
+use common\models\MunTot;
 use common\models\RegDesg;
+use common\models\RegTot;
 use common\models\TotalReg;
 use Yii;
 use common\models\User as Usuarios;
@@ -118,9 +121,9 @@ class ReportController extends Controller
     }
 
     public function actionReg()
-    {
-        return $this->render('reg');
-    }
+{
+    return $this->render('reg');
+}
 
     public function actionLoc()
     {
@@ -130,5 +133,64 @@ class ReportController extends Controller
     public function actionMun()
     {
         return $this->render('mun');
+    }
+
+    public function actionRegtot()
+    {
+        return $this->render('regtot');
+    }
+
+    public function actionLoctot()
+    {
+        return $this->render('loctot');
+    }
+
+    public function actionMuntot()
+    {
+        return $this->render('muntot');
+    }
+
+    public function actionRegiontotal()
+    {
+        if (Yii::$app->request->post()){
+            $post_array = Yii::$app->request->post();
+            $model = RegTot::find()
+                ->where(['id' => $post_array['regiones']])
+                ->all();
+            return $this->render('regiontotal', [
+                'model' => $model,
+            ]);
+        }
+        else{
+            return $this->render('regtot');
+        }
+    }
+
+    public function actionMunicipiototal()
+    {
+        if (Yii::$app->request->post()) {
+            $post_array = Yii::$app->request->post();
+            $model = MunTot::find()
+                ->where(['id' => $post_array['municipios']])
+                ->all();
+            return $this->render('municipiototal', [
+                'model' => $model,
+            ]);
+        }else{
+            return $this->render('muntot');
+        }
+    }
+
+    public function actionLocalidadtotal()
+    {
+        if (Yii::$app->request->post()){
+            $post_array = Yii::$app->request->post();
+            $model = LocTot::find()->where(['desc_loc' => $post_array['localidades']])->all();
+            return $this->render('localidadtotal', [
+                'model' => $model,
+            ]);
+        }else{
+            return $this->render('loctot');
+        }
     }
 }
