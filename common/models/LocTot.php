@@ -45,7 +45,7 @@ class LocTot extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'desc_loc' => 'Desc Loc',
+            'desc_loc' => 'Localidad',
             'mun_id' => 'Mun ID',
             'region_id' => 'Region ID',
             'pobreza_extrema' => 'Pobreza Extrema',

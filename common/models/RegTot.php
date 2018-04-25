@@ -28,7 +28,7 @@ class RegTot extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'desc_region' => 'Desc Region',
+            'desc_region' => 'Region',
             'id' => 'ID',
             'pobreza_extrema' => 'Pobreza Extrema',
             'pobreza_moderada' => 'Pobreza Moderada',

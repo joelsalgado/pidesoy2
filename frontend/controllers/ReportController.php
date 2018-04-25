@@ -159,7 +159,37 @@ class ReportController extends Controller
                 ->all();
             return $this->render('regiontotal', [
                 'model' => $model,
+                'excel' => $post_array['regiones']
             ]);
+        }
+        else{
+            return $this->render('regtot');
+        }
+    }
+
+    public function actionRegiontotalexcel(array $excel)
+    {
+        if ($excel){
+
+            $file = \Yii::createObject([
+                'class' => 'codemix\excelexport\ExcelFile',
+                'sheets' => [
+                    'Resultados Regiones' => [
+                        'class' => 'codemix\excelexport\ActiveExcelSheet',
+                        'query' => RegTot::find()->where(['id' => $excel]),
+                        'formats' => 0,
+                        'attributes' => [
+                            'desc_region',
+                            'pobreza_extrema',
+                            'pobreza_moderada',
+                            'vulnerable_por_ingresos',    // Related attribute
+                            'vulnerable_por_carencias',
+                            'no_vulnerable',
+                        ],
+                    ]
+                ]
+            ]);
+             return $file->send('result_reg.xlsx');
         }
         else{
             return $this->render('regtot');
@@ -175,11 +205,43 @@ class ReportController extends Controller
                 ->all();
             return $this->render('municipiototal', [
                 'model' => $model,
+                'excel' => $post_array['municipios']
             ]);
         }else{
             return $this->render('muntot');
         }
     }
+
+    public function actionMunicipiototalexcel(array $excel)
+    {
+        if ($excel){
+
+            $file = \Yii::createObject([
+                'class' => 'codemix\excelexport\ExcelFile',
+                'sheets' => [
+                    'Resultados Municipio' => [
+                        'class' => 'codemix\excelexport\ActiveExcelSheet',
+                        'query' => MunTot::find()->where(['id' => $excel]),
+                        'formats' => 0,
+                        'attributes' => [
+                            'desc_mun',
+                            'pobreza_extrema',
+                            'pobreza_moderada',
+                            'vulnerable_por_ingresos',    // Related attribute
+                            'vulnerable_por_carencias',
+                            'no_vulnerable',
+                        ],
+                    ]
+                ]
+            ]);
+            return $file->send('result_mun.xlsx');
+        }
+        else{
+            return $this->render('muntot');
+        }
+    }
+
+
 
     public function actionLocalidadtotal()
     {
@@ -188,8 +250,38 @@ class ReportController extends Controller
             $model = LocTot::find()->where(['desc_loc' => $post_array['localidades']])->all();
             return $this->render('localidadtotal', [
                 'model' => $model,
+                'excel' => $post_array['localidades']
             ]);
         }else{
+            return $this->render('loctot');
+        }
+    }
+
+    public function actionLocalidadtotalexcel(array $excel)
+    {
+        if ($excel){
+
+            $file = \Yii::createObject([
+                'class' => 'codemix\excelexport\ExcelFile',
+                'sheets' => [
+                    'Resultados Localidad' => [
+                        'class' => 'codemix\excelexport\ActiveExcelSheet',
+                        'query' => LocTot::find()->where(['desc_loc' => $excel]),
+                        'formats' => 0,
+                        'attributes' => [
+                            'desc_loc',
+                            'pobreza_extrema',
+                            'pobreza_moderada',
+                            'vulnerable_por_ingresos',    // Related attribute
+                            'vulnerable_por_carencias',
+                            'no_vulnerable',
+                        ],
+                    ]
+                ]
+            ]);
+            return $file->send('result_loc.xlsx');
+        }
+        else{
             return $this->render('loctot');
         }
     }

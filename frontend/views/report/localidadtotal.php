@@ -17,6 +17,7 @@ $total_no_vulnerable = 0;
         <h3 class="box-title">Resultados por Localidades</h3>
     </div>
     <div class="box-body">
+        <?= \yii\helpers\Html::a('Excel', ['localidadtotalexcel', 'excel' => $excel], ['class' => 'btn btn-success']) ?>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>

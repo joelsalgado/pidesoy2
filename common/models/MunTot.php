@@ -45,7 +45,7 @@ class MunTot extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'desc_mun' => 'Desc Mun',
+            'desc_mun' => 'Municipio',
             'id' => 'ID',
             'reg_fuertes_id' => 'Reg Fuertes ID',
             'pobreza_extrema' => 'Pobreza Extrema',
