@@ -90,6 +90,7 @@ $total_vinc_prog_prospera = 0;
         <h3 class="box-title">Desgloce por Municipios</h3>
     </div>
     <div class="box-body">
+        <?= \yii\helpers\Html::a('Excel', ['municipioexcel', 'excel' => $excel], ['class' => 'btn btn-success']) ?>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>

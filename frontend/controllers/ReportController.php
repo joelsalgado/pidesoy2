@@ -77,7 +77,106 @@ class ReportController extends Controller
                 ->all();
             return $this->render('region', [
                 'model' => $model,
+                'excel' => $post_array['regiones']
             ]);
+        }
+        else{
+            return $this->render('reg');
+        }
+    }
+
+    public function actionRegionexcel(array $excel)
+    {
+        if ($excel){
+
+            $file = \Yii::createObject([
+                'class' => 'codemix\excelexport\ExcelFile',
+                'sheets' => [
+                    'Desgloce Regiones' => [
+                        'class' => 'codemix\excelexport\ActiveExcelSheet',
+                        'query' => RegDesg::find()->where(['id' => $excel]),
+                        'formats' => 0,
+                        'attributes' => [
+                            'desc_region',
+                            'num_personas',
+                            'per_0_15',
+                            'per_16_17',
+                            'per_18_64',
+                            'per_65_mas',
+                            'vivienda_propia',
+                            'vivienda_compartida',
+                            'vivienda_prestada',
+                            'vivienda_rentada',
+                            'num_familias',
+                            'sin_piso',
+                            'sin_techo',
+                            'sin_muro',
+                            'hacentamiento',
+                            'agua_interior',
+                            'servicio_agua',
+                            'falta_drenaje',
+                            'falta_conectar',
+                            'falta_luz',
+                            'cocina_gas',
+                            'cocina_luz',
+                            'cocina_lena',
+                            'cocina_carbon',
+                            'cocina_otro',
+                            'falta_chimenea',
+                            'falta_excusado',
+                            'falta_refrigerador',
+                            'falta_lavadora',
+                            'educ_trunca_3_15',
+                            'educ_no_asiste_3_15',
+                            'educ_no_prim_35',
+                            'educ_sec_inc_16_35',
+                            'educ_analfabeta_may_15',
+                            'educ_prim_inc_may_15',
+                            'educ_no_asiste_6_14',
+                            'salud_recibe',
+                            'seguro_popular',
+                            'issemyn',
+                            'imss',
+                            'marina_sedena',
+                            'isste',
+                            'pemex',
+                            'otro_serv_med',
+                            'ss_trabajo_formal',
+                            'ss_trabajo_sin',
+                            'ss_adultos_may_sin',
+                            'cuantos_ingresos',
+                            'jefe_familia',
+                            'jefa_familia',
+                            'hijo',
+                            'autoingreso',
+                            'apoyo_gobierno',
+                            'apoyo_extranjero',
+                            'pension',
+                            'madre_soltera_labora',
+                            'menor_poca_variedad',
+                            'menor_falta_alimentos',
+                            'menor_menor_porcion',
+                            'menor_hambre',
+                            'menor_acosto_hambre',
+                            'menor_sin_comer_dia',
+                            'adulto_poca_variedad',
+                            'adulto_falta_alimentos',
+                            'adulto_menor_porcion',
+                            'quedaron_sin_comida',
+                            'adulto_hambre',
+                            'adulto_sin_comer_dia',
+                            'vinc_prog_liconsa',
+                            'vinc_prog_diconsa',
+                            'vinc_prog_abastece_diconsa',
+                            'vinc_prog_comedor',
+                            'vinc_prog_asiste_comedor',
+                            'vinc_prog_acceso',
+                            'vinc_prog_prospera'
+                        ],
+                    ]
+                ]
+            ]);
+            return $file->send('desg_reg.xlsx');
         }
         else{
             return $this->render('reg');
@@ -93,8 +192,107 @@ class ReportController extends Controller
                 ->all();
             return $this->render('municipio', [
                 'model' => $model,
+                'excel' => $post_array['municipios']
             ]);
         }else{
+            return $this->render('mun');
+        }
+    }
+
+    public function actionMunicipioexcel(array $excel)
+    {
+        if ($excel){
+
+            $file = \Yii::createObject([
+                'class' => 'codemix\excelexport\ExcelFile',
+                'sheets' => [
+                    'Desgloce Municipio' => [
+                        'class' => 'codemix\excelexport\ActiveExcelSheet',
+                        'query' => MunDesg::find()->where(['id' => $excel]),
+                        'formats' => 0,
+                        'attributes' => [
+                            'desc_mun',
+                            'num_personas',
+                            'per_0_15',
+                            'per_16_17',
+                            'per_18_64',
+                            'per_65_mas',
+                            'vivienda_propia',
+                            'vivienda_compartida',
+                            'vivienda_prestada',
+                            'vivienda_rentada',
+                            'num_familias',
+                            'sin_piso',
+                            'sin_techo',
+                            'sin_muro',
+                            'hacentamiento',
+                            'agua_interior',
+                            'servicio_agua',
+                            'falta_drenaje',
+                            'falta_conectar',
+                            'falta_luz',
+                            'cocina_gas',
+                            'cocina_luz',
+                            'cocina_lena',
+                            'cocina_carbon',
+                            'cocina_otro',
+                            'falta_chimenea',
+                            'falta_excusado',
+                            'falta_refrigerador',
+                            'falta_lavadora',
+                            'educ_trunca_3_15',
+                            'educ_no_asiste_3_15',
+                            'educ_no_prim_35',
+                            'educ_sec_inc_16_35',
+                            'educ_analfabeta_may_15',
+                            'educ_prim_inc_may_15',
+                            'educ_no_asiste_6_14',
+                            'salud_recibe',
+                            'seguro_popular',
+                            'issemyn',
+                            'imss',
+                            'marina_sedena',
+                            'isste',
+                            'pemex',
+                            'otro_serv_med',
+                            'ss_trabajo_formal',
+                            'ss_trabajo_sin',
+                            'ss_adultos_may_sin',
+                            'cuantos_ingresos',
+                            'jefe_familia',
+                            'jefa_familia',
+                            'hijo',
+                            'autoingreso',
+                            'apoyo_gobierno',
+                            'apoyo_extranjero',
+                            'pension',
+                            'madre_soltera_labora',
+                            'menor_poca_variedad',
+                            'menor_falta_alimentos',
+                            'menor_menor_porcion',
+                            'menor_hambre',
+                            'menor_acosto_hambre',
+                            'menor_sin_comer_dia',
+                            'adulto_poca_variedad',
+                            'adulto_falta_alimentos',
+                            'adulto_menor_porcion',
+                            'quedaron_sin_comida',
+                            'adulto_hambre',
+                            'adulto_sin_comer_dia',
+                            'vinc_prog_liconsa',
+                            'vinc_prog_diconsa',
+                            'vinc_prog_abastece_diconsa',
+                            'vinc_prog_comedor',
+                            'vinc_prog_asiste_comedor',
+                            'vinc_prog_acceso',
+                            'vinc_prog_prospera'
+                        ],
+                    ]
+                ]
+            ]);
+            return $file->send('desg_mun.xlsx');
+        }
+        else{
             return $this->render('mun');
         }
     }
@@ -106,8 +304,107 @@ class ReportController extends Controller
             $model = LocDesg::find()->where(['desc_loc' => $post_array['localidades']])->all();
             return $this->render('localidad', [
                 'model' => $model,
+                'excel' => $post_array['localidades']
             ]);
         }else{
+            return $this->render('loc');
+        }
+    }
+
+    public function actionLocalidadexcel(array $excel)
+    {
+        if ($excel){
+
+            $file = \Yii::createObject([
+                'class' => 'codemix\excelexport\ExcelFile',
+                'sheets' => [
+                    'Desgloce Localidad' => [
+                        'class' => 'codemix\excelexport\ActiveExcelSheet',
+                        'query' => LocDesg::find()->where(['desc_loc' => $excel]),
+                        'formats' => 0,
+                        'attributes' => [
+                            'desc_loc',
+                            'num_personas',
+                            'per_0_15',
+                            'per_16_17',
+                            'per_18_64',
+                            'per_65_mas',
+                            'vivienda_propia',
+                            'vivienda_compartida',
+                            'vivienda_prestada',
+                            'vivienda_rentada',
+                            'num_familias',
+                            'sin_piso',
+                            'sin_techo',
+                            'sin_muro',
+                            'hacentamiento',
+                            'agua_interior',
+                            'servicio_agua',
+                            'falta_drenaje',
+                            'falta_conectar',
+                            'falta_luz',
+                            'cocina_gas',
+                            'cocina_luz',
+                            'cocina_lena',
+                            'cocina_carbon',
+                            'cocina_otro',
+                            'falta_chimenea',
+                            'falta_excusado',
+                            'falta_refrigerador',
+                            'falta_lavadora',
+                            'educ_trunca_3_15',
+                            'educ_no_asiste_3_15',
+                            'educ_no_prim_35',
+                            'educ_sec_inc_16_35',
+                            'educ_analfabeta_may_15',
+                            'educ_prim_inc_may_15',
+                            'educ_no_asiste_6_14',
+                            'salud_recibe',
+                            'seguro_popular',
+                            'issemyn',
+                            'imss',
+                            'marina_sedena',
+                            'isste',
+                            'pemex',
+                            'otro_serv_med',
+                            'ss_trabajo_formal',
+                            'ss_trabajo_sin',
+                            'ss_adultos_may_sin',
+                            'cuantos_ingresos',
+                            'jefe_familia',
+                            'jefa_familia',
+                            'hijo',
+                            'autoingreso',
+                            'apoyo_gobierno',
+                            'apoyo_extranjero',
+                            'pension',
+                            'madre_soltera_labora',
+                            'menor_poca_variedad',
+                            'menor_falta_alimentos',
+                            'menor_menor_porcion',
+                            'menor_hambre',
+                            'menor_acosto_hambre',
+                            'menor_sin_comer_dia',
+                            'adulto_poca_variedad',
+                            'adulto_falta_alimentos',
+                            'adulto_menor_porcion',
+                            'quedaron_sin_comida',
+                            'adulto_hambre',
+                            'adulto_sin_comer_dia',
+                            'vinc_prog_liconsa',
+                            'vinc_prog_diconsa',
+                            'vinc_prog_abastece_diconsa',
+                            'vinc_prog_comedor',
+                            'vinc_prog_asiste_comedor',
+                            'vinc_prog_acceso',
+                            'vinc_prog_prospera'
+                        ],
+                    ]
+                ]
+            ]);
+            return $file->send('desg_loc.xlsx');
+        }
+        else{
             return $this->render('loc');
         }
     }
@@ -121,9 +418,9 @@ class ReportController extends Controller
     }
 
     public function actionReg()
-{
-    return $this->render('reg');
-}
+    {
+        return $this->render('reg');
+    }
 
     public function actionLoc()
     {
