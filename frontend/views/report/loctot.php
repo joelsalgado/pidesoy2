@@ -16,7 +16,7 @@ $this->title = 'Localidades';
 
 <?= Html::beginForm(
     Url::toRoute("report/localidadtotal"),//action
-    "post",//method
+    "get",//method
     ['class' => 'form-inline']//options
 );
 ?>

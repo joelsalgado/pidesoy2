@@ -16,7 +16,7 @@ $this->title = 'Municipios';
 
 <?= Html::beginForm(
     Url::toRoute("report/municipio"),//action
-    "post",//method
+    "get",//method
     ['class' => 'form-inline']//options
 );
 ?>

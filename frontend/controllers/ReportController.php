@@ -69,16 +69,15 @@ class ReportController extends Controller
         ]);
     }
 
-    public function actionRegion()
+    public function actionRegion(array $regiones)
     {
-        if (Yii::$app->request->post()){
-            $post_array = Yii::$app->request->post();
+        if ($regiones){
             $model = RegDesg::find()
-                ->where(['id' => $post_array['regiones']])
+                ->where(['id' => $regiones])
                 ->all();
             return $this->render('region', [
                 'model' => $model,
-                'excel' => $post_array['regiones']
+                'excel' => $regiones
             ]);
         }
         else{
@@ -88,27 +87,33 @@ class ReportController extends Controller
 
     public function actionRegionpdf(array $excel)
     {
-        $model = RegDesg::find()->where(['id' => $excel])->all();
-        $content = $this->renderPartial('_desg_reg', [
-            'model'=> $model
-        ]);
-        $pdf = new Pdf([
-            'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
-            'format' => Pdf::FORMAT_A4,
-            'destination' => Pdf::DEST_BROWSER,
-            'content' => $content,
-            'filename' => 'desg_reg.pdf',
-            'marginLeft'=> 10,
-            'marginRight'=> 10,
-            'marginTop'=> 10,
-            'marginBottom'=> 13,
-            'orientation' => Pdf::FORMAT_A4,
-            'options' => [
-                'title' => 'Desgloce Region'
-            ],
-            'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
-        ]);
-        return $pdf->render();
+        if ($excel){
+            $model = RegDesg::find()->where(['id' => $excel])->all();
+            $content = $this->renderPartial('_desg_reg', [
+                'model'=> $model
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'desg_reg.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 10,
+                'marginBottom'=> 13,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Desgloce Region'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            ]);
+            return $pdf->render();
+        }
+        else{
+            return $this->render('reg');
+        }
+
     }
 
     public function actionRegionexcel(array $excel)
@@ -209,16 +214,15 @@ class ReportController extends Controller
         }
     }
 
-    public function actionMunicipio()
+    public function actionMunicipio(array $municipios)
     {
-        if (Yii::$app->request->post()) {
-            $post_array = Yii::$app->request->post();
+        if ($municipios) {
             $model = MunDesg::find()
-                ->where(['id' => $post_array['municipios']])
+                ->where(['id' => $municipios])
                 ->all();
             return $this->render('municipio', [
                 'model' => $model,
-                'excel' => $post_array['municipios']
+                'excel' => $municipios
             ]);
         }else{
             return $this->render('mun');
@@ -227,27 +231,33 @@ class ReportController extends Controller
 
     public function actionMunicipiopdf(array $excel)
     {
-        $model = MunDesg::find()->where(['id' => $excel])->all();
-        $content = $this->renderPartial('_desg_mun', [
-            'model'=> $model
-        ]);
-        $pdf = new Pdf([
-            'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
-            'format' => Pdf::FORMAT_A4,
-            'destination' => Pdf::DEST_BROWSER,
-            'content' => $content,
-            'filename' => 'desg_mun.pdf',
-            'marginLeft'=> 10,
-            'marginRight'=> 10,
-            'marginTop'=> 10,
-            'marginBottom'=> 13,
-            'orientation' => Pdf::FORMAT_A4,
-            'options' => [
-                'title' => 'Desgloce Municipio'
-            ],
-            'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
-        ]);
-        return $pdf->render();
+        if ($excel){
+            $model = MunDesg::find()->where(['id' => $excel])->all();
+            $content = $this->renderPartial('_desg_mun', [
+                'model'=> $model
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'desg_mun.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 10,
+                'marginBottom'=> 13,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Desgloce Municipio'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            ]);
+            return $pdf->render();
+        }
+        else{
+            return $this->render('mun');
+        }
+
     }
 
     public function actionMunicipioexcel(array $excel)
@@ -348,14 +358,15 @@ class ReportController extends Controller
         }
     }
 
-    public function actionLocalidad()
+    public function actionLocalidad(array $localidades)
     {
-        if (Yii::$app->request->post()){
-            $post_array = Yii::$app->request->post();
-            $model = LocDesg::find()->where(['desc_loc' => $post_array['localidades']])->all();
+        if ($localidades){
+            $model = LocDesg::find()
+                ->where(['desc_loc' => $localidades])
+                ->all();
             return $this->render('localidad', [
                 'model' => $model,
-                'excel' => $post_array['localidades']
+                'excel' => $localidades
             ]);
         }else{
             return $this->render('loc');
@@ -364,27 +375,31 @@ class ReportController extends Controller
 
     public function actionLocalidadpdf(array $excel)
     {
-        $model = LocDesg::find()->where(['desc_loc' => $excel])->all();
-        $content = $this->renderPartial('_desg_loc', [
-            'model'=> $model
-        ]);
-        $pdf = new Pdf([
-            'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
-            'format' => Pdf::FORMAT_A4,
-            'destination' => Pdf::DEST_BROWSER,
-            'content' => $content,
-            'filename' => 'desg_loc.pdf',
-            'marginLeft'=> 10,
-            'marginRight'=> 10,
-            'marginTop'=> 10,
-            'marginBottom'=> 13,
-            'orientation' => Pdf::FORMAT_A4,
-            'options' => [
-                'title' => 'Desgloce Localidades'
-            ],
-            'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
-        ]);
-        return $pdf->render();
+        if ($excel){
+            $model = LocDesg::find()->where(['desc_loc' => $excel])->all();
+            $content = $this->renderPartial('_desg_loc', [
+                'model'=> $model
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'desg_loc.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 10,
+                'marginBottom'=> 13,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Desgloce Localidades'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            ]);
+            return $pdf->render();
+        }else{
+            return $this->render('loc');
+        }
     }
 
     public function actionLocalidadexcel(array $excel)
@@ -523,19 +538,47 @@ class ReportController extends Controller
         return $this->render('muntot');
     }
 
-    public function actionRegiontotal()
+    public function actionRegiontotal(array $regiones)
     {
-        if (Yii::$app->request->post()){
-            $post_array = Yii::$app->request->post();
+        if ($regiones){
             $model = RegTot::find()
-                ->where(['id' => $post_array['regiones']])
+                ->where(['id' => $regiones])
                 ->all();
             return $this->render('regiontotal', [
                 'model' => $model,
-                'excel' => $post_array['regiones']
+                'excel' => $regiones
             ]);
         }
         else{
+            return $this->render('regtot');
+        }
+    }
+
+    public function actionRegiontotalpdf(array $excel)
+    {
+        if ($excel){
+            $model = RegTot::find()->where(['id' => $excel])->all();
+            $content = $this->renderPartial('_tot_reg', [
+                'model'=> $model
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'tot_reg.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 10,
+                'marginBottom'=> 13,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Total Regiones'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            ]);
+            return $pdf->render();
+        }else{
             return $this->render('regtot');
         }
     }
@@ -569,21 +612,50 @@ class ReportController extends Controller
         }
     }
 
-    public function actionMunicipiototal()
+    public function actionMunicipiototal(array $municipios)
     {
-        if (Yii::$app->request->post()) {
-            $post_array = Yii::$app->request->post();
+        if ($municipios) {
             $model = MunTot::find()
-                ->where(['id' => $post_array['municipios']])
+                ->where(['id' => $municipios])
                 ->all();
             return $this->render('municipiototal', [
                 'model' => $model,
-                'excel' => $post_array['municipios']
+                'excel' => $municipios
             ]);
         }else{
             return $this->render('muntot');
         }
     }
+
+    public function actionMunicipiototalpdf(array $excel)
+    {
+        if ($excel) {
+            $model = MunTot::find()->where(['id' => $excel])->all();
+            $content = $this->renderPartial('_tot_mun', [
+                'model' => $model
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'tot_mun.pdf',
+                'marginLeft' => 10,
+                'marginRight' => 10,
+                'marginTop' => 10,
+                'marginBottom' => 13,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Total Municipios'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            ]);
+            return $pdf->render();
+        } else {
+            return $this->render('muntot');
+        }
+    }
+
 
     public function actionMunicipiototalexcel(array $excel)
     {
@@ -616,17 +688,45 @@ class ReportController extends Controller
 
 
 
-    public function actionLocalidadtotal()
+    public function actionLocalidadtotal(array $localidades)
     {
-        if (Yii::$app->request->post()){
-            $post_array = Yii::$app->request->post();
-            $model = LocTot::find()->where(['desc_loc' => $post_array['localidades']])->all();
+        if ($localidades){
+            $model = LocTot::find()->where(['desc_loc' => $localidades])->all();
             return $this->render('localidadtotal', [
                 'model' => $model,
-                'excel' => $post_array['localidades']
+                'excel' => $localidades
             ]);
         }else{
             return $this->render('loctot');
+        }
+    }
+
+    public function actionLocalidadtotalpdf(array $excel)
+    {
+        if ($excel) {
+            $model = LocTot::find()->where(['desc_loc' => $excel])->all();
+            $content = $this->renderPartial('_tot_loc', [
+                'model' => $model
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'tot_loc.pdf',
+                'marginLeft' => 10,
+                'marginRight' => 10,
+                'marginTop' => 10,
+                'marginBottom' => 13,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Total Localidades'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            ]);
+            return $pdf->render();
+        } else {
+            return $this->render('muntot');
         }
     }
 

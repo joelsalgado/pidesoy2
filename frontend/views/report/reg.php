@@ -16,7 +16,7 @@ $this->title = 'Regiones';
 
 <?= Html::beginForm(
     Url::toRoute("report/region"),//action
-    "post",//method
+    "get",//method
     ['class' => 'form-inline']//options
 );
 ?>

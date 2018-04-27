@@ -18,6 +18,7 @@ $total_no_vulnerable = 0;
     </div>
     <div class="box-body">
         <?= \yii\helpers\Html::a('Excel', ['localidadtotalexcel', 'excel' => $excel], ['class' => 'btn btn-success']) ?>
+        <?= \yii\helpers\Html::a('Pdf', ['localidadtotalpdf', 'excel' => $excel], ['class' => 'btn btn-danger']) ?>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
