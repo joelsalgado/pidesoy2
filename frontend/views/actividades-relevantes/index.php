@@ -18,7 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="box-body">
             <p class="pull-right">
+                <?php if(Yii::$app->user->identity->role != 40) : ?>
                 <?= Html::a('Nueva Actividad', ['create'], ['class' => 'btn btn-success']) ?>
+                <?php endif; ?>
             </p>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
@@ -77,9 +79,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'template' => '{update}{borrar}',
                         'buttons' => [
                             'update' => function ($url, $model) {
-                                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                                    'title' => Yii::t('app', 'editar'),
-                                ]);
+                                if(Yii::$app->user->identity->role != 40){
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                        'title' => Yii::t('app', 'editar'),
+                                    ]);
+                                }else{
+                                    return "";
+                                }
+
                             },
                             'borrar' => function ($url, $model) {
                                 if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20){

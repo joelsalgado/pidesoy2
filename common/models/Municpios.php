@@ -117,7 +117,7 @@ class Municpios extends \yii\db\ActiveRecord
     }
 
     public static function getMunOk(){
-        if(Yii::$app->user->identity->role == 30){
+        if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40){
             $mun_id = self::find()
                 ->select(['id', 'desc_mun'])
                 ->where(['reg_fuertes_id' => 2])

@@ -21,7 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
             <div class="table-responsive">
             <p class="pull-right">
+                <?php if(Yii::$app->user->identity->role != 40): ?>
                 <?= Html::a('Crear Participante', ['create'], ['class' => 'btn btn-success']) ?>
+                <?php endif;?>
             </p>
 
                 <?php try {
@@ -104,9 +106,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'template' => '{update}{borrar}{pobreza}',
                                 'buttons' => [
                                     'update' => function ($url, $model) {
+                                        if(Yii::$app->user->identity->role != 40){
                                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                                             'title' => Yii::t('app', 'editar'),
-                                        ]);
+                                        ]);}
+                                        else{
+                                            return "";
+                                        }
                                     },
                                     'pobreza' => function ($url, $model) {
                                         return Html::a('<span class="glyphicon glyphicon-file"></span>', $url, [

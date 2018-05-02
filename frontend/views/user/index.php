@@ -67,6 +67,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     case 30:
                                         $role = 'Administrador';
                                         break;
+                                    case 40:
+                                        $role = 'Dependencia';
+                                        break;
                                 }
                                 return $role;
                             },

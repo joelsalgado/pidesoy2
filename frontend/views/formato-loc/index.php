@@ -17,7 +17,9 @@ $this->title = 'Formato Localidadades';
         </div>
         <div class="box-body">
             <p class="pull-right">
+                <?php if(Yii::$app->user->identity->role != 40): ?>
                 <?= Html::a('Nuevo Formato', ['create'], ['class' => 'btn btn-success']) ?>
+                <?php endif; ?>
             </p>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
@@ -89,9 +91,13 @@ $this->title = 'Formato Localidadades';
                             'template' => '{update}{borrar}{formato}',
                             'buttons' => [
                                 'update' => function ($url, $model) {
+                                if(Yii::$app->user->identity->role != 40) {
                                     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                                         'title' => Yii::t('app', 'editar'),
                                     ]);
+                                }else{
+                                    return "";
+                                }
                                 },
                                 'formato' => function ($url, $model) {
                                     return Html::a('<span class="glyphicon glyphicon-file"></span>', $url, [

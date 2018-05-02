@@ -84,7 +84,7 @@ class Localidades extends \yii\db\ActiveRecord
     }
 
     public static function getLocOk(){
-        if(Yii::$app->user->identity->role == 30){
+        if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40){
             $loc = self::find()
                 ->select(['localidad_id', 'desc_loc'])
                 ->where(['>','loc_fuertes_id',0])
