@@ -42,7 +42,7 @@ class ReportController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $valid_roles = [Usuarios::ROLE_ADMIN];
+                            $valid_roles = [Usuarios::ROLE_ADMIN, Usuarios::ROLE_DEP];
                             return Usuarios::roleInArray($valid_roles);
                         }
                     ],

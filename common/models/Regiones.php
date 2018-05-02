@@ -57,7 +57,7 @@ class Regiones extends \yii\db\ActiveRecord
     }
 
     public static function getRegionesOk(){
-        if(Yii::$app->user->identity->role == 30){
+        if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40){
             $regiones_activas = self::find()
                 ->select(['id', 'desc_region'])
                 ->where(['status' => 1])

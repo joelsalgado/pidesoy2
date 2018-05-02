@@ -29,6 +29,7 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_USER = 10;
     const ROLE_SUP = 20;
     const ROLE_ADMIN =30;
+    const ROLE_DEP = 40;
 
     public static function tableName()
     {

@@ -49,7 +49,7 @@ class User extends \yii\db\ActiveRecord
 
     public function validateRegion(){
         //var_dump($this->role); die;
-        if ($this->role != 30) {
+        if ($this->role == 10 || $this->role == 20) {
 
             if ($this->region_id == null) {
                 $this->addError('region_id', 'Campo Oblogatorio');
