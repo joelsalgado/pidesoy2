@@ -64,7 +64,7 @@ $value2 = ($ext2 == 'jpg') ? 'image' : 'pdf';
     ])  ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Finalizar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

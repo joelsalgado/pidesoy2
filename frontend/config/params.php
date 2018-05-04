@@ -8,6 +8,7 @@ return [
     'apartado2' => 'Cedula de Pobreza',
     'apartado3' => 'Documentos',
     'apartado4' => 'Beneficiarios del programa',
+    'apartado5' => 'Seguimiento',
     'sizeImg' => 512,
 
 ];
