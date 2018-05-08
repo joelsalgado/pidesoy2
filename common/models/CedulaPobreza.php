@@ -483,12 +483,54 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             }
 
             $pobreza = PobrezaMultidimensional::find()->where(['solicitante_id' => $this->solicitante_id])->one();
+            $seg = Seguimiento::find()->where(['solicitante_id' => $this->solicitante_id])->one();
 
             if($pobreza){
                 $model = $pobreza;
             }else{
                 $model = new PobrezaMultidimensional();
             }
+
+            if($seg){
+                $seguimiento = $seg;
+            }else{
+                $seguimiento = new Seguimiento();
+            }
+
+
+            $seguimiento->solicitante_id = $this->solicitante_id;
+            $seguimiento->meta_piso = $piso;
+            $seguimiento->meta_techo = $techo;
+            $seguimiento->meta_muro = $muros;
+            $seguimiento->meta_cuarto = $hacinamiento;
+            $suma_vivienda = $piso + $techo + $muros + $hacinamiento;
+
+            $seguimiento->meta_calidad_espacios_vivienda =  $suma_vivienda;
+
+            $seguimiento->meta_agua_potable = $agua_pub;
+            $seguimiento->meta_agua_interior = $agua_int;
+            $seguimiento->meta_drenaje = $drenaje_pub;
+            $seguimiento->meta_luz = $luz;
+            $seguimiento->meta_estufa = $chimenea;
+            $suma_serv_basicos = $agua_pub + $agua_int + $drenaje_pub + $luz + $chimenea;
+
+            $seguimiento->meta_servicios_basicos = $suma_serv_basicos;
+
+            $seguimiento->meta_seguro_popular = ($this-> seguro_popular == 1 ) ? 1 : 0;
+
+            $sum_edu = $edu_trunca_3_15 + $edu_no_asiste_esc_3_15;
+            $seguimiento->meta_3_15_escuela = ($sum_edu > 0) ? 1 : 0;
+            $seguimiento->meta_antes_1982_primaria = $edu_prim_icomp_35_mas;
+            $seguimiento->meta_despues_1982_secundaria = $edu_sec_icomp_16_35;
+
+
+
+
+
+
+
+
+
 
             $model->solicitante_id = $this->solicitante_id;
             $model->cedula_pobreza_id = $this->id;
@@ -554,7 +596,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             $model->resultado_val = $resultado_val;
             $model->status = 1;
 
-            if($model->save())
+            if($model->save() && $seguimiento->save())
             {
                 echo "bien";
             }else{

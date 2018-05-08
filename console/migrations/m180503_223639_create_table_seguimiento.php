@@ -12,7 +12,7 @@ class m180503_223639_create_table_seguimiento extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('cedula_de_pobreza', [
+        $this->createTable('seguimiento', [
             'id' => $this->primaryKey(),
             'solicitante_id' => $this->integer()->notNull(),
             'periodo' => $this->integer(4),
@@ -198,6 +198,168 @@ class m180503_223639_create_table_seguimiento extends Migration
             'updated_at' => $this->integer()
 
         ]);
+
+        $this->addForeignKey(
+            'fk-seguimiento-solicitante',
+            'seguimiento',
+            'solicitante_id',
+            'solicitantes',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas1-seguimiento',
+            'seguimiento',
+            'programa_piso',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas2-seguimiento',
+            'seguimiento',
+            'programa_techo',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas3-seguimiento',
+            'seguimiento',
+            'programa_muro',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas4-seguimiento',
+            'seguimiento',
+            'programa_cuarto',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas5-seguimiento',
+            'seguimiento',
+            'programa_agua_potable',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas6-seguimiento',
+            'seguimiento',
+            'programa_agua_interior',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas7-seguimiento',
+            'seguimiento',
+            'programa_drenaje',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas8-seguimiento',
+            'seguimiento',
+            'programa_luz',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas9-seguimiento',
+            'seguimiento',
+            'programa_estufa',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas10-seguimiento',
+            'seguimiento',
+            'programa_seguro_popular',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas11-seguimiento',
+            'seguimiento',
+            'programa_3_15_escuela',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas12-seguimiento',
+            'seguimiento',
+            'programa_antes_1982_primaria',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas13-seguimiento',
+            'seguimiento',
+            'programa_despues_1982_secundaria',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas14-seguimiento',
+            'seguimiento',
+            'programa_despensas',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas15-seguimiento',
+            'seguimiento',
+            'programa_ss',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas16-seguimiento',
+            'seguimiento',
+            'programa_trabajadores_ss',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-programas17-seguimiento',
+            'seguimiento',
+            'programa_adultos_ss',
+            'cat_programas',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**
