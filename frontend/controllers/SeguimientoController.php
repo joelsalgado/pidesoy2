@@ -83,9 +83,15 @@ class SeguimientoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->fecha_inicio_piso = Yii::$app->formatter->asDate($model->fecha_inicio_piso, 'dd-MM-yyyy');
+        $model->fecha_entrega_piso = Yii::$app->formatter->asDate($model->fecha_entrega_piso, 'dd-MM-yyyy');
+        if ($model->load(Yii::$app->request->post())) {
+            $model->fecha_inicio_piso =  Yii::$app->formatter->asDate($model->fecha_inicio_piso, 'yyyy-MM-dd');
+            $model->fecha_entrega_piso =  Yii::$app->formatter->asDate($model->fecha_entrega_piso, 'yyyy-MM-dd');
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [

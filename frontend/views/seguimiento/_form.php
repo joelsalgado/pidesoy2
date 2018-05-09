@@ -11,9 +11,10 @@ use yii\helpers\ArrayHelper;
     <div class="container-fluid">
 
         <?php $form = ActiveForm::begin(); ?>
+        <?php if($model->meta_piso == 1) : ?>
         <div class="row">
             <div class="alert alert-success-alt">
-                <strong>PISO</strong>
+                <strong>COLOCACIÓN DE PISO FIRME</strong>
                 <i class="fa fa-home" aria-hidden="true"></i>
             </div>
             <div class="row">
@@ -27,9 +28,7 @@ use yii\helpers\ArrayHelper;
                         <?= $form->field($model, 'acciones_piso')->textInput(["onKeyUp"=> "fncSumar()"]) ?>
                     </div>
                 </div>
-
             </div>
-
             <div class="piso">
                 <div class="row">
                     <div class="col-sm-3">
@@ -46,9 +45,9 @@ use yii\helpers\ArrayHelper;
                                 //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
                                 'pluginOptions' => [
                                     'autoclose'=>true,
-                                    'format' => 'yyyy-mm-dd',
-                                    'startDate' => '2018-01-01',
-                                    'endDate' => '2019-01-01',
+                                    'format' => 'dd-mm-yyyy',
+                                    'startDate' => '01-01-2018',
+                                    'endDate' => '01-01-2019',
                                     //'value' => '22-10-1999'
                                 ]
                             ]) ?>
@@ -63,9 +62,9 @@ use yii\helpers\ArrayHelper;
                                 //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
                                 'pluginOptions' => [
                                     'autoclose'=>true,
-                                    'format' => 'yyyy-mm-dd',
-                                    'startDate' => '2018-01-01',
-                                    'endDate' => '2019-01-01',
+                                    'format' => 'dd-mm-yyyy',
+                                    'startDate' => '01-01-2018',
+                                    'endDate' => '01-01-2019',
                                     //'value' => '22-10-1999'
                                 ]
                             ]) ?>
@@ -88,9 +87,11 @@ use yii\helpers\ArrayHelper;
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+        <?php if($model->meta_techo == 1) : ?>
         <div class="row">
             <div class="alert alert-success-alt">
-                <strong>TECHO</strong>
+                <strong>COLOCACIÓN DE TECHO FIRME</strong>
                 <i class="fa fa-home" aria-hidden="true"></i>
             </div>
             <div class="row">
@@ -124,14 +125,23 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'programa_techo')->textInput() ?>
+                        <?= $form->field($model, 'programa_techo')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa2'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
                     </div>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+        <?php if($model->meta_muro == 1) : ?>
         <div class="row">
             <div class="alert alert-success-alt">
-                <strong>MURO</strong>
+                <strong>COLOCACIÓN DE MURO FIRME</strong>
                 <i class="fa fa-home" aria-hidden="true"></i>
             </div>
             <div class="row">
@@ -164,20 +174,29 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'programa_muro')->textInput() ?>
+                        <?= $form->field($model, 'programa_muro')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa3'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
                     </div>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+        <?php if($model->meta_cuarto == 1) : ?>
         <div class="row">
             <div class="alert alert-success-alt">
-                <strong>CUARTO ADICIONAL</strong>
+                <strong>CONSTRUCCIÓN DE CUARTO ADICIONAL</strong>
                 <i class="fa fa-home" aria-hidden="true"></i>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <?= $form->field($model, 'meta_cuarto')->textInput() ?>
+                        <?= $form->field($model, 'meta_cuarto')->textInput(['readonly' => true]) ?>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -204,253 +223,656 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'programa_cuarto')->textInput() ?>
+                        <?= $form->field($model, 'programa_cuarto')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa4'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <?= $form->field($model, 'meta_calidad_espacios_vivienda')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_calidad_espacios_vivienda')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientez_calidad_espacios_vivienda')->textInput() ?>
-
-        <?= $form->field($model, 'meta_agua_potable')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_agua_potable')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_agua_potable')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_agua_potable')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_agua_potable')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_agua_potable')->textInput() ?>
-
-        <?= $form->field($model, 'programa_agua_potable')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_agua_potable')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_agua_interior')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_agua_interior')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_agua_interior')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_agua_interior')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_agua_interior')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_agua_interior')->textInput() ?>
-
-        <?= $form->field($model, 'programa_agua_interior')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_agua_interior')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_drenaje')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_drenaje')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_drenaje')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_drenaje')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_drenaje')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_drenaje')->textInput() ?>
-
-        <?= $form->field($model, 'programa_drenaje')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_drenaje')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_luz')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_luz')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_luz')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_luz')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_luz')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_luz')->textInput() ?>
-
-        <?= $form->field($model, 'programa_luz')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_luz')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_estufa')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_estufa')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_estufa')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_estufa')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_estufa')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_estufa')->textInput() ?>
-
-        <?= $form->field($model, 'programa_estufa')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_estufa')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_servicios_basicos')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_servicios_basicos')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientez_servicios_basicos')->textInput() ?>
-
-        <?= $form->field($model, 'meta_seguro_popular')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_seguro_popular')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_seguro_popular')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_seguro_popular')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_seguro_popular')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_seguro_popular')->textInput() ?>
-
-        <?= $form->field($model, 'programa_seguro_popular')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_seguro_popular')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_3_15_escuela')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_3_15_escuela')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_3_15_escuela')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_3_15_escuela')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_3_15_escuela')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_3_15_escuela')->textInput() ?>
-
-        <?= $form->field($model, 'programa_3_15_escuela')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_3_15_escuela')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_antes_1982_primaria')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_antes_1982_primaria')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_antes_1982_primaria')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_antes_1982_primaria')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_antes_1982_primaria')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_antes_1982_primaria')->textInput() ?>
-
-        <?= $form->field($model, 'programa_antes_1982_primaria')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_antes_1982_primaria')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_despues_1982_secundaria')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_despues_1982_secundaria')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_despues_1982_secundaria')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_despues_1982_secundaria')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_despues_1982_secundaria')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_despues_1982_secundaria')->textInput() ?>
-
-        <?= $form->field($model, 'programa_despues_1982_secundaria')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_despues_1982_secundaria')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_educacion')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_educacion')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientez_educacion')->textInput() ?>
-
-        <?= $form->field($model, 'meta_despensas')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_despensas')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_despensas')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_despensas')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_despensas')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_despensas')->textInput() ?>
-
-        <?= $form->field($model, 'programa_despensas')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_despensas')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_ss')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_ss')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_ss')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_ss')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_ss')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_ss')->textInput() ?>
-
-        <?= $form->field($model, 'programa_ss')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_ss')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_trabajadores_ss')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_trabajadores_ss')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_trabajadores_ss')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_trabajadores_ss')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_trabajadores_ss')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_trabajadores_ss')->textInput() ?>
-
-        <?= $form->field($model, 'programa_trabajadores_ss')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_trabajadores_ss')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_adultos_ss')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_adultos_ss')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientes_adultos_ss')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_adultos_ss')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_inicio_adultos_ss')->textInput() ?>
-
-        <?= $form->field($model, 'fecha_entrega_adultos_ss')->textInput() ?>
-
-        <?= $form->field($model, 'programa_adultos_ss')->textInput() ?>
-
-        <?= $form->field($model, 'responsable_adultos_ss')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'meta_s_s')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_s_s')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientez_s_s')->textInput() ?>
-
-        <?= $form->field($model, 'meta_vivienda')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_vivienda')->textInput() ?>
-
-        <?= $form->field($model, 'acciones_pendientez_vivienda')->textInput() ?>
-
-        <?= $form->field($model, 'inversion_vivienda')->textInput() ?>
-
+        <?php endif; ?>
+        <?php if($model->meta_agua_potable == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>VIVIENDAS CON ACCESO AL SERVICIO DE AGUA POTABLE (RED PÚBLICA)</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_agua_potable')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_agua_potable')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_agua_potable')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_agua_potable')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_agua_potable')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_agua_potable')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa5'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_agua_interior == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>VIVIENDAS CON CONEXIÓN DE TOMA DE AGUA AL INTERIOR DE LA VIVIENDA</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_agua_interior')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_agua_interior')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_agua_interior')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_agua_interior')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_agua_interior')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_agua_interior')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa6'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_drenaje == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>VIVIENDAS CON CONEXIÓN AL DRENAJE PÚBLICO O BIOGIGESTORES</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_drenaje')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_drenaje')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_drenaje')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_drenaje')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_drenaje')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_drenaje')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa7'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_luz == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>VIVIENDAS CON CONEXIÓN DE ENERGÍA ELÉCTRICA</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_luz')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_luz')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_luz')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_luz')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_luz')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_luz')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa8'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_estufa == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>VIVIENDAS CON ESTUFAS ENTREGADAS</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_estufa')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_estufa')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_estufa')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_estufa')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_estufa')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_estufa')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa9'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_seguro_popular == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>AFILIADOS AL SEGURO POPULAR</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_seguro_popular')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_seguro_popular')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_seguro_popular')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_seguro_popular')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_seguro_popular')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_seguro_popular')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa10'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_3_15_escuela == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>PERSONAS DE 3 A 15 AÑOS QUE ASISTEN A LA ESCUELA</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_3_15_escuela')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_3_15_escuela')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_3_15_escuela')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_3_15_escuela')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_3_15_escuela')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_3_15_escuela')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa11'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_antes_1982_primaria == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>NACIDOS ANTES DE 1982 CON CERTIFICADO DE PRIMARIA</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_antes_1982_primaria')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_antes_1982_primaria')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_antes_1982_primaria')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_antes_1982_primaria')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_antes_1982_primaria')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_antes_1982_primaria')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa12'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_despues_1982_secundaria == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>NACIDOS DESPUÉS DE 1982 CON CERTIFICADO DE SECUNDARIA</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_despues_1982_secundaria')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_despues_1982_secundaria')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_despues_1982_secundaria')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_despues_1982_secundaria')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_despues_1982_secundaria')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_despues_1982_secundaria')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa13'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_despensas == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>DESPENSAS ENTREGADAS</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_despensas')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_despensas')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_despensas')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_despensas')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_despensas')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_despensas')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa14'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_ss == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>TRABAJADOR AFILIADO A LA SEGURIDAD SOCIAL</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_ss')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_ss')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_ss')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa15'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_trabajadores_ss == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>BENEFICIARIOS DE TRABAJADORES CON ACCESO A LA SEGURIDAD SOCIAL</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_trabajadores_ss')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_trabajadores_ss')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_trabajadores_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_trabajadores_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_trabajadores_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_trabajadores_ss')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa16'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($model->meta_adultos_ss == 1) : ?>
+        <div class="row">
+            <div class="alert alert-success-alt">
+                <strong>PERSONAS MAYORES DE 65 AÑOS INSCRITOS AL PROGRAMA DE PENSIONES</strong>
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'meta_adultos_ss')->textInput(['readonly' => true]) ?>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'acciones_adultos_ss')->textInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'inversion_adultos_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_inicio_adultos_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'fecha_entrega_adultos_ss')->textInput() ?>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <?= $form->field($model, 'programa_adultos_ss')->widget(Select2::classname(), [
+                            'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
+                                'id', 'desc_programa'),
+                            'options' => ['placeholder' => 'Selecciona un Programa', 'id' => 'desc_programa17'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
 
 
         <div class="form-group">
