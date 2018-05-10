@@ -115,12 +115,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_techo')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_techo')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_techo')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_techo')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -164,12 +188,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_muro')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_muro')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_muro')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_muro')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -213,12 +261,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_cuarto')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_cuarto')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_cuarto')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_cuarto')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -262,12 +334,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_agua_potable')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_agua_potable')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_agua_potable')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_agua_potable')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -311,12 +407,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_agua_interior')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_agua_interior')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_agua_interior')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_agua_interior')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -360,12 +480,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_drenaje')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_drenaje')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_drenaje')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_drenaje')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -409,12 +553,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_luz')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_luz')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_luz')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_luz')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -458,12 +626,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_estufa')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_estufa')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_estufa')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_estufa')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -507,12 +699,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_seguro_popular')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_seguro_popular')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_seguro_popular')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_seguro_popular')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -556,12 +772,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_3_15_escuela')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_3_15_escuela')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_3_15_escuela')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_3_15_escuela')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -605,12 +845,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_antes_1982_primaria')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_antes_1982_primaria')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_antes_1982_primaria')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_antes_1982_primaria')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -654,12 +918,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_despues_1982_secundaria')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_despues_1982_secundaria')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_despues_1982_secundaria')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_despues_1982_secundaria')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -703,12 +991,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_despensas')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_despensas')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_despensas')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_despensas')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -752,12 +1064,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_ss')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_ss')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_ss')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_ss')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -801,12 +1137,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_trabajadores_ss')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_trabajadores_ss')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_trabajadores_ss')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_trabajadores_ss')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -850,12 +1210,36 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_inicio_adultos_ss')->textInput() ?>
+                        <?= $form->field($model, 'fecha_inicio_adultos_ss')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <?= $form->field($model, 'fecha_entrega_adultos_ss')->textInput() ?>
+                        <?= $form->field($model, 'fecha_entrega_adultos_ss')->widget(DatePicker::className(), [
+                            'name' => 'dp_2',
+                            'language' => 'es',
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'dd-mm-yyyy',
+                                'startDate' => '01-01-2018',
+                                'endDate' => '01-01-2019',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]) ?>
                     </div>
                 </div>
                 <div class="col-sm-3">
