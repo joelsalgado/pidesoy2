@@ -153,6 +153,10 @@ class SeguimientoController extends Controller
             $model->fecha_entrega_trabajadores_ss = ($model->fecha_entrega_trabajadores_ss) ? Yii::$app->formatter->asDate($model->fecha_entrega_trabajadores_ss, 'yyyy-MM-dd'): null;
             $model->fecha_inicio_adultos_ss = ($model->fecha_inicio_adultos_ss) ? Yii::$app->formatter->asDate($model->fecha_inicio_adultos_ss, 'yyyy-MM-dd'): null;
             $model->fecha_entrega_adultos_ss = ($model->fecha_entrega_adultos_ss) ? Yii::$app->formatter->asDate($model->fecha_entrega_adultos_ss, 'yyyy-MM-dd'): null;
+
+
+
+
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
             }

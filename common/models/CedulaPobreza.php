@@ -369,7 +369,12 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             $salud = ($recibe_salud >= 1) ? 1 : 0;
 
             $seguridad_social_formal = ($this->trabaja_formalmente == 0) ? 1 : 0;
-            $seguridad_social_sin = ($this->seguridad_social == 0) ? 1 : 0;
+            if($seguridad_social_formal == 1){
+                $seguridad_social_sin = 0;
+            }else{
+                $seguridad_social_sin = ($this->seguridad_social == 0) ? 1 : 0;
+            }
+
             $seguridad_social_may_sin = ($this->no_SS_65_mas == 1) ? 1 : 0;
             $sum_ss = $seguridad_social_formal + $seguridad_social_sin + $seguridad_social_may_sin;
             $seguridad_social = ($sum_ss >= 1) ? 1 : 0;
