@@ -22,10 +22,12 @@ class Apartados extends Widget
     public $a2;
     public $a3;
     public $a4;
+    public $a5;
     public $url1 = '';
     public $url2 = '';
     public $url3 = '';
     public $url4 = '';
+    public $url5 = '';
 
     public function init()
     {
@@ -36,6 +38,7 @@ class Apartados extends Widget
             $this->a2 = $mal;
             $this->a3 = $mal;
             $this->a4 = $mal;
+            $this->a5 = $mal;
         }
 
         if($this->apartado){
@@ -43,11 +46,13 @@ class Apartados extends Widget
             $this->a2 = ($this->apartado->apartado2 == 1) ? $bien : $mal;
             $this->a3 = ($this->apartado->apartado3 == 1) ? $bien : $mal;
             $this->a4 = ($this->apartado->apartado4 == 1) ? $bien : $mal;
+            $this->a5 = ($this->apartado->apartado5 == 1) ? $bien : $mal;
 
             $this->url1 = ($this->apartado->apartado1 == 1) ? ['/solicitantes/update', 'id' => $this->id]: '';
             $this->url2 = ($this->apartado->apartado2 == 1) ? ['/cedula-pobreza/update', 'id' => $this->id]: '';
             $this->url3 = ($this->apartado->apartado3 == 1) ? ['/documentos/update', 'id' => $this->id]: '';
             $this->url4 = ($this->apartado->apartado4 == 1) ? ['/cedula-ps/index', 'id' => $this->id]: '';
+            $this->url5 = ($this->apartado->apartado5 == 1) ? ['/seguimiento/update', 'id' => $this->id]: '';
         }
 
         parent::init();
@@ -65,10 +70,12 @@ class Apartados extends Widget
             'a2' => $this->a2,
             'a3' => $this->a3,
             'a4' => $this->a4,
+            'a5' => $this->a5,
             'url1' => $this->url1,
             'url2' => $this->url2,
             'url3' => $this->url3,
             'url4' => $this->url4,
+            'url5' => $this->url5
         ]);
     }
 }

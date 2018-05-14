@@ -111,8 +111,9 @@ class DocumentosController extends Controller
                 $model->updated_at = $fecha;
 
                 if ($model->save() && $apartado->save()){
-                    Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
-                    return $this->redirect(['solicitantes/index']);
+                    //Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
+                    //return $this->redirect(['solicitantes/index']);
+                    return $this->redirect(['seguimiento/update', 'id'=> $id]);
                 }
             }
 
