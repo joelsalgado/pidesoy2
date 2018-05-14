@@ -681,7 +681,7 @@ class SeguimientoController extends Controller
                     $model->inversion_vivienda = $model->inversion_piso+$model->inversion_techo+$model->inversion_muro+$model->inversion_cuarto+$model->inversion_agua_potable+$model->inversion_agua_interior+$model->inversion_drenaje+$model->inversion_luz+$model->inversion_estufa+$model->inversion_seguro_popular+$model->inversion_3_15_escuela+$model->inversion_antes_1982_primaria+$model->inversion_despues_1982_secundaria+$model->inversion_despensas+$model->inversion_ss+$model->inversion_trabajadores_ss+$model->inversion_adultos_ss;
 
                     $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
-                    $apartado->apartado4 = 1;
+                    $apartado->apartado5 = 1;
                     $apartado->updated_at = $fecha;
 
 
@@ -698,7 +698,8 @@ class SeguimientoController extends Controller
                 ]);
             }
             else{
-                return $this->redirect(['cedula-pobreza/update', 'id' => $id]);
+                Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
+                return $this->redirect(['solicitantes/index']);
             }
         }
         else{
