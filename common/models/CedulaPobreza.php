@@ -509,7 +509,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
 
             $seguimiento->meta_servicios_basicos = $suma_serv_basicos;
 
-            $suma_salud  = ($this->seguro_popular == 1 ) ? 1 : 0;
+            $suma_salud  = ($this->seguro_popular == 1) ? 0 : 1;
             $seguimiento->meta_seguro_popular = $suma_salud;
 
             $sum_edu = $edu_trunca_3_15 + $edu_no_asiste_esc_3_15;

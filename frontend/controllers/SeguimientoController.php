@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Programas;
 use Yii;
 use common\models\Seguimiento;
 use yii\data\ActiveDataProvider;
@@ -154,6 +155,525 @@ class SeguimientoController extends Controller
             $model->fecha_inicio_adultos_ss = ($model->fecha_inicio_adultos_ss) ? Yii::$app->formatter->asDate($model->fecha_inicio_adultos_ss, 'yyyy-MM-dd'): null;
             $model->fecha_entrega_adultos_ss = ($model->fecha_entrega_adultos_ss) ? Yii::$app->formatter->asDate($model->fecha_entrega_adultos_ss, 'yyyy-MM-dd'): null;
 
+
+            if($model->meta_piso == 1){
+                if($model->acciones_piso == 1){
+                    $model->acciones_pendientes_piso = $model->meta_piso - $model->acciones_piso;
+                    $model->inversion_piso = 2640;
+                    if($model->programa_piso > 1){
+                        $programa_piso = Programas::findOne($model->programa_piso);
+                        $model->responsable_piso = $programa_piso->responsable;
+                    }
+                }else{
+                    $model->acciones_piso = 0;
+                    $model->acciones_pendientes_piso =  $model->meta_piso - $model->acciones_piso;
+                    $model->inversion_piso = 0;
+                    $model->fecha_inicio_piso = null;
+                    $model->fecha_entrega_piso = null;
+                    $model->programa_piso = null;
+                    $model->responsable_piso = null;
+
+                }
+            }else{
+                $model->meta_piso = 0;
+                $model->acciones_piso = 0;
+                $model->acciones_pendientes_piso = 0;
+                $model->inversion_piso = 0;
+                $model->fecha_inicio_piso = null;
+                $model->fecha_entrega_piso = null;
+                $model->programa_piso = null;
+                $model->responsable_piso = null;
+            }
+
+            if($model->meta_techo == 1){
+                if($model->acciones_techo == 1){
+                    $model->acciones_pendientes_techo = $model->meta_techo - $model->acciones_techo;
+                    $model->inversion_techo = 9160;
+                    if($model->programa_techo > 1){
+                        $programa_techo = Programas::findOne($model->programa_techo);
+                        $model->responsable_techo = $programa_techo->responsable;
+                    }
+                }else{
+                    $model->acciones_techo = 0;
+                    $model->acciones_pendientes_techo =  $model->meta_techo - $model->acciones_techo;
+                    $model->inversion_techo = 0;
+                    $model->fecha_inicio_techo = null;
+                    $model->fecha_entrega_techo = null;
+                    $model->programa_techo = null;
+                    $model->responsable_techo = null;
+
+                }
+            }else{
+                $model->meta_techo = 0;
+                $model->acciones_techo = 0;
+                $model->acciones_pendientes_techo = 0;
+                $model->inversion_techo = 0;
+                $model->fecha_inicio_techo = null;
+                $model->fecha_entrega_techo = null;
+                $model->programa_techo = null;
+                $model->responsable_techo = null;
+            }
+
+            if($model->meta_muro == 1){
+                if($model->acciones_muro == 1){
+                    $model->acciones_pendientes_muro = $model->meta_muro - $model->acciones_muro;
+                    $model->inversion_muro = 12000;
+                    if($model->programa_muro > 1){
+                        $programa_muro = Programas::findOne($model->programa_muro);
+                        $model->responsable_muro = $programa_muro->responsable;
+                    }
+                }else{
+                    $model->acciones_muro = 0;
+                    $model->acciones_pendientes_muro =  $model->meta_muro - $model->acciones_muro;
+                    $model->inversion_muro = 0;
+                    $model->fecha_inicio_muro = null;
+                    $model->fecha_entrega_muro = null;
+                    $model->programa_muro = null;
+                    $model->responsable_muro = null;
+
+                }
+            }else{
+                $model->meta_muro = 0;
+                $model->acciones_muro = 0;
+                $model->acciones_pendientes_muro = 0;
+                $model->inversion_muro = 0;
+                $model->fecha_inicio_muro = null;
+                $model->fecha_entrega_muro = null;
+                $model->programa_muro = null;
+                $model->responsable_muro = null;
+            }
+
+            if($model->meta_cuarto == 1){
+                if($model->acciones_cuarto == 1){
+                    $model->acciones_pendientes_cuarto = $model->meta_cuarto - $model->acciones_cuarto;
+                    $model->inversion_cuarto = 0;
+                    if($model->programa_cuarto > 1){
+                        $programa_cuarto = Programas::findOne($model->programa_cuarto);
+                        $model->responsable_cuarto = $programa_cuarto->responsable;
+                    }
+                }else{
+                    $model->acciones_cuarto = 0;
+                    $model->acciones_pendientes_cuarto =  $model->meta_cuarto - $model->acciones_cuarto;
+                    $model->inversion_cuarto = 0;
+                    $model->fecha_inicio_cuarto = null;
+                    $model->fecha_entrega_cuarto = null;
+                    $model->programa_cuarto = null;
+                    $model->responsable_cuarto = null;
+
+                }
+            }else{
+                $model->meta_cuarto = 0;
+                $model->acciones_cuarto = 0;
+                $model->acciones_pendientes_cuarto = 0;
+                $model->inversion_cuarto = 0;
+                $model->fecha_inicio_cuarto = null;
+                $model->fecha_entrega_cuarto = null;
+                $model->programa_cuarto = null;
+                $model->responsable_cuarto = null;
+            }
+
+            $model->acciones_calidad_espacios_vivienda = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro + $model->acciones_cuarto;
+            $model->acciones_pendientez_calidad_espacios_vivienda    = $model->meta_calidad_espacios_vivienda - $model->acciones_calidad_espacios_vivienda;
+
+            if($model->meta_agua_potable == 1){
+                if($model->acciones_agua_potable == 1){
+                    $model->acciones_pendientes_agua_potable = $model->meta_agua_potable - $model->acciones_agua_potable;
+                    $model->inversion_agua_potable = 0;
+                    if($model->programa_agua_potable > 1){
+                        $programa_agua_potable = Programas::findOne($model->programa_agua_potable);
+                        $model->responsable_agua_potable = $programa_agua_potable->responsable;
+                    }
+                }else{
+                    $model->acciones_agua_potable = 0;
+                    $model->acciones_pendientes_agua_potable =  $model->meta_agua_potable - $model->acciones_agua_potable;
+                    $model->inversion_agua_potable = 0;
+                    $model->fecha_inicio_agua_potable = null;
+                    $model->fecha_entrega_agua_potable = null;
+                    $model->programa_agua_potable = null;
+                    $model->responsable_agua_potable = null;
+
+                }
+            }else{
+                $model->meta_agua_potable = 0;
+                $model->acciones_agua_potable = 0;
+                $model->acciones_pendientes_agua_potable = 0;
+                $model->inversion_agua_potable = 0;
+                $model->fecha_inicio_agua_potable = null;
+                $model->fecha_entrega_agua_potable = null;
+                $model->programa_agua_potable = null;
+                $model->responsable_agua_potable = null;
+            }
+
+
+            if($model->meta_agua_interior == 1){
+                if($model->acciones_agua_interior == 1){
+                    $model->acciones_pendientes_agua_interior = $model->meta_agua_interior - $model->acciones_agua_interior;
+                    $model->inversion_agua_interior = 0;
+                    if($model->programa_agua_interior > 1){
+                        $programa_agua_interior = Programas::findOne($model->programa_agua_interior);
+                        $model->responsable_agua_interior = $programa_agua_interior->responsable;
+                    }
+                }else{
+                    $model->acciones_agua_interior = 0;
+                    $model->acciones_pendientes_agua_interior =  $model->meta_agua_interior - $model->acciones_agua_interior;
+                    $model->inversion_agua_interior = 0;
+                    $model->fecha_inicio_agua_interior = null;
+                    $model->fecha_entrega_agua_interior = null;
+                    $model->programa_agua_interior = null;
+                    $model->responsable_agua_interior = null;
+
+                }
+            }else{
+                $model->meta_agua_interior = 0;
+                $model->acciones_agua_interior = 0;
+                $model->acciones_pendientes_agua_interior = 0;
+                $model->inversion_agua_interior = 0;
+                $model->fecha_inicio_agua_interior = null;
+                $model->fecha_entrega_agua_interior = null;
+                $model->programa_agua_interior = null;
+                $model->responsable_agua_interior = null;
+            }
+
+            if($model->meta_drenaje == 1){
+                if($model->acciones_drenaje == 1){
+                    $model->acciones_pendientes_drenaje = $model->meta_drenaje - $model->acciones_drenaje;
+                    $model->inversion_drenaje = 0;
+                    if($model->programa_drenaje > 1){
+                        $programa_drenaje = Programas::findOne($model->programa_drenaje);
+                        $model->responsable_drenaje = $programa_drenaje->responsable;
+                    }
+                }else{
+                    $model->acciones_drenaje = 0;
+                    $model->acciones_pendientes_drenaje =  $model->meta_drenaje - $model->acciones_drenaje;
+                    $model->inversion_drenaje = 0;
+                    $model->fecha_inicio_drenaje = null;
+                    $model->fecha_entrega_drenaje = null;
+                    $model->programa_drenaje = null;
+                    $model->responsable_drenaje = null;
+
+                }
+            }else{
+                $model->meta_drenaje = 0;
+                $model->acciones_drenaje = 0;
+                $model->acciones_pendientes_drenaje = 0;
+                $model->inversion_drenaje = 0;
+                $model->fecha_inicio_drenaje = null;
+                $model->fecha_entrega_drenaje = null;
+                $model->programa_drenaje = null;
+                $model->responsable_drenaje = null;
+            }
+
+            if($model->meta_luz == 1){
+                if($model->acciones_luz == 1){
+                    $model->acciones_pendientes_luz = $model->meta_luz - $model->acciones_luz;
+                    $model->inversion_luz = 0;
+                    if($model->programa_luz > 1){
+                        $programa_luz = Programas::findOne($model->programa_luz);
+                        $model->responsable_luz = $programa_luz->responsable;
+                    }
+                }else{
+                    $model->acciones_luz = 0;
+                    $model->acciones_pendientes_luz =  $model->meta_luz - $model->acciones_luz;
+                    $model->inversion_luz = 0;
+                    $model->fecha_inicio_luz = null;
+                    $model->fecha_entrega_luz = null;
+                    $model->programa_luz = null;
+                    $model->responsable_luz = null;
+
+                }
+            }else{
+                $model->meta_luz = 0;
+                $model->acciones_luz = 0;
+                $model->acciones_pendientes_luz = 0;
+                $model->inversion_luz = 0;
+                $model->fecha_inicio_luz = null;
+                $model->fecha_entrega_luz = null;
+                $model->programa_luz = null;
+                $model->responsable_luz = null;
+            }
+
+            if($model->meta_estufa == 1){
+                if($model->acciones_estufa == 1){
+                    $model->acciones_pendientes_estufa = $model->meta_estufa - $model->acciones_estufa;
+                    $model->inversion_estufa = 0;
+                    if($model->programa_estufa > 1){
+                        $programa_estufa = Programas::findOne($model->programa_estufa);
+                        $model->responsable_estufa = $programa_estufa->responsable;
+                    }
+                }else{
+                    $model->acciones_estufa = 0;
+                    $model->acciones_pendientes_estufa =  $model->meta_estufa - $model->acciones_estufa;
+                    $model->inversion_estufa = 0;
+                    $model->fecha_inicio_estufa = null;
+                    $model->fecha_entrega_estufa = null;
+                    $model->programa_estufa = null;
+                    $model->responsable_estufa = null;
+
+                }
+            }else{
+                $model->meta_estufa = 0;
+                $model->acciones_estufa = 0;
+                $model->acciones_pendientes_estufa = 0;
+                $model->inversion_estufa = 0;
+                $model->fecha_inicio_estufa = null;
+                $model->fecha_entrega_estufa = null;
+                $model->programa_estufa = null;
+                $model->responsable_estufa = null;
+            }
+
+            $model->acciones_servicios_basicos = $model->acciones_agua_potable+$model->acciones_agua_interior+$model->acciones_drenaje+$model->acciones_luz+$model->acciones_estufa;
+            $model->acciones_pendientez_servicios_basicos = $model->meta_servicios_basicos - $model->acciones_servicios_basicos;
+
+            if($model->meta_seguro_popular == 1){
+                if($model->acciones_seguro_popular == 1){
+                    $model->acciones_pendientes_seguro_popular = $model->meta_seguro_popular - $model->acciones_seguro_popular;
+                    $model->inversion_seguro_popular = 0;
+                    if($model->programa_seguro_popular > 1){
+                        $programa_seguro_popular = Programas::findOne($model->programa_seguro_popular);
+                        $model->responsable_seguro_popular = $programa_seguro_popular->responsable;
+                    }
+                }else{
+                    $model->acciones_seguro_popular = 0;
+                    $model->acciones_pendientes_seguro_popular =  $model->meta_seguro_popular - $model->acciones_seguro_popular;
+                    $model->inversion_seguro_popular = 0;
+                    $model->fecha_inicio_seguro_popular = null;
+                    $model->fecha_entrega_seguro_popular = null;
+                    $model->programa_seguro_popular = null;
+                    $model->responsable_seguro_popular = null;
+
+                }
+            }else{
+                $model->meta_seguro_popular = 0;
+                $model->acciones_seguro_popular = 0;
+                $model->acciones_pendientes_seguro_popular = 0;
+                $model->inversion_seguro_popular = 0;
+                $model->fecha_inicio_seguro_popular = null;
+                $model->fecha_entrega_seguro_popular = null;
+                $model->programa_seguro_popular = null;
+                $model->responsable_seguro_popular = null;
+            }
+
+
+            if($model->meta_3_15_escuela == 1){
+                if($model->acciones_3_15_escuela == 1){
+                    $model->acciones_pendientes_3_15_escuela = $model->meta_3_15_escuela - $model->acciones_3_15_escuela;
+                    $model->inversion_3_15_escuela = 0;
+                    if($model->programa_3_15_escuela > 1){
+                        $programa_3_15_escuela = Programas::findOne($model->programa_3_15_escuela);
+                        $model->responsable_3_15_escuela = $programa_3_15_escuela->responsable;
+                    }
+                }else{
+                    $model->acciones_3_15_escuela = 0;
+                    $model->acciones_pendientes_3_15_escuela =  $model->meta_3_15_escuela - $model->acciones_3_15_escuela;
+                    $model->inversion_3_15_escuela = 0;
+                    $model->fecha_inicio_3_15_escuela = null;
+                    $model->fecha_entrega_3_15_escuela = null;
+                    $model->programa_3_15_escuela = null;
+                    $model->responsable_3_15_escuela = null;
+
+                }
+            }else{
+                $model->meta_3_15_escuela = 0;
+                $model->acciones_3_15_escuela = 0;
+                $model->acciones_pendientes_3_15_escuela = 0;
+                $model->inversion_3_15_escuela = 0;
+                $model->fecha_inicio_3_15_escuela = null;
+                $model->fecha_entrega_3_15_escuela = null;
+                $model->programa_3_15_escuela = null;
+                $model->responsable_3_15_escuela = null;
+            }
+
+
+
+            if($model->meta_antes_1982_primaria == 1){
+                if($model->acciones_antes_1982_primaria == 1){
+                    $model->acciones_pendientes_antes_1982_primaria = $model->meta_antes_1982_primaria - $model->acciones_antes_1982_primaria;
+                    $model->inversion_antes_1982_primaria = 0;
+                    if($model->programa_antes_1982_primaria > 1){
+                        $programa_antes_1982_primaria = Programas::findOne($model->programa_antes_1982_primaria);
+                        $model->responsable_antes_1982_primaria = $programa_antes_1982_primaria->responsable;
+                    }
+                }else{
+                    $model->acciones_antes_1982_primaria = 0;
+                    $model->acciones_pendientes_antes_1982_primaria =  $model->meta_antes_1982_primaria - $model->acciones_antes_1982_primaria;
+                    $model->inversion_antes_1982_primaria = 0;
+                    $model->fecha_inicio_antes_1982_primaria = null;
+                    $model->fecha_entrega_antes_1982_primaria = null;
+                    $model->programa_antes_1982_primaria = null;
+                    $model->responsable_antes_1982_primaria = null;
+
+                }
+            }else{
+                $model->meta_antes_1982_primaria = 0;
+                $model->acciones_antes_1982_primaria = 0;
+                $model->acciones_pendientes_antes_1982_primaria = 0;
+                $model->inversion_antes_1982_primaria = 0;
+                $model->fecha_inicio_antes_1982_primaria = null;
+                $model->fecha_entrega_antes_1982_primaria = null;
+                $model->programa_antes_1982_primaria = null;
+                $model->responsable_antes_1982_primaria = null;
+            }
+
+
+            if($model->meta_despues_1982_secundaria == 1){
+                if($model->acciones_despues_1982_secundaria == 1){
+                    $model->acciones_pendientes_despues_1982_secundaria = $model->meta_despues_1982_secundaria - $model->acciones_despues_1982_secundaria;
+                    $model->inversion_despues_1982_secundaria = 0;
+                    if($model->programa_despues_1982_secundaria > 1){
+                        $programa_despues_1982_secundaria = Programas::findOne($model->programa_despues_1982_secundaria);
+                        $model->responsable_despues_1982_secundaria = $programa_despues_1982_secundaria->responsable;
+                    }
+                }else{
+                    $model->acciones_despues_1982_secundaria = 0;
+                    $model->acciones_pendientes_despues_1982_secundaria =  $model->meta_despues_1982_secundaria - $model->acciones_despues_1982_secundaria;
+                    $model->inversion_despues_1982_secundaria = 0;
+                    $model->fecha_inicio_despues_1982_secundaria = null;
+                    $model->fecha_entrega_despues_1982_secundaria = null;
+                    $model->programa_despues_1982_secundaria = null;
+                    $model->responsable_despues_1982_secundaria = null;
+
+                }
+            }else{
+                $model->meta_despues_1982_secundaria = 0;
+                $model->acciones_despues_1982_secundaria = 0;
+                $model->acciones_pendientes_despues_1982_secundaria = 0;
+                $model->inversion_despues_1982_secundaria = 0;
+                $model->fecha_inicio_despues_1982_secundaria = null;
+                $model->fecha_entrega_despues_1982_secundaria = null;
+                $model->programa_despues_1982_secundaria = null;
+                $model->responsable_despues_1982_secundaria = null;
+            }
+
+            $model->acciones_educacion = $model->acciones_3_15_escuela+$model->acciones_antes_1982_primaria+$model->acciones_despues_1982_secundaria;
+            $model->acciones_pendientez_educacion = $model->meta_educacion - $model->acciones_educacion;
+
+            if($model->meta_despensas == 1){
+                if($model->acciones_despensas == 1){
+                    $model->acciones_pendientes_despensas = $model->meta_despensas - $model->acciones_despensas;
+                    $model->inversion_despensas = 0;
+                    if($model->programa_despensas > 1){
+                        $programa_despensas = Programas::findOne($model->programa_despensas);
+                        $model->responsable_despensas = $programa_despensas->responsable;
+                    }
+                }else{
+                    $model->acciones_despensas = 0;
+                    $model->acciones_pendientes_despensas =  $model->meta_despensas - $model->acciones_despensas;
+                    $model->inversion_despensas = 0;
+                    $model->fecha_inicio_despensas = null;
+                    $model->fecha_entrega_despensas = null;
+                    $model->programa_despensas = null;
+                    $model->responsable_despensas = null;
+
+                }
+            }else{
+                $model->meta_despensas = 0;
+                $model->acciones_despensas = 0;
+                $model->acciones_pendientes_despensas = 0;
+                $model->inversion_despensas = 0;
+                $model->fecha_inicio_despensas = null;
+                $model->fecha_entrega_despensas = null;
+                $model->programa_despensas = null;
+                $model->responsable_despensas = null;
+            }
+
+            if($model->meta_ss == 1){
+                if($model->acciones_ss == 1){
+                    $model->acciones_pendientes_ss = $model->meta_ss - $model->acciones_ss;
+                    $model->inversion_ss = 0;
+                    if($model->programa_ss > 1){
+                        $programa_ss = Programas::findOne($model->programa_ss);
+                        $model->responsable_ss = $programa_ss->responsable;
+                    }
+                }else{
+                    $model->acciones_ss = 0;
+                    $model->acciones_pendientes_ss =  $model->meta_ss - $model->acciones_ss;
+                    $model->inversion_ss = 0;
+                    $model->fecha_inicio_ss = null;
+                    $model->fecha_entrega_ss = null;
+                    $model->programa_ss = null;
+                    $model->responsable_ss = null;
+
+                }
+            }else{
+                $model->meta_ss = 0;
+                $model->acciones_ss = 0;
+                $model->acciones_pendientes_ss = 0;
+                $model->inversion_ss = 0;
+                $model->fecha_inicio_ss = null;
+                $model->fecha_entrega_ss = null;
+                $model->programa_ss = null;
+                $model->responsable_ss = null;
+            }
+
+            if($model->meta_trabajadores_ss == 1){
+                if($model->acciones_trabajadores_ss == 1){
+                    $model->acciones_pendientes_trabajadores_ss = $model->meta_trabajadores_ss - $model->acciones_trabajadores_ss;
+                    $model->inversion_trabajadores_ss = 0;
+                    if($model->programa_trabajadores_ss > 1){
+                        $programa_trabajadores_ss = Programas::findOne($model->programa_trabajadores_ss);
+                        $model->responsable_trabajadores_ss = $programa_trabajadores_ss->responsable;
+                    }
+                }else{
+                    $model->acciones_trabajadores_ss = 0;
+                    $model->acciones_pendientes_trabajadores_ss =  $model->meta_trabajadores_ss - $model->acciones_trabajadores_ss;
+                    $model->inversion_trabajadores_ss = 0;
+                    $model->fecha_inicio_trabajadores_ss = null;
+                    $model->fecha_entrega_trabajadores_ss = null;
+                    $model->programa_trabajadores_ss = null;
+                    $model->responsable_trabajadores_ss = null;
+
+                }
+            }else{
+                $model->meta_trabajadores_ss = 0;
+                $model->acciones_trabajadores_ss = 0;
+                $model->acciones_pendientes_trabajadores_ss = 0;
+                $model->inversion_trabajadores_ss = 0;
+                $model->fecha_inicio_trabajadores_ss = null;
+                $model->fecha_entrega_trabajadores_ss = null;
+                $model->programa_trabajadores_ss = null;
+                $model->responsable_trabajadores_ss = null;
+            }
+
+
+            if($model->meta_adultos_ss == 1){
+                if($model->acciones_adultos_ss == 1){
+                    $model->acciones_pendientes_adultos_ss = $model->meta_adultos_ss - $model->acciones_adultos_ss;
+                    $model->inversion_adultos_ss = 0;
+                    if($model->programa_adultos_ss > 1){
+                        $programa_adultos_ss = Programas::findOne($model->programa_adultos_ss);
+                        $model->responsable_adultos_ss = $programa_adultos_ss->responsable;
+                    }
+                }else{
+                    $model->acciones_adultos_ss = 0;
+                    $model->acciones_pendientes_adultos_ss =  $model->meta_adultos_ss - $model->acciones_adultos_ss;
+                    $model->inversion_adultos_ss = 0;
+                    $model->fecha_inicio_adultos_ss = null;
+                    $model->fecha_entrega_adultos_ss = null;
+                    $model->programa_adultos_ss = null;
+                    $model->responsable_adultos_ss = null;
+
+                }
+            }else{
+                $model->meta_adultos_ss = 0;
+                $model->acciones_adultos_ss = 0;
+                $model->acciones_pendientes_adultos_ss = 0;
+                $model->inversion_adultos_ss = 0;
+                $model->fecha_inicio_adultos_ss = null;
+                $model->fecha_entrega_adultos_ss = null;
+                $model->programa_adultos_ss = null;
+                $model->responsable_adultos_ss = null;
+            }
+
+
+            $model->acciones_s_s = $model->acciones_ss+$model->acciones_trabajadores_ss+$model->acciones_adultos_ss;
+            $model->acciones_pendientez_s_s = $model->meta_s_s - $model->acciones_s_s;
+
+
+            $model->acciones_vivienda = $model->acciones_s_s + $model->acciones_despensas + $model->acciones_educacion +
+                $model->acciones_seguro_popular + $model->acciones_servicios_basicos + $model->acciones_calidad_espacios_vivienda;
+            $model->acciones_pendientez_vivienda = $model->meta_vivienda - $model->acciones_vivienda;
+
+            $model->inversion_vivienda = $model->inversion_piso+$model->inversion_techo+$model->inversion_muro+$model->inversion_cuarto+$model->inversion_agua_potable+$model->inversion_agua_interior+$model->inversion_drenaje+$model->inversion_luz+$model->inversion_estufa+$model->inversion_seguro_popular+$model->inversion_3_15_escuela+$model->inversion_antes_1982_primaria+$model->inversion_despues_1982_secundaria+$model->inversion_despensas+$model->inversion_ss+$model->inversion_trabajadores_ss+$model->inversion_adultos_ss;
 
 
 
