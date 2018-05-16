@@ -31,7 +31,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="piso">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_piso')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_piso')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -48,7 +53,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_piso')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -65,9 +70,8 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
-
                                 <?= $form->field($model, 'programa_piso')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
                                         'id', 'desc_programa'),
@@ -103,7 +107,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="techo">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_techo')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_techo')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -120,7 +129,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_techo')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -137,7 +146,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_techo')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -173,7 +182,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="muro">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_cuarto')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_muro')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -190,7 +204,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_muro')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -207,7 +221,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_muro')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -243,7 +257,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="cuarto">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_cuarto')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_cuarto')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -260,7 +279,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_cuarto')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -277,7 +296,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_cuarto')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -313,7 +332,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="agua_potable">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_agua_potable')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_agua_potable')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -330,7 +354,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_agua_potable')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -347,7 +371,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_agua_potable')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -383,7 +407,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="agua_interior">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_agua_interior')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_agua_interior')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -400,7 +429,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_agua_interior')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -417,7 +446,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_agua_interior')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -453,7 +482,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="drenaje">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_drenaje')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_drenaje')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -470,7 +504,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_drenaje')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -487,7 +521,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_drenaje')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -523,7 +557,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="luz">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_luz')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_luz')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -540,7 +579,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_luz')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -557,7 +596,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_luz')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -593,7 +632,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="estufa">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_estufa')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_estufa')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -610,7 +654,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_estufa')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -627,7 +671,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_estufa')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -663,7 +707,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="seguro_popular">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_seguro_popular')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_seguro_popular')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -680,7 +729,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_seguro_popular')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -697,7 +746,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_seguro_popular')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -733,7 +782,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="esc_3_15">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_3_15_escuela')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_3_15_escuela')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -750,7 +804,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_3_15_escuela')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -767,7 +821,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_3_15_escuela')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -803,7 +857,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="antes_1982_primaria">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_antes_1982_primaria')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_antes_1982_primaria')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -820,7 +879,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_antes_1982_primaria')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -837,7 +896,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_antes_1982_primaria')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -873,7 +932,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="despues_1982_secundaria">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_despues_1982_secundaria')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_despues_1982_secundaria')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -890,7 +954,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_despues_1982_secundaria')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -907,7 +971,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_despues_1982_secundaria')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -943,7 +1007,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="despensas">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_despensas')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_despensas')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -960,7 +1029,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_despensas')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -977,7 +1046,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_despensas')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -1013,7 +1082,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="ss">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_ss')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_ss')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -1030,7 +1104,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_ss')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -1047,7 +1121,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_ss')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -1083,7 +1157,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="trabajadores_ss">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_trabajadores_ss')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_trabajadores_ss')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -1100,7 +1179,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_trabajadores_ss')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -1117,7 +1196,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_trabajadores_ss')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
@@ -1153,7 +1232,12 @@ use yii\helpers\ArrayHelper;
                 </div>
                 <div class="adultos_ss">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <?= $form->field($model, 'inversion_adultos_ss')->textInput() ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_inicio_adultos_ss')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -1170,7 +1254,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'fecha_entrega_adultos_ss')->widget(DatePicker::className(), [
                                     'name' => 'dp_2',
@@ -1187,7 +1271,7 @@ use yii\helpers\ArrayHelper;
                                 ]) ?>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <?= $form->field($model, 'programa_adultos_ss')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map(\common\models\Programas::getProgramasOk(),
