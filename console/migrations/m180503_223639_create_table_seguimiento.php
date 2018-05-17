@@ -189,7 +189,7 @@ class m180503_223639_create_table_seguimiento extends Migration
             'meta_vivienda' => $this->integer(),
             'acciones_vivienda' => $this->integer(),
             'acciones_pendientez_vivienda' => $this->integer(),
-            'inversion_vivienda' => $this->integer(),
+            'inversion_vivienda' => $this->double(),
 
             'status' => $this->smallInteger(),
             'created_by' => $this->integer(),

@@ -165,6 +165,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_piso == 1){
                             $model->acciones_pendientes_piso = $model->meta_piso - $model->acciones_piso;
                             //$model->inversion_piso = 2640;
+                            $model->inversion_piso = ($model->inversion_piso)? $model->inversion_piso : 0;
                             if($model->programa_piso > 1){
                                 $programa_piso = Programas::findOne($model->programa_piso);
                                 $model->responsable_piso = $programa_piso->responsable;
@@ -193,6 +194,7 @@ class SeguimientoController extends Controller
                     if($model->meta_techo == 1){
                         if($model->acciones_techo == 1){
                             $model->acciones_pendientes_techo = $model->meta_techo - $model->acciones_techo;
+                            $model->inversion_piso = ($model->inversion_piso) ? $model->inversion_piso : 0;
                             //$model->inversion_techo = 9160;
                             if($model->programa_techo > 1){
                                 $programa_techo = Programas::findOne($model->programa_techo);
@@ -223,6 +225,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_muro == 1){
                             $model->acciones_pendientes_muro = $model->meta_muro - $model->acciones_muro;
                             //$model->inversion_muro = 12000;
+                            $model->inversion_muro = ($model->inversion_muro) ? $model->inversion_muro : 0;
                             if($model->programa_muro > 1){
                                 $programa_muro = Programas::findOne($model->programa_muro);
                                 $model->responsable_muro = $programa_muro->responsable;
@@ -251,7 +254,7 @@ class SeguimientoController extends Controller
                     if($model->meta_cuarto == 1){
                         if($model->acciones_cuarto == 1){
                             $model->acciones_pendientes_cuarto = $model->meta_cuarto - $model->acciones_cuarto;
-                            //$model->inversion_cuarto = 0;
+                            $model->inversion_cuarto = ($model->inversion_cuarto) ? $model->inversion_cuarto : 0;
                             if($model->programa_cuarto > 1){
                                 $programa_cuarto = Programas::findOne($model->programa_cuarto);
                                 $model->responsable_cuarto = $programa_cuarto->responsable;
@@ -283,7 +286,7 @@ class SeguimientoController extends Controller
                     if($model->meta_agua_potable == 1){
                         if($model->acciones_agua_potable == 1){
                             $model->acciones_pendientes_agua_potable = $model->meta_agua_potable - $model->acciones_agua_potable;
-                            //$model->inversion_agua_potable = 0;
+                            $model->inversion_agua_potable = ($model->inversion_agua_potable) ? $model->inversion_agua_potable :0;
                             if($model->programa_agua_potable > 1){
                                 $programa_agua_potable = Programas::findOne($model->programa_agua_potable);
                                 $model->responsable_agua_potable = $programa_agua_potable->responsable;
@@ -313,7 +316,7 @@ class SeguimientoController extends Controller
                     if($model->meta_agua_interior == 1){
                         if($model->acciones_agua_interior == 1){
                             $model->acciones_pendientes_agua_interior = $model->meta_agua_interior - $model->acciones_agua_interior;
-                            //$model->inversion_agua_interior = 0;
+                            $model->inversion_agua_interior = ($model->inversion_agua_interior) ? $model->inversion_agua_interior : 0;
                             if($model->programa_agua_interior > 1){
                                 $programa_agua_interior = Programas::findOne($model->programa_agua_interior);
                                 $model->responsable_agua_interior = $programa_agua_interior->responsable;
@@ -342,7 +345,7 @@ class SeguimientoController extends Controller
                     if($model->meta_drenaje == 1){
                         if($model->acciones_drenaje == 1){
                             $model->acciones_pendientes_drenaje = $model->meta_drenaje - $model->acciones_drenaje;
-                            //$model->inversion_drenaje = 0;
+                            $model->inversion_drenaje = ($model->inversion_drenaje) ? $model->inversion_drenaje :0;
                             if($model->programa_drenaje > 1){
                                 $programa_drenaje = Programas::findOne($model->programa_drenaje);
                                 $model->responsable_drenaje = $programa_drenaje->responsable;
@@ -371,7 +374,7 @@ class SeguimientoController extends Controller
                     if($model->meta_luz == 1){
                         if($model->acciones_luz == 1){
                             $model->acciones_pendientes_luz = $model->meta_luz - $model->acciones_luz;
-                            //$model->inversion_luz = 0;
+                            $model->inversion_luz = ($model->inversion_luz) ? $model->inversion_luz : 0;
                             if($model->programa_luz > 1){
                                 $programa_luz = Programas::findOne($model->programa_luz);
                                 $model->responsable_luz = $programa_luz->responsable;
@@ -400,7 +403,7 @@ class SeguimientoController extends Controller
                     if($model->meta_estufa == 1){
                         if($model->acciones_estufa == 1){
                             $model->acciones_pendientes_estufa = $model->meta_estufa - $model->acciones_estufa;
-                            //$model->inversion_estufa = 0;
+                            $model->inversion_estufa = ($model->inversion_estufa) ? $model->inversion_estufa : 0;
                             if($model->programa_estufa > 1){
                                 $programa_estufa = Programas::findOne($model->programa_estufa);
                                 $model->responsable_estufa = $programa_estufa->responsable;
@@ -432,7 +435,7 @@ class SeguimientoController extends Controller
                     if($model->meta_seguro_popular == 1){
                         if($model->acciones_seguro_popular == 1){
                             $model->acciones_pendientes_seguro_popular = $model->meta_seguro_popular - $model->acciones_seguro_popular;
-                            //$model->inversion_seguro_popular = 0;
+                            $model->inversion_seguro_popular = ($model->inversion_seguro_popular) ? $model->inversion_seguro_popular : 0;
                             if($model->programa_seguro_popular > 1){
                                 $programa_seguro_popular = Programas::findOne($model->programa_seguro_popular);
                                 $model->responsable_seguro_popular = $programa_seguro_popular->responsable;
@@ -462,7 +465,7 @@ class SeguimientoController extends Controller
                     if($model->meta_3_15_escuela == 1){
                         if($model->acciones_3_15_escuela == 1){
                             $model->acciones_pendientes_3_15_escuela = $model->meta_3_15_escuela - $model->acciones_3_15_escuela;
-                            //$model->inversion_3_15_escuela = 0;
+                            $model->inversion_3_15_escuela = ($model->inversion_3_15_escuela) ? $model->inversion_3_15_escuela : 0;
                             if($model->programa_3_15_escuela > 1){
                                 $programa_3_15_escuela = Programas::findOne($model->programa_3_15_escuela);
                                 $model->responsable_3_15_escuela = $programa_3_15_escuela->responsable;
@@ -493,7 +496,7 @@ class SeguimientoController extends Controller
                     if($model->meta_antes_1982_primaria == 1){
                         if($model->acciones_antes_1982_primaria == 1){
                             $model->acciones_pendientes_antes_1982_primaria = $model->meta_antes_1982_primaria - $model->acciones_antes_1982_primaria;
-                            //$model->inversion_antes_1982_primaria = 0;
+                            $model->inversion_antes_1982_primaria = ($model->inversion_antes_1982_primaria) ? $model->inversion_antes_1982_primaria :0;
                             if($model->programa_antes_1982_primaria > 1){
                                 $programa_antes_1982_primaria = Programas::findOne($model->programa_antes_1982_primaria);
                                 $model->responsable_antes_1982_primaria = $programa_antes_1982_primaria->responsable;
@@ -523,7 +526,7 @@ class SeguimientoController extends Controller
                     if($model->meta_despues_1982_secundaria == 1){
                         if($model->acciones_despues_1982_secundaria == 1){
                             $model->acciones_pendientes_despues_1982_secundaria = $model->meta_despues_1982_secundaria - $model->acciones_despues_1982_secundaria;
-                            $model->inversion_despues_1982_secundaria = 0;
+                            $model->inversion_despues_1982_secundaria = ($model->inversion_despues_1982_secundaria) ? $model->inversion_despues_1982_secundaria : 0;
                             if($model->programa_despues_1982_secundaria > 1){
                                 $programa_despues_1982_secundaria = Programas::findOne($model->programa_despues_1982_secundaria);
                                 $model->responsable_despues_1982_secundaria = $programa_despues_1982_secundaria->responsable;
