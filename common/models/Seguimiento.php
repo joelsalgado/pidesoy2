@@ -64,6 +64,15 @@ class Seguimiento extends \yii\db\ActiveRecord
             ['acciones_agua_interior', 'validateAgua_interior'],
             ['acciones_drenaje', 'validateDrenaje'],
             ['acciones_luz', 'validateLuz'],
+            ['acciones_estufa', 'validateEstufa'],
+            ['acciones_seguro_popular', 'validateSeguro_popular'],
+            ['acciones_3_15_escuela', 'validateDe3_15_escuela'],
+            ['acciones_antes_1982_primaria', 'validateAntes_1982_primaria'],
+            ['acciones_despues_1982_secundaria', 'validateDespues_1982_secundaria'],
+            ['acciones_despensas', 'validateDespensas'],
+            ['acciones_ss', 'validateSs'],
+            ['acciones_trabajadores_ss', 'validateTrabajadores_ss'],
+            ['acciones_adultos_ss', 'validateAdultos_ss'],
 
         ];
     }
@@ -239,7 +248,6 @@ class Seguimiento extends \yii\db\ActiveRecord
         }
 
     }
-
 
     public function validateCuarto()
     {
@@ -469,7 +477,6 @@ class Seguimiento extends \yii\db\ActiveRecord
 
     }
 
-
     public function validateLuz()
     {
         if($this->meta_luz == 1){
@@ -518,6 +525,519 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $date2 = date_create($fecha_termino);
                     if($date1 > $date2){
                         $this->addError('fecha_termino_luz', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateEstufa()
+    {
+        if($this->meta_estufa == 1){
+            $fecha_inicio = $this->fecha_inicio_estufa;
+            $fecha_entrega = $this->fecha_entrega_estufa;
+            $fecha_termino = $this->fecha_termino_estufa;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_estufa', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_estufa', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_estufa', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_estufa == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_estufa', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_estufa == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_estufa', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_estufa', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateSeguro_popular()
+    {
+        if($this->meta_seguro_popular == 1){
+            $fecha_inicio = $this->fecha_inicio_seguro_popular;
+            $fecha_entrega = $this->fecha_entrega_seguro_popular;
+            $fecha_termino = $this->fecha_termino_seguro_popular;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_seguro_popular', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_seguro_popular', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_seguro_popular', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_seguro_popular == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_seguro_popular', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_seguro_popular == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_seguro_popular', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_seguro_popular', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateDe3_15_escuela()
+    {
+        if($this->meta_3_15_escuela == 1){
+            $fecha_inicio = $this->fecha_inicio_3_15_escuela;
+            $fecha_entrega = $this->fecha_entrega_3_15_escuela;
+            $fecha_termino = $this->fecha_termino_3_15_escuela;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_3_15_escuela', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_3_15_escuela', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_3_15_escuela', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_3_15_escuela == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_3_15_escuela', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_3_15_escuela == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_3_15_escuela', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_3_15_escuela', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateAntes_1982_primaria()
+    {
+        if($this->meta_antes_1982_primaria == 1){
+            $fecha_inicio = $this->fecha_inicio_antes_1982_primaria;
+            $fecha_entrega = $this->fecha_entrega_antes_1982_primaria;
+            $fecha_termino = $this->fecha_termino_antes_1982_primaria;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_antes_1982_primaria', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_antes_1982_primaria', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_antes_1982_primaria', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_antes_1982_primaria == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_antes_1982_primaria', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_antes_1982_primaria == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_antes_1982_primaria', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_antes_1982_primaria', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateDespues_1982_secundaria()
+    {
+        if($this->meta_despues_1982_secundaria == 1){
+            $fecha_inicio = $this->fecha_inicio_despues_1982_secundaria;
+            $fecha_entrega = $this->fecha_entrega_despues_1982_secundaria;
+            $fecha_termino = $this->fecha_termino_despues_1982_secundaria;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_despues_1982_secundaria', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_despues_1982_secundaria', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_despues_1982_secundaria', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_despues_1982_secundaria == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_despues_1982_secundaria', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_despues_1982_secundaria == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_despues_1982_secundaria', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_despues_1982_secundaria', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateDespensas()
+    {
+        if($this->meta_despensas == 1){
+            $fecha_inicio = $this->fecha_inicio_despensas;
+            $fecha_entrega = $this->fecha_entrega_despensas;
+            $fecha_termino = $this->fecha_termino_despensas;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_despensas', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_despensas', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_despensas', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_despensas == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_despensas', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_despensas == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_despensas', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_despensas', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateSs()
+    {
+        if($this->meta_ss == 1){
+            $fecha_inicio = $this->fecha_inicio_ss;
+            $fecha_entrega = $this->fecha_entrega_ss;
+            $fecha_termino = $this->fecha_termino_ss;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_ss', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_ss', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_ss', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_ss == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_ss', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_ss == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_ss', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_ss', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateTrabajadores_ss()
+    {
+        if($this->meta_trabajadores_ss == 1){
+            $fecha_inicio = $this->fecha_inicio_trabajadores_ss;
+            $fecha_entrega = $this->fecha_entrega_trabajadores_ss;
+            $fecha_termino = $this->fecha_termino_trabajadores_ss;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_trabajadores_ss', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_trabajadores_ss', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_trabajadores_ss', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_trabajadores_ss == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_trabajadores_ss', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_trabajadores_ss == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_trabajadores_ss', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_trabajadores_ss', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateAdultos_ss()
+    {
+        if($this->meta_adultos_ss == 1){
+            $fecha_inicio = $this->fecha_inicio_adultos_ss;
+            $fecha_entrega = $this->fecha_entrega_adultos_ss;
+            $fecha_termino = $this->fecha_termino_adultos_ss;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_adultos_ss', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_adultos_ss', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_adultos_ss', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_adultos_ss == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_adultos_ss', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_adultos_ss == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_adultos_ss', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_adultos_ss', 'Fecha es menor a la de inicio');
                         $this->fechas();
                     }
                 }
@@ -581,11 +1101,6 @@ class Seguimiento extends \yii\db\ActiveRecord
         $this->fecha_termino_adultos_ss = ($this->fecha_termino_adultos_ss)? Yii::$app->formatter->asDate($this->fecha_termino_adultos_ss, 'dd-MM-yyyy'): null;
 
     }
-
-
-
-
-
 
     public function attributeLabels()
     {

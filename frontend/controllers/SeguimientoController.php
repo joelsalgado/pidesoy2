@@ -689,6 +689,7 @@ class SeguimientoController extends Controller
 
                     $model->acciones_s_s = $model->acciones_ss+$model->acciones_trabajadores_ss+$model->acciones_adultos_ss;
                     $model->acciones_pendientez_s_s = $model->meta_s_s - $model->acciones_s_s;
+                    $model->status = 2;
 
 
                     $model->acciones_vivienda = $model->acciones_s_s + $model->acciones_despensas + $model->acciones_educacion +
