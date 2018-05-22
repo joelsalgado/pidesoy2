@@ -56,12 +56,537 @@ class Seguimiento extends \yii\db\ActiveRecord
             [['programa_luz'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_luz' => 'id']],
             [['programa_estufa'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_estufa' => 'id']],
             [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
+            ['acciones_piso', 'validatePiso'],
+            ['acciones_techo', 'validateTecho'],
+            ['acciones_muro', 'validateMuro'],
+            ['acciones_cuarto', 'validateCuarto'],
+            ['acciones_agua_potable', 'validateAgua_potable'],
+            ['acciones_agua_interior', 'validateAgua_interior'],
+            ['acciones_drenaje', 'validateDrenaje'],
+            ['acciones_luz', 'validateLuz'],
+
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+
+    public function validatePiso()
+    {
+        if($this->meta_piso == 1){
+            $fecha_inicio = $this->fecha_inicio_piso;
+            $fecha_entrega = $this->fecha_entrega_piso;
+            $fecha_termino = $this->fecha_termino_piso;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_piso', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_piso', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_piso', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_piso == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_piso', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_piso == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_piso', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_piso', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateTecho()
+    {
+        if($this->meta_techo == 1){
+            $fecha_inicio = $this->fecha_inicio_techo;
+            $fecha_entrega = $this->fecha_entrega_techo;
+            $fecha_termino = $this->fecha_termino_techo;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_techo', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_techo', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_techo', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_techo == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_techo', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_techo == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_techo', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_techo', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateMuro()
+    {
+        if($this->meta_muro == 1){
+            $fecha_inicio = $this->fecha_inicio_muro;
+            $fecha_entrega = $this->fecha_entrega_muro;
+            $fecha_termino = $this->fecha_termino_muro;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_muro', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_muro', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_muro', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_muro == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_muro', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_muro == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_muro', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_muro', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+
+    public function validateCuarto()
+    {
+        if($this->meta_cuarto == 1){
+            $fecha_inicio = $this->fecha_inicio_cuarto;
+            $fecha_entrega = $this->fecha_entrega_cuarto;
+            $fecha_termino = $this->fecha_termino_cuarto;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_cuarto', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_cuarto', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_cuarto', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_cuarto == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_cuarto', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_cuarto == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_cuarto', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_cuarto', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateAgua_potable()
+    {
+        if($this->meta_agua_potable == 1){
+            $fecha_inicio = $this->fecha_inicio_agua_potable;
+            $fecha_entrega = $this->fecha_entrega_agua_potable;
+            $fecha_termino = $this->fecha_termino_agua_potable;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_agua_potable', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_agua_potable', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_agua_potable', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_agua_potable == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_agua_potable', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_agua_potable == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_agua_potable', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_agua_potable', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateAgua_interior()
+    {
+        if($this->meta_agua_interior == 1){
+            $fecha_inicio = $this->fecha_inicio_agua_interior;
+            $fecha_entrega = $this->fecha_entrega_agua_interior;
+            $fecha_termino = $this->fecha_termino_agua_interior;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_agua_interior', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_agua_interior', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_agua_interior', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_agua_interior == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_agua_interior', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_agua_interior == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_agua_interior', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_agua_interior', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function validateDrenaje()
+    {
+        if($this->meta_drenaje == 1){
+            $fecha_inicio = $this->fecha_inicio_drenaje;
+            $fecha_entrega = $this->fecha_entrega_drenaje;
+            $fecha_termino = $this->fecha_termino_drenaje;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_drenaje', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_drenaje', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_drenaje', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_drenaje == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_drenaje', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_drenaje == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_drenaje', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_drenaje', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+
+    public function validateLuz()
+    {
+        if($this->meta_luz == 1){
+            $fecha_inicio = $this->fecha_inicio_luz;
+            $fecha_entrega = $this->fecha_entrega_luz;
+            $fecha_termino = $this->fecha_termino_luz;
+
+            if(!$fecha_inicio){
+                $this->addError('fecha_inicio_luz', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if(!$fecha_entrega){
+                $this->addError('fecha_entrega_luz', 'Fecha Obligatoria');
+                $this->fechas();
+            }
+
+            if ($fecha_inicio && $fecha_entrega){
+                $date1 = date_create($fecha_inicio);
+                $date2 = date_create($fecha_entrega);
+                $interval = date_diff($date1, $date2);
+                $differenceFormat = '%a';
+                //var_dump($interval->format($differenceFormat)); die;
+                if($date1 > $date2){
+                    $this->addError('fecha_entrega_luz', 'Fecha es menor a la de inicio');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_luz == 1){
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_luz', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+            }
+
+            if ($this->acciones_luz == 1){
+
+                if(!$fecha_termino){
+                    $this->addError('fecha_termino_luz', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if($fecha_inicio && $fecha_termino){
+                    $date1 = date_create($fecha_inicio);
+                    $date2 = date_create($fecha_termino);
+                    if($date1 > $date2){
+                        $this->addError('fecha_termino_luz', 'Fecha es menor a la de inicio');
+                        $this->fechas();
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    public function fechas(){
+        $this->fecha_inicio_piso = ($this->fecha_inicio_piso)? Yii::$app->formatter->asDate($this->fecha_inicio_piso, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_piso = ($this->fecha_entrega_piso)? Yii::$app->formatter->asDate($this->fecha_entrega_piso, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_piso = ($this->fecha_termino_piso)? Yii::$app->formatter->asDate($this->fecha_termino_piso, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_techo = ($this->fecha_inicio_techo) ? Yii::$app->formatter->asDate($this->fecha_inicio_techo, 'dd-MM-yyyy') : null;
+        $this->fecha_entrega_techo = ($this->fecha_entrega_techo) ? Yii::$app->formatter->asDate($this->fecha_entrega_techo, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_techo = ($this->fecha_termino_techo)? Yii::$app->formatter->asDate($this->fecha_termino_techo, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_muro = ($this->fecha_inicio_muro) ? Yii::$app->formatter->asDate($this->fecha_inicio_muro, 'dd-MM-yyyy') : null;
+        $this->fecha_entrega_muro = ($this->fecha_entrega_muro) ? Yii::$app->formatter->asDate($this->fecha_entrega_muro, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_muro = ($this->fecha_termino_muro)? Yii::$app->formatter->asDate($this->fecha_termino_muro, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_cuarto = ($this->fecha_inicio_cuarto) ? Yii::$app->formatter->asDate($this->fecha_inicio_cuarto, 'dd-MM-yyyy') : null;
+        $this->fecha_entrega_cuarto = ($this->fecha_entrega_cuarto) ? Yii::$app->formatter->asDate($this->fecha_entrega_cuarto, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_cuarto = ($this->fecha_termino_cuarto)? Yii::$app->formatter->asDate($this->fecha_termino_cuarto, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_agua_potable = ($this->fecha_inicio_agua_potable) ? Yii::$app->formatter->asDate($this->fecha_inicio_agua_potable, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_agua_potable = ($this->fecha_entrega_agua_potable) ? Yii::$app->formatter->asDate($this->fecha_entrega_agua_potable, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_agua_potable = ($this->fecha_termino_agua_potable)? Yii::$app->formatter->asDate($this->fecha_termino_agua_potable, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_agua_interior = ($this->fecha_inicio_agua_interior) ? Yii::$app->formatter->asDate($this->fecha_inicio_agua_interior, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_agua_interior = ($this->fecha_entrega_agua_interior) ? Yii::$app->formatter->asDate($this->fecha_entrega_agua_interior, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_agua_interior = ($this->fecha_termino_agua_interior)? Yii::$app->formatter->asDate($this->fecha_termino_agua_interior, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_drenaje = ($this->fecha_inicio_drenaje)? Yii::$app->formatter->asDate($this->fecha_inicio_drenaje, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_drenaje = ($this->fecha_entrega_drenaje) ? Yii::$app->formatter->asDate($this->fecha_entrega_drenaje, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_drenaje = ($this->fecha_termino_drenaje)? Yii::$app->formatter->asDate($this->fecha_termino_drenaje, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_luz = ($this->fecha_inicio_luz) ? Yii::$app->formatter->asDate($this->fecha_inicio_luz, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_luz = ($this->fecha_entrega_luz) ? Yii::$app->formatter->asDate($this->fecha_entrega_luz, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_luz = ($this->fecha_termino_luz)? Yii::$app->formatter->asDate($this->fecha_termino_luz, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_estufa = ($this->fecha_inicio_estufa) ? Yii::$app->formatter->asDate($this->fecha_inicio_estufa, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_estufa = ($this->fecha_entrega_estufa) ? Yii::$app->formatter->asDate($this->fecha_entrega_estufa, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_estufa = ($this->fecha_termino_estufa)? Yii::$app->formatter->asDate($this->fecha_termino_estufa, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_seguro_popular = ($this->fecha_inicio_seguro_popular) ? Yii::$app->formatter->asDate($this->fecha_inicio_seguro_popular, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_seguro_popular = ($this->fecha_entrega_seguro_popular) ? Yii::$app->formatter->asDate($this->fecha_entrega_seguro_popular, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_seguro_popular = ($this->fecha_termino_seguro_popular)? Yii::$app->formatter->asDate($this->fecha_termino_seguro_popular, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_3_15_escuela = ($this->fecha_inicio_3_15_escuela) ? Yii::$app->formatter->asDate($this->fecha_inicio_3_15_escuela, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_3_15_escuela = ($this->fecha_entrega_3_15_escuela) ? Yii::$app->formatter->asDate($this->fecha_entrega_3_15_escuela, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_3_15_escuela = ($this->fecha_termino_3_15_escuela)? Yii::$app->formatter->asDate($this->fecha_termino_3_15_escuela, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_antes_1982_primaria = ($this->fecha_inicio_antes_1982_primaria) ? Yii::$app->formatter->asDate($this->fecha_inicio_antes_1982_primaria, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_antes_1982_primaria = ($this->fecha_entrega_antes_1982_primaria)?Yii::$app->formatter->asDate($this->fecha_entrega_antes_1982_primaria, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_antes_1982_primaria = ($this->fecha_termino_antes_1982_primaria)? Yii::$app->formatter->asDate($this->fecha_termino_antes_1982_primaria, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_despues_1982_secundaria = ($this->fecha_inicio_despues_1982_secundaria) ? Yii::$app->formatter->asDate($this->fecha_inicio_despues_1982_secundaria, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_despues_1982_secundaria = ($this->fecha_entrega_despues_1982_secundaria) ? Yii::$app->formatter->asDate($this->fecha_entrega_despues_1982_secundaria, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_despues_1982_secundaria = ($this->fecha_termino_despues_1982_secundaria)? Yii::$app->formatter->asDate($this->fecha_termino_despues_1982_secundaria, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_despensas = ($this->fecha_inicio_despensas) ? Yii::$app->formatter->asDate($this->fecha_inicio_despensas, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_despensas = ($this->fecha_entrega_despensas) ? Yii::$app->formatter->asDate($this->fecha_entrega_despensas, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_despensas = ($this->fecha_termino_despensas)? Yii::$app->formatter->asDate($this->fecha_termino_despensas, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_ss = ($this->fecha_inicio_ss) ? Yii::$app->formatter->asDate($this->fecha_inicio_ss, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_ss = ($this->fecha_entrega_ss) ? Yii::$app->formatter->asDate($this->fecha_entrega_ss, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_ss = ($this->fecha_termino_ss)? Yii::$app->formatter->asDate($this->fecha_termino_ss, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_trabajadores_ss = ($this->fecha_inicio_trabajadores_ss) ? Yii::$app->formatter->asDate($this->fecha_inicio_trabajadores_ss, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_trabajadores_ss = ($this->fecha_entrega_trabajadores_ss) ? Yii::$app->formatter->asDate($this->fecha_entrega_trabajadores_ss, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_trabajadores_ss = ($this->fecha_termino_trabajadores_ss)? Yii::$app->formatter->asDate($this->fecha_termino_trabajadores_ss, 'dd-MM-yyyy'): null;
+        $this->fecha_inicio_adultos_ss = ($this->fecha_inicio_adultos_ss) ? Yii::$app->formatter->asDate($this->fecha_inicio_adultos_ss, 'dd-MM-yyyy'): null;
+        $this->fecha_entrega_adultos_ss = ($this->fecha_entrega_adultos_ss) ? Yii::$app->formatter->asDate($this->fecha_entrega_adultos_ss, 'dd-MM-yyyy'): null;
+        $this->fecha_termino_adultos_ss = ($this->fecha_termino_adultos_ss)? Yii::$app->formatter->asDate($this->fecha_termino_adultos_ss, 'dd-MM-yyyy'): null;
+
+    }
+
+
+
+
+
+
     public function attributeLabels()
     {
         return [
