@@ -213,7 +213,7 @@
         </tr>
     <?php endif; ?>
     <tr>
-        <td colspan="6" style="background-color:#a4a4a7" align="center"><b>ACTIVIDADES RELEVANTES</b></td>
+        <td colspan="6" style="background-color:#a4a4a7" align="center"><b>ACTIVIDADES COMUNITARIAS</b></td>
     </tr>
     <tr>
         <td colspan="3"><b>FECHA</b></td>
@@ -228,6 +228,26 @@
         <?php } ?>
     <?php else: ?>
         <tr>
+            <td colspan="3"> </td>
+            <td colspan="3"> </td>
+        </tr>
+    <?php endif; ?>
+    <tr>
+        <td colspan="2"><b>INVRESION</b></td>
+        <td colspan="2"><b>DEPENDENCIA</b></td>
+        <td colspan="2"><b>RESPONSABLE</b></td>
+    </tr>
+    <?php if($actividades): ?>
+        <?php foreach ($actividades as $act){ ?>
+            <tr>
+                <td colspan="2"><?= $act->inversion ?></td>
+                <td colspan="2"><?= $act->dependencia ?></td>
+                <td colspan="2"><?= $act->responsable ?></td>
+            </tr>
+        <?php } ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="3"> </td>
             <td colspan="3"> </td>
             <td colspan="3"> </td>
         </tr>
