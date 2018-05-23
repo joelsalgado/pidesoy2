@@ -216,44 +216,29 @@
         <td colspan="6" style="background-color:#a4a4a7" align="center"><b>ACTIVIDADES COMUNITARIAS</b></td>
     </tr>
     <tr>
-        <td colspan="3"><b>FECHA</b></td>
-        <td colspan="3"><b>DESCRIPCIÓN</b></td>
+        <td colspan="1"><b>FECHA</b></td>
+        <td colspan="1"><b>INVRESION</b></td>
+        <td colspan="1"><b>DEPENDENCIA</b></td>
+        <td colspan="1"><b>RESPONSABLE</b></td>
+        <td colspan="2"><b>DESCRIPCIÓN</b></td>
     </tr>
     <?php if($actividades): ?>
         <?php foreach ($actividades as $act){ ?>
             <tr>
-                <td colspan="3"><?= $act->fecha ?></td>
-                <td colspan="3"><?= $act->descripcion ?></td>
+                <td colspan="1"><?= $act->fecha ?></td>
+                <td colspan="1"><?= $act->inversion ?></td>
+                <td colspan="1"><?= $act->dependencia ?></td>
+                <td colspan="1"><?= $act->responsable ?></td>
+                <td colspan="2"><?= $act->descripcion ?></td>
             </tr>
         <?php } ?>
     <?php else: ?>
         <tr>
-            <td colspan="3"> </td>
-            <td colspan="3"> </td>
+            <td colspan="1"> </td>
+            <td colspan="1"> </td>
+            <td colspan="1"> </td>
+            <td colspan="1"> </td>
+            <td colspan="2"> </td>
         </tr>
     <?php endif; ?>
-    <tr>
-        <td colspan="2"><b>INVRESION</b></td>
-        <td colspan="2"><b>DEPENDENCIA</b></td>
-        <td colspan="2"><b>RESPONSABLE</b></td>
-    </tr>
-    <?php if($actividades): ?>
-        <?php foreach ($actividades as $act){ ?>
-            <tr>
-                <td colspan="2"><?= $act->inversion ?></td>
-                <td colspan="2"><?= $act->dependencia ?></td>
-                <td colspan="2"><?= $act->responsable ?></td>
-            </tr>
-        <?php } ?>
-    <?php else: ?>
-        <tr>
-            <td colspan="3"> </td>
-            <td colspan="3"> </td>
-            <td colspan="3"> </td>
-        </tr>
-    <?php endif; ?>
-
-
-
-
 </table>
