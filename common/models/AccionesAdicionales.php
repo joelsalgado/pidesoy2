@@ -46,6 +46,7 @@ class AccionesAdicionales extends \yii\db\ActiveRecord
             'inversion' => 'Inversion',
             'fecha_inicio' => 'Fecha Inicio',
             'fecha_entrega' => 'Fecha Entrega',
+            'fecha_termino' => 'Fecha Termino',
             'programa' => 'Programa',
             'responsable' => 'Responsable',
             'status' => 'Status',
