@@ -27,7 +27,7 @@ class Apartados extends \yii\db\ActiveRecord
     {
         return [
             [['solicitante_id', 'created_at', 'updated_at'], 'required'],
-            [['solicitante_id', 'periodo', 'apartado1', 'apartado2', 'apartado3', 'created_by', 'updated_by'], 'integer'],
+            [['solicitante_id', 'periodo', 'apartado1', 'apartado2', 'apartado3', 'apartado4', 'apartado5', 'apartado6', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
         ];
@@ -42,6 +42,9 @@ class Apartados extends \yii\db\ActiveRecord
             'apartado1' => 'Apartado1',
             'apartado2' => 'Apartado2',
             'apartado3' => 'Apartado3',
+            'apartado4' => 'Apartado4',
+            'apartado5' => 'Apartado5',
+            'apartado6' => 'Apartado6',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
             'created_at' => 'Created At',

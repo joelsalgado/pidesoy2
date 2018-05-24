@@ -6,16 +6,19 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\AccionesAdicionales */
 
-$this->title = 'Create Acciones Adicionales';
-$this->params['breadcrumbs'][] = ['label' => 'Acciones Adicionales', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Acciones Adicionales';
 ?>
 <div class="acciones-adicionales-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Acciones Adicionales</h3>
+        </div>
+        <div class="box-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 
 </div>

@@ -29,5 +29,9 @@ use yii\helpers\Html;
             '<i class="fa fa-share" aria-hidden="true"></i> '.Yii::$app->params['apartado5'].
             $class5Tipo5 = ($tipo == 5) ? $regular: $a5,$url5)?>
     </li>
+    <li <?= $class6Tipo = ($tipo == 6) ? 'class="active"': '' ?>> <?= Html::a(
+            '<i class="fa fa-plus" aria-hidden="true"></i> '.Yii::$app->params['apartado6'].
+            $class6Tipo6 = ($tipo == 6) ? $regular: $a6,$url6)?>
+    </li>
 </ul>
 

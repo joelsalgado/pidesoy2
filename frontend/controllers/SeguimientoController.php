@@ -704,8 +704,8 @@ class SeguimientoController extends Controller
 
 
                     if($model->save() && $apartado->save()){
-                        Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
-                        return $this->redirect(['solicitantes/index']);
+                        //Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
+                        return $this->redirect(['acciones-adicionales/index', 'id' => $model->solicitante_id]);
                     }
 
                 }
@@ -716,8 +716,8 @@ class SeguimientoController extends Controller
                 ]);
             }
             else{
-                Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
-                return $this->redirect(['solicitantes/index']);
+                //Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
+                return $this->redirect(['acciones-adicionales/index', 'id' => $model->solicitante_id]);
             }
         }
         else{

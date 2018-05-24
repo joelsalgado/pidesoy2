@@ -2,9 +2,12 @@
 
 namespace frontend\controllers;
 
+use common\models\Apartados;
+use common\models\Solicitantes;
 use Yii;
 use common\models\AccionesAdicionales;
 use yii\data\ActiveDataProvider;
+use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,15 +36,30 @@ class AccionesAdicionalesController extends Controller
      * Lists all AccionesAdicionales models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => AccionesAdicionales::find(),
-        ]);
+        try {
+            $model2 = Solicitantes::findOne($id);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+        } catch (Exception $exception) {
+            $model2 = null;
+        }
+
+        if($model2){
+            $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
+            $dataProvider = new ActiveDataProvider([
+                'query' => AccionesAdicionales::find()->where(['solicitante_id' => $id]),
+            ]);
+
+            return $this->render('index', [
+                'dataProvider' => $dataProvider,
+                'id' => $id,
+                'apartado' => $apartado
+            ]);
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 
     /**
@@ -56,63 +74,95 @@ class AccionesAdicionalesController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new AccionesAdicionales model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new AccionesAdicionales();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+    public function actionCreate($id)
+    {
+        try {
+            $model2 = Solicitantes::findOne($id);
+
+        } catch (Exception $exception) {
+            $model2 = null;
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        if($model2) {
+
+            $model = new AccionesAdicionales();
+            $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
+
+            if ($model->load(Yii::$app->request->post())) {
+                $model->solicitante_id = $id;
+                $model->periodo = 2018;
+                $model->status = 1;
+                $model->nombre_accion = trim(strtoupper($model->nombre_accion));
+                $model->programa = trim(strtoupper($model->programa));
+                $model->responsable = trim(strtoupper($model->responsable));
+                $model->acciones_pendientes = $model->meta - $model->acciones;
+                $model->fecha_inicio = ($model->fecha_inicio) ? Yii::$app->formatter->asDate($model->fecha_inicio, 'yyyy-MM-dd') : null;
+                $model->fecha_entrega = ($model->fecha_entrega) ? Yii::$app->formatter->asDate($model->fecha_entrega, 'yyyy-MM-dd') : null;
+                $model->fecha_termino = ($model->fecha_termino) ? Yii::$app->formatter->asDate($model->fecha_termino, 'yyyy-MM-dd') : null;
+
+                $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+                $apartado->apartado6 = 1;
+                $apartado->updated_at = $fecha;
+
+                if ($model->save() && $apartado->save()) {
+                    return $this->redirect(['index', 'id' => $model->solicitante_id]);
+                }
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 
-    /**
-     * Updates an existing AccionesAdicionales model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        if($model){
+            $model->fecha_inicio = ($model->fecha_inicio)? Yii::$app->formatter->asDate($model->fecha_inicio, 'dd-MM-yyyy'): null;
+            $model->fecha_entrega = ($model->fecha_entrega)? Yii::$app->formatter->asDate($model->fecha_entrega, 'dd-MM-yyyy'): null;
+            $model->fecha_termino = ($model->fecha_termino)? Yii::$app->formatter->asDate($model->fecha_termino, 'dd-MM-yyyy'): null;
+            if ($model->load(Yii::$app->request->post())) {
+                $model->nombre_accion = trim(strtoupper($model->nombre_accion));
+                $model->programa = trim(strtoupper($model->programa));
+                $model->responsable = trim(strtoupper($model->responsable));
+                $model->acciones_pendientes = $model->meta - $model->acciones;
+                $model->fecha_inicio = ($model->fecha_inicio)? Yii::$app->formatter->asDate($model->fecha_inicio, 'yyyy-MM-dd'): null;
+                $model->fecha_entrega = ($model->fecha_entrega)? Yii::$app->formatter->asDate($model->fecha_entrega, 'yyyy-MM-dd'): null;
+                $model->fecha_termino = ($model->fecha_termino)? Yii::$app->formatter->asDate($model->fecha_termino, 'yyyy-MM-dd'): null;
+                if($model->save()){
+                    return $this->redirect(['index', 'id' => $model->solicitante_id]);
+                }
+            }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 
-    /**
-     * Deletes an existing AccionesAdicionales model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
+        $adicional = AccionesAdicionales::findOne($id);
         $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'id' => $adicional->solicitante_id]);
     }
 
-    /**
-     * Finds the AccionesAdicionales model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return AccionesAdicionales the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    public function actionFinalizar()
+    {
+        Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
+        return $this->redirect(['solicitantes/index']);
+    }
+
     protected function findModel($id)
     {
         if (($model = AccionesAdicionales::findOne($id)) !== null) {
