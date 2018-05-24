@@ -1236,7 +1236,7 @@ use yii\helpers\ArrayHelper;
         <?php if($model->meta_despensas == 1) : ?>
             <div class="row">
                 <div class="alert alert-success-alt">
-                    <strong>DESPENSAS ENTREGADAS</strong>
+                    <strong>DESPENSAS POR ENTREGAR</strong>
                     <i class="fa fa-home" aria-hidden="true"></i>
                 </div>
                 <div class="row">
@@ -1609,7 +1609,6 @@ use yii\helpers\ArrayHelper;
                 </div>
             </div>
         <?php endif; ?>
-
 
         <div class="form-group">
             <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
