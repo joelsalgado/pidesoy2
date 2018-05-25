@@ -8,6 +8,9 @@ use yii\behaviors\TimestampBehavior;
 
 class Seguimiento extends \yii\db\ActiveRecord
 {
+    const SCENARIO_P = 'SEGUIMIENTO';
+    public $scenario = 'web';
+
     public function behaviors()
     {
         return [
@@ -30,51 +33,83 @@ class Seguimiento extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
-            [['solicitante_id'], 'required'],
-            [['solicitante_id', 'periodo', 'meta_piso', 'acciones_piso', 'acciones_pendientes_piso', 'programa_piso', 'meta_techo', 'acciones_techo', 'acciones_pendientes_techo', 'programa_techo', 'meta_muro', 'acciones_muro', 'acciones_pendientes_muro', 'programa_muro', 'meta_cuarto', 'acciones_cuarto', 'acciones_pendientes_cuarto', 'programa_cuarto', 'meta_calidad_espacios_vivienda', 'acciones_calidad_espacios_vivienda', 'acciones_pendientez_calidad_espacios_vivienda', 'meta_agua_potable', 'acciones_agua_potable', 'acciones_pendientes_agua_potable', 'programa_agua_potable', 'meta_agua_interior', 'acciones_agua_interior', 'acciones_pendientes_agua_interior', 'programa_agua_interior', 'meta_drenaje', 'acciones_drenaje', 'acciones_pendientes_drenaje', 'programa_drenaje', 'meta_luz', 'acciones_luz', 'acciones_pendientes_luz', 'programa_luz', 'meta_estufa', 'acciones_estufa', 'acciones_pendientes_estufa', 'programa_estufa', 'meta_servicios_basicos', 'acciones_servicios_basicos', 'acciones_pendientez_servicios_basicos', 'meta_seguro_popular', 'acciones_seguro_popular', 'acciones_pendientes_seguro_popular', 'programa_seguro_popular', 'meta_3_15_escuela', 'acciones_3_15_escuela', 'acciones_pendientes_3_15_escuela', 'programa_3_15_escuela', 'meta_antes_1982_primaria', 'acciones_antes_1982_primaria', 'acciones_pendientes_antes_1982_primaria', 'programa_antes_1982_primaria', 'meta_despues_1982_secundaria', 'acciones_despues_1982_secundaria', 'acciones_pendientes_despues_1982_secundaria', 'programa_despues_1982_secundaria', 'meta_educacion', 'acciones_educacion', 'acciones_pendientez_educacion', 'meta_despensas', 'acciones_despensas', 'acciones_pendientes_despensas', 'programa_despensas', 'meta_ss', 'acciones_ss', 'acciones_pendientes_ss', 'programa_ss', 'meta_trabajadores_ss', 'acciones_trabajadores_ss', 'acciones_pendientes_trabajadores_ss', 'programa_trabajadores_ss', 'meta_adultos_ss', 'acciones_adultos_ss', 'acciones_pendientes_adultos_ss', 'programa_adultos_ss', 'meta_s_s', 'acciones_s_s', 'acciones_pendientez_s_s', 'meta_vivienda', 'acciones_vivienda', 'acciones_pendientez_vivienda', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer','message' => 'Debe ser numerico'],
-            [['inversion_piso', 'inversion_techo', 'inversion_muro', 'inversion_cuarto', 'inversion_agua_potable', 'inversion_agua_interior', 'inversion_drenaje', 'inversion_luz', 'inversion_estufa', 'inversion_seguro_popular', 'inversion_3_15_escuela', 'inversion_antes_1982_primaria', 'inversion_despues_1982_secundaria', 'inversion_despensas', 'inversion_ss', 'inversion_trabajadores_ss', 'inversion_adultos_ss', 'inversion_vivienda'], 'number', 'message' => 'Debe ser numerico'],
-            [['fecha_inicio_piso', 'fecha_entrega_piso', 'fecha_inicio_techo', 'fecha_entrega_techo', 'fecha_inicio_muro', 'fecha_entrega_muro', 'fecha_inicio_cuarto', 'fecha_entrega_cuarto', 'fecha_inicio_agua_potable', 'fecha_entrega_agua_potable', 'fecha_inicio_agua_interior', 'fecha_entrega_agua_interior', 'fecha_inicio_drenaje', 'fecha_entrega_drenaje', 'fecha_inicio_luz', 'fecha_entrega_luz', 'fecha_inicio_estufa', 'fecha_entrega_estufa', 'fecha_inicio_seguro_popular', 'fecha_entrega_seguro_popular', 'fecha_inicio_3_15_escuela', 'fecha_entrega_3_15_escuela', 'fecha_inicio_antes_1982_primaria', 'fecha_entrega_antes_1982_primaria', 'fecha_inicio_despues_1982_secundaria', 'fecha_entrega_despues_1982_secundaria', 'fecha_inicio_despensas', 'fecha_entrega_despensas', 'fecha_inicio_ss', 'fecha_entrega_ss', 'fecha_inicio_trabajadores_ss', 'fecha_entrega_trabajadores_ss', 'fecha_inicio_adultos_ss', 'fecha_entrega_adultos_ss',
-                'fecha_termino_piso','fecha_termino_techo','fecha_termino_muro','fecha_termino_cuarto','fecha_termino_agua_potable','fecha_termino_agua_interior','fecha_termino_drenaje','fecha_termino_luz','fecha_termino_estufa','fecha_termino_seguro_popular','fecha_termino_3_15_escuela','fecha_termino_antes_1982_primaria','fecha_termino_despues_1982_secundaria','fecha_termino_despensas','fecha_termino_ss','fecha_termino_trabajadores_ss','fecha_termino_adultos_ss'], 'safe'],
-            [['responsable_piso', 'responsable_techo', 'responsable_muro', 'responsable_cuarto', 'responsable_agua_potable', 'responsable_agua_interior', 'responsable_drenaje', 'responsable_luz', 'responsable_estufa', 'responsable_seguro_popular', 'responsable_3_15_escuela', 'responsable_antes_1982_primaria', 'responsable_despues_1982_secundaria', 'responsable_despensas', 'responsable_ss', 'responsable_trabajadores_ss', 'responsable_adultos_ss'], 'string', 'max' => 120],
-            [['acciones_piso', 'acciones_techo', 'acciones_muro', 'acciones_cuarto', 'acciones_agua_potable', 'acciones_agua_interior','acciones_drenaje','acciones_luz','acciones_estufa','acciones_seguro_popular','acciones_3_15_escuela','acciones_antes_1982_primaria','acciones_despues_1982_secundaria','acciones_despensas','acciones_ss','acciones_trabajadores_ss','acciones_adultos_ss'], 'boolean', 'message' => 'Solo 0 o 1'],
-            [['programa_piso'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_piso' => 'id']],
-            [['programa_seguro_popular'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_seguro_popular' => 'id']],
-            [['programa_3_15_escuela'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_3_15_escuela' => 'id']],
-            [['programa_antes_1982_primaria'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_antes_1982_primaria' => 'id']],
-            [['programa_despues_1982_secundaria'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_despues_1982_secundaria' => 'id']],
-            [['programa_despensas'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_despensas' => 'id']],
-            [['programa_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_ss' => 'id']],
-            [['programa_trabajadores_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_trabajadores_ss' => 'id']],
-            [['programa_adultos_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_adultos_ss' => 'id']],
-            [['programa_techo'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_techo' => 'id']],
-            [['programa_muro'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_muro' => 'id']],
-            [['programa_cuarto'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_cuarto' => 'id']],
-            [['programa_agua_potable'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_agua_potable' => 'id']],
-            [['programa_agua_interior'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_agua_interior' => 'id']],
-            [['programa_drenaje'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_drenaje' => 'id']],
-            [['programa_luz'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_luz' => 'id']],
-            [['programa_estufa'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_estufa' => 'id']],
-            [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
-            ['acciones_piso', 'validatePiso'],
-            ['acciones_techo', 'validateTecho'],
-            ['acciones_muro', 'validateMuro'],
-            ['acciones_cuarto', 'validateCuarto'],
-            ['acciones_agua_potable', 'validateAgua_potable'],
-            ['acciones_agua_interior', 'validateAgua_interior'],
-            ['acciones_drenaje', 'validateDrenaje'],
-            ['acciones_luz', 'validateLuz'],
-            ['acciones_estufa', 'validateEstufa'],
-            ['acciones_seguro_popular', 'validateSeguro_popular'],
-            ['acciones_3_15_escuela', 'validateDe3_15_escuela'],
-            ['acciones_antes_1982_primaria', 'validateAntes_1982_primaria'],
-            ['acciones_despues_1982_secundaria', 'validateDespues_1982_secundaria'],
-            ['acciones_despensas', 'validateDespensas'],
-            ['acciones_ss', 'validateSs'],
-            ['acciones_trabajadores_ss', 'validateTrabajadores_ss'],
-            ['acciones_adultos_ss', 'validateAdultos_ss'],
+        if ($this->scenario == self::SCENARIO_P) {
+            return [
+                [['solicitante_id'], 'required'],
+                [['solicitante_id', 'periodo', 'meta_piso', 'acciones_piso', 'acciones_pendientes_piso', 'programa_piso', 'meta_techo', 'acciones_techo', 'acciones_pendientes_techo', 'programa_techo', 'meta_muro', 'acciones_muro', 'acciones_pendientes_muro', 'programa_muro', 'meta_cuarto', 'acciones_cuarto', 'acciones_pendientes_cuarto', 'programa_cuarto', 'meta_calidad_espacios_vivienda', 'acciones_calidad_espacios_vivienda', 'acciones_pendientez_calidad_espacios_vivienda', 'meta_agua_potable', 'acciones_agua_potable', 'acciones_pendientes_agua_potable', 'programa_agua_potable', 'meta_agua_interior', 'acciones_agua_interior', 'acciones_pendientes_agua_interior', 'programa_agua_interior', 'meta_drenaje', 'acciones_drenaje', 'acciones_pendientes_drenaje', 'programa_drenaje', 'meta_luz', 'acciones_luz', 'acciones_pendientes_luz', 'programa_luz', 'meta_estufa', 'acciones_estufa', 'acciones_pendientes_estufa', 'programa_estufa', 'meta_servicios_basicos', 'acciones_servicios_basicos', 'acciones_pendientez_servicios_basicos', 'meta_seguro_popular', 'acciones_seguro_popular', 'acciones_pendientes_seguro_popular', 'programa_seguro_popular', 'meta_3_15_escuela', 'acciones_3_15_escuela', 'acciones_pendientes_3_15_escuela', 'programa_3_15_escuela', 'meta_antes_1982_primaria', 'acciones_antes_1982_primaria', 'acciones_pendientes_antes_1982_primaria', 'programa_antes_1982_primaria', 'meta_despues_1982_secundaria', 'acciones_despues_1982_secundaria', 'acciones_pendientes_despues_1982_secundaria', 'programa_despues_1982_secundaria', 'meta_educacion', 'acciones_educacion', 'acciones_pendientez_educacion', 'meta_despensas', 'acciones_despensas', 'acciones_pendientes_despensas', 'programa_despensas', 'meta_ss', 'acciones_ss', 'acciones_pendientes_ss', 'programa_ss', 'meta_trabajadores_ss', 'acciones_trabajadores_ss', 'acciones_pendientes_trabajadores_ss', 'programa_trabajadores_ss', 'meta_adultos_ss', 'acciones_adultos_ss', 'acciones_pendientes_adultos_ss', 'programa_adultos_ss', 'meta_s_s', 'acciones_s_s', 'acciones_pendientez_s_s', 'meta_vivienda', 'acciones_vivienda', 'acciones_pendientez_vivienda', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer','message' => 'Debe ser numerico'],
+                [['inversion_piso', 'inversion_techo', 'inversion_muro', 'inversion_cuarto', 'inversion_agua_potable', 'inversion_agua_interior', 'inversion_drenaje', 'inversion_luz', 'inversion_estufa', 'inversion_seguro_popular', 'inversion_3_15_escuela', 'inversion_antes_1982_primaria', 'inversion_despues_1982_secundaria', 'inversion_despensas', 'inversion_ss', 'inversion_trabajadores_ss', 'inversion_adultos_ss', 'inversion_vivienda'], 'number', 'message' => 'Debe ser numerico'],
+                [['fecha_inicio_piso', 'fecha_entrega_piso', 'fecha_inicio_techo', 'fecha_entrega_techo', 'fecha_inicio_muro', 'fecha_entrega_muro', 'fecha_inicio_cuarto', 'fecha_entrega_cuarto', 'fecha_inicio_agua_potable', 'fecha_entrega_agua_potable', 'fecha_inicio_agua_interior', 'fecha_entrega_agua_interior', 'fecha_inicio_drenaje', 'fecha_entrega_drenaje', 'fecha_inicio_luz', 'fecha_entrega_luz', 'fecha_inicio_estufa', 'fecha_entrega_estufa', 'fecha_inicio_seguro_popular', 'fecha_entrega_seguro_popular', 'fecha_inicio_3_15_escuela', 'fecha_entrega_3_15_escuela', 'fecha_inicio_antes_1982_primaria', 'fecha_entrega_antes_1982_primaria', 'fecha_inicio_despues_1982_secundaria', 'fecha_entrega_despues_1982_secundaria', 'fecha_inicio_despensas', 'fecha_entrega_despensas', 'fecha_inicio_ss', 'fecha_entrega_ss', 'fecha_inicio_trabajadores_ss', 'fecha_entrega_trabajadores_ss', 'fecha_inicio_adultos_ss', 'fecha_entrega_adultos_ss',
+                    'fecha_termino_piso','fecha_termino_techo','fecha_termino_muro','fecha_termino_cuarto','fecha_termino_agua_potable','fecha_termino_agua_interior','fecha_termino_drenaje','fecha_termino_luz','fecha_termino_estufa','fecha_termino_seguro_popular','fecha_termino_3_15_escuela','fecha_termino_antes_1982_primaria','fecha_termino_despues_1982_secundaria','fecha_termino_despensas','fecha_termino_ss','fecha_termino_trabajadores_ss','fecha_termino_adultos_ss'], 'safe'],
+                [['responsable_piso', 'responsable_techo', 'responsable_muro', 'responsable_cuarto', 'responsable_agua_potable', 'responsable_agua_interior', 'responsable_drenaje', 'responsable_luz', 'responsable_estufa', 'responsable_seguro_popular', 'responsable_3_15_escuela', 'responsable_antes_1982_primaria', 'responsable_despues_1982_secundaria', 'responsable_despensas', 'responsable_ss', 'responsable_trabajadores_ss', 'responsable_adultos_ss'], 'string', 'max' => 120],
+                [['acciones_piso', 'acciones_techo', 'acciones_muro', 'acciones_cuarto', 'acciones_agua_potable', 'acciones_agua_interior','acciones_drenaje','acciones_luz','acciones_estufa','acciones_seguro_popular','acciones_3_15_escuela','acciones_antes_1982_primaria','acciones_despues_1982_secundaria','acciones_despensas','acciones_ss','acciones_trabajadores_ss','acciones_adultos_ss'], 'boolean', 'message' => 'Solo 0 o 1'],
+                [['programa_piso'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_piso' => 'id']],
+                [['programa_seguro_popular'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_seguro_popular' => 'id']],
+                [['programa_3_15_escuela'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_3_15_escuela' => 'id']],
+                [['programa_antes_1982_primaria'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_antes_1982_primaria' => 'id']],
+                [['programa_despues_1982_secundaria'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_despues_1982_secundaria' => 'id']],
+                [['programa_despensas'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_despensas' => 'id']],
+                [['programa_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_ss' => 'id']],
+                [['programa_trabajadores_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_trabajadores_ss' => 'id']],
+                [['programa_adultos_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_adultos_ss' => 'id']],
+                [['programa_techo'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_techo' => 'id']],
+                [['programa_muro'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_muro' => 'id']],
+                [['programa_cuarto'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_cuarto' => 'id']],
+                [['programa_agua_potable'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_agua_potable' => 'id']],
+                [['programa_agua_interior'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_agua_interior' => 'id']],
+                [['programa_drenaje'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_drenaje' => 'id']],
+                [['programa_luz'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_luz' => 'id']],
+                [['programa_estufa'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_estufa' => 'id']],
+                [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
+            ];
+        }
+        else{
+            return [
+                [['solicitante_id'], 'required'],
+                [['solicitante_id', 'periodo', 'meta_piso', 'acciones_piso', 'acciones_pendientes_piso', 'programa_piso', 'meta_techo', 'acciones_techo', 'acciones_pendientes_techo', 'programa_techo', 'meta_muro', 'acciones_muro', 'acciones_pendientes_muro', 'programa_muro', 'meta_cuarto', 'acciones_cuarto', 'acciones_pendientes_cuarto', 'programa_cuarto', 'meta_calidad_espacios_vivienda', 'acciones_calidad_espacios_vivienda', 'acciones_pendientez_calidad_espacios_vivienda', 'meta_agua_potable', 'acciones_agua_potable', 'acciones_pendientes_agua_potable', 'programa_agua_potable', 'meta_agua_interior', 'acciones_agua_interior', 'acciones_pendientes_agua_interior', 'programa_agua_interior', 'meta_drenaje', 'acciones_drenaje', 'acciones_pendientes_drenaje', 'programa_drenaje', 'meta_luz', 'acciones_luz', 'acciones_pendientes_luz', 'programa_luz', 'meta_estufa', 'acciones_estufa', 'acciones_pendientes_estufa', 'programa_estufa', 'meta_servicios_basicos', 'acciones_servicios_basicos', 'acciones_pendientez_servicios_basicos', 'meta_seguro_popular', 'acciones_seguro_popular', 'acciones_pendientes_seguro_popular', 'programa_seguro_popular', 'meta_3_15_escuela', 'acciones_3_15_escuela', 'acciones_pendientes_3_15_escuela', 'programa_3_15_escuela', 'meta_antes_1982_primaria', 'acciones_antes_1982_primaria', 'acciones_pendientes_antes_1982_primaria', 'programa_antes_1982_primaria', 'meta_despues_1982_secundaria', 'acciones_despues_1982_secundaria', 'acciones_pendientes_despues_1982_secundaria', 'programa_despues_1982_secundaria', 'meta_educacion', 'acciones_educacion', 'acciones_pendientez_educacion', 'meta_despensas', 'acciones_despensas', 'acciones_pendientes_despensas', 'programa_despensas', 'meta_ss', 'acciones_ss', 'acciones_pendientes_ss', 'programa_ss', 'meta_trabajadores_ss', 'acciones_trabajadores_ss', 'acciones_pendientes_trabajadores_ss', 'programa_trabajadores_ss', 'meta_adultos_ss', 'acciones_adultos_ss', 'acciones_pendientes_adultos_ss', 'programa_adultos_ss', 'meta_s_s', 'acciones_s_s', 'acciones_pendientez_s_s', 'meta_vivienda', 'acciones_vivienda', 'acciones_pendientez_vivienda', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer','message' => 'Debe ser numerico'],
+                [['inversion_piso', 'inversion_techo', 'inversion_muro', 'inversion_cuarto', 'inversion_agua_potable', 'inversion_agua_interior', 'inversion_drenaje', 'inversion_luz', 'inversion_estufa', 'inversion_seguro_popular', 'inversion_3_15_escuela', 'inversion_antes_1982_primaria', 'inversion_despues_1982_secundaria', 'inversion_despensas', 'inversion_ss', 'inversion_trabajadores_ss', 'inversion_adultos_ss', 'inversion_vivienda'], 'number', 'message' => 'Debe ser numerico'],
+                [['fecha_inicio_piso', 'fecha_entrega_piso', 'fecha_inicio_techo', 'fecha_entrega_techo', 'fecha_inicio_muro', 'fecha_entrega_muro', 'fecha_inicio_cuarto', 'fecha_entrega_cuarto', 'fecha_inicio_agua_potable', 'fecha_entrega_agua_potable', 'fecha_inicio_agua_interior', 'fecha_entrega_agua_interior', 'fecha_inicio_drenaje', 'fecha_entrega_drenaje', 'fecha_inicio_luz', 'fecha_entrega_luz', 'fecha_inicio_estufa', 'fecha_entrega_estufa', 'fecha_inicio_seguro_popular', 'fecha_entrega_seguro_popular', 'fecha_inicio_3_15_escuela', 'fecha_entrega_3_15_escuela', 'fecha_inicio_antes_1982_primaria', 'fecha_entrega_antes_1982_primaria', 'fecha_inicio_despues_1982_secundaria', 'fecha_entrega_despues_1982_secundaria', 'fecha_inicio_despensas', 'fecha_entrega_despensas', 'fecha_inicio_ss', 'fecha_entrega_ss', 'fecha_inicio_trabajadores_ss', 'fecha_entrega_trabajadores_ss', 'fecha_inicio_adultos_ss', 'fecha_entrega_adultos_ss',
+                    'fecha_termino_piso','fecha_termino_techo','fecha_termino_muro','fecha_termino_cuarto','fecha_termino_agua_potable','fecha_termino_agua_interior','fecha_termino_drenaje','fecha_termino_luz','fecha_termino_estufa','fecha_termino_seguro_popular','fecha_termino_3_15_escuela','fecha_termino_antes_1982_primaria','fecha_termino_despues_1982_secundaria','fecha_termino_despensas','fecha_termino_ss','fecha_termino_trabajadores_ss','fecha_termino_adultos_ss'], 'safe'],
+                [['responsable_piso', 'responsable_techo', 'responsable_muro', 'responsable_cuarto', 'responsable_agua_potable', 'responsable_agua_interior', 'responsable_drenaje', 'responsable_luz', 'responsable_estufa', 'responsable_seguro_popular', 'responsable_3_15_escuela', 'responsable_antes_1982_primaria', 'responsable_despues_1982_secundaria', 'responsable_despensas', 'responsable_ss', 'responsable_trabajadores_ss', 'responsable_adultos_ss'], 'string', 'max' => 120],
+                [['acciones_piso', 'acciones_techo', 'acciones_muro', 'acciones_cuarto', 'acciones_agua_potable', 'acciones_agua_interior','acciones_drenaje','acciones_luz','acciones_estufa','acciones_seguro_popular','acciones_3_15_escuela','acciones_antes_1982_primaria','acciones_despues_1982_secundaria','acciones_despensas','acciones_ss','acciones_trabajadores_ss','acciones_adultos_ss'], 'boolean', 'message' => 'Solo 0 o 1'],
+                [['programa_piso'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_piso' => 'id']],
+                [['programa_seguro_popular'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_seguro_popular' => 'id']],
+                [['programa_3_15_escuela'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_3_15_escuela' => 'id']],
+                [['programa_antes_1982_primaria'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_antes_1982_primaria' => 'id']],
+                [['programa_despues_1982_secundaria'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_despues_1982_secundaria' => 'id']],
+                [['programa_despensas'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_despensas' => 'id']],
+                [['programa_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_ss' => 'id']],
+                [['programa_trabajadores_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_trabajadores_ss' => 'id']],
+                [['programa_adultos_ss'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_adultos_ss' => 'id']],
+                [['programa_techo'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_techo' => 'id']],
+                [['programa_muro'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_muro' => 'id']],
+                [['programa_cuarto'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_cuarto' => 'id']],
+                [['programa_agua_potable'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_agua_potable' => 'id']],
+                [['programa_agua_interior'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_agua_interior' => 'id']],
+                [['programa_drenaje'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_drenaje' => 'id']],
+                [['programa_luz'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_luz' => 'id']],
+                [['programa_estufa'], 'exist', 'skipOnError' => true, 'targetClass' => Programas::className(), 'targetAttribute' => ['programa_estufa' => 'id']],
+                [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
+                ['acciones_piso', 'validatePiso'],
+                ['acciones_techo', 'validateTecho'],
+                ['acciones_muro', 'validateMuro'],
+                ['acciones_cuarto', 'validateCuarto'],
+                ['acciones_agua_potable', 'validateAgua_potable'],
+                ['acciones_agua_interior', 'validateAgua_interior'],
+                ['acciones_drenaje', 'validateDrenaje'],
+                ['acciones_luz', 'validateLuz'],
+                ['acciones_estufa', 'validateEstufa'],
+                ['acciones_seguro_popular', 'validateSeguro_popular'],
+                ['acciones_3_15_escuela', 'validateDe3_15_escuela'],
+                ['acciones_antes_1982_primaria', 'validateAntes_1982_primaria'],
+                ['acciones_despues_1982_secundaria', 'validateDespues_1982_secundaria'],
+                ['acciones_despensas', 'validateDespensas'],
+                ['acciones_ss', 'validateSs'],
+                ['acciones_trabajadores_ss', 'validateTrabajadores_ss'],
+                ['acciones_adultos_ss', 'validateAdultos_ss'],
 
-        ];
+            ];
+        }
+
     }
 
 
@@ -1448,5 +1483,747 @@ class Seguimiento extends \yii\db\ActiveRecord
     public function getSolicitante()
     {
         return $this->hasOne(Solicitantes::className(), ['id' => 'solicitante_id']);
+    }
+
+    public static function getSemaforo($id){
+        $model = self::find()->where(['solicitante_id' => $id])->one();
+
+        if($model){
+            if($model->status == 2) {
+
+                if ($model->meta_piso == 1) {
+                    if ($model->acciones_piso == 1) {
+                        $piso = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_piso;
+                        $fecha_entrega = $model->fecha_entrega_piso;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $piso = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $piso = 100 / $diff1;
+                                } else {
+                                    $piso = 100;
+                                }
+                            }
+                            $piso = ($piso > 100) ? 100 : $piso;
+                        } else {
+                            $piso = 0;
+                        }
+                    }
+
+                } else {
+                    $piso = 100;
+                }
+
+                if ($model->meta_techo == 1) {
+                    if ($model->acciones_techo == 1) {
+                        $techo = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_techo;
+                        $fecha_entrega = $model->fecha_entrega_techo;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $techo = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $techo = 100 / $diff1;
+                                } else {
+                                    $techo = 100;
+                                }
+                            }
+                            $techo = ($techo > 100) ? 100 : $techo;
+                        } else {
+                            $techo = 0;
+                        }
+                    }
+                } else {
+                    $techo = 100;
+                }
+
+                if ($model->meta_muro == 1) {
+                    if ($model->acciones_muro == 1) {
+                        $muro = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_muro;
+                        $fecha_entrega = $model->fecha_entrega_muro;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $muro = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $muro = 100 / $diff1;
+                                } else {
+                                    $muro = 100;
+                                }
+                            }
+                            $muro = ($muro > 100) ? 100 : $muro;
+                        } else {
+                            $muro = 0;
+                        }
+                    }
+                } else {
+                    $muro = 100;
+                }
+
+                if ($model->meta_cuarto == 1) {
+                    if ($model->acciones_cuarto == 1) {
+                        $cuarto = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_cuarto;
+                        $fecha_entrega = $model->fecha_entrega_cuarto;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $cuarto = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $cuarto = 100 / $diff1;
+                                } else {
+                                    $cuarto = 100;
+                                }
+                            }
+                            $cuarto = ($cuarto > 100) ? 100 : $cuarto;
+                        } else {
+                            $cuarto = 0;
+                        }
+                    }
+                } else {
+                    $cuarto = 100;
+                }
+
+                if ($model->meta_agua_potable == 1) {
+                    if ($model->acciones_agua_potable == 1) {
+                        $agua_potable = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_agua_potable;
+                        $fecha_entrega = $model->fecha_entrega_agua_potable;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $agua_potable = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $agua_potable = 100 / $diff1;
+                                } else {
+                                    $agua_potable = 100;
+                                }
+                            }
+                            $agua_potable = ($agua_potable > 100) ? 100 : $agua_potable;
+                        } else {
+                            $agua_potable = 0;
+                        }
+                    }
+                } else {
+                    $agua_potable = 100;
+                }
+
+                if ($model->meta_agua_interior == 1) {
+                    if ($model->acciones_agua_interior == 1) {
+                        $agua_interior = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_agua_interior;
+                        $fecha_entrega = $model->fecha_entrega_agua_interior;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $agua_interior = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $agua_interior = 100 / $diff1;
+                                } else {
+                                    $agua_interior = 100;
+                                }
+                            }
+                            $agua_interior = ($agua_interior > 100) ? 100 : $agua_interior;
+                        } else {
+                            $agua_interior = 0;
+                        }
+                    }
+                } else {
+                    $agua_interior = 100;
+                }
+
+                if ($model->meta_drenaje == 1) {
+                    if ($model->acciones_drenaje == 1) {
+                        $drenaje = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_drenaje;
+                        $fecha_entrega = $model->fecha_entrega_drenaje;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $drenaje = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $drenaje = 100 / $diff1;
+                                } else {
+                                    $drenaje = 100;
+                                }
+                            }
+                            $drenaje = ($drenaje > 100) ? 100 : $drenaje;
+                        } else {
+                            $drenaje = 0;
+                        }
+                    }
+                } else {
+                    $drenaje = 100;
+                }
+
+                if ($model->meta_luz == 1) {
+                    if ($model->acciones_luz == 1) {
+                        $luz = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_luz;
+                        $fecha_entrega = $model->fecha_entrega_luz;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $luz = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $luz = 100 / $diff1;
+                                } else {
+                                    $luz = 100;
+                                }
+                            }
+                            $luz = ($luz > 100) ? 100 : $luz;
+                        } else {
+                            $luz = 0;
+                        }
+                    }
+                } else {
+                    $luz = 100;
+                }
+
+                if ($model->meta_estufa == 1) {
+                    if ($model->acciones_estufa == 1) {
+                        $estufa = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_estufa;
+                        $fecha_entrega = $model->fecha_entrega_estufa;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $estufa = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $estufa = 100 / $diff1;
+                                } else {
+                                    $estufa = 100;
+                                }
+                            }
+                            $estufa = ($estufa > 100) ? 100 : $estufa;
+                        } else {
+                            $estufa = 0;
+                        }
+                    }
+                } else {
+                    $estufa = 100;
+                }
+
+                if ($model->meta_seguro_popular == 1) {
+                    if ($model->acciones_seguro_popular == 1) {
+                        $seguro_popular = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_seguro_popular;
+                        $fecha_entrega = $model->fecha_entrega_seguro_popular;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $seguro_popular = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $seguro_popular = 100 / $diff1;
+                                } else {
+                                    $seguro_popular = 100;
+                                }
+                            }
+                            $seguro_popular = ($seguro_popular > 100) ? 100 : $seguro_popular;
+                        } else {
+                            $seguro_popular = 0;
+                        }
+                    }
+                } else {
+                    $seguro_popular = 100;
+                }
+
+                if ($model->meta_3_15_escuela == 1) {
+                    if ($model->acciones_3_15_escuela == 1) {
+                        $de3_15_escuela = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_3_15_escuela;
+                        $fecha_entrega = $model->fecha_entrega_3_15_escuela;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $de_3_15_escuela = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $de3_15_escuela = 100 / $diff1;
+                                } else {
+                                    $de3_15_escuela = 100;
+                                }
+                            }
+                            $de3_15_escuela = ($de3_15_escuela > 100) ? 100 : $de3_15_escuela;
+                        } else {
+                            $de3_15_escuela = 0;
+                        }
+                    }
+                } else {
+                    $de3_15_escuela = 100;
+                }
+
+                if ($model->meta_antes_1982_primaria == 1) {
+                    if ($model->acciones_antes_1982_primaria == 1) {
+                        $antes_1982_primaria = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_antes_1982_primaria;
+                        $fecha_entrega = $model->fecha_entrega_antes_1982_primaria;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $antes_1982_primaria = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $antes_1982_primaria = 100 / $diff1;
+                                } else {
+                                    $antes_1982_primaria = 100;
+                                }
+                            }
+                            $antes_1982_primaria = ($antes_1982_primaria > 100) ? 100 : $antes_1982_primaria;
+                        } else {
+                            $antes_1982_primaria = 0;
+                        }
+                    }
+                } else {
+                    $antes_1982_primaria = 100;
+                }
+
+                if ($model->meta_despues_1982_secundaria == 1) {
+                    if ($model->acciones_despues_1982_secundaria == 1) {
+                        $despues_1982_secundaria = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_despues_1982_secundaria;
+                        $fecha_entrega = $model->fecha_entrega_despues_1982_secundaria;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $despues_1982_secundaria = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $despues_1982_secundaria = 100 / $diff1;
+                                } else {
+                                    $despues_1982_secundaria = 100;
+                                }
+                            }
+                            $despues_1982_secundaria = ($despues_1982_secundaria > 100) ? 100 : $despues_1982_secundaria;
+                        } else {
+                            $despues_1982_secundaria = 0;
+                        }
+                    }
+                } else {
+                    $despues_1982_secundaria = 100;
+                }
+
+                if ($model->meta_despensas == 1) {
+                    if ($model->acciones_despensas == 1) {
+                        $despensas = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_despensas;
+                        $fecha_entrega = $model->fecha_entrega_despensas;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $despensas = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $despensas = 100 / $diff1;
+                                } else {
+                                    $despensas = 100;
+                                }
+                            }
+                            $despensas = ($despensas > 100) ? 100 : $despensas;
+                        } else {
+                            $despensas = 0;
+                        }
+                    }
+                } else {
+                    $despensas = 100;
+                }
+
+                if ($model->meta_ss == 1) {
+                    if ($model->acciones_ss == 1) {
+                        $ss = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_ss;
+                        $fecha_entrega = $model->fecha_entrega_ss;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $ss = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $ss = 100 / $diff1;
+                                } else {
+                                    $ss = 100;
+                                }
+                            }
+                            $ss = ($ss > 100) ? 100 : $ss;
+                        } else {
+                            $ss = 0;
+                        }
+                    }
+                } else {
+                    $ss = 100;
+                }
+
+                if ($model->meta_trabajadores_ss == 1) {
+                    if ($model->acciones_trabajadores_ss == 1) {
+                        $trabajadores_ss = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_trabajadores_ss;
+                        $fecha_entrega = $model->fecha_entrega_trabajadores_ss;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $trabajadores_ss = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $trabajadores_ss = 100 / $diff1;
+                                } else {
+                                    $trabajadores_ss = 100;
+                                }
+                            }
+                            $trabajadores_ss = ($trabajadores_ss > 100) ? 100 : $trabajadores_ss;
+                        } else {
+                            $trabajadores_ss = 0;
+                        }
+                    }
+                } else {
+                    $trabajadores_ss = 100;
+                }
+
+                if ($model->meta_adultos_ss == 1) {
+                    if ($model->acciones_adultos_ss == 1) {
+                        $adultos_ss = 100;
+                    } else {
+                        $fecha_inicio = $model->fecha_inicio_adultos_ss;
+                        $fecha_entrega = $model->fecha_entrega_adultos_ss;
+                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
+                        $date1 = date_create($fecha_inicio);
+                        $date2 = date_create($fecha_entrega);
+                        $date3 = date_create($hoy);
+
+                        if ($date2 >= $date3) {
+                            $interval = date_diff($date1, $date2);
+                            $interval2 = date_diff($date2, $date3);
+
+                            $differenceFormat = '%a';
+                            $diff1 = $interval->format($differenceFormat);
+                            $diff2 = $interval2->format($differenceFormat);
+
+                            if ($diff2 > 0) {
+                                //echo $diff1; die;
+                                $div = $diff2 / $diff1;
+                                //echo $div; die;
+                                $adultos_ss = $div * 100;
+                            } else {
+                                if ($diff1 > 0) {
+                                    $adultos_ss = 100 / $diff1;
+                                } else {
+                                    $adultos_ss = 100;
+                                }
+                            }
+                            $adultos_ss = ($adultos_ss > 100) ? 100 : $adultos_ss;
+                        } else {
+                            $adultos_ss = 0;
+                        }
+                    }
+                } else {
+                    $adultos_ss = 100;
+                }
+                $semaforo = $piso + $techo + $muro + $cuarto + $agua_potable + $agua_interior + $drenaje + $luz + $estufa + $seguro_popular + $de3_15_escuela + $antes_1982_primaria + $despues_1982_secundaria + $despensas + $ss + $trabajadores_ss + $adultos_ss;
+                $value = $semaforo / 17;
+
+                $model->acciones_vivienda = ($model->acciones_vivienda) ? $model->acciones_vivienda : 0;
+                $div2 = $model->acciones_vivienda / $model->meta_vivienda;
+                $resultado = $div2 * 100;
+
+                $final = ($value + $resultado) / 2;
+
+                return $final;
+            }
+            else{
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
+
+    }
+
+    public static function getSemaforo2($id){
+        $model = self::find()->where(['solicitante_id' => $id])->one();
+
+        if($model){
+            if($model->status == 2){
+                $model->acciones_vivienda = ($model->acciones_vivienda) ? $model->acciones_vivienda : 0;
+                $div = $model->acciones_vivienda / $model->meta_vivienda;
+                $resultado = $div * 100;
+                return $resultado;
+            }
+            else{
+                return null;
+            }
+        }else{
+            return null;
+        }
     }
 }

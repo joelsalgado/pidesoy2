@@ -487,11 +487,11 @@ class CedulaPobreza extends \yii\db\ActiveRecord
                 $seguimiento = $seg;
             } else {
                 $seguimiento = new Seguimiento();
+                $seguimiento->solicitante_id = $this->solicitante_id;
+                $seguimiento->periodo = 2018;
             }
 
-
-            $seguimiento->solicitante_id = $this->solicitante_id;
-            $seguimiento->periodo = 2018;
+            $seguimiento->scenario = 'SEGUIMIENTO';
             $seguimiento->meta_piso = $piso;
             $seguimiento->meta_techo = $techo;
             $seguimiento->meta_muro = $muros;

@@ -94,6 +94,31 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'codigo_postal',
                             //'otra_referencia',
                             //'status',
+                            [
+                                'label' => 'Semaforo',
+                                'format' => 'html',
+                                'value' => function($data){
+                                    $resultado = \common\models\Seguimiento::getSemaforo($data->id);
+                                    if($resultado){
+                                        switch ($resultado) {
+                                            case ($resultado >= 100):
+                                                return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/1.png" height="30" width="30"></p>';
+                                                break;
+                                            case ($resultado >= 91):
+                                                return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/2.png" height="30" width="30"></p>';
+                                                break;
+                                            case ($resultado >= 61):
+                                                return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/3.png" height="30" width="30"></p>';
+                                                break;
+                                            case ($resultado <= 60):
+                                                return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/4.png" height="30" width="30"></p>';
+                                                break;
+                                        }
+                                    }else{
+                                        return '';
+                                    }
+                                }
+                            ],
                             //'created_by',
                             //'updated_by',
                             //'created_at',

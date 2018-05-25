@@ -861,7 +861,7 @@ use yii\helpers\ArrayHelper;
             <div class="row">
                 <div class="alert alert-success-alt">
                     <strong>AFILIADOS AL SEGURO POPULAR</strong>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-hospital-o" aria-hidden="true"></i>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
@@ -955,7 +955,7 @@ use yii\helpers\ArrayHelper;
             <div class="row">
                 <div class="alert alert-success-alt">
                     <strong>PERSONAS DE 3 A 15 AÑOS QUE ASISTEN A LA ESCUELA</strong>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-university" aria-hidden="true"></i>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
@@ -1049,7 +1049,7 @@ use yii\helpers\ArrayHelper;
             <div class="row">
                 <div class="alert alert-success-alt">
                     <strong>NACIDOS ANTES DE 1982 CON CERTIFICADO DE PRIMARIA</strong>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-university" aria-hidden="true"></i>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
@@ -1143,7 +1143,7 @@ use yii\helpers\ArrayHelper;
             <div class="row">
                 <div class="alert alert-success-alt">
                     <strong>NACIDOS DESPUÉS DE 1982 CON CERTIFICADO DE SECUNDARIA</strong>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-university" aria-hidden="true"></i>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
@@ -1237,7 +1237,7 @@ use yii\helpers\ArrayHelper;
             <div class="row">
                 <div class="alert alert-success-alt">
                     <strong>DESPENSAS POR ENTREGAR</strong>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-apple" aria-hidden="true"></i>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
@@ -1331,7 +1331,7 @@ use yii\helpers\ArrayHelper;
             <div class="row">
                 <div class="alert alert-success-alt">
                     <strong>TRABAJADOR AFILIADO A LA SEGURIDAD SOCIAL</strong>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-group" aria-hidden="true"></i>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
@@ -1425,7 +1425,7 @@ use yii\helpers\ArrayHelper;
             <div class="row">
                 <div class="alert alert-success-alt">
                     <strong>BENEFICIARIOS DE TRABAJADORES CON ACCESO A LA SEGURIDAD SOCIAL</strong>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-group" aria-hidden="true"></i>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
@@ -1519,7 +1519,7 @@ use yii\helpers\ArrayHelper;
             <div class="row">
                 <div class="alert alert-success-alt">
                     <strong>PERSONAS MAYORES DE 65 AÑOS INSCRITOS AL PROGRAMA DE PENSIONES</strong>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-group" aria-hidden="true"></i>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
