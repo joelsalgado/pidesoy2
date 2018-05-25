@@ -32,7 +32,7 @@ $total_no_vulnerable = 0;
                 <tbody>
                 <?php foreach ($model as $data){ ?>
                     <tr>
-                        <td><b><?= $data->desc_loc ?></b></td>
+                        <td><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8") ?></b></td>
                         <td><?= $data->pobreza_extrema ?></td>
                         <?php $total_pobreza_extrema = $total_pobreza_extrema +  $data->pobreza_extrema ?>
                         <td><?= $data->pobreza_moderada ?></td>

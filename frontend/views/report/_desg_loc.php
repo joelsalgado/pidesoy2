@@ -108,7 +108,7 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>Habitantes</b></td>
         <td colspan="1" align="center" ><b>Personas de 0 a 15</b></td>
         <td colspan="1" align="center" ><b>Personas de 16 a 17</b></td>
@@ -122,7 +122,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8") ?></b></td>
             <td align="center"><?= $data->num_personas ?></td>
             <?php $total_num_personas = $total_num_personas + $data->num_personas ?>
             <td align="center"><?= $data->per_0_15 ?></td>
@@ -186,7 +186,7 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>Sin Piso Firme</b></td>
         <td colspan="1" align="center" ><b>Sin Techo Firme</b></td>
         <td colspan="1" align="center" ><b>Sin Muros Firmes</b></td>
@@ -194,7 +194,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc , MB_CASE_TITLE, "UTF-8") ?></b></td>
             <td align="center"><?= $data->sin_piso ?></td>
             <?php $total_sin_piso = $total_sin_piso + $data->sin_piso ?>
             <td align="center"><?= $data->sin_techo ?></td>
@@ -239,7 +239,7 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>Falta llevar toma de agua al interior</b></td>
         <td colspan="1" align="center" ><b>Falta Servicio de Agua Potable</b></td>
         <td colspan="1" align="center" ><b>Falta Drenaje</b></td>
@@ -257,7 +257,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8") ?></b></td>
             <td align="center"><?= $data->agua_interior ?></td>
             <?php $total_agua_interior = $total_agua_interior + $data->agua_interior ?>
             <td align="center"><?= $data->servicio_agua ?></td>
@@ -333,7 +333,7 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>Menor con estudios truncados</b></td>
         <td colspan="1" align="center" ><b>Menor que no asiste a estudiar</b></td>
         <td colspan="1" align="center" ><b>Mayor a 35 sin educación básica</b></td>
@@ -344,7 +344,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8") ?></b></td>
             <td align="center"><?= $data->educ_trunca_3_15 ?></td>
             <?php $total_educ_trunca_3_15 = $total_educ_trunca_3_15 + $data->educ_trunca_3_15 ?>
             <td align="center"><?= $data->educ_no_asiste_3_15 ?></td>
@@ -398,7 +398,7 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>Sin Servicio de Salud</b></td>
         <td colspan="1" align="center" ><b>Tiene Seguro Popular</b></td>
         <td colspan="1" align="center" ><b>Tiene ISSEMYN</b></td>
@@ -410,7 +410,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8")  ?></b></td>
             <td align="center"><?= $data->salud_recibe ?></td>
             <?php $total_salud_recibe = $total_salud_recibe + $data->salud_recibe ?>
             <td align="center"><?= $data->seguro_popular ?></td>
@@ -467,14 +467,14 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>No hay Trabajo Formal</b></td>
         <td colspan="1" align="center" ><b>Hay trabajo sin seguridad social</b></td>
         <td colspan="1" align="center" ><b>Adultos Mayores sin Seguridad Social</b></td>
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8") ?></b></td>
             <td align="center"><?= $data->ss_trabajo_formal ?></td>
             <?php $total_ss_trabajo_formal = $total_ss_trabajo_formal + $data->ss_trabajo_formal ?>
             <td align="center"><?= $data->ss_trabajo_sin ?></td>
@@ -517,7 +517,7 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>Integrantes que reciben ingresos por su trabajo</b></td>
         <td colspan="1" align="center" ><b>Jefe de familia recibe ingresos por su trabajo</b></td>
         <td colspan="1" align="center" ><b>Jefa de familia recibe ingresos por su trabajo</b></td>
@@ -530,7 +530,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8") ?></b></td>
             <td align="center"><?= $data->cuantos_ingresos ?></td>
             <?php $total_cuantos_ingresos = $total_cuantos_ingresos + $data->cuantos_ingresos ?>
             <td align="center"><?= $data->jefe_familia ?></td>
@@ -591,7 +591,7 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>Menor con Poca Variedad de Alimentos</b></td>
         <td colspan="1" align="center" ><b>Menor dejo de comer por falta de Alimentos</b></td>
         <td colspan="1" align="center" ><b>Menor se disminuyo los alimentos</b></td>
@@ -607,7 +607,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8") ?></b></td>
             <td align="center"><?= $data->menor_poca_variedad ?></td>
             <?php $total_menor_poca_variedad = $total_menor_poca_variedad + $data->menor_poca_variedad ?>
             <td align="center"><?= $data->menor_falta_alimentos ?></td>
@@ -677,7 +677,7 @@ $total_vinc_prog_prospera = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDAD</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>No cuentan con LICONSA</b></td>
         <td colspan="1" align="center" ><b>No cuentan con DICONSA</b></td>
         <td colspan="1" align="center" ><b>No abastece en tiendas DICONSA</b></td>
@@ -688,7 +688,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8") ?></b></td>
             <td align="center"><?= $data->vinc_prog_liconsa ?></td>
             <?php $total_vinc_prog_liconsa = $total_vinc_prog_liconsa + $data->vinc_prog_liconsa ?>
             <td align="center"><?= $data->vinc_prog_diconsa ?></td>
