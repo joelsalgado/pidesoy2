@@ -489,6 +489,18 @@ class CedulaPobreza extends \yii\db\ActiveRecord
                 $seguimiento = new Seguimiento();
                 $seguimiento->solicitante_id = $this->solicitante_id;
                 $seguimiento->periodo = 2018;
+                $seguimiento->status = 1;
+            }
+
+            if ($this->cocina_gas == 1 || $this->cocina_electricidad == 1 || $this->cocina_otro == 1){
+                $estufa_e = 0;
+            }else{
+                if ($this->cocina_lena == 1 || $this->cocina_carbon == 1){
+                    $estufa_e = 1;
+                }
+                else{
+                    $estufa_e = 0;
+                }
             }
 
             $seguimiento->scenario = 'SEGUIMIENTO';
@@ -504,7 +516,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             $seguimiento->meta_agua_interior = $agua_int;
             $seguimiento->meta_drenaje = $drenaje_pub;
             $seguimiento->meta_luz = $luz;
-            $seguimiento->meta_estufa = $chimenea;
+            $seguimiento->meta_estufa = $estufa_e;
             $suma_serv_basicos = $agua_pub + $agua_int + $drenaje_pub + $luz + $chimenea;
 
             $seguimiento->meta_servicios_basicos = $suma_serv_basicos;
@@ -533,7 +545,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
 
             $suma_result = $suma_s_s + $alimentacion + $suma_edu + $suma_salud + $suma_serv_basicos + $suma_vivienda;
             $seguimiento->meta_vivienda = $suma_result;
-            $seguimiento->status = 1;
+
 
 
             $model->solicitante_id = $this->solicitante_id;

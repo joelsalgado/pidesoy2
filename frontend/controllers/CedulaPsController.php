@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Apartados;
 use common\models\CedulaPobreza;
+use common\models\Solicitantes;
 use Yii;
 use common\models\CedulaPs;
 use yii\base\Exception;
@@ -88,6 +89,7 @@ class CedulaPsController extends Controller
         if($cedula->num_personas > $count){
             $model = new CedulaPs();
             $apartado = Apartados::find()->where(['solicitante_id' => $cedula->solicitante_id])->one();
+            $solicitantes= Solicitantes::findOne($cedula->solicitante_id);
             if ($model->load(Yii::$app->request->post())) {
                 $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
                 $model->nombre_recibe_programa = trim(strtoupper($model->nombre_recibe_programa));
@@ -95,9 +97,9 @@ class CedulaPsController extends Controller
                 $apartado->apartado4 = 1;
                 $apartado->updated_at = $fecha;
                 $model->cedula_id = $id;
+                $solicitantes->check = 0;
 
-
-                if($model->save() && $apartado->save()){
+                if($model->save() && $apartado->save() && $solicitantes->save()){
                     return $this->redirect(['index', 'id' => $id]);
                 }
             }
@@ -125,7 +127,9 @@ class CedulaPsController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->nombre_recibe_programa = trim(strtoupper($model->nombre_recibe_programa));
             $model->titular = trim(strtoupper($model->titular));
-            if($model->save()){
+            $solicitantes= Solicitantes::findOne($model->cedula->solicitante_id);
+            $solicitantes->check = 0;
+            if($model->save() && $solicitantes->save()){
                 return $this->redirect(['index', 'id' => $model->cedula_id]);
             }
         }
@@ -144,9 +148,13 @@ class CedulaPsController extends Controller
     public function actionDelete($id)
     {
         $other_cedula = CedulaPs::findOne($id);
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'id' => $other_cedula->cedula_id]);
+        $solicitantes= Solicitantes::findOne($other_cedula->cedula->solicitante_id);
+        $solicitantes->check = 0;
+        if ($this->findModel($id)->delete() && $solicitantes->save()){
+            return $this->redirect(['index', 'id' => $other_cedula->cedula_id]);
+        }
+
     }
 
     /**

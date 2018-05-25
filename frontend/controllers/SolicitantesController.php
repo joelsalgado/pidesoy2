@@ -99,6 +99,12 @@ class SolicitantesController extends Controller
             $model->created_at = $fecha;
             $model->updated_at = $fecha;
 
+            if(Yii::$app->user->identity->role == 20 ){
+                $model->check = ($model->check) ? $model->check : 0;
+            }else{
+                $model->check = 0;
+            }
+
             if ($model->save()){
                 Yii::$app->session->setFlash('success', 'Se guardo correctamente');
                 return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);
@@ -138,6 +144,12 @@ class SolicitantesController extends Controller
 
                 $model->fecha_nacimiento = $fecha_nac;
                 $model->updated_at = $fecha;
+
+                if(Yii::$app->user->identity->role == 20){
+                    $model->check = ($model->check) ? $model->check : 0;
+                }else{
+                    $model->check = 0;
+                }
 
                 if($model->save()){
                     return $this->redirect(['/cedula-pobreza/update', 'id' => $model->id]);

@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use common\models\Apartados;
+use common\models\Seguimiento;
+use common\models\Solicitantes;
 use Yii;
 use common\models\CedulaPobreza;
 use yii\data\ActiveDataProvider;
@@ -97,14 +99,16 @@ class CedulaPobrezaController extends Controller
     {
         $model = CedulaPobreza::find()->where(['solicitante_id' => $id])->one();
         if($model){
+            $solicitantes= Solicitantes::findOne($id);
             $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
             if ($model->load(Yii::$app->request->post())) {
                 $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
                 $apartado->apartado2 = 1;
                 $apartado->updated_at = $fecha;
                 $model->updated_at = $fecha;
+                $solicitantes->check = 0;
 
-                if ($model->save() && $apartado->save()){
+                if ($model->save() && $apartado->save() && $solicitantes->save()){
                     return $this->redirect(['/cedula-ps', 'id' => $id]);
                 }
             }

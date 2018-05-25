@@ -88,6 +88,7 @@ class AccionesAdicionalesController extends Controller
 
             $model = new AccionesAdicionales();
             $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
+            $solicitantes= Solicitantes::findOne($id);
 
             if ($model->load(Yii::$app->request->post())) {
                 $model->solicitante_id = $id;
@@ -104,8 +105,9 @@ class AccionesAdicionalesController extends Controller
                 $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
                 $apartado->apartado6 = 1;
                 $apartado->updated_at = $fecha;
+                $solicitantes->check = 0;
 
-                if ($model->save() && $apartado->save()) {
+                if ($model->save() && $apartado->save()  && $solicitantes->save()) {
                     return $this->redirect(['index', 'id' => $model->solicitante_id]);
                 }
             }
@@ -125,6 +127,7 @@ class AccionesAdicionalesController extends Controller
         $model = $this->findModel($id);
 
         if($model){
+            $solicitantes= Solicitantes::findOne($model->solicitante_id);
             $model->fecha_inicio = ($model->fecha_inicio)? Yii::$app->formatter->asDate($model->fecha_inicio, 'dd-MM-yyyy'): null;
             $model->fecha_entrega = ($model->fecha_entrega)? Yii::$app->formatter->asDate($model->fecha_entrega, 'dd-MM-yyyy'): null;
             $model->fecha_termino = ($model->fecha_termino)? Yii::$app->formatter->asDate($model->fecha_termino, 'dd-MM-yyyy'): null;
@@ -136,7 +139,9 @@ class AccionesAdicionalesController extends Controller
                 $model->fecha_inicio = ($model->fecha_inicio)? Yii::$app->formatter->asDate($model->fecha_inicio, 'yyyy-MM-dd'): null;
                 $model->fecha_entrega = ($model->fecha_entrega)? Yii::$app->formatter->asDate($model->fecha_entrega, 'yyyy-MM-dd'): null;
                 $model->fecha_termino = ($model->fecha_termino)? Yii::$app->formatter->asDate($model->fecha_termino, 'yyyy-MM-dd'): null;
-                if($model->save()){
+                $solicitantes->check = 0;
+
+                if($model->save() && $solicitantes->save()){
                     return $this->redirect(['index', 'id' => $model->solicitante_id]);
                 }
             }
@@ -153,8 +158,13 @@ class AccionesAdicionalesController extends Controller
     public function actionDelete($id)
     {
         $adicional = AccionesAdicionales::findOne($id);
-        $this->findModel($id)->delete();
-        return $this->redirect(['index', 'id' => $adicional->solicitante_id]);
+        $solicitantes= Solicitantes::findOne($adicional->solicitante_id);
+        $solicitantes->check = 0;
+
+        if($this->findModel($id)->delete() && $solicitantes->save()){
+            return $this->redirect(['index', 'id' => $adicional->solicitante_id]);
+        }
+
     }
 
     public function actionFinalizar()

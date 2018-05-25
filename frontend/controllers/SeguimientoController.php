@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Apartados;
 use common\models\Programas;
+use common\models\Solicitantes;
 use Yii;
 use common\models\Seguimiento;
 use yii\data\ActiveDataProvider;
@@ -89,6 +90,7 @@ class SeguimientoController extends Controller
         if($model){
             if($model->meta_vivienda > 0){
                 $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
+                $solicitantes= Solicitantes::findOne($id);
                 $model->fecha_inicio_piso = ($model->fecha_inicio_piso)? Yii::$app->formatter->asDate($model->fecha_inicio_piso, 'dd-MM-yyyy'): null;
                 $model->fecha_entrega_piso = ($model->fecha_entrega_piso)? Yii::$app->formatter->asDate($model->fecha_entrega_piso, 'dd-MM-yyyy'): null;
                 $model->fecha_termino_piso = ($model->fecha_termino_piso)? Yii::$app->formatter->asDate($model->fecha_termino_piso, 'dd-MM-yyyy'): null;
@@ -701,9 +703,10 @@ class SeguimientoController extends Controller
                     $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
                     $apartado->apartado5 = 1;
                     $apartado->updated_at = $fecha;
+                    $solicitantes->check = 0;
 
 
-                    if($model->save() && $apartado->save()){
+                    if($model->save() && $apartado->save() && $solicitantes->save()){
                         //Yii::$app->session->setFlash('success', 'Registro Finalizado Correctamente');
                         return $this->redirect(['acciones-adicionales/index', 'id' => $model->solicitante_id]);
                     }
