@@ -37,7 +37,7 @@ $total_no_vulnerable = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>LOCALIDADES</b></td>
+        <td colspan="1" align="center" ><b>Localidades</b></td>
         <td colspan="1" align="center" ><b>Pobreza Extrema</b></td>
         <td colspan="1" align="center" ><b>Pobreza Moderada</b></td>
         <td colspan="1" align="center" ><b>Vulnerable por Ingresos</b></td>
@@ -46,7 +46,7 @@ $total_no_vulnerable = 0;
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>
-            <td align="center"><b><?= $data->desc_loc ?></b></td>
+            <td align="center"><b><?= mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?= $data->pobreza_extrema ?></td>
             <?php $total_pobreza_extrema = $total_pobreza_extrema +  $data->pobreza_extrema ?>
             <td align="center"><?= $data->pobreza_moderada ?></td>

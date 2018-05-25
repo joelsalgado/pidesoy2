@@ -173,7 +173,7 @@ $total_vinc_prog_prospera = 0;
                 <tbody>
                 <?php foreach ($model as $data){ ?>
                     <tr>
-                        <td><b><?= $data->desc_loc ?></b></td>
+                        <td><b><?=  mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8")?></b></td>
                         <td><?= $data->num_personas ?></td>
                         <?php $total_num_personas = $total_num_personas + $data->num_personas ?>
                         <td><?= $data->per_0_15 ?></td>
