@@ -28,8 +28,7 @@ $total_no_vulnerable = 0;
     </tr>
 </table>
 
-
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">RESULTADOS POR LOCALIDADES</th>

@@ -171,8 +171,8 @@ $total_vinc_prog_prospera = 0;
                 <th>No es beneficiario PROSPERA</th>
                 </thead>
                 <tbody>
-                <?php foreach ($model as $data){ ?>
-                    <tr>
+                <?php $y=1; foreach ($model as $data){ ?>
+                    <tr <?php if($y%2==0){ echo 'bgcolor="#A8AC90"'; }?>>
                         <td><b><?=  mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8")?></b></td>
                         <td><?= $data->num_personas ?></td>
                         <?php $total_num_personas = $total_num_personas + $data->num_personas ?>
@@ -323,7 +323,7 @@ $total_vinc_prog_prospera = 0;
                         <td><?= $data->vinc_prog_prospera ?></td>
                         <?php $total_vinc_prog_prospera = $total_vinc_prog_prospera + $data->vinc_prog_prospera ?>
                     </tr>
-                <?php } ?>
+                <?php $y++;} ?>
                 <tr>
                     <td><b>Total</b></td>
                     <td><b><?= $total_num_personas ?></b></td>

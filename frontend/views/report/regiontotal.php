@@ -30,8 +30,8 @@ $total_no_vulnerable = 0;
                 <th>No Vulnerable, No Pobre</th>
                 </thead>
                 <tbody>
-                <?php foreach ($model as $data){ ?>
-                    <tr>
+                <?php $y=1; foreach ($model as $data){ ?>
+                    <tr <?php if($y%2==0){ echo 'bgcolor="#A8AC90"'; }?>>
                         <td><b><?= $data->desc_region ?></b></td>
                         <td><?= $data->pobreza_extrema ?></td>
                         <?php $total_pobreza_extrema = $total_pobreza_extrema +  $data->pobreza_extrema ?>
@@ -44,7 +44,7 @@ $total_no_vulnerable = 0;
                         <td><?= $data->no_vulnerable ?></td>
                         <?php $total_no_vulnerable = $total_no_vulnerable +  $data->no_vulnerable ?>
                     </tr>
-                <?php } ?>
+                <?php $y++;} ?>
                 <tr>
                     <td><b>TOTAL</b></td>
                     <td><b><?= $total_pobreza_extrema ?> </b></td>

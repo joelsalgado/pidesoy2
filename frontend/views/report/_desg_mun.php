@@ -100,7 +100,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">IDENTIFICACIÓN DE HOGARES Y RESIDENTES</th>
@@ -178,7 +178,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">CALIDAD Y ESPACIOS DE LA VIVIENDA (CARACTERÍSTICAS DE LA VIVIENDA)</th>
@@ -231,7 +231,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="15" align="center">ACCESO A LOS SERVICIOS BÁSICOS EN LA VIVIENDA</th>
@@ -325,7 +325,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">EDUCACIÓN</th>
@@ -390,7 +390,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">SALUD</th>
@@ -459,7 +459,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">SEGURIDAD SOCIAL</th>
@@ -509,7 +509,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">EMPLEO E INGRESOS</th>
@@ -583,7 +583,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="13" align="center">ALIMENTACIÓN</th>
@@ -669,7 +669,7 @@ $total_vinc_prog_prospera = 0;
     </tr>
 </table>
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">VINCULACIÓN A PROGRAMAS DE DESARROLLO SOCIAL (FEDERALES Y ESTATALES)</th>
