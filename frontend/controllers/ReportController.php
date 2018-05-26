@@ -27,9 +27,7 @@ use yii\filters\VerbFilter;
  */
 class ReportController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
+
     public function behaviors()
     {
         return [
@@ -57,10 +55,6 @@ class ReportController extends Controller
         ];
     }
 
-    /**
-     * Lists all User models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $model = TotalReg::find()->all();
@@ -107,6 +101,18 @@ class ReportController extends Controller
                     'title' => 'Desgloce Region'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even){background-color: #A8AC90}',
             ]);
             return $pdf->render();
         }
@@ -251,6 +257,18 @@ class ReportController extends Controller
                     'title' => 'Desgloce Municipio'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even){background-color: #A8AC90}',
             ]);
             return $pdf->render();
         }
@@ -395,6 +413,18 @@ class ReportController extends Controller
                     'title' => 'Desgloce Localidades'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even){background-color: #A8AC90}',
             ]);
             return $pdf->render();
         }else{
@@ -576,6 +606,18 @@ class ReportController extends Controller
                     'title' => 'Total Regiones'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even){background-color: #A8AC90}',
             ]);
             return $pdf->render();
         }else{
@@ -649,13 +691,24 @@ class ReportController extends Controller
                     'title' => 'Total Municipios'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even){background-color: #A8AC90}',
             ]);
             return $pdf->render();
         } else {
             return $this->render('muntot');
         }
     }
-
 
     public function actionMunicipiototalexcel(array $excel)
     {
@@ -685,8 +738,6 @@ class ReportController extends Controller
             return $this->render('muntot');
         }
     }
-
-
 
     public function actionLocalidadtotal(array $localidades)
     {
@@ -723,6 +774,18 @@ class ReportController extends Controller
                     'title' => 'Total Localidades'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                th, td {
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even){background-color: #A8AC90}',
             ]);
             return $pdf->render();
         } else {

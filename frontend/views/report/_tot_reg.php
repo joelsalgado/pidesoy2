@@ -29,7 +29,7 @@ $total_no_vulnerable = 0;
 </table>
 
 
-<table class="table table-bored">
+<table>
     <thead>
     <tr>
         <th colspan="12" align="center">RESULTADOS POR REGION</th>
@@ -37,7 +37,7 @@ $total_no_vulnerable = 0;
     </thead>
     <tbody>
     <tr>
-        <td colspan="1" align="center" ><b>REGION</b></td>
+        <td colspan="1" align="center" ><b>Region</b></td>
         <td colspan="1" align="center" ><b>Pobreza Extrema</b></td>
         <td colspan="1" align="center" ><b>Pobreza Moderada</b></td>
         <td colspan="1" align="center" ><b>Vulnerable por Ingresos</b></td>
