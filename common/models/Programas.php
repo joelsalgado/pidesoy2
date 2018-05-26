@@ -28,7 +28,7 @@ class Programas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nomb_programa', 'desc_programa'], 'required'],
+            [['nomb_programa', 'desc_programa'], 'required', 'message' => 'Campo Requerido'],
             [['status'], 'integer'],
             [['nomb_programa', 'desc_programa', 'responsable'], 'string', 'max' => 80],
         ];

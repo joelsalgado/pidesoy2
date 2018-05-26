@@ -7,30 +7,34 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Programas';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="programas-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Programas</h3>
+        </div>
+        <div class="box-body">
+            <p class="pull-right">
+                <?= Html::a('Nuevo Programa', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
 
-    <p>
-        <?= Html::a('Nuevo Programa', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
+                'emptyText' => "No se encontró ningún elemento",
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
-        'emptyText' => "No se encontró ningún elemento",
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                    'id',
+                    'nomb_programa',
+                    'desc_programa',
+                    'responsable',
+                    //'status',
 
-            'id',
-            'nomb_programa',
-            'desc_programa',
-            'responsable',
-            'status',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
 </div>

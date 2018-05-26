@@ -6,34 +6,38 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Programas */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Programas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = $model->desc_programa;
 ?>
 <div class="programas-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title"><?= $model->desc_programa ?>  </h3>
+        </div>
+        <div class="box-body">
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+            <p>
+                <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Estas seguro de borrar este programa?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nomb_programa',
-            'desc_programa',
-            'responsable',
-            'status',
-        ],
-    ]) ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    //'id',
+                    'nomb_programa',
+                    'desc_programa',
+                    'responsable',
+                    //'status',
+                ],
+            ]) ?>
+        </div>
+    </div>
 
 </div>
