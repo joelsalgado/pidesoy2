@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\BitacoraReunion2;
+use kartik\mpdf\Pdf;
 use Yii;
 use common\models\BitacoraReunion;
 use yii\data\ActiveDataProvider;
@@ -23,7 +25,7 @@ class BitacoraReunionController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -108,5 +110,42 @@ class BitacoraReunionController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionPdf($id)
+    {
+        $model = BitacoraReunion::findOne($id);
+        if ($model){
+            $model2 = BitacoraReunion2::find()->where(['bitacora_reunion_id' => $id])->all();
+
+            $content = $this->renderPartial('_reportView', [
+                'model'=> $model,
+                'model2' => $model2,
+            ]);
+
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'bitacora-reunion '.$model->id.'.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 10,
+                'marginBottom'=> 13,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Bitacora de Reuniones'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'methods' => [
+                    'SetFooter' => ['|Pagina {PAGENO}|'],
+                ]
+            ]);
+            return $pdf->render();
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 }

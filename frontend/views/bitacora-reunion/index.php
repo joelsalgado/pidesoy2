@@ -63,7 +63,57 @@ $this->title = 'BITÁCORA DE REUNIONES POR COMUNIDAD';
                     //'created_at',
                     //'updated_at',
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'header' => 'Acciones',
+                        'headerOptions' => ['style' => 'color:#337ab7'],
+                        'template' => '{update}{borrar}{pdf}',
+                        'buttons' => [
+                            'update' => function ($url, $model) {
+                                if(Yii::$app->user->identity->role != 40){
+                                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                        'title' => Yii::t('app', 'editar'),
+                                    ]);}
+                                else{
+                                    return "";
+                                }
+                            },
+                            'pdf' => function ($url, $model) {
+                                return Html::a('<span class="glyphicon glyphicon-file"></span>', $url, [
+                                    'title' => Yii::t('app', 'pdf'),
+                                ]);
+                            },
+
+                            'borrar' => function ($url, $model) {
+                                if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20){
+                                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+                                        'data' => [
+                                            'confirm' => 'Estas seguro de borrar a este registro',
+                                        ],
+                                        'title' => Yii::t('app', 'borrar'),
+                                    ]);
+                                }
+                                else {
+                                    return "";
+                                }
+                            }
+
+                        ],
+                        'urlCreator' => function ($action, $model, $key, $index) {
+                            if ($action === 'update') {
+                                $url =Yii::$app->homeUrl.'bitacora-reunion/update?id='.$model->id;
+                                return $url;
+                            }
+                            if ($action === 'borrar') {
+                                $url =Yii::$app->homeUrl.'bitacora-reunion/delete?id='.$model->id;
+                                return $url;
+                            }
+                            if ($action === 'pdf') {
+                                $url =Yii::$app->homeUrl.'bitacora-reunion/pdf?id='.$model->id;
+                                return $url;
+                            }
+                        }
+                    ],
                 ],
             ]); ?>
         </div>

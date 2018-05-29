@@ -40,6 +40,11 @@ use kartik\date\DatePicker;
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Autoridades Presentes:</label>
+                </div>
+            </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <?= $form->field($model, 'autoridades_federales')->textInput() ?>
