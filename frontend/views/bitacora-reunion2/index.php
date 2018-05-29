@@ -20,6 +20,7 @@ $this->title = 'Objetivos';
         </div>
         <div class="box-body">
             <p class="pull-right">
+                <?= Html::a('Finalizar', ['/bitacora-reunion'], ['class' => 'btn btn-danger']) ?>
                 <?= Html::a('Nuevo Objetivo', ['create', 'id' => $id], ['class' => 'btn btn-success']) ?>
             </p>
 
