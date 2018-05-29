@@ -13,6 +13,11 @@ return [
     'bootstrap' => ['log'],
     'defaultRoute' => 'solicitantes',
     'controllerNamespace' => 'frontend\controllers',
+    'modules' =>[
+        'api' => [
+            'class' => 'frontend\modules\api\Api',
+        ]
+    ],
     'components' => [
         'view' => [
             'theme' => [

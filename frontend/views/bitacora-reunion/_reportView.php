@@ -44,5 +44,36 @@
         <td><b><?= $model->resp_comunitario ?></b></td>
         <td><b><?= $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy'): '';         ?></b></td>
     </tr>
+</table>
+<br>
+
+<table class="table table-bored">
+    <thead>
+        <tr>
+            <td align="center" rowspan="2">No</td>
+            <td align="center" rowspan="2">FECHA DE REUNIÓN</td>
+            <td align="center" rowspan="2">OBJETIVO DE LA REUNIÓN</td>
+            <td align="center" colspan="3">AUTORIDADES PRESENTES</td>
+            <td align="center" rowspan="2">ACUERDOS TOMADOS</td>
+            <td align="center" rowspan="2">OBSERVACIONES</td>
+        </tr>
+        <tr>
+            <td align="center">F</td>
+            <td align="center">E</td>
+            <td align="center">M</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="center">1</td>
+            <td align="center">22/05/17</td>
+            <td align="center">OBJETIVO</td>
+            <td align="center">55</td>
+            <td align="center">85</td>
+            <td align="center">95</td>
+            <td align="center">Acuerdos</td>
+            <td align="center">Observaciones</td>
+        </tr>
+    </tbody>
 
 </table>
