@@ -11,14 +11,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * BitacoraReunionController implements the CRUD actions for BitacoraReunion model.
- */
 class BitacoraReunionController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
@@ -67,7 +61,7 @@ class BitacoraReunionController extends Controller
             $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
             $model->status = 1;
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['/bitacora-reunion2', 'id' => $model->id]);
             }
         }
 
@@ -86,7 +80,7 @@ class BitacoraReunionController extends Controller
                 $model->resp_comunitario = trim(strtoupper($model->resp_comunitario));
                 $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
                 if($model->save()) {
-                    return $this->redirect(['view', 'id' => $model->id]);
+                    return $this->redirect(['/bitacora-reunion2', 'id' => $model->id]);
                 }
             }
             return $this->render('update', [
@@ -98,7 +92,17 @@ class BitacoraReunionController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $bitacora = BitacoraReunion::findOne($id);
+        if ($bitacora){
+            $bitacora2 = BitacoraReunion2::find()->where(['bitacora_reunion_id' => $id])->all();
+            if($bitacora2){
+                foreach ($bitacora2 as $value){
+                    $value->delete();
+                }
+            }
+            $this->findModel($id)->delete();
+        }
+
 
         return $this->redirect(['index']);
     }
