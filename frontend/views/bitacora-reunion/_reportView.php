@@ -50,17 +50,17 @@
 <table class="table table-bored">
     <thead>
         <tr>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;">No</td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;">FECHA DE REUNIÓN</td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;">OBJETIVO DE LA REUNIÓN</td>
-            <td align="center" colspan="3" style="background-color: #e2cae3;">AUTORIDADES PRESENTES</td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;">ACUERDOS TOMADOS</td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;">OBSERVACIONES</td>
+            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>No</b></td>
+            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>FECHA DE REUNIÓN</b></td>
+            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>OBJETIVO DE LA REUNIÓN</b></td>
+            <td align="center" colspan="3" style="background-color: #e2cae3;"><b>AUTORIDADES PRESENTES</b></td>
+            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>ACUERDOS TOMADOS</b></td>
+            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>OBSERVACIONES</b></td>
         </tr>
         <tr>
-            <td align="center" style="background-color: #e2cae3;">F</td>
-            <td align="center" style="background-color: #e2cae3;">E</td>
-            <td align="center" style="background-color: #e2cae3;">M</td>
+            <td align="center" style="background-color: #e2cae3;"><b>F</b></td>
+            <td align="center" style="background-color: #e2cae3;"><b>E</b></td>
+            <td align="center" style="background-color: #e2cae3;"><b>M</b></td>
         </tr>
     </thead>
     <tbody>

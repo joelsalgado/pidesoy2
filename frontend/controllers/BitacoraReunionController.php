@@ -11,14 +11,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * BitacoraReunionController implements the CRUD actions for BitacoraReunion model.
- */
 class BitacoraReunionController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
@@ -98,7 +92,17 @@ class BitacoraReunionController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $bitacora = BitacoraReunion::findOne($id);
+        if ($bitacora){
+            $bitacora2 = BitacoraReunion2::find()->where(['bitacora_reunion_id' => $id])->all();
+            if($bitacora2){
+                foreach ($bitacora2 as $value){
+                    $value->delete();
+                }
+            }
+            $this->findModel($id)->delete();
+        }
+
 
         return $this->redirect(['index']);
     }
