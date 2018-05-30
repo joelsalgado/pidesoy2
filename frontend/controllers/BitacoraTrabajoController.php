@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use common\models\BitacoraReunion2;
+use common\models\BitacoraTrabajo2;
 use kartik\mpdf\Pdf;
 use Yii;
 use common\models\BitacoraTrabajo;
@@ -61,7 +61,7 @@ class BitacoraTrabajoController extends Controller
             $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
             $model->status = 1;
             if($model->save()){
-                return $this->redirect(['/bitacora-reunion2', 'id' => $model->id]);
+                return $this->redirect(['/bitacora-trabajo2', 'id' => $model->id]);
             }
         }
 
@@ -80,7 +80,7 @@ class BitacoraTrabajoController extends Controller
                 $model->resp_comunitario = trim(strtoupper($model->resp_comunitario));
                 $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
                 if($model->save()) {
-                    return $this->redirect(['/bitacora-reunion2', 'id' => $model->id]);
+                    return $this->redirect(['/bitacora-trabajo2', 'id' => $model->id]);
                 }
             }
             return $this->render('update', [
@@ -94,7 +94,7 @@ class BitacoraTrabajoController extends Controller
     {
         $bitacora = BitacoraTrabajo::findOne($id);
         if ($bitacora){
-            $bitacora2 = BitacoraReunion2::find()->where(['bitacora_reunion_id' => $id])->all();
+            $bitacora2 = BitacoraTrabajo2::find()->where(['bitacora_trabajo_id' => $id])->all();
             if($bitacora2){
                 foreach ($bitacora2 as $value){
                     $value->delete();
@@ -120,7 +120,7 @@ class BitacoraTrabajoController extends Controller
     {
         $model = BitacoraTrabajo::findOne($id);
         if ($model){
-            $model2 = BitacoraReunion2::find()->where(['bitacora_reunion_id' => $id])->all();
+            $model2 = BitacoraTrabajo2::find()->where(['bitacora_trabajo_id' => $id])->all();
 
             $content = $this->renderPartial('_reportView', [
                 'model'=> $model,
@@ -132,14 +132,14 @@ class BitacoraTrabajoController extends Controller
                 'format' => Pdf::FORMAT_A4,
                 'destination' => Pdf::DEST_BROWSER,
                 'content' => $content,
-                'filename' => 'bitacora-reunion '.$model->id.'.pdf',
+                'filename' => 'bitacora-trabajo '.$model->id.'.pdf',
                 'marginLeft'=> 10,
                 'marginRight'=> 10,
                 'marginTop'=> 10,
                 'marginBottom'=> 13,
                 'orientation' => Pdf::FORMAT_A4,
                 'options' => [
-                    'title' => 'Bitacora de Reuniones'
+                    'title' => 'Bitacora de Trabajo'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
                 'methods' => [

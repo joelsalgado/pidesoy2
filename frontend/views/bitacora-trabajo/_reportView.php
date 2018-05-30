@@ -15,7 +15,7 @@
         </td>
         <td align="center">
             <p align="center" style="font-size: small; color:#ff3d96;"><b>FAMILIAS FUERTES, COMUNIDADES CON TODO</b></p>
-            <p align="center" style="font-size: small; color:#ff3d96;"><b>BITÁCORA DE REUNIONES POR COMUNIDAD</b></p>
+            <p align="center" style="font-size: small; color:#ff3d96;"><b>BITÁCORA DE TRABAJO POR COMUNIDAD</b></p>
         </td>
         <td align="right">
             <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
@@ -50,18 +50,14 @@
 <table class="table table-bored">
     <thead>
         <tr>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>No</b></td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>FECHA DE REUNIÓN</b></td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>OBJETIVO DE LA REUNIÓN</b></td>
-            <td align="center" colspan="3" style="background-color: #e2cae3;"><b>AUTORIDADES PRESENTES</b></td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>ACUERDOS TOMADOS</b></td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>OBSERVACIONES</b></td>
+            <td align="center" style="background-color: #e2cae3;"><b>No</b></td>
+            <td align="center" style="background-color: #e2cae3;"><b>FECHA DE VISITA</b></td>
+            <td align="center" style="background-color: #e2cae3;"><b>OBJETIVO DE LA VISITA</b></td>
+            <td align="center" style="background-color: #e2cae3;"><b>ACCIÓN O ACTIVIDAD A REALIZAR</b></td>
+            <td align="center" style="background-color: #e2cae3;"><b>¿SE CUMPLIÓ?</b></td>
+            <td align="center" style="background-color: #e2cae3;"><b>OBSERVACIONES</b></td>
         </tr>
-        <tr>
-            <td align="center" style="background-color: #e2cae3;"><b>F</b></td>
-            <td align="center" style="background-color: #e2cae3;"><b>E</b></td>
-            <td align="center" style="background-color: #e2cae3;"><b>M</b></td>
-        </tr>
+
     </thead>
     <tbody>
         <?php if($model2) : $i=1; foreach($model2 as $value){?>
@@ -69,10 +65,8 @@
                 <td align="center"><?= $i++; ?></td>
                 <td align="center"><?= $value->fechas ?></td>
                 <td align="center"><?= $value->objetivo ?></td>
-                <td align="center"><?= $value->autoridades_federales ?></td>
-                <td align="center"><?= $value->autoridades_estatales ?></td>
-                <td align="center"><?= $value->autoridades_municipales ?></td>
-                <td align="center"><?= $value->acuerdos ?></td>
+                <td align="center"><?= $value->acciones ?></td>
+                <td align="center"><?= $value->cumplio = ($value->cumplio == 1) ? 'SI' : 'NO' ?></td>
                 <td align="center"><?= $value->observaciones ?></td>
             </tr>
         <?php }endif;?>
@@ -85,21 +79,21 @@
 
     <tr>
         <td></td>
-        <td align="left" colspan="2">Claves:</td>
+        <td align="left" colspan="2"></td>
     </tr>
     <tr>
         <td></td>
-        <td align="left">F</td>
-        <td align="left">Federales</td>
+        <td align="left"></td>
+        <td align="left"></td>
     </tr>
     <tr>
         <td align="center">_________________________________________________</td>
-        <td align="left">E</td>
-        <td align="left">Estatales</td>
+        <td align="left"></td>
+        <td align="left"></td>
     </tr>
     <tr>
         <td align="center">Nombre y firma del responsable de la Bitácora </td>
-        <td align="left">M</td>
-        <td align="left">Municipales</td>
+        <td align="left"></td>
+        <td align="left"></td>
     </tr>
 </table>

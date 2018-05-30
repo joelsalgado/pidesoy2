@@ -8,7 +8,7 @@ use yii\grid\GridView;
 
 $this->title = 'BITÁCORA DE TRABAJO POR COMUNIDAD';
 ?>
-<div class="bitacora-reunion-index">
+<div class="bitacora-trabajo-index">
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">BITÁCORA DE TRABAJO POR COMUNIDAD</h3>
@@ -101,15 +101,15 @@ $this->title = 'BITÁCORA DE TRABAJO POR COMUNIDAD';
                         ],
                         'urlCreator' => function ($action, $model, $key, $index) {
                             if ($action === 'update') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/update?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-trabajo/update?id='.$model->id;
                                 return $url;
                             }
                             if ($action === 'borrar') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/delete?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-trabajo/delete?id='.$model->id;
                                 return $url;
                             }
                             if ($action === 'pdf') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/pdf?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-trabajo/pdf?id='.$model->id;
                                 return $url;
                             }
                         }

@@ -9,7 +9,7 @@ use yii\helpers\Url;
 use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\BitacoraReunion */
+/* @var $model common\models\BitacoraTrabajo */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

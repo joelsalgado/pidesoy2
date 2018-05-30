@@ -50,8 +50,8 @@ class ApiController extends ActiveController
             foreach ($mapa as $value){
                 $array [] =  [
                     'GID' => $i++,
-                    'Mun' => $value->Mun,
                     'Region' => $value->Region,
+                    'Mun' => $value->Mun,
                     'pobreza_extrema' => $value->pobreza_extrema,
                     'pobreza_moderada' => $value->pobreza_moderada,
                     'vulnerable_por_ingresos' => $value->vulnerable_por_ingresos,

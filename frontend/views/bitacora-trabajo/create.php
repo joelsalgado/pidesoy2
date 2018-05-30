@@ -3,12 +3,9 @@
 use yii\helpers\Html;
 
 
-/* @var $this yii\web\View */
-/* @var $model common\models\BitacoraReunion */
-
-$this->title = 'Nueva Reunion';
+$this->title = 'Nueva Bitacora de Trabajo';
 ?>
-<div class="bitacora-reunion-create">
+<div class="bitacora-trabajo-create">
 
     <div class="box">
         <ul class="nav nav-tabs">
@@ -16,7 +13,7 @@ $this->title = 'Nueva Reunion';
             <li><a href="#">Objetivos</a></li>
         </ul>
         <div class="box-header with-border">
-            <h3 class="box-title">Nueva Reunion</h3>
+            <h3 class="box-title">Nueva Bitacora de Trabajo</h3>
         </div>
         <div class="box-body">
             <?= $this->render('_form', [
