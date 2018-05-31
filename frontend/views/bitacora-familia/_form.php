@@ -9,7 +9,7 @@ use yii\helpers\Url;
 use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\BitacoraTrabajo */
+/* @var $model common\models\BitacoraReunion */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -119,6 +119,18 @@ use kartik\date\DatePicker;
                             //'value' => '22-10-1999'
                         ]
                     ]) ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'familia')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'domicilio')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
         </div>

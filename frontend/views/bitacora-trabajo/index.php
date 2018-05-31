@@ -6,16 +6,16 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'BITÁCORA DE TRABAJO POR COMUNIDAD';
+$this->title = 'Bitácora De Trabajo Por Comunidad';
 ?>
-<div class="bitacora-reunion-index">
+<div class="bitacora-trabajo-index">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">BITÁCORA DE TRABAJO POR COMUNIDAD</h3>
+            <h3 class="box-title">Bitácora De Trabajo Por Comunidad</h3>
         </div>
         <div class="box-body">
             <p class="pull-right">
-                <?= Html::a('Nuevo Registro', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Nueva Bitacora', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([
@@ -101,15 +101,15 @@ $this->title = 'BITÁCORA DE TRABAJO POR COMUNIDAD';
                         ],
                         'urlCreator' => function ($action, $model, $key, $index) {
                             if ($action === 'update') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/update?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-trabajo/update?id='.$model->id;
                                 return $url;
                             }
                             if ($action === 'borrar') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/delete?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-trabajo/delete?id='.$model->id;
                                 return $url;
                             }
                             if ($action === 'pdf') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/pdf?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-trabajo/pdf?id='.$model->id;
                                 return $url;
                             }
                         }

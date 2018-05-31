@@ -15,7 +15,7 @@
         </td>
         <td align="center">
             <p align="center" style="font-size: small; color:#ff3d96;"><b>FAMILIAS FUERTES, COMUNIDADES CON TODO</b></p>
-            <p align="center" style="font-size: small; color:#ff3d96;"><b>BITÁCORA DE TRABAJO POR COMUNIDAD</b></p>
+            <p align="center" style="font-size: small; color:#ff3d96;"><b>BITÁCORA DE TRABAJO POR FAMILIA</b></p>
         </td>
         <td align="right">
             <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
@@ -25,15 +25,19 @@
 
 <table class="table table-bored">
     <tr>
+        <td align="center" style="background-color: #df3b7a; color: white;">Familia</td>
         <td align="center" style="background-color: #df3b7a; color: white;">Clave del Estado</td>
         <td align="center" style="background-color: #df3b7a; color: white;">Municipio</td>
         <td align="center" style="background-color: #df3b7a; color: white;">Localidad</td>
     </tr>
     <tr>
+        <td align="center"><b><?= $model->familia ?></b></td>
         <td align="center"><b><?= $model->entidad_id ?></b></td>
         <td align="center"><b><?=$model->mun->desc_mun?></b></td>
         <td align="center"> <b><?=$model->loc->nombre_loc?></b></td>
     </tr>
+</table>
+<table class="table table-bored">
     <tr>
         <td align="center" style="background-color: #df3b7a; color: white;">Nombre del Responsable Institucional</td>
         <td align="center" style="background-color: #df3b7a; color: white;">Nombre del Responsable Comunitario</td>
@@ -83,16 +87,16 @@
     </tr>
     <tr>
         <td></td>
-        <td align="left"></td>
-        <td align="left"></td>
-    </tr>
-    <tr>
-        <td align="center">_________________________________________________</td>
-        <td align="left"></td>
+        <td align="left">Anote el domicilio de la Familia con las referencias de localización inlcuidas:</td>
         <td align="left"></td>
     </tr>
     <tr>
-        <td align="center">Nombre y firma del responsable de la Bitácora </td>
+        <td align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_________________________________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td align="left"><?=$model->domicilio?></td>
+        <td align="left"></td>
+    </tr>
+    <tr>
+        <td align="center">Nombre y firma del responsable de la Bitácora  </td>
         <td align="left"></td>
         <td align="left"></td>
     </tr>

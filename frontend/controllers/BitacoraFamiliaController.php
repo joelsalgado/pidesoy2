@@ -2,16 +2,16 @@
 
 namespace frontend\controllers;
 
-use common\models\BitacoraTrabajo2;
+use common\models\BitacoraFamilia2;
 use kartik\mpdf\Pdf;
 use Yii;
-use common\models\BitacoraTrabajo;
+use common\models\BitacoraFamilia;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class BitacoraTrabajoController extends Controller
+class BitacoraFamiliaController extends Controller
 {
     public function behaviors()
     {
@@ -29,9 +29,9 @@ class BitacoraTrabajoController extends Controller
     {
         if (Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20) {
             $region = Yii::$app->user->identity->region_id;
-            $query = BitacoraTrabajo::find()->where(['region_id' => $region]);
+            $query = BitacoraFamilia::find()->where(['region_id' => $region]);
         }else{
-            $query = BitacoraTrabajo::find();
+            $query = BitacoraFamilia::find();
         }
 
         $dataProvider = new ActiveDataProvider([
@@ -53,15 +53,17 @@ class BitacoraTrabajoController extends Controller
 
     public function actionCreate()
     {
-        $model = new BitacoraTrabajo();
+        $model = new BitacoraFamilia();
 
         if ($model->load(Yii::$app->request->post())) {
             $model->resp_institucional = trim(strtoupper($model->resp_institucional));
             $model->resp_comunitario = trim(strtoupper($model->resp_comunitario));
+            $model->familia = trim(strtoupper($model->familia));
+            $model->domicilio = trim(strtoupper($model->domicilio));
             $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
             $model->status = 1;
             if($model->save()){
-                return $this->redirect(['/bitacora-trabajo2', 'id' => $model->id]);
+                return $this->redirect(['/bitacora-familia2', 'id' => $model->id]);
             }
         }
 
@@ -78,9 +80,11 @@ class BitacoraTrabajoController extends Controller
             if ($model->load(Yii::$app->request->post())) {
                 $model->resp_institucional = trim(strtoupper($model->resp_institucional));
                 $model->resp_comunitario = trim(strtoupper($model->resp_comunitario));
+                $model->familia = trim(strtoupper($model->familia));
+                $model->domicilio = trim(strtoupper($model->domicilio));
                 $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
                 if($model->save()) {
-                    return $this->redirect(['/bitacora-trabajo2', 'id' => $model->id]);
+                    return $this->redirect(['/bitacora-familia2', 'id' => $model->id]);
                 }
             }
             return $this->render('update', [
@@ -92,9 +96,9 @@ class BitacoraTrabajoController extends Controller
 
     public function actionDelete($id)
     {
-        $bitacora = BitacoraTrabajo::findOne($id);
+        $bitacora = BitacoraFamilia::findOne($id);
         if ($bitacora){
-            $bitacora2 = BitacoraTrabajo2::find()->where(['bitacora_trabajo_id' => $id])->all();
+            $bitacora2 = BitacoraFamilia2::find()->where(['bitacora_familia_id' => $id])->all();
             if($bitacora2){
                 foreach ($bitacora2 as $value){
                     $value->delete();
@@ -109,7 +113,7 @@ class BitacoraTrabajoController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = BitacoraTrabajo::findOne($id)) !== null) {
+        if (($model = BitacoraFamilia::findOne($id)) !== null) {
             return $model;
         }
 
@@ -118,9 +122,9 @@ class BitacoraTrabajoController extends Controller
 
     public function actionPdf($id)
     {
-        $model = BitacoraTrabajo::findOne($id);
+        $model = BitacoraFamilia::findOne($id);
         if ($model){
-            $model2 = BitacoraTrabajo2::find()->where(['bitacora_trabajo_id' => $id])->all();
+            $model2 = BitacoraFamilia2::find()->where(['bitacora_familia_id' => $id])->all();
 
             $content = $this->renderPartial('_reportView', [
                 'model'=> $model,
@@ -132,14 +136,14 @@ class BitacoraTrabajoController extends Controller
                 'format' => Pdf::FORMAT_A4,
                 'destination' => Pdf::DEST_BROWSER,
                 'content' => $content,
-                'filename' => 'bitacora-trabajo '.$model->id.'.pdf',
+                'filename' => 'bitacora-familia '.$model->id.'.pdf',
                 'marginLeft'=> 10,
                 'marginRight'=> 10,
                 'marginTop'=> 10,
                 'marginBottom'=> 13,
                 'orientation' => Pdf::FORMAT_A4,
                 'options' => [
-                    'title' => 'Bitacora de Trabajo'
+                    'title' => 'Bitacora de Trabajo por Familia'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
                 'methods' => [
