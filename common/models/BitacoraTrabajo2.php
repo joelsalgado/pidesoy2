@@ -38,7 +38,7 @@ class BitacoraTrabajo2 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bitacora_trabajo_id'], 'required'],
+            [['bitacora_trabajo_id', 'cumplio','fechas', 'objetivo', 'acciones', 'observaciones'], 'required', 'message' => 'Campo requerido'],
             [['bitacora_trabajo_id', 'cumplio', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['fechas'], 'safe'],
             [['objetivo', 'acciones', 'observaciones'], 'string', 'max' => 255],
@@ -57,7 +57,7 @@ class BitacoraTrabajo2 extends \yii\db\ActiveRecord
             'fechas' => 'Fecha de la visita',
             'objetivo' => 'Objetivo de la visita',
             'acciones' => 'Acción o actividad a realizar',
-            'cumplio' => 'Se Cumplio',
+            'cumplio' => 'Se Cumplio?',
             'observaciones' => 'Observaciones',
             'status' => 'Status',
             'created_by' => 'Created By',

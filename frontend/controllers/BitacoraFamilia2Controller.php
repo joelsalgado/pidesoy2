@@ -2,23 +2,20 @@
 
 namespace frontend\controllers;
 
-use common\models\BitacoraReunion;
+use common\models\BitacoraFamilia;
+use common\models\BitacoraTrabajo2;
 use Yii;
-use common\models\BitacoraReunion2;
+use common\models\BitacoraFamilia2;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * BitacoraReunion2Controller implements the CRUD actions for BitacoraReunion2 model.
- */
-class BitacoraReunion2Controller extends Controller
+
+class BitacoraFamilia2Controller extends Controller
 {
-    /**
-     * @inheritdoc
-     */
+
     public function behaviors()
     {
         return [
@@ -36,14 +33,14 @@ class BitacoraReunion2Controller extends Controller
     {
 
         try{
-            $model2 = BitacoraReunion::findOne($id);
+            $model2 = BitacoraFamilia::findOne($id);
         }
         catch (Exception $exception){
             $model2 = null;
         }
         if ($model2){
             $dataProvider = new ActiveDataProvider([
-                'query' => BitacoraReunion2::find()->where(['bitacora_reunion_id' => $id]),
+                'query' => BitacoraFamilia2::find()->where(['bitacora_familia_id' => $id]),
             ]);
 
             return $this->render('index', [
@@ -68,11 +65,11 @@ class BitacoraReunion2Controller extends Controller
 
     public function actionCreate($id)
     {
-        $model = new BitacoraReunion2();
+        $model = new BitacoraFamilia2();
 
         if ($model->load(Yii::$app->request->post())) {
             $model->fechas = Yii::$app->formatter->asDate($model->fechas, 'yyyy-MM-dd');
-            $model->bitacora_reunion_id = $id;
+            $model->bitacora_familia_id = $id;
             $model->status = 1;
             if($model->save()){
                 return $this->redirect(['index', 'id' => $id]);
@@ -92,7 +89,7 @@ class BitacoraReunion2Controller extends Controller
             if ($model->load(Yii::$app->request->post())) {
                 $model->fechas = Yii::$app->formatter->asDate($model->fechas, 'yyyy-MM-dd');
                 if($model->save()){
-                    return $this->redirect(['index', 'id' => $model->bitacora_reunion_id]);
+                    return $this->redirect(['index', 'id' => $model->bitacora_familia_id]);
                 }
             }
 
@@ -100,24 +97,21 @@ class BitacoraReunion2Controller extends Controller
                 'model' => $model,
             ]);
         }
-
-
     }
 
 
     public function actionDelete($id)
     {
-        $bitacora = BitacoraReunion2::findOne($id);
+        $bitacora = BitacoraFamilia2::findOne($id);
         if ($bitacora){
             $this->findModel($id)->delete();
-            return $this->redirect(['index', 'id' => $bitacora->bitacora_reunion_id]);
+            return $this->redirect(['index', 'id' => $bitacora->bitacora_familia_id]);
         }
-
     }
 
     protected function findModel($id)
     {
-        if (($model = BitacoraReunion2::findOne($id)) !== null) {
+        if (($model = BitacoraFamilia2::findOne($id)) !== null) {
             return $model;
         }
 

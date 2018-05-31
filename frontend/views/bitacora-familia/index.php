@@ -3,13 +3,15 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bitácora De Reuniones Por Comunidad';
+$this->title = 'Bitácora De Trabajo Por Familia';
 ?>
-<div class="bitacora-reunion-index">
+<div class="bitacora-familia-index">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Bitácora De Reuniones Por Comunidad</h3>
+            <h3 class="box-title">Bitácora De Trabajo Por Familia</h3>
         </div>
         <div class="box-body">
             <p class="pull-right">
@@ -99,15 +101,15 @@ $this->title = 'Bitácora De Reuniones Por Comunidad';
                         ],
                         'urlCreator' => function ($action, $model, $key, $index) {
                             if ($action === 'update') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/update?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-familia/update?id='.$model->id;
                                 return $url;
                             }
                             if ($action === 'borrar') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/delete?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-familia/delete?id='.$model->id;
                                 return $url;
                             }
                             if ($action === 'pdf') {
-                                $url =Yii::$app->homeUrl.'bitacora-reunion/pdf?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'bitacora-familia/pdf?id='.$model->id;
                                 return $url;
                             }
                         }

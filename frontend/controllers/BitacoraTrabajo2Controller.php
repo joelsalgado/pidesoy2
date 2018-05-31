@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\BitacoraFamilia2;
 use common\models\BitacoraTrabajo;
 use Yii;
 use common\models\BitacoraTrabajo2;
@@ -101,9 +102,12 @@ class BitacoraTrabajo2Controller extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        $bitacora = BitacoraTrabajo2::findOne($id);
+        if ($bitacora){
+            $this->findModel($id)->delete();
+            return $this->redirect(['index', 'id' => $bitacora->bitacora_trabajo_id]);
+        }
     }
 
     protected function findModel($id)

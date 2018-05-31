@@ -6,16 +6,16 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'BITÁCORA DE TRABAJO POR COMUNIDAD';
+$this->title = 'Bitácora De Trabajo Por Comunidad';
 ?>
 <div class="bitacora-trabajo-index">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">BITÁCORA DE TRABAJO POR COMUNIDAD</h3>
+            <h3 class="box-title">Bitácora De Trabajo Por Comunidad</h3>
         </div>
         <div class="box-body">
             <p class="pull-right">
-                <?= Html::a('Nuevo Registro', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Nueva Bitacora', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([
