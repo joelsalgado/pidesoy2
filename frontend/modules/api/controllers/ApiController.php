@@ -3,6 +3,7 @@
 
 namespace frontend\modules\api\controllers;
 
+use common\models\Apilocalidades;
 use common\models\Apiregiones;
 use common\models\Localidades;
 use Yii;
@@ -52,6 +53,31 @@ class ApiController extends ActiveController
                     'GID' => $i++,
                     'Region' => $value->Region,
                     'Mun' => $value->Mun,
+                    'pobreza_extrema' => $value->pobreza_extrema,
+                    'pobreza_moderada' => $value->pobreza_moderada,
+                    'vulnerable_por_ingresos' => $value->vulnerable_por_ingresos,
+                    'vulnerable_por_carencias' => $value->vulnerable_por_carencias,
+                    'no_vulnerable' => $value->no_vulnerable,
+                ];
+            }
+            return array('status' => true, 'data'=> $array);
+        } else {
+            return new NotFoundHttpException();
+        }
+    }
+
+    public function actionMapa2(){
+        $mapa = Apilocalidades::find()->all();
+
+        if (!is_null($mapa)) {
+            $i =1;
+            foreach ($mapa as $value){
+                $array [] =  [
+                    'GID' => $i++,
+                    'Region' => $value->Region,
+                    'Mun' => $value->Mun,
+                    'Loc' => $value->Loc,
+                    'localidad_id' => '15'.$value->localidad_id,
                     'pobreza_extrema' => $value->pobreza_extrema,
                     'pobreza_moderada' => $value->pobreza_moderada,
                     'vulnerable_por_ingresos' => $value->vulnerable_por_ingresos,
