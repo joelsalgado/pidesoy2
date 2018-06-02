@@ -4,56 +4,17 @@ namespace common\models;
 
 use Yii;
 
-/**
- * This is the model class for table "directorio_responsables".
- *
- * @property int $id
- * @property string $fecha
- * @property string $imagen
- * @property int $resp_institucional
- * @property int $resp_comunitario
- * @property int $otro
- * @property string $especifique
- * @property string $funcion
- * @property string $apellido_paterno
- * @property string $apellido_materno
- * @property string $nombre
- * @property string $sexo
- * @property string $fecha_nacimiento
- * @property string $calle
- * @property string $num_ext
- * @property string $num_int
- * @property string $colonia
- * @property int $codigo_posta
- * @property string $tel_local
- * @property string $tel_cel
- * @property int $mun_id
- * @property int $loc_id
- * @property string $referencia
- * @property string $correo
- * @property string $redes_sociales
- * @property int $status
- * @property int $created_by
- * @property int $updated_by
- * @property int $created_at
- * @property int $updated_at
- *
- * @property CatLocalidades $loc
- * @property CatMunicipios $mun
- */
+
 class DirectorioResponsables extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+    public $imageTemp;
+
     public static function tableName()
     {
         return 'directorio_responsables';
     }
 
-    /**
-     * @inheritdoc
-     */
+
     public function rules()
     {
         return [
@@ -70,7 +31,14 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
             [['redes_sociales'], 'string', 'max' => 150],
             [['loc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Localidades::className(), 'targetAttribute' => ['loc_id' => 'localidad_id']],
             [['mun_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municpios::className(), 'targetAttribute' => ['mun_id' => 'id']],
-        ];
+            [
+                ['imageTemp'],
+                'file',
+                'extensions' => ['jpg', 'pdf'],
+                'wrongExtension'=>'Solo se permiten estas extensiones {extensions} '
+                //'mimeTypes' => ['image/jpeg',],
+                //'maxSize'=>1024*240,
+            ],        ];
     }
 
     /**
@@ -80,6 +48,7 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'imageTemp' => 'Imagen',
             'fecha' => 'Fecha',
             'imagen' => 'Imagen',
             'resp_institucional' => 'Resp Institucional',
