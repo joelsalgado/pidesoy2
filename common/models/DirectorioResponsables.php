@@ -1,6 +1,9 @@
 <?php
 
 namespace common\models;
+use yii\imagine\Image;
+use Imagine\Image\Box;
+use yii\helpers\FileHelper;
 
 use Yii;
 
@@ -34,7 +37,7 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
             [
                 ['imageTemp'],
                 'file',
-                'extensions' => ['jpg', 'pdf'],
+                'extensions' => ['jpg'],
                 'wrongExtension'=>'Solo se permiten estas extensiones {extensions} '
                 //'mimeTypes' => ['image/jpeg',],
                 //'maxSize'=>1024*240,
@@ -95,5 +98,18 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
     public function getMun()
     {
         return $this->hasOne(Municpios::className(), ['id' => 'mun_id']);
+    }
+
+    public function  saveImage($imageFile, $name, $type, $tipo) {
+        if ($type == 'imageTemp') {
+
+            $image = Image::getImagine()->open($imageFile->tempName);
+            FileHelper::createDirectory(Yii::getAlias('@images').'/docs/'.$tipo);
+
+            $cropSizeThumb = new Box(440, 640);
+            $image->resize($cropSizeThumb)
+                ->save(Yii::getAlias('@images').'/docs/'.$tipo.'/'.$name, ['quality' => 100]);
+        }
+
     }
 }
