@@ -104,11 +104,11 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
         if ($type == 'imageTemp') {
 
             $image = Image::getImagine()->open($imageFile->tempName);
-            FileHelper::createDirectory(Yii::getAlias('@images').'/docs/'.$tipo);
+            FileHelper::createDirectory(Yii::getAlias('@images').'/directorio/'.$tipo);
 
             $cropSizeThumb = new Box(440, 640);
             $image->resize($cropSizeThumb)
-                ->save(Yii::getAlias('@images').'/docs/'.$tipo.'/'.$name, ['quality' => 100]);
+                ->save(Yii::getAlias('@images').'/directorio/'.$tipo.'/'.$name, ['quality' => 100]);
         }
 
     }

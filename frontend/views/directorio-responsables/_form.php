@@ -26,12 +26,12 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
                     <?= $form->field($model, 'imageTemp')->widget(FileInput::classname(), [
                         'pluginOptions' => [
                             'initialPreview'=>[
-                                Yii::$app->homeUrl."images/docs/".$model->id."/".$model->imagen,
+                                Yii::$app->homeUrl."images/directorio/".$model->imagen,
                             ],
                             'initialPreviewAsData'=>true,
                             'initialPreviewConfig' => [
                                 ['type' => $value,'caption' => $model->imagen,
-                                    'url' => Yii::$app->homeUrl."images/docs/".$model->id."/", 'key' => 10, 'downloadUrl'=> false],
+                                    'url' => Yii::$app->homeUrl."images/directorio/", 'key' => 10, 'downloadUrl'=> false],
                             ],
                             'initialPreviewShowDelete' => false,
                             'showCaption' => true,

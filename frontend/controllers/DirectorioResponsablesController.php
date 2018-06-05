@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\FileHelper;
+use yii\web\UploadedFile;
 
 /**
  * DirectorioResponsablesController implements the CRUD actions for DirectorioResponsables model.
@@ -56,17 +58,18 @@ class DirectorioResponsablesController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new DirectorioResponsables model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+
     public function actionCreate()
     {
         $model = new DirectorioResponsables();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->fecha =  Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
+            $model->fecha_nacimiento =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
+            $model->imagen = $this->loadImage('imagen', 'imageTemp', $model, 'imagen');
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -74,18 +77,20 @@ class DirectorioResponsablesController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing DirectorioResponsables model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->fecha =  Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy');
+        $model->fecha_nacimiento =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
+        if ($model->load(Yii::$app->request->post())) {
+            $model->fecha =  Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
+            $model->fecha_nacimiento =  Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd');
+            $model->imagen = $this->loadImage('imagen', 'imageTemp', $model, 'imagen');
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -93,12 +98,7 @@ class DirectorioResponsablesController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing DirectorioResponsables model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -106,13 +106,7 @@ class DirectorioResponsablesController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the DirectorioResponsables model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return DirectorioResponsables the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = DirectorioResponsables::findOne($id)) !== null) {
@@ -120,5 +114,25 @@ class DirectorioResponsablesController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function loadImage($field, $type, $model, $tipo) {
+        $imageFile= UploadedFile::getInstanceByName('DirectorioResponsables['.$type.']');
+        $modelNamePhoto = $model->$field;
+        //var_dump($model); die;
+
+
+        if ($imageFile) {
+            $ext = $imageFile->getExtension();
+            $sanitizeName = str_replace(' ', '-', $model->fecha_nacimiento.$model->apellido_paterno.$model->fecha);
+            $name = $sanitizeName.'-'.$tipo.'.'.$imageFile->getExtension();
+            $tipo = $model->id;
+            $model->saveImage($imageFile, $name, $type, $tipo, $ext);
+
+
+            return $name;
+        } else {
+            return $modelNamePhoto;
+        }
     }
 }
