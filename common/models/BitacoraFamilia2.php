@@ -3,10 +3,23 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 
 class BitacoraFamilia2 extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::className(),
+            ],
+            [
+                'class' => TimestampBehavior::className()
+            ]
+        ];
+    }
 
     public static function tableName()
     {
