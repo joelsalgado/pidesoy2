@@ -64,11 +64,6 @@ class SolicitantesController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Solicitantes model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -168,13 +163,6 @@ class SolicitantesController extends Controller
 
     }
 
-    /**
-     * Deletes an existing Solicitantes model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-
     public function actionDelete($id)
     {
         if (Yii::$app->user->identity->role != 30) {
@@ -256,13 +244,7 @@ class SolicitantesController extends Controller
             throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
         }
     }
-    /**
-     * Finds the Solicitantes model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Solicitantes the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = Solicitantes::findOne($id)) !== null) {
@@ -299,6 +281,26 @@ class SolicitantesController extends Controller
             if ($parents != null) {
                 $cat_id = $parents[0];
                 $out = Localidades::getLoc($cat_id);
+                // the getSubCatList function will query the database based on the
+                // cat_id and return an array like below:
+                // [
+                //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
+                //    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
+                // ]
+                echo Json::encode(['output'=>$out, 'selected'=>$out]);
+                return;
+            }
+        }
+        echo Json::encode(  ['output'=>'', 'selected'=>'']);
+    }
+
+    public function actionLocalidades2() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $cat_id = $parents[0];
+                $out = Localidades::getLoc2($cat_id);
                 // the getSubCatList function will query the database based on the
                 // cat_id and return an array like below:
                 // [

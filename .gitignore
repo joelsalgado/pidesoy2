@@ -40,5 +40,6 @@ phpunit.phar
 /robots.txt
 
 /images/docs/
+/images/directorio/
 pideso10.json
 pideso.json
