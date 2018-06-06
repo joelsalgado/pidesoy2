@@ -220,7 +220,9 @@
         <td colspan="1"><b>INVRESION</b></td>
         <td colspan="1"><b>DEPENDENCIA</b></td>
         <td colspan="1"><b>RESPONSABLE</b></td>
-        <td colspan="2"><b>DESCRIPCIÓN</b></td>
+        <td colspan="1"><b>CARGO</b></td>
+        <td colspan="1"><b>DESCRIPCIÓN</b></td>
+
     </tr>
     <?php if($actividades): ?>
         <?php foreach ($actividades as $act){ ?>
@@ -229,7 +231,8 @@
                 <td colspan="1"><?= $act->inversion ?></td>
                 <td colspan="1"><?= $act->dependencia ?></td>
                 <td colspan="1"><?= $act->responsable ?></td>
-                <td colspan="2"><?= $act->descripcion ?></td>
+                <td colspan="1"><?= $act->descripcion ?></td>
+                <td colspan="1"><?= $act->cargo ?></td>
             </tr>
         <?php } ?>
     <?php else: ?>
@@ -238,7 +241,8 @@
             <td colspan="1"> </td>
             <td colspan="1"> </td>
             <td colspan="1"> </td>
-            <td colspan="2"> </td>
+            <td colspan="1"> </td>
+            <td colspan="1"> </td>
         </tr>
     <?php endif; ?>
 </table>
