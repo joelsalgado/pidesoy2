@@ -29,7 +29,7 @@
 </table>
 
 
-<p><b>I.- DATOS PERSONALES</p></b>
+<p><b>I.- DATOS PERSONALES</p></b><br>
 <table class="table table-hover" >
     <tr>
         <td colspan="2"></td>
@@ -69,4 +69,42 @@
     </tr>
 </table>
 
+<br><p><b>II.- DATOS PARA LOCALIZACIÓN.</p></b><br>
 
+<table class="table table-striped">
+    <tr>
+        <td colspan="6"><b>CALLE:</b> <?= $model->calle ?></td>
+        <td colspan="3"><b>NÚMERO EXTERIOR:</b> <?= $model->num_ext ?></td>
+        <td colspan="3"><b>NÚMERO INTERIOR:</b> <?= $model->num_int ?></td>
+    </tr>
+    <tr>
+        <td colspan="6"><b>COLONIA: </b><?= $model->colonia ?></td>
+        <td colspan="6"><b>CÓDIGO POSTAL: </b><?= $model->codigo_posta ?></td>
+    </tr>
+    <tr>
+        <td colspan="6"><b>TELÉFONO LOCAL: </b><?= $model->tel_local ?></td>
+        <td colspan="6"><b>TELÉFONO CELULAR: </b><?= $model->tel_cel ?></td>
+    </tr>
+    <tr>
+        <td colspan="4"><b>MUNICIPIO: </b><?= $model->mun->desc_mun ?></td>
+        <td colspan="4"><b>LOCALIDAD: </b><?= $model->loc->nombre_loc ?></td>
+        <td colspan="4"><b>REFERENCIA: </b><?= $model->referencia ?></td>
+    </tr>
+    <tr>
+        <td colspan="6"><b>CORREO ELECTRÓNICO: </b><?= $model->correo ?></td>
+        <td colspan="6"><b>REDES SOCIALES: </b><?= $model->redes_sociales ?></td>
+    </tr>
+</table>
+<br>
+
+<table class="table table-striped">
+    <tr>
+        <td align="center">__________________________________________________________</td>
+    </tr>
+    <tr>
+        <td align="center">HAGO CONSTAR QUE LA INFORMACIÓN ES VERDADERA</td>
+    </tr>
+    <tr>
+        <td align="center">Y ACEPTO LAS RESPONSABILIDADES <ASIGNADAS></ASIGNADAS></td>
+    </tr>
+</table>

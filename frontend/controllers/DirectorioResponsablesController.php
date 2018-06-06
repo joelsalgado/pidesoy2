@@ -26,7 +26,7 @@ class DirectorioResponsablesController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -190,9 +190,6 @@ class DirectorioResponsablesController extends Controller
                     'title' => 'Directorio De Responsables Y Enlaces'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
-                'methods' => [
-                    'SetFooter' => ['|Pagina {PAGENO}|'],
-                ]
             ]);
             return $pdf->render();
         }
