@@ -190,7 +190,7 @@ $total_vinc_prog_prospera = 0;
         <td colspan="1" align="center" ><b>Sin Piso Firme</b></td>
         <td colspan="1" align="center" ><b>Sin Techo Firme</b></td>
         <td colspan="1" align="center" ><b>Sin Muros Firmes</b></td>
-        <td colspan="1" align="center" ><b>Hacentamiento</b></td>
+        <td colspan="1" align="center" ><b>Hacinamiento</b></td>
     </tr>
     <?php foreach ($model as $data){ ?>
         <tr>

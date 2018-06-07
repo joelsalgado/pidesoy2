@@ -108,7 +108,7 @@ $total_vinc_prog_prospera = 0;
                 <th>Sin Piso Firme</th>
                 <th>Sin Techo Firme</th>
                 <th>Sin Muros Firmes</th>
-                <th>Hacentamiento</th>
+                <th>Hacinamiento</th>
                 <th>Falta llevar toma de agua al interior</th>
                 <th>Falta Servicio de Agua Potable</th>
                 <th>Falta Drenaje</th>

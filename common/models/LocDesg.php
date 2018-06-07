@@ -130,7 +130,7 @@ class LocDesg extends \yii\db\ActiveRecord
             'sin_piso' => 'Sin Piso Firme',
             'sin_techo' => 'Sin Techo Firme',
             'sin_muro' => 'Sin Muros Firmes',
-            'hacentamiento' => 'Hacentamiento',
+            'hacentamiento' => 'Hacinamiento',
             'agua_interior' => 'Falta llevar toma de agua al interior',
             'servicio_agua' => 'Falta Servicio de Agua Potable',
             'falta_drenaje' => 'Falta Drenaje',
