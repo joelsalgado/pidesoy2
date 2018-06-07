@@ -4,7 +4,7 @@
 # @author Kartik Visweswaran <kartikv2@gmail.com>
 # @see http://demos.krajee.com/app-practical
 # ----------------------------------------------------------------------
-
+Header set Access-Control-Allow-Origin "*"
 # "-Indexes" will have Apache block users from browsing folders without a default document
 # Usually you should leave this activated, because you shouldn't allow everybody to surf through
 # every folder on your server (which includes rather private places like CMS system folders).
