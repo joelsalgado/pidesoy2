@@ -5,17 +5,19 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\DirectorioResponsables */
 
-$this->title = 'Update Directorio Responsables: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Directorio Responsables', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Actualizar Registro';
 ?>
 <div class="directorio-responsables-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Actualizar Registro</h3>
+        </div>
+        <div class="box-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 
 </div>

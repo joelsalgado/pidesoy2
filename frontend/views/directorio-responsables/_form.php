@@ -83,9 +83,11 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
                     <?= $form->field($model, 'otro')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <?= $form->field($model, 'especifique')->textInput(['maxlength' => true]) ?>
+            <div class="otro">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <?= $form->field($model, 'especifique')->textInput(['maxlength' => true]) ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,7 +115,7 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
                 </div>
             </div>
         </div>
-        <div class="row"></div>
+        <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
                 <?= $form->field($model, 'sexo')->radioList(['H' => 'Hombre', 'M' => 'Mujer']) ?>
@@ -137,101 +139,102 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <?= $form->field($model, 'calle')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'calle')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'num_ext')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'num_int')->textInput(['maxlength' => true]) ?>
+                </div>
             </div>
         </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <?= $form->field($model, 'num_ext')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'colonia')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'codigo_posta')->textInput() ?>
+                </div>
             </div>
         </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <?= $form->field($model, 'num_int')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'tel_local')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'tel_cel')->textInput(['maxlength' => true]) ?>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <?= $form->field($model, 'colonia')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'mun_id')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(\common\models\Municpios::find()->orderBy(['desc_mun' => 'DESC'])->all(),
+                            'id', 'desc_mun'),
+                        'options' => ['placeholder' => 'Selecciona un Municipio', 'id' => 'mun_id'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]) ?>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <?= $form->field($model, 'codigo_posta')->textInput() ?>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <?= $form->field($model, 'tel_local')->textInput(['maxlength' => true]) ?>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <?= $form->field($model, 'tel_cel')->textInput(['maxlength' => true]) ?>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <?= $form->field($model, 'mun_id')->widget(Select2::classname(), [
-                    'data' => ArrayHelper::map(\common\models\Municpios::find()->orderBy(['desc_mun' => 'DESC'])->all(),
-                        'id', 'desc_mun'),
-                    'options' => ['placeholder' => 'Selecciona un Municipio', 'id' => 'mun_id'],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ]) ?>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <?= !$model->isNewRecord ?  $form->field($model, 'loc_id')->widget(DepDrop::classname(), [
-                    'options' => ['id'=>'loc_id'],
-                    'data'=>[$model->loc_id=>$model->loc->desc_loc],
-                    'type'=>DepDrop::TYPE_SELECT2,
-                    'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
-                    'pluginOptions'=>[
-                        'depends'=>['mun_id'],
-                        'placeholder' => 'Selecciona una Localidad',
-                        'url' => Url::to(['solicitantes/localidades']),
-                    ]
-                ]) :
-                    $form->field($model, 'loc_id')->widget(DepDrop::classname(), [
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= !$model->isNewRecord ?  $form->field($model, 'loc_id')->widget(DepDrop::classname(), [
                         'options' => ['id'=>'loc_id'],
+                        'data'=>[$model->loc_id=>$model->loc->desc_loc],
                         'type'=>DepDrop::TYPE_SELECT2,
                         'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
                         'pluginOptions'=>[
                             'depends'=>['mun_id'],
                             'placeholder' => 'Selecciona una Localidad',
-                            'url' => Url::to(['solicitantes/localidades2']),
+                            'url' => Url::to(['solicitantes/localidades']),
                         ]
-                    ])
-                ?>
+                    ]) :
+                        $form->field($model, 'loc_id')->widget(DepDrop::classname(), [
+                            'options' => ['id'=>'loc_id'],
+                            'type'=>DepDrop::TYPE_SELECT2,
+                            'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
+                            'pluginOptions'=>[
+                                'depends'=>['mun_id'],
+                                'placeholder' => 'Selecciona una Localidad',
+                                'url' => Url::to(['solicitantes/localidades2']),
+                            ]
+                        ])
+                    ?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'referencia')->textInput(['maxlength' => true]) ?>
+                </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <?= $form->field($model, 'referencia')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'correo')->textInput(['maxlength' => true]) ?>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <?= $form->field($model, 'correo')->textInput(['maxlength' => true]) ?>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <?= $form->field($model, 'redes_sociales')->textInput(['maxlength' => true]) ?>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'redes_sociales')->textInput(['maxlength' => true]) ?>
+                </div>
             </div>
         </div>
     </div>
@@ -242,4 +245,7 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
 
 <?php ActiveForm::end(); ?>
 
-</div>
+<?=$this->registerJsFile(
+    '@web/frontend/assets/js/directorio.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+);?>
