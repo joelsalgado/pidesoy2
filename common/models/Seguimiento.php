@@ -119,7 +119,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_piso;
             $fecha_entrega = $this->fecha_entrega_piso;
             $fecha_termino = $this->fecha_termino_piso;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_piso', 'Fecha Obligatoria');
                 $this->fechas();
@@ -130,6 +130,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->fechas();
             }
 
+            */
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
                 $date2 = date_create($fecha_entrega);
@@ -138,13 +139,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_piso', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_piso == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_piso', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -176,7 +170,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_techo;
             $fecha_entrega = $this->fecha_entrega_techo;
             $fecha_termino = $this->fecha_termino_techo;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_techo', 'Fecha Obligatoria');
                 $this->fechas();
@@ -186,6 +180,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_techo', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -195,13 +190,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_techo', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_techo == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_techo', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -233,7 +221,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_muro;
             $fecha_entrega = $this->fecha_entrega_muro;
             $fecha_termino = $this->fecha_termino_muro;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_muro', 'Fecha Obligatoria');
                 $this->fechas();
@@ -243,6 +231,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_muro', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -252,13 +241,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_muro', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_muro == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_muro', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -290,7 +272,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_cuarto;
             $fecha_entrega = $this->fecha_entrega_cuarto;
             $fecha_termino = $this->fecha_termino_cuarto;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_cuarto', 'Fecha Obligatoria');
                 $this->fechas();
@@ -300,6 +282,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_cuarto', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -313,12 +296,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 }
             }
 
-            if ($this->acciones_cuarto == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_cuarto', 'Fecha Obligatoria');
-                    $this->fechas();
-                }
-            }
 
             if ($this->acciones_cuarto == 1){
 
@@ -347,7 +324,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_agua_potable;
             $fecha_entrega = $this->fecha_entrega_agua_potable;
             $fecha_termino = $this->fecha_termino_agua_potable;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_agua_potable', 'Fecha Obligatoria');
                 $this->fechas();
@@ -357,6 +334,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_agua_potable', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -366,13 +344,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_agua_potable', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_agua_potable == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_agua_potable', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -404,7 +375,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_agua_interior;
             $fecha_entrega = $this->fecha_entrega_agua_interior;
             $fecha_termino = $this->fecha_termino_agua_interior;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_agua_interior', 'Fecha Obligatoria');
                 $this->fechas();
@@ -414,6 +385,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_agua_interior', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -461,7 +433,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_drenaje;
             $fecha_entrega = $this->fecha_entrega_drenaje;
             $fecha_termino = $this->fecha_termino_drenaje;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_drenaje', 'Fecha Obligatoria');
                 $this->fechas();
@@ -471,6 +443,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_drenaje', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -480,13 +453,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_drenaje', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_drenaje == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_drenaje', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -518,7 +484,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_luz;
             $fecha_entrega = $this->fecha_entrega_luz;
             $fecha_termino = $this->fecha_termino_luz;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_luz', 'Fecha Obligatoria');
                 $this->fechas();
@@ -528,6 +494,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_luz', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -537,13 +504,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_luz', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_luz == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_luz', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -575,7 +535,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_estufa;
             $fecha_entrega = $this->fecha_entrega_estufa;
             $fecha_termino = $this->fecha_termino_estufa;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_estufa', 'Fecha Obligatoria');
                 $this->fechas();
@@ -585,6 +545,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_estufa', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -594,13 +555,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_estufa', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_estufa == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_estufa', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -632,7 +586,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_seguro_popular;
             $fecha_entrega = $this->fecha_entrega_seguro_popular;
             $fecha_termino = $this->fecha_termino_seguro_popular;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_seguro_popular', 'Fecha Obligatoria');
                 $this->fechas();
@@ -642,6 +596,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_seguro_popular', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -651,13 +606,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_seguro_popular', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_seguro_popular == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_seguro_popular', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -689,7 +637,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_3_15_escuela;
             $fecha_entrega = $this->fecha_entrega_3_15_escuela;
             $fecha_termino = $this->fecha_termino_3_15_escuela;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_3_15_escuela', 'Fecha Obligatoria');
                 $this->fechas();
@@ -699,6 +647,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_3_15_escuela', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -708,13 +657,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_3_15_escuela', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_3_15_escuela == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_3_15_escuela', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -746,7 +688,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_antes_1982_primaria;
             $fecha_entrega = $this->fecha_entrega_antes_1982_primaria;
             $fecha_termino = $this->fecha_termino_antes_1982_primaria;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_antes_1982_primaria', 'Fecha Obligatoria');
                 $this->fechas();
@@ -756,6 +698,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_antes_1982_primaria', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -765,13 +708,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_antes_1982_primaria', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_antes_1982_primaria == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_antes_1982_primaria', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -803,7 +739,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_despues_1982_secundaria;
             $fecha_entrega = $this->fecha_entrega_despues_1982_secundaria;
             $fecha_termino = $this->fecha_termino_despues_1982_secundaria;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_despues_1982_secundaria', 'Fecha Obligatoria');
                 $this->fechas();
@@ -813,6 +749,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_despues_1982_secundaria', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -822,13 +759,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_despues_1982_secundaria', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_despues_1982_secundaria == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_despues_1982_secundaria', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -860,7 +790,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_despensas;
             $fecha_entrega = $this->fecha_entrega_despensas;
             $fecha_termino = $this->fecha_termino_despensas;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_despensas', 'Fecha Obligatoria');
                 $this->fechas();
@@ -870,6 +800,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_despensas', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -879,13 +810,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_despensas', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_despensas == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_despensas', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -917,7 +841,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_ss;
             $fecha_entrega = $this->fecha_entrega_ss;
             $fecha_termino = $this->fecha_termino_ss;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_ss', 'Fecha Obligatoria');
                 $this->fechas();
@@ -927,6 +851,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_ss', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -936,13 +861,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_ss', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_ss == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_ss', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -974,7 +892,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_trabajadores_ss;
             $fecha_entrega = $this->fecha_entrega_trabajadores_ss;
             $fecha_termino = $this->fecha_termino_trabajadores_ss;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_trabajadores_ss', 'Fecha Obligatoria');
                 $this->fechas();
@@ -984,6 +902,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_trabajadores_ss', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -993,13 +912,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_trabajadores_ss', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_trabajadores_ss == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_trabajadores_ss', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -1031,7 +943,7 @@ class Seguimiento extends \yii\db\ActiveRecord
             $fecha_inicio = $this->fecha_inicio_adultos_ss;
             $fecha_entrega = $this->fecha_entrega_adultos_ss;
             $fecha_termino = $this->fecha_termino_adultos_ss;
-
+            /*
             if(!$fecha_inicio){
                 $this->addError('fecha_inicio_adultos_ss', 'Fecha Obligatoria');
                 $this->fechas();
@@ -1041,6 +953,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                 $this->addError('fecha_entrega_adultos_ss', 'Fecha Obligatoria');
                 $this->fechas();
             }
+            */
 
             if ($fecha_inicio && $fecha_entrega){
                 $date1 = date_create($fecha_inicio);
@@ -1050,13 +963,6 @@ class Seguimiento extends \yii\db\ActiveRecord
                 //var_dump($interval->format($differenceFormat)); die;
                 if($date1 > $date2){
                     $this->addError('fecha_entrega_adultos_ss', 'Fecha es menor a la de inicio');
-                    $this->fechas();
-                }
-            }
-
-            if ($this->acciones_adultos_ss == 1){
-                if(!$fecha_termino){
-                    $this->addError('fecha_termino_adultos_ss', 'Fecha Obligatoria');
                     $this->fechas();
                 }
             }
@@ -1497,36 +1403,41 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_piso;
                         $fecha_entrega = $model->fecha_entrega_piso;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega){
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $piso = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $piso = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $piso = $div * 100;
                                 } else {
-                                    $piso = 100;
+                                    if ($diff1 > 0) {
+                                        $piso = 100 / $diff1;
+                                    } else {
+                                        $piso = 100;
+                                    }
                                 }
+                                $piso = ($piso > 100) ? 100 : $piso;
+                            } else {
+                                $piso = 0;
                             }
-                            $piso = ($piso > 100) ? 100 : $piso;
-                        } else {
+                        }else{
                             $piso = 0;
                         }
+
                     }
 
                 } else {
@@ -1539,34 +1450,38 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_techo;
                         $fecha_entrega = $model->fecha_entrega_techo;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $techo = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $techo = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $techo = $div * 100;
                                 } else {
-                                    $techo = 100;
+                                    if ($diff1 > 0) {
+                                        $techo = 100 / $diff1;
+                                    } else {
+                                        $techo = 100;
+                                    }
                                 }
+                                $techo = ($techo > 100) ? 100 : $techo;
+                            } else {
+                                $techo = 0;
                             }
-                            $techo = ($techo > 100) ? 100 : $techo;
-                        } else {
+                        }else {
                             $techo = 0;
                         }
                     }
@@ -1580,34 +1495,38 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_muro;
                         $fecha_entrega = $model->fecha_entrega_muro;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $muro = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $muro = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $muro = $div * 100;
                                 } else {
-                                    $muro = 100;
+                                    if ($diff1 > 0) {
+                                        $muro = 100 / $diff1;
+                                    } else {
+                                        $muro = 100;
+                                    }
                                 }
+                                $muro = ($muro > 100) ? 100 : $muro;
+                            } else {
+                                $muro = 0;
                             }
-                            $muro = ($muro > 100) ? 100 : $muro;
-                        } else {
+                        }else {
                             $muro = 0;
                         }
                     }
@@ -1621,34 +1540,38 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_cuarto;
                         $fecha_entrega = $model->fecha_entrega_cuarto;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $cuarto = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $cuarto = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $cuarto = $div * 100;
                                 } else {
-                                    $cuarto = 100;
+                                    if ($diff1 > 0) {
+                                        $cuarto = 100 / $diff1;
+                                    } else {
+                                        $cuarto = 100;
+                                    }
                                 }
+                                $cuarto = ($cuarto > 100) ? 100 : $cuarto;
+                            } else {
+                                $cuarto = 0;
                             }
-                            $cuarto = ($cuarto > 100) ? 100 : $cuarto;
-                        } else {
+                        }else {
                             $cuarto = 0;
                         }
                     }
@@ -1662,33 +1585,37 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_agua_potable;
                         $fecha_entrega = $model->fecha_entrega_agua_potable;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $agua_potable = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $agua_potable = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $agua_potable = $div * 100;
                                 } else {
-                                    $agua_potable = 100;
+                                    if ($diff1 > 0) {
+                                        $agua_potable = 100 / $diff1;
+                                    } else {
+                                        $agua_potable = 100;
+                                    }
                                 }
+                                $agua_potable = ($agua_potable > 100) ? 100 : $agua_potable;
+                            } else {
+                                $agua_potable = 0;
                             }
-                            $agua_potable = ($agua_potable > 100) ? 100 : $agua_potable;
                         } else {
                             $agua_potable = 0;
                         }
@@ -1703,34 +1630,38 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_agua_interior;
                         $fecha_entrega = $model->fecha_entrega_agua_interior;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $agua_interior = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $agua_interior = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $agua_interior = $div * 100;
                                 } else {
-                                    $agua_interior = 100;
+                                    if ($diff1 > 0) {
+                                        $agua_interior = 100 / $diff1;
+                                    } else {
+                                        $agua_interior = 100;
+                                    }
                                 }
+                                $agua_interior = ($agua_interior > 100) ? 100 : $agua_interior;
+                            } else {
+                                $agua_interior = 0;
                             }
-                            $agua_interior = ($agua_interior > 100) ? 100 : $agua_interior;
-                        } else {
+                        }else{
                             $agua_interior = 0;
                         }
                     }
@@ -1744,34 +1675,38 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_drenaje;
                         $fecha_entrega = $model->fecha_entrega_drenaje;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $drenaje = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $drenaje = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $drenaje = $div * 100;
                                 } else {
-                                    $drenaje = 100;
+                                    if ($diff1 > 0) {
+                                        $drenaje = 100 / $diff1;
+                                    } else {
+                                        $drenaje = 100;
+                                    }
                                 }
+                                $drenaje = ($drenaje > 100) ? 100 : $drenaje;
+                            } else {
+                                $drenaje = 0;
                             }
-                            $drenaje = ($drenaje > 100) ? 100 : $drenaje;
-                        } else {
+                        }else {
                             $drenaje = 0;
                         }
                     }
@@ -1785,34 +1720,38 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_luz;
                         $fecha_entrega = $model->fecha_entrega_luz;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $luz = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $luz = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $luz = $div * 100;
                                 } else {
-                                    $luz = 100;
+                                    if ($diff1 > 0) {
+                                        $luz = 100 / $diff1;
+                                    } else {
+                                        $luz = 100;
+                                    }
                                 }
+                                $luz = ($luz > 100) ? 100 : $luz;
+                            } else {
+                                $luz = 0;
                             }
-                            $luz = ($luz > 100) ? 100 : $luz;
-                        } else {
+                        }else {
                             $luz = 0;
                         }
                     }
@@ -1826,34 +1765,38 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_estufa;
                         $fecha_entrega = $model->fecha_entrega_estufa;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $estufa = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $estufa = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $estufa = $div * 100;
                                 } else {
-                                    $estufa = 100;
+                                    if ($diff1 > 0) {
+                                        $estufa = 100 / $diff1;
+                                    } else {
+                                        $estufa = 100;
+                                    }
                                 }
+                                $estufa = ($estufa > 100) ? 100 : $estufa;
+                            } else {
+                                $estufa = 0;
                             }
-                            $estufa = ($estufa > 100) ? 100 : $estufa;
-                        } else {
+                        }else {
                             $estufa = 0;
                         }
                     }
@@ -1867,34 +1810,38 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_seguro_popular;
                         $fecha_entrega = $model->fecha_entrega_seguro_popular;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $seguro_popular = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $seguro_popular = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $seguro_popular = $div * 100;
                                 } else {
-                                    $seguro_popular = 100;
+                                    if ($diff1 > 0) {
+                                        $seguro_popular = 100 / $diff1;
+                                    } else {
+                                        $seguro_popular = 100;
+                                    }
                                 }
+                                $seguro_popular = ($seguro_popular > 100) ? 100 : $seguro_popular;
+                            } else {
+                                $seguro_popular = 0;
                             }
-                            $seguro_popular = ($seguro_popular > 100) ? 100 : $seguro_popular;
-                        } else {
+                        }else {
                             $seguro_popular = 0;
                         }
                     }
@@ -1908,33 +1855,37 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_3_15_escuela;
                         $fecha_entrega = $model->fecha_entrega_3_15_escuela;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $de_3_15_escuela = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $de3_15_escuela = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $de_3_15_escuela = $div * 100;
                                 } else {
-                                    $de3_15_escuela = 100;
+                                    if ($diff1 > 0) {
+                                        $de3_15_escuela = 100 / $diff1;
+                                    } else {
+                                        $de3_15_escuela = 100;
+                                    }
                                 }
+                                $de3_15_escuela = ($de3_15_escuela > 100) ? 100 : $de3_15_escuela;
+                            } else {
+                                $de3_15_escuela = 0;
                             }
-                            $de3_15_escuela = ($de3_15_escuela > 100) ? 100 : $de3_15_escuela;
                         } else {
                             $de3_15_escuela = 0;
                         }
@@ -1949,36 +1900,41 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_antes_1982_primaria;
                         $fecha_entrega = $model->fecha_entrega_antes_1982_primaria;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $antes_1982_primaria = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $antes_1982_primaria = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $antes_1982_primaria = $div * 100;
                                 } else {
-                                    $antes_1982_primaria = 100;
+                                    if ($diff1 > 0) {
+                                        $antes_1982_primaria = 100 / $diff1;
+                                    } else {
+                                        $antes_1982_primaria = 100;
+                                    }
                                 }
+                                $antes_1982_primaria = ($antes_1982_primaria > 100) ? 100 : $antes_1982_primaria;
+                            } else {
+                                $antes_1982_primaria = 0;
                             }
-                            $antes_1982_primaria = ($antes_1982_primaria > 100) ? 100 : $antes_1982_primaria;
-                        } else {
+                        }else {
                             $antes_1982_primaria = 0;
                         }
+
                     }
                 } else {
                     $antes_1982_primaria = 100;
@@ -1990,36 +1946,41 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_despues_1982_secundaria;
                         $fecha_entrega = $model->fecha_entrega_despues_1982_secundaria;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $despues_1982_secundaria = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $despues_1982_secundaria = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $despues_1982_secundaria = $div * 100;
                                 } else {
-                                    $despues_1982_secundaria = 100;
+                                    if ($diff1 > 0) {
+                                        $despues_1982_secundaria = 100 / $diff1;
+                                    } else {
+                                        $despues_1982_secundaria = 100;
+                                    }
                                 }
+                                $despues_1982_secundaria = ($despues_1982_secundaria > 100) ? 100 : $despues_1982_secundaria;
+                            } else {
+                                $despues_1982_secundaria = 0;
                             }
-                            $despues_1982_secundaria = ($despues_1982_secundaria > 100) ? 100 : $despues_1982_secundaria;
                         } else {
                             $despues_1982_secundaria = 0;
                         }
+
                     }
                 } else {
                     $despues_1982_secundaria = 100;
@@ -2031,33 +1992,37 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_despensas;
                         $fecha_entrega = $model->fecha_entrega_despensas;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $despensas = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $despensas = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $despensas = $div * 100;
                                 } else {
-                                    $despensas = 100;
+                                    if ($diff1 > 0) {
+                                        $despensas = 100 / $diff1;
+                                    } else {
+                                        $despensas = 100;
+                                    }
                                 }
+                                $despensas = ($despensas > 100) ? 100 : $despensas;
+                            } else {
+                                $despensas = 0;
                             }
-                            $despensas = ($despensas > 100) ? 100 : $despensas;
                         } else {
                             $despensas = 0;
                         }
@@ -2072,36 +2037,41 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_ss;
                         $fecha_entrega = $model->fecha_entrega_ss;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $ss = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $ss = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $ss = $div * 100;
                                 } else {
-                                    $ss = 100;
+                                    if ($diff1 > 0) {
+                                        $ss = 100 / $diff1;
+                                    } else {
+                                        $ss = 100;
+                                    }
                                 }
+                                $ss = ($ss > 100) ? 100 : $ss;
+                            } else {
+                                $ss = 0;
                             }
-                            $ss = ($ss > 100) ? 100 : $ss;
                         } else {
                             $ss = 0;
                         }
+
                     }
                 } else {
                     $ss = 100;
@@ -2113,33 +2083,37 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_trabajadores_ss;
                         $fecha_entrega = $model->fecha_entrega_trabajadores_ss;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if ($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $trabajadores_ss = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $trabajadores_ss = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $trabajadores_ss = $div * 100;
                                 } else {
-                                    $trabajadores_ss = 100;
+                                    if ($diff1 > 0) {
+                                        $trabajadores_ss = 100 / $diff1;
+                                    } else {
+                                        $trabajadores_ss = 100;
+                                    }
                                 }
+                                $trabajadores_ss = ($trabajadores_ss > 100) ? 100 : $trabajadores_ss;
+                            } else {
+                                $trabajadores_ss = 0;
                             }
-                            $trabajadores_ss = ($trabajadores_ss > 100) ? 100 : $trabajadores_ss;
                         } else {
                             $trabajadores_ss = 0;
                         }
@@ -2154,36 +2128,41 @@ class Seguimiento extends \yii\db\ActiveRecord
                     } else {
                         $fecha_inicio = $model->fecha_inicio_adultos_ss;
                         $fecha_entrega = $model->fecha_entrega_adultos_ss;
-                        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+                        if ($fecha_inicio && $fecha_entrega) {
+                            $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
 
-                        $date1 = date_create($fecha_inicio);
-                        $date2 = date_create($fecha_entrega);
-                        $date3 = date_create($hoy);
+                            $date1 = date_create($fecha_inicio);
+                            $date2 = date_create($fecha_entrega);
+                            $date3 = date_create($hoy);
 
-                        if ($date2 >= $date3) {
-                            $interval = date_diff($date1, $date2);
-                            $interval2 = date_diff($date2, $date3);
+                            if ($date2 >= $date3) {
+                                $interval = date_diff($date1, $date2);
+                                $interval2 = date_diff($date2, $date3);
 
-                            $differenceFormat = '%a';
-                            $diff1 = $interval->format($differenceFormat);
-                            $diff2 = $interval2->format($differenceFormat);
+                                $differenceFormat = '%a';
+                                $diff1 = $interval->format($differenceFormat);
+                                $diff2 = $interval2->format($differenceFormat);
 
-                            if ($diff2 > 0) {
-                                //echo $diff1; die;
-                                $div = $diff2 / $diff1;
-                                //echo $div; die;
-                                $adultos_ss = $div * 100;
-                            } else {
-                                if ($diff1 > 0) {
-                                    $adultos_ss = 100 / $diff1;
+                                if ($diff2 > 0) {
+                                    //echo $diff1; die;
+                                    $div = $diff2 / $diff1;
+                                    //echo $div; die;
+                                    $adultos_ss = $div * 100;
                                 } else {
-                                    $adultos_ss = 100;
+                                    if ($diff1 > 0) {
+                                        $adultos_ss = 100 / $diff1;
+                                    } else {
+                                        $adultos_ss = 100;
+                                    }
                                 }
+                                $adultos_ss = ($adultos_ss > 100) ? 100 : $adultos_ss;
+                            } else {
+                                $adultos_ss = 0;
                             }
-                            $adultos_ss = ($adultos_ss > 100) ? 100 : $adultos_ss;
                         } else {
-                            $adultos_ss = 0;
+                                $adultos_ss = 0;
                         }
+
                     }
                 } else {
                     $adultos_ss = 100;
