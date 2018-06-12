@@ -201,7 +201,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_piso == 1){
                             //$model->acciones_pendientes_piso = $model->meta_piso - $model->acciones_piso;
                             //$model->inversion_piso = 2640;
-                            //$model->inversion_piso = ($model->inversion_piso)? $model->inversion_piso : 0;
+                            $model->inversion_piso = ($model->inversion_piso)? $model->inversion_piso : 0;
 
                         }else{
                             $model->acciones_piso = ($model->acciones_piso) ? $model->acciones_piso : 0;
@@ -229,7 +229,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_techo == 1){
                             //$model->acciones_pendientes_techo = $model->meta_techo - $model->acciones_techo;
                             //$model->inversion_techo = 2640;
-                            //$model->inversion_techo = ($model->inversion_techo)? $model->inversion_techo : 0;
+                            $model->inversion_techo = ($model->inversion_techo)? $model->inversion_techo : 0;
 
                         }else{
                             $model->acciones_techo = ($model->acciones_techo) ? $model->acciones_techo : 0;
@@ -257,7 +257,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_muro == 1){
                             //$model->acciones_pendientes_muro = $model->meta_muro - $model->acciones_muro;
                             //$model->inversion_muro = 2640;
-                            //$model->inversion_muro = ($model->inversion_muro)? $model->inversion_muro : 0;
+                            $model->inversion_muro = ($model->inversion_muro)? $model->inversion_muro : 0;
 
                         }else{
                             $model->acciones_muro = ($model->acciones_muro) ? $model->acciones_muro : 0;
@@ -285,7 +285,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_cuarto == 1){
                             //$model->acciones_pendientes_cuarto = $model->meta_cuarto - $model->acciones_cuarto;
                             //$model->inversion_cuarto = 2640;
-                            //$model->inversion_cuarto = ($model->inversion_cuarto)? $model->inversion_cuarto : 0;
+                            $model->inversion_cuarto = ($model->inversion_cuarto)? $model->inversion_cuarto : 0;
 
                         }else{
                             $model->acciones_cuarto = ($model->acciones_cuarto) ? $model->acciones_cuarto : 0;
@@ -316,7 +316,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_agua_potable == 1){
                             //$model->acciones_pendientes_agua_potable = $model->meta_agua_potable - $model->acciones_agua_potable;
                             //$model->inversion_agua_potable = 2640;
-                            //$model->inversion_agua_potable = ($model->inversion_agua_potable)? $model->inversion_agua_potable : 0;
+                            $model->inversion_agua_potable = ($model->inversion_agua_potable)? $model->inversion_agua_potable : 0;
 
                         }else{
                             $model->acciones_agua_potable = ($model->acciones_agua_potable) ? $model->acciones_agua_potable : 0;
@@ -345,7 +345,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_agua_interior == 1){
                             //$model->acciones_pendientes_agua_interior = $model->meta_agua_interior - $model->acciones_agua_interior;
                             //$model->inversion_agua_interior = 2640;
-                            //$model->inversion_agua_interior = ($model->inversion_agua_interior)? $model->inversion_agua_interior : 0;
+                            $model->inversion_agua_interior = ($model->inversion_agua_interior)? $model->inversion_agua_interior : 0;
 
                         }else{
                             $model->acciones_agua_interior = ($model->acciones_agua_interior) ? $model->acciones_agua_interior : 0;
@@ -373,7 +373,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_drenaje == 1){
                             //$model->acciones_pendientes_drenaje = $model->meta_drenaje - $model->acciones_drenaje;
                             //$model->inversion_drenaje = 2640;
-                            //$model->inversion_drenaje = ($model->inversion_drenaje)? $model->inversion_drenaje : 0;
+                            $model->inversion_drenaje = ($model->inversion_drenaje)? $model->inversion_drenaje : 0;
 
                         }else{
                             $model->acciones_drenaje = ($model->acciones_drenaje) ? $model->acciones_drenaje : 0;
@@ -401,7 +401,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_luz == 1){
                             //$model->acciones_pendientes_luz = $model->meta_luz - $model->acciones_luz;
                             //$model->inversion_luz = 2640;
-                            //$model->inversion_luz = ($model->inversion_luz)? $model->inversion_luz : 0;
+                            $model->inversion_luz = ($model->inversion_luz)? $model->inversion_luz : 0;
 
                         }else{
                             $model->acciones_luz = ($model->acciones_luz) ? $model->acciones_luz : 0;
@@ -429,7 +429,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_estufa == 1){
                             //$model->acciones_pendientes_estufa = $model->meta_estufa - $model->acciones_estufa;
                             //$model->inversion_estufa = 2640;
-                            //$model->inversion_estufa = ($model->inversion_estufa)? $model->inversion_estufa : 0;
+                            $model->inversion_estufa = ($model->inversion_estufa)? $model->inversion_estufa : 0;
 
                         }else{
                             $model->acciones_estufa = ($model->acciones_estufa) ? $model->acciones_estufa : 0;
@@ -460,7 +460,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_seguro_popular == 1){
                             //$model->acciones_pendientes_seguro_popular = $model->meta_seguro_popular - $model->acciones_seguro_popular;
                             //$model->inversion_seguro_popular = 2640;
-                            //$model->inversion_seguro_popular = ($model->inversion_seguro_popular)? $model->inversion_seguro_popular : 0;
+                            $model->inversion_seguro_popular = ($model->inversion_seguro_popular)? $model->inversion_seguro_popular : 0;
 
                         }else{
                             $model->acciones_seguro_popular = ($model->acciones_seguro_popular) ? $model->acciones_seguro_popular : 0;
@@ -489,7 +489,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_3_15_escuela == 1){
                             //$model->acciones_pendientes_3_15_escuela = $model->meta_3_15_escuela - $model->acciones_3_15_escuela;
                             //$model->inversion_3_15_escuela = 2640;
-                            //$model->inversion_3_15_escuela = ($model->inversion_3_15_escuela)? $model->inversion_3_15_escuela : 0;
+                            $model->inversion_3_15_escuela = ($model->inversion_3_15_escuela)? $model->inversion_3_15_escuela : 0;
 
                         }else{
                             $model->acciones_3_15_escuela = ($model->acciones_3_15_escuela) ? $model->acciones_3_15_escuela : 0;
@@ -519,7 +519,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_antes_1982_primaria == 1){
                             //$model->acciones_pendientes_antes_1982_primaria = $model->meta_antes_1982_primaria - $model->acciones_antes_1982_primaria;
                             //$model->inversion_antes_1982_primaria = 2640;
-                            //$model->inversion_antes_1982_primaria = ($model->inversion_antes_1982_primaria)? $model->inversion_antes_1982_primaria : 0;
+                             $model->inversion_antes_1982_primaria = ($model->inversion_antes_1982_primaria)? $model->inversion_antes_1982_primaria : 0;
 
                         }else{
                             $model->acciones_antes_1982_primaria = ($model->acciones_antes_1982_primaria) ? $model->acciones_antes_1982_primaria : 0;
@@ -548,7 +548,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_despues_1982_secundaria == 1){
                             //$model->acciones_pendientes_despues_1982_secundaria = $model->meta_despues_1982_secundaria - $model->acciones_despues_1982_secundaria;
                             //$model->inversion_despues_1982_secundaria = 2640;
-                            //$model->inversion_despues_1982_secundaria = ($model->inversion_despues_1982_secundaria)? $model->inversion_despues_1982_secundaria : 0;
+                            $model->inversion_despues_1982_secundaria = ($model->inversion_despues_1982_secundaria)? $model->inversion_despues_1982_secundaria : 0;
 
                         }else{
                             $model->acciones_despues_1982_secundaria = ($model->acciones_despues_1982_secundaria) ? $model->acciones_despues_1982_secundaria : 0;
@@ -579,7 +579,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_despensas == 1){
                             //$model->acciones_pendientes_despensas = $model->meta_despensas - $model->acciones_despensas;
                             //$model->inversion_despensas = 2640;
-                            //$model->inversion_despensas = ($model->inversion_despensas)? $model->inversion_despensas : 0;
+                            $model->inversion_despensas = ($model->inversion_despensas)? $model->inversion_despensas : 0;
 
                         }else{
                             $model->acciones_despensas = ($model->acciones_despensas) ? $model->acciones_despensas : 0;
@@ -607,7 +607,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_ss == 1){
                             //$model->acciones_pendientes_ss = $model->meta_ss - $model->acciones_ss;
                             //$model->inversion_ss = 2640;
-                            //$model->inversion_ss = ($model->inversion_ss)? $model->inversion_ss : 0;
+                            $model->inversion_ss = ($model->inversion_ss)? $model->inversion_ss : 0;
 
                         }else{
                             $model->acciones_ss = ($model->acciones_ss) ? $model->acciones_ss : 0;
@@ -635,7 +635,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_trabajadores_ss == 1){
                             //$model->acciones_pendientes_trabajadores_ss = $model->meta_trabajadores_ss - $model->acciones_trabajadores_ss;
                             //$model->inversion_trabajadores_ss = 2640;
-                            //$model->inversion_trabajadores_ss = ($model->inversion_trabajadores_ss)? $model->inversion_trabajadores_ss : 0;
+                            $model->inversion_trabajadores_ss = ($model->inversion_trabajadores_ss)? $model->inversion_trabajadores_ss : 0;
 
                         }else{
                             $model->acciones_trabajadores_ss = ($model->acciones_trabajadores_ss) ? $model->acciones_trabajadores_ss : 0;
@@ -664,7 +664,7 @@ class SeguimientoController extends Controller
                         if($model->acciones_adultos_ss == 1){
                             //$model->acciones_pendientes_adultos_ss = $model->meta_adultos_ss - $model->acciones_adultos_ss;
                             //$model->inversion_adultos_ss = 2640;
-                            //$model->inversion_adultos_ss = ($model->inversion_adultos_ss)? $model->inversion_adultos_ss : 0;
+                            $model->inversion_adultos_ss = ($model->inversion_adultos_ss)? $model->inversion_adultos_ss : 0;
 
                         }else{
                             $model->acciones_adultos_ss = ($model->acciones_adultos_ss) ? $model->acciones_adultos_ss : 0;
