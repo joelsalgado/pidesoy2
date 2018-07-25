@@ -141,3 +141,9 @@ a.desc:after {
     background-color: #9e9d24;
     border-color: #cab652;
 }
+
+.alert-success-censo {
+    color: #f9fbe7 ;
+    background-color: #6c9e31;
+    border-color: #9fca52;
+}
