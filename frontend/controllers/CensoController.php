@@ -82,24 +82,29 @@ class CensoController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+        $model = Censo::find()->where(['solicitante_id' => $id])->one();
+
+        if($model) {
+
+            $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy'): null;
+            if ($model->load(Yii::$app->request->post())) {
+                $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd'): null;
+                if($model->save()){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
-    /**
-     * Deletes an existing Censo model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
+    function actionDelete($id)
     {
         $this->findModel($id)->delete();
 

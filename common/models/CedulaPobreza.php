@@ -476,6 +476,7 @@ class CedulaPobreza extends \yii\db\ActiveRecord
 
             $pobreza = PobrezaMultidimensional::find()->where(['solicitante_id' => $this->solicitante_id])->one();
             $seg = Seguimiento::find()->where(['solicitante_id' => $this->solicitante_id])->one();
+            $censo = Censo::find()->where(['solicitante_id' => $this->solicitante_id])->one();
 
             if ($pobreza) {
                 $model = $pobreza;
@@ -492,6 +493,15 @@ class CedulaPobreza extends \yii\db\ActiveRecord
                 $seguimiento->status = 1;
             }
 
+            if ($censo) {
+                $censo1 = $censo;
+            } else {
+                $censo1 = new Censo();
+                $censo1->solicitante_id = $this->solicitante_id;
+                $censo1->periodo = 2018;
+                $censo1->status = 1;
+            }
+
             if ($this->cocina_gas == 1 || $this->cocina_electricidad == 1 || $this->cocina_otro == 1){
                 $estufa_e = 0;
             }else{
@@ -502,6 +512,8 @@ class CedulaPobreza extends \yii\db\ActiveRecord
                     $estufa_e = 0;
                 }
             }
+
+            $censo1->scenario = 'CENSO';
 
             $seguimiento->scenario = 'SEGUIMIENTO';
             $seguimiento->meta_piso = $piso;
@@ -612,12 +624,12 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             $model->resultado_val = $resultado_val;
             $model->status = 1;
 
-            if($model->save() && $seguimiento->save())
+            if($model->save() && $seguimiento->save() && $censo1->save())
             {
                 echo "bien";
             }else{
                 echo "mal";
-            }
+        }
 
 
 

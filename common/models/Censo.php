@@ -9,6 +9,9 @@ use yii\behaviors\TimestampBehavior;
 class Censo extends \yii\db\ActiveRecord
 {
 
+    const SCENARIO_P = 'CENSO';
+    public $scenario = 'web';
+
     public function behaviors()
     {
         return [
@@ -25,24 +28,97 @@ class Censo extends \yii\db\ActiveRecord
         return 'censo';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
-        return [
-            [['solicitante_id'], 'required'],
-            [['solicitante_id', 'periodo', 'agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1', 'documentos', 'vacunacion', 'ortopedicos', 'seguro_popular', 'becas', 'papeles', 'terminar_esc', 'credito', 'luz', 'desayuno', 'otro2', 'grupo_comunitario', 'autoridades_estatales', 'acciones', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['fecha'], 'safe'],
-            [['cual1', 'cual2', 'cual3'], 'string', 'max' => 100],
-            [['observaciones'], 'string', 'max' => 255],
-            [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
-        ];
+        if ($this->scenario == self::SCENARIO_P) {
+            return [
+                [['solicitante_id'], 'required'],
+                [['solicitante_id', 'periodo', 'agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1', 'documentos', 'vacunacion', 'ortopedicos', 'seguro_popular', 'becas', 'papeles', 'terminar_esc', 'credito', 'luz', 'desayuno', 'otro2', 'grupo_comunitario', 'autoridades_estatales', 'acciones', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer', 'message' => 'Debe ser un numero'],
+                [['fecha'], 'safe'],
+                [['agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1'], 'integer', 'max' => 5, 'tooBig' => 'Solo del 1 al 5'],
+                [['agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1'], 'match', 'pattern' => '/^[1-5+\s]+$/i', 'message' => 'Solo del 1 al 5'],
+                [['cual1', 'cual2', 'cual3'], 'string', 'max' => 100],
+                [['observaciones'], 'string', 'max' => 255],
+                [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
+            ];
+        }
+        else{
+            return [
+                [['solicitante_id', 'grupo_comunitario'], 'required'],
+                [['solicitante_id', 'periodo', 'agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1', 'documentos', 'vacunacion', 'ortopedicos', 'seguro_popular', 'becas', 'papeles', 'terminar_esc', 'credito', 'luz', 'desayuno', 'otro2', 'grupo_comunitario', 'autoridades_estatales', 'acciones', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer', 'message' => 'Debe ser un numero'],
+                [['fecha'], 'safe'],
+                [['agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1'], 'integer', 'max' => 5, 'tooBig' => 'Solo del 1 al 5'],
+                [['agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud',
+                    'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1'], 'match', 'pattern' => '/^[1-5+\s]+$/i', 'message' => 'Solo del 1 al 5'],
+                [['cual1', 'cual2', 'cual3'], 'string', 'max' => 100],
+                [['observaciones'], 'string', 'max' => 1500],
+                ['grupo_comunitario', 'validateUno'],
+                ['grupo_comunitario', 'validateDos'],
+                [['solicitante_id'], 'exist', 'skipOnError' => true, 'targetClass' => Solicitantes::className(), 'targetAttribute' => ['solicitante_id' => 'id']],
+            ];
+        }
     }
 
-    /**
-     * @inheritdoc
-     */
+    public function  validateUno(){
+        $x1 = ($this->agua_potable > 0 && $this->agua_potable < 6) ? $this->agua_potable : 0;
+        $x2 = ($this->drenaje > 0 && $this->drenaje < 6) ? $this->drenaje : 0;
+        $x3 = ($this->basura > 0 && $this->basura < 6) ? $this->basura : 0;
+        $x4 = ($this->policias > 0 && $this->policias < 6) ? $this->policias : 0;
+        $x5 = ($this->parques > 0 && $this->parques < 6) ? $this->parques : 0;
+        $x6 = ($this->salones > 0 && $this->salones < 6) ? $this->salones : 0;
+        $x7 = ($this->iglesia > 0 && $this->iglesia < 6) ? $this->iglesia : 0;
+        $x8 = ($this->doctor > 0 && $this->doctor < 6) ? $this->doctor : 0;
+        $x9 = ($this->salud > 0 && $this->salud < 6) ? $this->salud : 0;
+        $x10 = ($this->medicamentos > 0 && $this->medicamentos < 6) ? $this->medicamentos : 0;
+        $x11 = ($this->lamparas > 0 && $this->lamparas < 6) ? $this->lamparas : 0;
+        $x12 = ($this->diconsa > 0 && $this->diconsa < 6) ? $this->diconsa : 0;
+        $x13 = ($this->liconsa > 0 && $this->liconsa < 6) ? $this->liconsa : 0;
+        $x14 = ($this->comunitario > 0 && $this->comunitario < 6) ? $this->comunitario : 0;
+        $x15 = ($this->ambulacia > 0 && $this->ambulacia < 6) ? $this->ambulacia : 0;
+        $x16 = ($this->otro1 > 0 && $this->otro1 < 6) ? $this->otro1 : 0;
+
+        $a = array($x1,$x2,$x3,$x4,$x5,$x6,$x7,$x8,$x9,$x10,$x11,$x12,$x13,$x14,$x15, $x16);
+
+        $a = array_filter($a);
+        $u = count($a);
+        if ($u == 5){
+            sort($a, SORT_NUMERIC);
+            $y = implode('', $a);
+
+            if ($y == "12345"){
+                echo "bien";
+            }
+            else{
+                $this->addError('otro1', 'Los numeros no coinciden');
+            }
+
+        }else{
+            $this->addError('otro1', 'Deben ser 5 valores');
+        }
+    }
+    public function  validateDos(){
+        $x1 = ($this->documentos == 1) ? $this->documentos : 0;
+        $x2 = ($this->vacunacion == 1) ? $this->vacunacion : 0;
+        $x3 = ($this->ortopedicos == 1) ? $this->ortopedicos : 0;
+        $x4 = ($this->seguro_popular == 1) ? $this->seguro_popular : 0;
+        $x5 = ($this->becas == 1) ? $this->becas : 0;
+        $x6 = ($this->papeles == 1) ? $this->papeles : 0;
+        $x7 = ($this->terminar_esc == 1) ? $this->terminar_esc : 0;
+        $x8 = ($this->credito == 1) ? $this->credito : 0;
+        $x9 = ($this->luz == 1) ? $this->luz : 0;
+        $x10 = ($this->desayuno == 1) ? $this->desayuno : 0;
+        $x11 = ($this->otro2 == 1) ? $this->otro2 : 0;
+
+        $a = array($x1,$x2,$x3,$x4,$x5,$x6,$x7,$x8,$x9,$x10,$x11);
+
+        $a = array_filter($a);
+        $u = count($a);
+
+        if ($u != 5){
+            $this->addError('otro2', 'Deben ser 5 valores');
+        }
+    }
+
     public function attributeLabels()
     {
         return [

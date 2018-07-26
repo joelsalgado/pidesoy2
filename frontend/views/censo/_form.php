@@ -70,7 +70,7 @@ use kartik\date\DatePicker;
             </div>
             <div class="col-sm-1">
                 <div class="form-group">
-                    <?= $form->field($model, 'otro1')->textInput()->label(false) ?>
+                    <?= $form->field($model, 'otro1')->textInput(["onKeyUp"=> "fncOtro1()"])->label(false) ?>
                 </div>
             </div>
             <div class="col-sm-2">
@@ -112,7 +112,9 @@ use kartik\date\DatePicker;
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <?= $form->field($model, 'cual1')->textInput(['maxlength' => true]) ?>
+                    <div class="otro1">
+                        <?= $form->field($model, 'cual1')->textInput(['maxlength' => true]) ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -295,7 +297,9 @@ use kartik\date\DatePicker;
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <?= $form->field($model, 'cual2')->textInput(['maxlength' => true]) ?>
+                    <div class="otro2">
+                        <?= $form->field($model, 'cual2')->textInput(['maxlength' => true]) ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,7 +315,9 @@ use kartik\date\DatePicker;
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <?= $form->field($model, 'cual3')->textInput(['maxlength' => true]) ?>
+                    <div class="otro3">
+                        <?= $form->field($model, 'cual3')->textInput(['maxlength' => true]) ?>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-2"></div>
@@ -358,3 +364,8 @@ use kartik\date\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?=$this->registerJsFile(
+    '@web/frontend/assets/js/censo.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+);?>
