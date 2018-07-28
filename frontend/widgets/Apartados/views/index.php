@@ -17,6 +17,10 @@ use yii\helpers\Html;
             '<i class="fa fa-newspaper-o" aria-hidden="true"></i> '.Yii::$app->params['apartado2'].
             $class2Tipo2 = ($tipo == 2) ? $regular: $a2,$url2)?>
     </li>
+    <li <?= $class7Tipo = ($tipo == 7) ? 'class="active"': '' ?>> <?= Html::a(
+            '<i class="fa fa-book" aria-hidden="true"></i> '.Yii::$app->params['apartado7'].
+            $class7Tipo2 = ($tipo == 7) ? $regular: $a7,$url7)?>
+    </li>
     <li <?= $class3Tipo = ($tipo == 4) ? 'class="active"': '' ?>> <?= Html::a(
             '<i class="fa fa-id-card-o" aria-hidden="true"></i> '.Yii::$app->params['apartado4'].
             $class4Tipo4 = ($tipo == 4) ? $regular: $a4,$url4)?>

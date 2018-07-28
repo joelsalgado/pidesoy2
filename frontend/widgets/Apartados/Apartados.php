@@ -24,12 +24,14 @@ class Apartados extends Widget
     public $a4;
     public $a5;
     public $a6;
+    public $a7;
     public $url1 = '';
     public $url2 = '';
     public $url3 = '';
     public $url4 = '';
     public $url5 = '';
     public $url6 = '';
+    public $url7 = '';
 
     public function init()
     {
@@ -42,6 +44,7 @@ class Apartados extends Widget
             $this->a4 = $mal;
             $this->a5 = $mal;
             $this->a6 = $mal;
+            $this->a7 = $mal;
         }
 
         if($this->apartado){
@@ -51,6 +54,7 @@ class Apartados extends Widget
             $this->a4 = ($this->apartado->apartado4 == 1) ? $bien : $mal;
             $this->a5 = ($this->apartado->apartado5 == 1) ? $bien : $mal;
             $this->a6 = ($this->apartado->apartado6 == 1) ? $bien : $mal;
+            $this->a7 = ($this->apartado->apartado7 == 1) ? $bien : $mal;
 
             $this->url1 = ($this->apartado->apartado1 == 1) ? ['/solicitantes/update', 'id' => $this->id]: '';
             $this->url2 = ($this->apartado->apartado2 == 1) ? ['/cedula-pobreza/update', 'id' => $this->id]: '';
@@ -58,6 +62,7 @@ class Apartados extends Widget
             $this->url4 = ($this->apartado->apartado4 == 1) ? ['/cedula-ps/index', 'id' => $this->id]: '';
             $this->url5 = ($this->apartado->apartado5 == 1) ? ['/seguimiento/update', 'id' => $this->id]: '';
             $this->url6 = ($this->apartado->apartado6 == 1) ? ['/acciones-adicionales/index', 'id' => $this->id]: '';
+            $this->url7 = ($this->apartado->apartado7 == 1) ? ['/censo/update', 'id' => $this->id]: '';
         }
 
         parent::init();
@@ -77,12 +82,14 @@ class Apartados extends Widget
             'a4' => $this->a4,
             'a5' => $this->a5,
             'a6' => $this->a6,
+            'a7' => $this->a7,
             'url1' => $this->url1,
             'url2' => $this->url2,
             'url3' => $this->url3,
             'url4' => $this->url4,
             'url5' => $this->url5,
             'url6' => $this->url6,
+            'url7' => $this->url7,
         ]);
     }
 }

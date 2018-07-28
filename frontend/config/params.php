@@ -10,6 +10,7 @@ return [
     'apartado4' => 'Beneficiarios del programa',
     'apartado5' => 'Seguimiento',
     'apartado6' => 'Acciones Adicionales',
+    'apartado7' => 'Censo',
     'sizeImg' => 512,
 
 ];

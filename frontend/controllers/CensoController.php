@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Apartados;
 use Yii;
 use common\models\Censo;
 use yii\data\ActiveDataProvider;
@@ -87,18 +88,22 @@ class CensoController extends Controller
         $model = Censo::find()->where(['solicitante_id' => $id])->one();
 
         if($model) {
-
+            $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
             $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy'): null;
             if ($model->load(Yii::$app->request->post())) {
+                $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+                $apartado->apartado7 = 1;
+                $apartado->updated_at = $fecha;
                 $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd'): null;
-                if($model->save()){
-                    return $this->redirect(['view', 'id' => $model->id]);
+                if($model->save() && $apartado->save()){
+                    return $this->redirect(['cedula-ps/index', 'id' => $id]);
                 }
 
             }
 
             return $this->render('update', [
                 'model' => $model,
+                'apartado' => $apartado
             ]);
         }
 

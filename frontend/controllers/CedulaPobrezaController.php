@@ -109,7 +109,7 @@ class CedulaPobrezaController extends Controller
                 $solicitantes->check = 0;
 
                 if ($model->save() && $apartado->save() && $solicitantes->save()){
-                    return $this->redirect(['/cedula-ps', 'id' => $id]);
+                    return $this->redirect(['/censo/update', 'id' => $id]);
                 }
             }
 
