@@ -44,7 +44,7 @@ class Censo extends \yii\db\ActiveRecord
         }
         else{
             return [
-                [['solicitante_id', 'grupo_comunitario'], 'required'],
+                [['solicitante_id', 'grupo_comunitario', 'autoridades_estatales', 'acciones'], 'required'],
                 [['solicitante_id', 'periodo', 'agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1', 'documentos', 'vacunacion', 'ortopedicos', 'seguro_popular', 'becas', 'papeles', 'terminar_esc', 'credito', 'luz', 'desayuno', 'otro2', 'grupo_comunitario', 'autoridades_estatales', 'acciones', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer', 'message' => 'Debe ser un numero'],
                 [['fecha'], 'safe'],
                 [['agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1'], 'integer', 'max' => 5, 'tooBig' => 'Solo del 1 al 5'],
