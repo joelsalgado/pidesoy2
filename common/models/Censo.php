@@ -45,12 +45,18 @@ class Censo extends \yii\db\ActiveRecord
         else{
             return [
                 [['solicitante_id', 'grupo_comunitario', 'autoridades_estatales', 'acciones'], 'required'],
-                [['solicitante_id', 'periodo', 'agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1', 'documentos', 'vacunacion', 'ortopedicos', 'seguro_popular', 'becas', 'papeles', 'terminar_esc', 'credito', 'luz', 'desayuno', 'otro2', 'grupo_comunitario', 'autoridades_estatales', 'acciones', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer', 'message' => 'Debe ser un numero'],
-                [['fecha'], 'safe'],
+                [['solicitante_id', 'periodo', 'agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1', 'documentos', 'vacunacion', 'ortopedicos', 'seguro_popular', 'becas', 'papeles', 'terminar_esc', 'credito', 'luz', 'desayuno', 'otro2', 'grupo_comunitario', 'autoridades_estatales', 'acciones', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at', 'edo_civil_id'], 'integer', 'message' => 'Debe ser un numero'],
+                [['fecha','fecha_nacimiento'], 'safe'],
                 [['agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1'], 'integer', 'max' => 5, 'tooBig' => 'Solo del 1 al 5'],
                 [['agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud',
                     'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1'], 'match', 'pattern' => '/^[1-5+\s]+$/i', 'message' => 'Solo del 1 al 5'],
                 [['cual1', 'cual2', 'cual3'], 'string', 'max' => 100],
+                [['sexo'], 'string', 'max' => 1],
+                [['nombre', 'apellido_paterno', 'apellido_materno'], 'string', 'max' => 60],
+                [['telefono'], 'string', 'max' => 15],
+                [['fecha_nacimiento'],'date', 'format'=>'yyyy-MM-dd', 'message' => 'Formato no valido'],
+                [['apellido_paterno','apellido_materno', 'nombre'], 'match', 'pattern' => '/^[a-zñÑ\s]+$/i',
+                    'message' => 'Sólo se aceptan letras sin acentos'],
                 [['observaciones'], 'string', 'max' => 1500],
                 ['grupo_comunitario', 'validateUno'],
                 ['grupo_comunitario', 'validateDos'],
@@ -127,6 +133,15 @@ class Censo extends \yii\db\ActiveRecord
             'periodo' => 'Periodo',
             'fecha' => 'Fecha',
 
+            'nombre' => 'Nombre',
+            'apellido_paterno' => 'Apellido Paterno',
+            'apellido_materno' => 'Apellido Materno',
+            'edo_civil_id' => 'Estado Civil',
+            'fecha_nacimiento' => 'Fecha de Nacimiento',
+            'edad' => 'Edad',
+            'sexo' => 'Sexo',
+            'telefono' => 'Teléfono',
+
             'agua_potable' => 'a) Que tengamos agua potable',
             'drenaje' => 'b) Que tengamos drenaje',
             'basura' => 'c) Que pasen por la basura',
@@ -180,5 +195,10 @@ class Censo extends \yii\db\ActiveRecord
     public function getSolicitante()
     {
         return $this->hasOne(Solicitantes::className(), ['id' => 'solicitante_id']);
+    }
+
+    public function getEdoCivil()
+    {
+        return $this->hasOne(EstadoCivil::className(), ['id' => 'edo_civil_id']);
     }
 }

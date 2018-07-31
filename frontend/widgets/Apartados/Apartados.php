@@ -62,7 +62,7 @@ class Apartados extends Widget
             $this->url4 = ($this->apartado->apartado4 == 1) ? ['/cedula-ps/index', 'id' => $this->id]: '';
             $this->url5 = ($this->apartado->apartado5 == 1) ? ['/seguimiento/update', 'id' => $this->id]: '';
             $this->url6 = ($this->apartado->apartado6 == 1) ? ['/acciones-adicionales/index', 'id' => $this->id]: '';
-            $this->url7 = ($this->apartado->apartado7 == 1) ? ['/censo/update', 'id' => $this->id]: '';
+            $this->url7 = ($this->apartado->apartado7 == 1) ? ['/censo/index', 'id' => $this->id]: '';
         }
 
         parent::init();

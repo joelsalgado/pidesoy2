@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Censo */
@@ -33,6 +35,72 @@ use kartik\date\DatePicker;
                 </div>
             </div>
         </div>
+        <div class="alert alert-success-censo">
+            <strong>DATOS PERSONALES</strong>
+            <i class="fa fa-user" aria-hidden="true"></i>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'apellido_paterno')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'apellido_materno')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <?= $form->field($model, 'edo_civil_id')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(\common\models\EstadoCivil::getEstados(),
+                            'id', 'desc_edo_civil'),
+                        'options' => ['placeholder' => 'Selecciona un Estado Civil', 'id' => 'desc_edo_civil'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]) ?>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <?= $form->field($model, 'fecha_nacimiento')->widget(DatePicker::className(), [
+                        'name' => 'dp_2',
+                        'language' => 'es',
+                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                        //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                        'pluginOptions' => [
+                            'autoclose'=>true,
+                            'format' => 'dd-mm-yyyy',
+                            'startDate' => '01-01-1910',
+                            'endDate' => '01-01-2003',
+                            //'value' => '22-10-1999'
+                        ]
+                    ]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'sexo')->radioList(['H' => 'Hombre', 'M' => 'Mujer']) ?>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'telefono')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+
+        </div>
+
         <div class="alert alert-success-censo">
             <strong>1.-Del siguiente listado, digame las 5 necesidades más importantes que su localidad requiera, empezando por la más urgente.</strong>
         </div>

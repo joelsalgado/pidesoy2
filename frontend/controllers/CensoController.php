@@ -3,9 +3,12 @@
 namespace frontend\controllers;
 
 use common\models\Apartados;
+use common\models\CedulaPobreza;
+use common\models\Solicitantes;
 use Yii;
 use common\models\Censo;
 use yii\data\ActiveDataProvider;
+use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,15 +37,29 @@ class CensoController extends Controller
      * Lists all Censo models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Censo::find(),
-        ]);
+        try {
+            $model2 = Solicitantes::findOne($id);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+        } catch (Exception $exception) {
+            $model2 = null;
+        }
+        if ($model2) {
+            $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
+            $dataProvider = new ActiveDataProvider([
+                'query' => Censo::find()->where(['solicitante_id' => $id]),
+            ]);
+
+            return $this->render('index', [
+                'dataProvider' => $dataProvider,
+                'id' => $id,
+                'apartado' => $apartado
+            ]);
+        }
+
+
+
     }
 
     /**
@@ -62,17 +79,47 @@ class CensoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
-        $model = new Censo();
+        try {
+            $model2 = Solicitantes::findOne($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        } catch (Exception $exception) {
+            $model2 = null;
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        if($model2) {
+            $model = new Censo();
+            $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
+
+            if ($model->load(Yii::$app->request->post())) {
+                $model->solicitante_id = $id;
+                $model->periodo = 2018;
+                $model->status = 1;
+                $model->nombre = trim(strtoupper($model->nombre));
+                $model->apellido_paterno = trim(strtoupper($model->apellido_paterno));
+                $model->apellido_materno = trim(strtoupper($model->apellido_materno));
+                $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd'): null;
+                $model->fecha_nacimiento = ($model->fecha_nacimiento)? Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd'): null;
+
+                $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
+                $apartado->apartado7 = 1;
+                $apartado->updated_at = $fecha;
+                $model2->check = 0;
+
+                if($model->save()  && $apartado->save()  && $model2->save()){
+                    return $this->redirect(['index', 'id' => $model->solicitante_id]);
+                }
+
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+
+
+
     }
 
     /**
@@ -83,20 +130,24 @@ class CensoController extends Controller
      */
     public function actionUpdate($id)
     {
-
-
-        $model = Censo::find()->where(['solicitante_id' => $id])->one();
+        $model = $this->findModel($id);
 
         if($model) {
+            $solicitantes= Solicitantes::findOne($model->solicitante_id);
             $apartado = Apartados::find()->where(['solicitante_id' => $id])->one();
             $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy'): null;
+            $model->fecha_nacimiento = ($model->fecha_nacimiento)? Yii::$app->formatter->asDate($model->fecha_nacimiento, 'dd-MM-yyyy'): null;
             if ($model->load(Yii::$app->request->post())) {
                 $fecha =  Yii::$app->formatter->asDatetime('now','yyyy-MM-dd H:mm:ss');
                 $apartado->apartado7 = 1;
                 $apartado->updated_at = $fecha;
+                $model->nombre = trim(strtoupper($model->nombre));
+                $model->apellido_paterno = trim(strtoupper($model->apellido_paterno));
+                $model->apellido_materno = trim(strtoupper($model->apellido_materno));
                 $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd'): null;
-                if($model->save() && $apartado->save()){
-                    return $this->redirect(['cedula-ps/index', 'id' => $id]);
+                $model->fecha_nacimiento = ($model->fecha_nacimiento)? Yii::$app->formatter->asDate($model->fecha_nacimiento, 'yyyy-MM-dd'): null;
+                if($model->save() && $apartado->save() && $solicitantes->save()){
+                    return $this->redirect(['censo/index', 'id' => $model->solicitante_id]);
                 }
 
             }
@@ -113,7 +164,7 @@ class CensoController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index','id' => $id]);
     }
 
     /**
