@@ -11,7 +11,7 @@ $(document).ready(function() {
         $('.otro2').hide();
     }
 
-    if(grupo == 0){
+    if(grupo == 0 || grupo == undefined){
         $('.otro3').hide();
     }
 

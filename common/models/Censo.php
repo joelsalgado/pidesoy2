@@ -44,7 +44,8 @@ class Censo extends \yii\db\ActiveRecord
         }
         else{
             return [
-                [['solicitante_id', 'grupo_comunitario', 'autoridades_estatales', 'acciones'], 'required'],
+                [['solicitante_id', 'grupo_comunitario', 'autoridades_estatales', 'acciones', 'fecha','fecha_nacimiento',
+                    'apellido_paterno','nombre', 'edo_civil_id','sexo' ], 'required', 'message' => 'Campo Requerido'],
                 [['solicitante_id', 'periodo', 'agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1', 'documentos', 'vacunacion', 'ortopedicos', 'seguro_popular', 'becas', 'papeles', 'terminar_esc', 'credito', 'luz', 'desayuno', 'otro2', 'grupo_comunitario', 'autoridades_estatales', 'acciones', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at', 'edo_civil_id'], 'integer', 'message' => 'Debe ser un numero'],
                 [['fecha','fecha_nacimiento'], 'safe'],
                 [['agua_potable', 'drenaje', 'basura', 'policias', 'parques', 'salones', 'iglesia', 'doctor', 'salud', 'medicamentos', 'lamparas', 'diconsa', 'liconsa', 'comunitario', 'ambulacia', 'otro1'], 'integer', 'max' => 5, 'tooBig' => 'Solo del 1 al 5'],
