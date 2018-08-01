@@ -36,7 +36,7 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
     {
         return [
             [['fecha', 'fecha_nacimiento'], 'safe'],
-            [['resp_institucional', 'resp_comunitario', 'otro', 'codigo_posta', 'mun_id', 'loc_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer','message' => 'Solo se aceptan números'],
+            [['resp_institucional', 'resp_comunitario', 'otro', 'codigo_posta', 'mun_id', 'loc_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at','tipo_personal_id'], 'integer','message' => 'Solo se aceptan números'],
             [['fecha','apellido_paterno', 'apellido_materno', 'nombre', 'sexo', 'fecha_nacimiento', 'mun_id', 'loc_id'], 'required', 'message' => 'Campo Requerido'],
             [['imagen', 'especifique', 'funcion'], 'string', 'max' => 255],
             [['apellido_paterno', 'apellido_materno', 'nombre'], 'string', 'max' => 60],
@@ -99,6 +99,7 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
             'imagen' => 'Imagen',
             'resp_institucional' => 'Responsable Institucional',
             'resp_comunitario' => 'Responsable Comunitario',
+            'tipo_personal_id' =>'Tipo de Personal',
             'otro' => 'Otro',
             'especifique' => 'Especifique',
             'funcion' => 'Función',
@@ -130,6 +131,11 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
     public function getLoc()
     {
         return $this->hasOne(Localidades::className(), ['localidad_id' => 'loc_id']);
+    }
+
+    public function getPesonal()
+    {
+        return $this->hasOne(TipoPersonal::className(), ['id' => 'tipo_personal_id']);
     }
 
 
