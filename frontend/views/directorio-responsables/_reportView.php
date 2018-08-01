@@ -28,19 +28,27 @@
     </tr>
 </table>
 
+<p><b>TIPO DE PERSONAL (marque con una X)</p></b><br>
+<table class="table table-hover">
+    <tr>
+        <td><?= $otro = ($model->tipo_personal_id == 1) ? ' <b>(X)</b> ' : '( )' ?>Responsable Institucional</td>
+        <td><?= $otro = ($model->tipo_personal_id == 2) ? ' <b>(X)</b> ' : '( )' ?>Responsable Comunitario</td>
+    </tr>
+    <tr>
+        <td><?= $otro = ($model->tipo_personal_id == 3) ? ' <b>(X)</b> ' : '( )' ?>Suplente del Responsable Institucional</td>
+        <td><?= $otro = ($model->tipo_personal_id == 4) ? ' <b>(X)</b> ' : '( )' ?>Suplente del Responsable Comunitario</td>
+    </tr>
+    <tr>
+        <td><?= $otro = ($model->tipo_personal_id == 5) ? ' <b>(X)</b> ' : '( )' ?>Enlace del Responsable Institucional</td>
+        <td><?= $otro = ($model->tipo_personal_id == 6) ? ' <b>(X)</b> ' : '( )' ?>Persona para dejar recados al Responsable Comunitario</td>
+    </tr>
 
-<p><b>I.- DATOS PERSONALES</p></b><br>
+
+</table>
+
+<p><b>DATOS PERSONALES</p></b><br>
 <table class="table table-hover" >
-    <tr>
-        <td colspan="2"></td>
-        <td colspan="2"><b>RESPONSABLE INSTITUCIONAL </b><?= $ins = ($model->resp_institucional == 1) ? ' (X) ' : '( )' ?></td>
-        <td colspan="2"><b>RESPONSABLE COMUNITARIO </b><?= $comun = ($model->resp_comunitario == 1) ? ' (X) ' : '( )' ?></td>
-    </tr>
-    <tr>
-        <td colspan="2"></td>
-        <td colspan="2"><b>OTRO</b> <?= $otro = ($model->otro == 1) ? ' (X) ' : '( )' ?></td>
-        <td colspan="2">Especifique: <?=$model->especifique ?></td>
-    </tr>
+
     <tr>
         <td colspan="2" rowspan="4">
             <?php if ($model->imagen):?>
@@ -48,7 +56,7 @@
             <?php endif; ?>
 
         </td>
-        <td colspan="4"><b>FUNCIÓN:</b> <?=$model->funcion ?></td>
+
     </tr>
     <tr>
         <td><b>NOMBRE:</b></td>
@@ -69,7 +77,7 @@
     </tr>
 </table>
 
-<br><p><b>II.- DATOS PARA LOCALIZACIÓN.</p></b><br>
+<br><p><b>DATOS PARA LOCALIZACIÓN.</p></b><br>
 
 <table class="table table-striped">
     <tr>
