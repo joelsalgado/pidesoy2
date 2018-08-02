@@ -18,12 +18,13 @@ $this->title = 'Bitácora De Reuniones Por Comunidad';
 
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
                 'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
                 'emptyText' => "No se encontró ningún elemento",
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
-                    'id',
+                    //'id',
                     [
                         'attribute' => 'mun_id',
                         'value' => function($data){
@@ -36,7 +37,10 @@ $this->title = 'Bitácora De Reuniones Por Comunidad';
                             }
 
                             return $role;
-                        }
+                        },
+                        'filter' => Html::activeDropDownList($searchModel, 'mun_id',
+                            \yii\helpers\ArrayHelper::map(\common\models\Municpios::getMunOk(), 'id', 'desc_mun'),
+                            ['class'=>'form-control','prompt' => 'Seleccione un municipio']),
                     ],
                     [
                         'attribute' => 'loc_id',
@@ -46,15 +50,37 @@ $this->title = 'Bitácora De Reuniones Por Comunidad';
                                 $role = "";
                             }else {
                                 $reg = \common\models\Localidades::find()->where(['localidad_id' => $data->loc_id])->one();
-                                $role = $reg->nombre_loc;
+                                $role = $reg->desc_loc;
                             }
 
                             return $role;
-                        }
+                        },
+                        'filter' =>
+                            Html::activeDropDownList($searchModel, 'loc_id',
+                                \yii\helpers\ArrayHelper::map(\common\models\Localidades::getLocIndex($searchModel->mun_id),
+                                    'localidad_id', 'desc_loc'),
+
+                                ['class'=>'form-control','prompt' => 'Seleccione una Localidad']),
                     ],
                     //'resp_institucional',
                     //'resp_comunitario',
-                    'fecha',
+                    [
+                        'attribute' => 'fecha',
+                        'value' => 'fecha',
+                        'filter' => \kartik\date\DatePicker::widget([
+                            'name' => 'BitacoraReunionSearch[fecha]',
+                            'type' => \kartik\date\DatePicker::TYPE_COMPONENT_PREPEND,
+                            'language' => 'es',
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'yyyy-mm-dd',
+                                'startDate' => '2017-01-01',
+                                'endDate' => '2020-01-01',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]),
+                        'format' => 'html',
+                    ],
                     //'status',
                     //'created_by',
                     //'updated_by',
