@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\BitacoraReunion2;
+use common\models\BitacoraReunionSearch;
 use kartik\mpdf\Pdf;
 use Yii;
 use common\models\BitacoraReunion;
@@ -27,18 +28,11 @@ class BitacoraReunionController extends Controller
 
     public function actionIndex()
     {
-        if (Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20) {
-            $region = Yii::$app->user->identity->region_id;
-            $query = BitacoraReunion::find()->where(['region_id' => $region]);
-        }else{
-            $query = BitacoraReunion::find();
-        }
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        $searchModel = new BitacoraReunionSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

@@ -94,17 +94,7 @@ use kartik\date\DatePicker;
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'resp_institucional')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'resp_comunitario')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <div class="form-group">
                     <?= $form->field($model, 'fecha')->widget(DatePicker::className(), [
                         'name' => 'dp_2',
