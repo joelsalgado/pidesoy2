@@ -98,6 +98,11 @@ use kartik\date\DatePicker;
 
         <?= $form->field($model, 'descripcion')->textarea(['class' => 'form-control']) ?>
 
+        <?= $form->field($model, 'inversion')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'dependencia')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'responsable')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'cargo')->textInput(['maxlength' => true]) ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

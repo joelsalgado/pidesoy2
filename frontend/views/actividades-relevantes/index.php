@@ -7,14 +7,14 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ActividadesRelevantesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Actividades Relevantes';
+$this->title = 'Actividades Comunitarias';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="actividades-relevantes-index">
 
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Actividades Relevantes</h3>
+            <h3 class="box-title">Actividades Comunitarias</h3>
         </div>
         <div class="box-body">
             <p class="pull-right">

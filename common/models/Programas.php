@@ -28,9 +28,9 @@ class Programas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nomb_programa', 'desc_programa'], 'required'],
+            [['nomb_programa', 'desc_programa'], 'required', 'message' => 'Campo Requerido'],
             [['status'], 'integer'],
-            [['nomb_programa', 'desc_programa'], 'string', 'max' => 80],
+            [['nomb_programa', 'desc_programa', 'responsable'], 'string', 'max' => 80],
         ];
     }
 
@@ -41,8 +41,9 @@ class Programas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nomb_programa' => 'Nomb Programa',
-            'desc_programa' => 'Desc Programa',
+            'nomb_programa' => 'Nombre del Programa',
+            'desc_programa' => 'Descripcion del Programa',
+            'responsable' => 'Responsable del Programa',
             'status' => 'Status',
         ];
     }

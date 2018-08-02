@@ -32,10 +32,10 @@ class MapasController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'region', 'municipio', 'localidad', 'prioritarias'],
+                'only' => ['index', 'region', 'municipio', 'localidad', 'prioritarias', 'dinamico'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'region', 'municipio', 'localidad', 'prioritarias'],
+                        'actions' => ['index', 'region', 'municipio', 'localidad', 'prioritarias', 'dinamico'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -68,6 +68,11 @@ class MapasController extends Controller
     public function actionPrioritarias()
     {
         return $this->render('prioritarias');
+    }
+
+    public function actionDinamico()
+    {
+        return $this->render('dinamico');
     }
 
 
