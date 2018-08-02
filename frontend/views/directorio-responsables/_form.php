@@ -21,7 +21,49 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="row">
+
+            <div class="col-sm-6"></div>
             <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'fecha')->widget(DatePicker::className(), [
+                        'name' => 'dp_2',
+                        'language' => 'es',
+                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                        //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                        'pluginOptions' => [
+                            'autoclose'=>true,
+                            'format' => 'dd-mm-yyyy',
+                            'startDate' => '01-01-2017',
+                            'endDate' => '01-01-2020',
+                            //'value' => '22-10-1999'
+                        ]
+                    ]) ?>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="alert alert-success-alt">
+            <strong>TIPO DE PERSONAL</strong>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <?= $form->field($model, 'tipo_personal_id')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(\common\models\TipoPersonal::find()->orderBy(['id' => 'DESC'])->all(),
+                            'id', 'desc_personal'),
+                        'options' => ['placeholder' => 'Tipo de Personal'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label(false) ?>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-success-alt">
+            <strong>DATOS PERSONALES</strong>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <?= $form->field($model, 'imageTemp')->widget(FileInput::classname(), [
                         'pluginOptions' => [
@@ -46,82 +88,28 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
                     ])  ?>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <?= $form->field($model, 'fecha')->widget(DatePicker::className(), [
-                        'name' => 'dp_2',
-                        'language' => 'es',
-                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                        //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
-                        'pluginOptions' => [
-                            'autoclose'=>true,
-                            'format' => 'dd-mm-yyyy',
-                            'startDate' => '01-01-2017',
-                            'endDate' => '01-01-2020',
-                            //'value' => '22-10-1999'
-                        ]
-                    ]) ?>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <?= $form->field($model, 'resp_institucional')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <?= $form->field($model, 'resp_comunitario')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <?= $form->field($model, 'otro')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
-                </div>
-            </div>
-            <div class="otro">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <?= $form->field($model, 'especifique')->textInput(['maxlength' => true]) ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <?= $form->field($model, 'funcion')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group">
                     <?= $form->field($model, 'apellido_paterno')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <div class="form-group">
                     <?= $form->field($model, 'apellido_materno')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="form-group">
                     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
-        </div>
-        <div class="row">
-        <div class="col-sm-6">
+
+        <div class="col-sm-4">
             <div class="form-group">
                 <?= $form->field($model, 'sexo')->radioList(['H' => 'Hombre', 'M' => 'Mujer']) ?>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="form-group">
                 <?= $form->field($model, 'fecha_nacimiento')->widget(DatePicker::className(), [
                     'name' => 'dp_2',
@@ -139,6 +127,9 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
             </div>
         </div>
     </div>
+        <div class="alert alert-success-alt">
+            <strong>DATOS PARA LOCALIZACIÓN</strong>
+        </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
@@ -245,7 +236,3 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
 
 <?php ActiveForm::end(); ?>
 
-<?=$this->registerJsFile(
-    '@web/frontend/assets/js/directorio.js',
-    ['depends' => [\yii\web\JqueryAsset::className()]]
-);?>

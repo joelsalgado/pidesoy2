@@ -205,6 +205,15 @@ use kartik\date\DatePicker;
                 </div>
             </div>
         </div>
+        <?php if(Yii::$app->user->identity->role == 20 && $model->check != 1): ?>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <?= $form->field($model, 'check')->checkbox(['value' => 1, 'uncheckValue'=>0]) ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="form-group">
             <?= Html::submitButton('<i class="fa fa-save" aria-hidden="true"></i> Guardar', ['class' => 'btn btn-success btn-block']) ?>
         </div>

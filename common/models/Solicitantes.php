@@ -27,7 +27,7 @@ class Solicitantes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['periodo', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'edo_civil_id', 'edad', 'codigo_postal',
+            [['periodo', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'edo_civil_id', 'edad', 'codigo_postal','check',
                 'status', 'created_by', 'updated_by'], 'integer', 'message' => 'Debe ser un numero entero'],
             [['region_id', 'mun_id', 'loc_id','nombre', 'apellido_paterno', 'edo_civil_id', 'fecha_nacimiento',
                 'sexo', 'calle', 'colonia', 'num_ext', 'codigo_postal',
@@ -115,6 +115,7 @@ class Solicitantes extends \yii\db\ActiveRecord
             'num_int' => 'Número Interior',
             'codigo_postal' => 'Código Postal',
             'otra_referencia' => 'Rasgo Físico que ayude a ubicar la vivienda(Tienda, río, edificio, arroyo, árbol u otro).',
+            'check' => 'Validado',
             'status' => 'Status',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',

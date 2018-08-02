@@ -82,6 +82,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $fecha_inicio = Yii::$app->formatter->asDate('2018-05-24', 'yyyy-MM-dd');
+        $fecha_entrega = Yii::$app->formatter->asDate('2018-05-28', 'yyyy-MM-dd');
+        $hoy = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+
         return $this->render('index');
     }
 

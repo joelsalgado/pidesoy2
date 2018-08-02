@@ -94,6 +94,44 @@ $this->params['breadcrumbs'][] = $this->title;
                             //'codigo_postal',
                             //'otra_referencia',
                             //'status',
+                            [
+                                'label' => 'Semaforo',
+                                'format' => 'html',
+                                'value' => function($data){
+                                    $resultado = \common\models\Seguimiento::getSemaforo($data->id);
+                                    if($resultado){
+                                        switch ($resultado) {
+                                            case ($resultado >= 100):
+                                                return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/1.png" height="30" width="30"></p>';
+                                                break;
+                                            case ($resultado >= 91):
+                                                return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/2.png" height="30" width="30"></p>';
+                                                break;
+                                            case ($resultado >= 61):
+                                                return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/3.png" height="30" width="30"></p>';
+                                                break;
+                                            case ($resultado <= 60):
+                                                return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/4.png" height="30" width="30"></p>';
+                                                break;
+                                        }
+                                    }else{
+                                        return '';
+                                    }
+                                }
+                            ],
+                            [
+                                'label' => 'Validado',
+                                'format' => 'html',
+                                'value' => function($data){
+                                    if ($data->check ==1){
+                                        return '<p style="color:green;" align="center"><span class="glyphicon glyphicon-ok"></span></p>';
+                                    }
+                                    else{
+                                        return '<p style="color:red;"align="center"><span class="glyphicon glyphicon-remove"></span></p>';
+                                    }
+                                }
+
+                            ],
                             //'created_by',
                             //'updated_by',
                             //'created_at',
@@ -122,7 +160,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                     'borrar' => function ($url, $model) {
                                         if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20){
-                                            return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
+                                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
                                                 'data' => [
                                                     'confirm' => 'Estas seguro de borrar a este usuario',
                                                 ],
@@ -155,6 +193,51 @@ $this->params['breadcrumbs'][] = $this->title;
                 } catch (Exception $e) {
                 } ?>
             </div>
+            <table class="table table-bored">
+                <thead>
+                    <tr>
+                        <th>Semaforo</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="<?=Yii::$app->homeUrl?>images/1.png" height="30" width="30">
+                        </td>
+                        <td>
+                            <p>Excelente (100%), cuando se cumple de manera amplia y en tiempo la acción a realizar.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="<?=Yii::$app->homeUrl?>images/2.png" height="30" width="30">
+                        </td>
+                        <td>
+                            <p>Buena (91-99%), cuando se tiene un avance significativo de la acción/gestión.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="<?=Yii::$app->homeUrl?>images/3.png" height="30" width="30">
+                        </td>
+                        <td>
+                            <p>Regular (61-90%), cuando esta cumple mínimamente con el avance de la acción/gestión</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="<?=Yii::$app->homeUrl?>images/4.png" height="30" width="30">
+                        </td>
+                        <td>
+                            <p>Insuficiente (0-60%), cuando la acción/gestión solo se ha desarrollado de forma o no se ha iniciado</p>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+
         </div>
     </div>
 </div>

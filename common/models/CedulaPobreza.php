@@ -317,60 +317,65 @@ class CedulaPobreza extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        if($changedAttributes){
-            $piso = ($this->piso_firme == 0)? 1: 0;
-            $techo = ($this->techo_firme == 0)? 1:0;
-            $muros = ($this->muros_firme == 0)? 1:0;
-            if($this->num_habitaciones == 0){
+        if($changedAttributes) {
+            $piso = ($this->piso_firme == 0) ? 1 : 0;
+            $techo = ($this->techo_firme == 0) ? 1 : 0;
+            $muros = ($this->muros_firme == 0) ? 1 : 0;
+            if ($this->num_habitaciones == 0) {
                 $hacinamiento = 1;
-            }else{
-                $cal_hac = $this->num_personas/$this->num_habitaciones;
-                $hacinamiento = ($cal_hac >= 2.5)? 1 : 0;
+            } else {
+                $cal_hac = $this->num_personas / $this->num_habitaciones;
+                $hacinamiento = ($cal_hac >= 2.5) ? 1 : 0;
             }
-            $sum_calidad = $piso+$techo+$muros+$hacinamiento;
-            $calidad = ($sum_calidad >= 1)? 1 : 0;
+            $sum_calidad = $piso + $techo + $muros + $hacinamiento;
+            $calidad = ($sum_calidad >= 1) ? 1 : 0;
 
             $agua_pub = ($this->agua_publica == 0) ? 1 : 0;
             $agua_int = ($this->agua_interior_viv == 0) ? 1 : 0;
-            $suma_agua = $agua_int+$agua_pub;
+            $suma_agua = $agua_int + $agua_pub;
             $drenaje_pub = ($this->drenaje_puclico == 0) ? 1 : 0;
-            if($drenaje_pub == 0){
+            if ($drenaje_pub == 0) {
                 $drenaje_desem = 0;
-            }else{
+            } else {
                 $drenaje_desem = ($this->drenaje_desemboque == 0) ? 0 : 1;
             }
-            $suma_drenaje = $drenaje_desem+$drenaje_pub+$drenaje_desem;
+            $suma_drenaje = $drenaje_desem + $drenaje_pub + $drenaje_desem;
             $luz = ($this->energia_electrica == 0) ? 1 : 0;
-            if(is_null($this->chimenea)){
+            if (is_null($this->chimenea)) {
                 $chimenea = 0;
-            }else{
+            } else {
                 $chimenea = ($this->chimenea == 0) ? 1 : 0;
             }
 
-            $sum_serv_basicos = $suma_agua+$suma_drenaje+$luz+$chimenea;
-            $serv_basicos =  ($sum_serv_basicos >= 1)? 1 : 0;
+            $sum_serv_basicos = $suma_agua + $suma_drenaje + $luz + $chimenea;
+            $serv_basicos = ($sum_serv_basicos >= 1) ? 1 : 0;
 
             $excusado = ($this->excusado == 0) ? 1 : 0;
             $refrigerador = ($this->refrigerador == 0) ? 1 : 0;
             $lavadora = ($this->lavadora == 0) ? 1 : 0;
 
-            $edu_trunca_3_15 =($this->educ_trunca_3_15 == 1) ? 1 : 0;
-            $edu_no_asiste_esc_3_15 =($this->no_asiste_esc_3_15 == 1) ? 1 : 0;
-            $edu_prim_icomp_35_mas =($this->prim_icomp_35_mas == 1) ? 1 : 0;
-            $edu_sec_icomp_16_35 =($this->sec_icomp_16_35 == 1) ? 1 : 0;
-            $suma_educ = $edu_trunca_3_15+$edu_no_asiste_esc_3_15+$edu_prim_icomp_35_mas+$edu_sec_icomp_16_35;
-            $educacion =  ($suma_educ >= 1)? 1 : 0;
+            $edu_trunca_3_15 = ($this->educ_trunca_3_15 == 1) ? 1 : 0;
+            $edu_no_asiste_esc_3_15 = ($this->no_asiste_esc_3_15 == 1) ? 1 : 0;
+            $edu_prim_icomp_35_mas = ($this->prim_icomp_35_mas == 1) ? 1 : 0;
+            $edu_sec_icomp_16_35 = ($this->sec_icomp_16_35 == 1) ? 1 : 0;
+            $suma_educ = $edu_trunca_3_15 + $edu_no_asiste_esc_3_15 + $edu_prim_icomp_35_mas + $edu_sec_icomp_16_35;
+            $educacion = ($suma_educ >= 1) ? 1 : 0;
 
-            $edu_analfabetas_may_15 =($this->analfabetas_may_15 == 1) ? 1 : 0;
-            $edu_prim_icomp_15_mas =($this->prim_icomp_15_mas == 1) ? 1 : 0;
-            $edu_no_asiste_esc_6_14 =($this->no_asiste_esc_6_14 == 1) ? 1 : 0;
+            $edu_analfabetas_may_15 = ($this->analfabetas_may_15 == 1) ? 1 : 0;
+            $edu_prim_icomp_15_mas = ($this->prim_icomp_15_mas == 1) ? 1 : 0;
+            $edu_no_asiste_esc_6_14 = ($this->no_asiste_esc_6_14 == 1) ? 1 : 0;
 
             $recibe_salud = ($this->tiene_serv_med == 0) ? 1 : 0;
             $salud = ($recibe_salud >= 1) ? 1 : 0;
 
-            $seguridad_social_formal =($this->trabaja_formalmente == 0) ? 1 : 0;
-            $seguridad_social_sin =($this->seguridad_social == 0) ? 1 : 0;
-            $seguridad_social_may_sin =($this->no_SS_65_mas == 1) ? 1 : 0;
+            $seguridad_social_formal = ($this->trabaja_formalmente == 0) ? 1 : 0;
+            if($seguridad_social_formal == 1){
+                $seguridad_social_sin = 0;
+            }else{
+                $seguridad_social_sin = ($this->seguridad_social == 0) ? 1 : 0;
+            }
+
+            $seguridad_social_may_sin = ($this->no_SS_65_mas == 1) ? 1 : 0;
             $sum_ss = $seguridad_social_formal + $seguridad_social_sin + $seguridad_social_may_sin;
             $seguridad_social = ($sum_ss >= 1) ? 1 : 0;
 
@@ -391,14 +396,13 @@ class CedulaPobreza extends \yii\db\ActiveRecord
 
             $suma_carencias = $alimentacion + $seguridad_social + $salud + $educacion + $serv_basicos + $calidad;
 
-            if ($suma_carencias == 0){
+            if ($suma_carencias == 0) {
                 $carencias_desc = 'No pobre por carencia';
                 $carencia_val = 0;
-            }
-            elseif ($suma_carencias >=1 && $suma_carencias < 3){
+            } elseif ($suma_carencias >= 1 && $suma_carencias < 3) {
                 $carencias_desc = 'Vulnerable por carencias';
                 $carencia_val = 1;
-            }elseif ($suma_carencias >= 3){
+            } elseif ($suma_carencias >= 3) {
                 $carencias_desc = 'Pobre por carencia';
                 $carencia_val = 2;
             }
@@ -407,88 +411,143 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             $canasta_alimentaria = 0;
             $canasta_al_mas_no_aliemantaria = 0;
 
-            if($this->loc->tipo_loc == 'R'){
+            if ($this->loc->tipo_loc == 'R') {
                 $canasta_alimentaria = 1041.97;
-                $canasta_al_mas_no_aliemantaria= 1915.01;
-            }else{
+                $canasta_al_mas_no_aliemantaria = 1915.01;
+            } else {
                 $canasta_alimentaria = 1472.94;
-                $canasta_al_mas_no_aliemantaria= 2974.46;
+                $canasta_al_mas_no_aliemantaria = 2974.46;
             }
 
-            $ingreso_total =($this->ingreso_total == 0) ? 0 : $this->ingreso_total;
-            $ingreso_auto =($this->monto_autoingreso == 0) ? 0 : $this->monto_autoingreso;
-            $ingreso_apoyo =($this->monto_apoyo == 0) ? 0 : $this->monto_apoyo;
-            $ingreso_extranjero =($this->monto_extranjero == 0) ? 0 : $this->monto_extranjero;
-            $ingreso_pension =($this->monto_pension == 0) ? 0 : $this->monto_pension;
+            $ingreso_total = ($this->ingreso_total == 0) ? 0 : $this->ingreso_total;
+            $ingreso_auto = ($this->monto_autoingreso == 0) ? 0 : $this->monto_autoingreso;
+            $ingreso_apoyo = ($this->monto_apoyo == 0) ? 0 : $this->monto_apoyo;
+            $ingreso_extranjero = ($this->monto_extranjero == 0) ? 0 : $this->monto_extranjero;
+            $ingreso_pension = ($this->monto_pension == 0) ? 0 : $this->monto_pension;
 
             $suma_ingresos = $ingreso_total + $ingreso_auto + $ingreso_apoyo + $ingreso_extranjero + $ingreso_pension;
 
-            if($this->num_personas){
-                $ingreso = $suma_ingresos/$this->num_personas;
-            }else{
+            if ($this->num_personas) {
+                $ingreso = $suma_ingresos / $this->num_personas;
+            } else {
                 $ingreso = 0;
             }
 
-            if ($ingreso >= $canasta_al_mas_no_aliemantaria)
-            {
+            if ($ingreso >= $canasta_al_mas_no_aliemantaria) {
                 $indicador_ingresos_desc = "No Pobre por Ingresos";
                 $indicador_ingresos_val = 0;
-            }
-            elseif ($ingreso >= $canasta_alimentaria)
-            {
+            } elseif ($ingreso >= $canasta_alimentaria) {
                 $indicador_ingresos_desc = "Vulnerable por Ingresos";
                 $indicador_ingresos_val = 1;
-            }
-            elseif ($ingreso < $canasta_alimentaria){
+            } elseif ($ingreso < $canasta_alimentaria) {
                 $indicador_ingresos_desc = "Pobreza por Ingresos";
                 $indicador_ingresos_val = 2;
             }
 
 
-            if ($carencia_val == 0 && $indicador_ingresos_val == 0){
+            if ($carencia_val == 0 && $indicador_ingresos_val == 0) {
                 $resultado = "NO POBRE NO VULNERABLE";
                 $resultado_val = 0;
-            }
-            elseif ($carencia_val == 1 && $indicador_ingresos_val == 0){
+            } elseif ($carencia_val == 1 && $indicador_ingresos_val == 0) {
                 $resultado = "VULNERABLE POR CARENCIAS SOCIALES";
                 $resultado_val = 1;
-            }
-            elseif ($carencia_val == 2 && $indicador_ingresos_val == 0){
+            } elseif ($carencia_val == 2 && $indicador_ingresos_val == 0) {
                 $resultado = "VULNERABLE POR CARENCIAS SOCIALES";
                 $resultado_val = 1;
-            }
-            elseif ($carencia_val == 0 && $indicador_ingresos_val == 1){
+            } elseif ($carencia_val == 0 && $indicador_ingresos_val == 1) {
                 $resultado = "VULNERABLE POR INGRESOS";
                 $resultado_val = 2;
-            }
-            elseif ($carencia_val == 1 && $indicador_ingresos_val == 1){
+            } elseif ($carencia_val == 1 && $indicador_ingresos_val == 1) {
                 $resultado = "POBREZA MODERADA";
                 $resultado_val = 3;
-            }
-            elseif ($carencia_val == 2 && $indicador_ingresos_val == 1){
+            } elseif ($carencia_val == 2 && $indicador_ingresos_val == 1) {
                 $resultado = "POBREZA MODERADA";
                 $resultado_val = 3;
-            }
-            elseif ($carencia_val == 0 && $indicador_ingresos_val == 2){
+            } elseif ($carencia_val == 0 && $indicador_ingresos_val == 2) {
                 $resultado = "POBREZA MODERADA";
                 $resultado_val = 3;
-            }
-            elseif ($carencia_val == 2 && $indicador_ingresos_val == 2){
+            } elseif ($carencia_val == 2 && $indicador_ingresos_val == 2) {
                 $resultado = "POBREZA EXTREMA";
                 $resultado_val = 4;
-            }
-            elseif ($carencia_val == 1 && $indicador_ingresos_val == 2){
+            } elseif ($carencia_val == 1 && $indicador_ingresos_val == 2) {
                 $resultado = "POBREZA MODERADA";
                 $resultado_val = 3;
             }
 
             $pobreza = PobrezaMultidimensional::find()->where(['solicitante_id' => $this->solicitante_id])->one();
+            $seg = Seguimiento::find()->where(['solicitante_id' => $this->solicitante_id])->one();
+            $censo = Censo::find()->where(['solicitante_id' => $this->solicitante_id])->one();
 
-            if($pobreza){
+            if ($pobreza) {
                 $model = $pobreza;
-            }else{
+            } else {
                 $model = new PobrezaMultidimensional();
             }
+
+            if ($seg) {
+                $seguimiento = $seg;
+            } else {
+                $seguimiento = new Seguimiento();
+                $seguimiento->solicitante_id = $this->solicitante_id;
+                $seguimiento->periodo = 2018;
+                $seguimiento->status = 1;
+            }
+
+            if ($this->cocina_gas == 1 || $this->cocina_electricidad == 1 || $this->cocina_otro == 1){
+                $estufa_e = 0;
+            }else{
+                if ($this->cocina_lena == 1 || $this->cocina_carbon == 1){
+                    $estufa_e = 1;
+                }
+                else{
+                    $estufa_e = 0;
+                }
+            }
+
+            $seguimiento->scenario = 'SEGUIMIENTO';
+            $seguimiento->meta_piso = $piso;
+            $seguimiento->meta_techo = $techo;
+            $seguimiento->meta_muro = $muros;
+            $seguimiento->meta_cuarto = $hacinamiento;
+            $suma_vivienda = $piso + $techo + $muros + $hacinamiento;
+
+            $seguimiento->meta_calidad_espacios_vivienda = $suma_vivienda;
+
+            $seguimiento->meta_agua_potable = $agua_pub;
+            $seguimiento->meta_agua_interior = $agua_int;
+            $seguimiento->meta_drenaje = $drenaje_pub;
+            $seguimiento->meta_luz = $luz;
+            $seguimiento->meta_estufa = $estufa_e;
+            $suma_serv_basicos = $agua_pub + $agua_int + $drenaje_pub + $luz + $chimenea;
+
+            $seguimiento->meta_servicios_basicos = $suma_serv_basicos;
+
+            $suma_salud  = ($this->seguro_popular == 1) ? 0 : 1;
+            $seguimiento->meta_seguro_popular = $suma_salud;
+
+            $sum_edu = $edu_trunca_3_15 + $edu_no_asiste_esc_3_15;
+            $meta_3_15_escuela = ($sum_edu > 0) ? 1 : 0;
+
+            $seguimiento->meta_3_15_escuela = $meta_3_15_escuela;
+            $seguimiento->meta_antes_1982_primaria = $edu_prim_icomp_35_mas;
+            $seguimiento->meta_despues_1982_secundaria = $edu_sec_icomp_16_35;
+
+            $suma_edu = $meta_3_15_escuela + $edu_prim_icomp_35_mas + $edu_sec_icomp_16_35;
+            $seguimiento->meta_educacion = $suma_edu;
+
+            $seguimiento->meta_despensas = $alimentacion;
+
+            $seguimiento->meta_ss = $seguridad_social_formal;
+            $seguimiento->meta_trabajadores_ss = $seguridad_social_sin;
+            $seguimiento->meta_adultos_ss = $seguridad_social_may_sin;
+
+            $suma_s_s = $seguridad_social_formal + $seguridad_social_sin + $seguridad_social_may_sin;
+            $seguimiento->meta_s_s = $suma_s_s;
+
+            $suma_result = $suma_s_s + $alimentacion + $suma_edu + $suma_salud + $suma_serv_basicos + $suma_vivienda;
+            $seguimiento->meta_vivienda = $suma_result;
+
+
 
             $model->solicitante_id = $this->solicitante_id;
             $model->cedula_pobreza_id = $this->id;
@@ -554,12 +613,12 @@ class CedulaPobreza extends \yii\db\ActiveRecord
             $model->resultado_val = $resultado_val;
             $model->status = 1;
 
-            if($model->save())
+            if($model->save() && $seguimiento->save())
             {
                 echo "bien";
             }else{
                 echo "mal";
-            }
+        }
 
 
 

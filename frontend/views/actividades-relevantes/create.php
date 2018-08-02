@@ -2,12 +2,12 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Crear Actividad Relevante';
+$this->title = 'Crear Actividad Comunitaria';
 ?>
 <div class="actividades-relevantes-create">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">NUEVA ACTIVIDAD</h3>
+            <h3 class="box-title">Nueva Actividad</h3>
         </div>
         <div class="box-body">
             <?= $this->render('_form', [
