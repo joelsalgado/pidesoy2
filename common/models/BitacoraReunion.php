@@ -35,6 +35,8 @@ class BitacoraReunion extends \yii\db\ActiveRecord
             [['fecha'], 'safe'],
             ['fecha', 'validateDate'],
             [['resp_institucional', 'resp_comunitario'], 'string', 'max' => 255],
+            [['mes'], 'string', 'max' => 2],
+            [['periodo'], 'string', 'max' => 4],
             [['entidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => EntidadNacimiento::className(), 'targetAttribute' => ['entidad_id' => 'id']],
             [['loc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Localidades::className(), 'targetAttribute' => ['loc_id' => 'localidad_id']],
             [['mun_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municpios::className(), 'targetAttribute' => ['mun_id' => 'id']],
@@ -45,11 +47,24 @@ class BitacoraReunion extends \yii\db\ActiveRecord
 
     public function validateDate(){
         $año = Yii::$app->formatter->asDate($this->fecha, 'yyyy');
-        $mes = Yii::$app->formatter->asDate($this->fecha, 'MM');
-            var_dump($mes); die;
-
+        
         if($año == 2018){
-            echo "bien";
+            if ($this->isNewRecord) {
+                $dup = self::find()->where([
+                    'loc_id' => $this->loc_id,
+                    //'created_by' => Yii::$app->user->id
+                ])
+                    ->andWhere(['mes' => $this->mes])
+                    ->andWhere(['periodo' => $this->periodo])
+                    ->andWhere(['status' => 1])
+                    ->all();
+                if ($dup) {
+                    $this->addError('fecha', 'Este mes ya existe en esta localidad');
+                    $fecha = Yii::$app->formatter->asDate($this->fecha, 'dd-MM-yyyy');
+                    $this->fecha = $fecha;
+                }
+            }
+
         }
         else{
             $this->addError('fecha', 'Fecha incorrecta');
@@ -69,6 +84,8 @@ class BitacoraReunion extends \yii\db\ActiveRecord
             'resp_institucional' => 'Nombre del Responsable Institucional:',
             'resp_comunitario' => 'Nombre del Responsable Comunitario',
             'fecha' => 'Fecha',
+            'mes' => 'Mes',
+            'periodo' => 'Periodo',
             'status' => 'Status',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',

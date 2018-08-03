@@ -100,7 +100,9 @@ use kartik\date\DatePicker;
                         'name' => 'dp_2',
                         'language' => 'es',
                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                        //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                        //'readonly' => ($model->isNewRecord) ? false : true,
+                        'disabled' => ($model->isNewRecord) ? false : true,
+                        //'value' => 	date("d/m/Y", strtotime($model->fecha)),
                         'pluginOptions' => [
                             'autoclose'=>true,
                             'format' => 'dd-mm-yyyy',

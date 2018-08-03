@@ -50,10 +50,11 @@ class BitacoraReunionController extends Controller
         $model = new BitacoraReunion();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->resp_institucional = trim(strtoupper($model->resp_institucional));
-            $model->resp_comunitario = trim(strtoupper($model->resp_comunitario));
+            $mes = Yii::$app->formatter->asDate($model->fecha, 'MM');
             $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
             $model->status = 1;
+            $model->mes = $mes;
+            $model->periodo = '2018';
             if($model->save()){
                 return $this->redirect(['/bitacora-reunion2', 'id' => $model->id]);
             }
@@ -70,8 +71,6 @@ class BitacoraReunionController extends Controller
         if($model){
             $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy');
             if ($model->load(Yii::$app->request->post())) {
-                $model->resp_institucional = trim(strtoupper($model->resp_institucional));
-                $model->resp_comunitario = trim(strtoupper($model->resp_comunitario));
                 $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
                 if($model->save()) {
                     return $this->redirect(['/bitacora-reunion2', 'id' => $model->id]);
