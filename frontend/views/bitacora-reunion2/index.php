@@ -21,7 +21,7 @@ $this->title = 'Objetivos';
         <div class="box-body">
             <p class="pull-right">
                 <?= Html::a('Finalizar', ['/bitacora-reunion'], ['class' => 'btn btn-danger']) ?>
-                <?= Html::a('Nuevo Objetivo', ['create', 'id' => $id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Nueva Actividad', ['create', 'id' => $id], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([
@@ -34,7 +34,8 @@ $this->title = 'Objetivos';
                     'id',
                     //'bitacora_reunion_id',
                     'fechas',
-                    'objetivo',
+                    'actividad_realizar',
+                    //'objetivo',
                     //'autoridades_federales',
                     //'autoridades_estatales',
                     //'autoridades_municipales',

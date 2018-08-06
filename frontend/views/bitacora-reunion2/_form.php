@@ -35,36 +35,28 @@ use kartik\date\DatePicker;
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <?= $form->field($model, 'objetivo')->textarea() ?>
+                    <?= $form->field($model, 'actividad_realizar')->textInput() ?>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label>Autoridades Presentes:</label>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'autoridades_federales')->textInput() ?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'autoridades_estatales')->textInput() ?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'autoridades_municipales')->textInput() ?>
+                    <?= $form->field($model, 'nombre_ejecucion')->textInput() ?>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <?= $form->field($model, 'acuerdos')->textarea() ?>
+                    <?= $form->field($model, 'nombre_supervisar')->textInput() ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <?= $form->field($model, 'cumplio')->radioList([1 => 'Si', 0 => 'No']) ?>
                 </div>
             </div>
         </div>
