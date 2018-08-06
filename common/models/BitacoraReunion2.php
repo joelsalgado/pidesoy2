@@ -32,12 +32,28 @@ class BitacoraReunion2 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bitacora_reunion_id', 'fechas', 'objetivo', 'acuerdos', 'observaciones', 'autoridades_federales', 'autoridades_estatales', 'autoridades_municipales'], 'required' , 'message' => 'Campo Requerido'],
-            [['bitacora_reunion_id', 'autoridades_federales', 'autoridades_estatales', 'autoridades_municipales', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer', 'message'=> 'Dede ser Numerico'],
+            [['bitacora_reunion_id', 'fechas', 'observaciones', 'actividad_realizar', 'nombre_ejecucion', 'nombre_supervisar', 'cumplio'], 'required' , 'message' => 'Campo Requerido'],
+            [['bitacora_reunion_id', 'autoridades_federales', 'autoridades_estatales', 'autoridades_municipales', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at', 'cumplio'], 'integer', 'message'=> 'Dede ser Numerico'],
             [['fechas'], 'safe'],
+            [['fechas'], 'validateDates'],
             [['objetivo', 'acuerdos', 'observaciones'], 'string', 'max' => 2000],
+            [['nombre_ejecucion', 'nombre_supervisar', 'actividad_realizar'], 'string', 'max' => 255],
             [['bitacora_reunion_id'], 'exist', 'skipOnError' => true, 'targetClass' => BitacoraReunion::className(), 'targetAttribute' => ['bitacora_reunion_id' => 'id']],
         ];
+    }
+
+    public function validateDates(){
+        $año = Yii::$app->formatter->asDate($this->fechas, 'yyyy');
+        $mes = Yii::$app->formatter->asDate($this->fechas, 'MM');
+
+        if ($año == $this->bitacoraReunion->periodo && $mes == $this->bitacoraReunion->mes ){
+            echo 'bien';
+        }
+        else{
+            $this->addError('fechas', 'Este fecha no es valida');
+            $fecha = Yii::$app->formatter->asDate($this->fechas, 'dd-MM-yyyy');
+            $this->fechas = $fecha;
+        }
     }
 
     /**
@@ -49,6 +65,10 @@ class BitacoraReunion2 extends \yii\db\ActiveRecord
             'id' => 'ID',
             'bitacora_reunion_id' => 'Bitacora Reunion ID',
             'fechas' => 'Fecha De Reunión',
+            'actividad_realizar' => 'Actividad a Realizar',
+            'nombre_ejecucion' => 'Nombre del Responsable de la Ejecución de la Actividad',
+            'nombre_supervisar' => 'Nombre del Responsable de Supervisar el Cumplimiento de la Actividad',
+            'cumplio' => '¿Se cumplio?',
             'objetivo' => 'Objetivo De La Reunión',
             'autoridades_federales' => 'Autoridades Federales',
             'autoridades_estatales' => 'Autoridades Estatales',

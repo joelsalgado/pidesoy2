@@ -36,7 +36,7 @@ use kartik\date\DatePicker;
                             'pluginOptions' => [
                                 'autoclose'=>true,
                                 'format' => 'dd-mm-yyyy',
-                                'startDate' => '01-01-2018',
+                                'startDate' => '01-01-2017',
                                 'endDate' => '01-01-2019',
                                 //'value' => '22-10-1999'
                             ]
@@ -53,7 +53,7 @@ use kartik\date\DatePicker;
                             'pluginOptions' => [
                                 'autoclose'=>true,
                                 'format' => 'dd-mm-yyyy',
-                                'startDate' => '01-01-2018',
+                                'startDate' => '01-01-2017',
                                 'endDate' => '01-01-2019',
                                 //'value' => '22-10-1999'
                             ]
@@ -95,7 +95,7 @@ use kartik\date\DatePicker;
                                 'pluginOptions' => [
                                     'autoclose'=>true,
                                     'format' => 'dd-mm-yyyy',
-                                    'startDate' => '01-01-2018',
+                                    'startDate' => '01-01-2017',
                                     'endDate' => '01-01-2019',
                                     //'value' => '22-10-1999'
                                 ]
