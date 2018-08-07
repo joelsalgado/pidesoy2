@@ -8,98 +8,76 @@
 
 ?>
 
+
+<table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="100%">
+    <tr>
+        <td rowspan="2"  width="15%">
+            <img  src="<?= Yii::$app->homeUrl ?>images/colors.png" width="160" height="55">
+        </td>
+        <td align="right" width="85%">
+            <b><p style="color:#CC0066; font-size: xx-small">FAMILIAS FUERTES, COMUNIDADES CON TODO</p></b>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="background-color: #CC0066; color: white;" width="85%">
+            <b><p>BITACORA DE TRABAJO POR LOCALIDAD</p></b>
+        </td>
+    </tr>
+</table><br>
+
 <table class="table table-condensed">
     <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
+        <td align="center" style="background-color: #CC0066; color: white;">
+            Municipio:
         </td>
-        <td align="center">
-            <p align="center" style="font-size: small; color:#ff3d96;"><b>FAMILIAS FUERTES, COMUNIDADES CON TODO</b></p>
-            <p align="center" style="font-size: small; color:#ff3d96;"><b>BITÁCORA DE REUNIONES POR COMUNIDAD</b></p>
+        <td><b><?=$model->mun->desc_mun?></b></td>
+        <td align="right">Fecha: <?= $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy'): '';?></td>
+    </tr>
+    <tr>
+        <td align="center" style="background-color: #CC0066; color: white;">
+            Localidad:
         </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
+        <td> <b><?=$model->loc->nombre_loc?></b></td>
+        <td></td>
     </tr>
 </table>
 
-<table class="table table-bored">
-    <tr>
-        <td align="center" style="background-color: #df3b7a; color: white;">Clave del Estado</td>
-        <td align="center" style="background-color: #df3b7a; color: white;">Municipio</td>
-        <td align="center" style="background-color: #df3b7a; color: white;">Localidad</td>
-    </tr>
-    <tr>
-        <td align="center"><b><?= $model->entidad_id ?></b></td>
-        <td align="center"><b><?=$model->mun->desc_mun?></b></td>
-        <td align="center"> <b><?=$model->loc->nombre_loc?></b></td>
-    </tr>
-    <tr>
-        <td align="center" style="background-color: #df3b7a; color: white;">Nombre del Responsable Institucional</td>
-        <td align="center" style="background-color: #df3b7a; color: white;">Nombre del Responsable Comunitario</td>
-        <td align="center" style="background-color: #df3b7a; color: white;">Fecha</td>
-    </tr>
-    <tr>
-        <td align="center"><b><?= $model->resp_institucional ?></b></td>
-        <td align="center"><b><?= $model->resp_comunitario ?></b></td>
-        <td align="center"><b><?= $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy'): '';         ?></b></td>
-    </tr>
-</table>
-<br>
 
-<table class="table table-bored">
+<table class="table table-bordered">
     <thead>
         <tr>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>No</b></td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>FECHA DE REUNIÓN</b></td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>OBJETIVO DE LA REUNIÓN</b></td>
-            <td align="center" colspan="3" style="background-color: #e2cae3;"><b>AUTORIDADES PRESENTES</b></td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>ACUERDOS TOMADOS</b></td>
-            <td align="center" rowspan="2" style="background-color: #e2cae3;"><b>OBSERVACIONES</b></td>
-        </tr>
-        <tr>
-            <td align="center" style="background-color: #e2cae3;"><b>F</b></td>
-            <td align="center" style="background-color: #e2cae3;"><b>E</b></td>
-            <td align="center" style="background-color: #e2cae3;"><b>M</b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">No.</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">FECHA DE VISITA</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">ACTIVIDAD A REALIZAR</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">NOMBRE DEL RESPONSABLE DE LA EJECUCIÓN DE LA ACTIVIDAD</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">NOMBRE DEL RESPONSABLE DE SUPERVISAR EL CUMPLIMIENTO </p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">¿SE CUMPLIÓ?</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">OBSERVACIONES</p></b></td>
         </tr>
     </thead>
     <tbody>
         <?php if($model2) : $i=1; foreach($model2 as $value){?>
             <tr>
-                <td align="center"><?= $i++; ?></td>
-                <td align="center"><?= $value->fechas ?></td>
-                <td align="center"><?= $value->objetivo ?></td>
-                <td align="center"><?= $value->autoridades_federales ?></td>
-                <td align="center"><?= $value->autoridades_estatales ?></td>
-                <td align="center"><?= $value->autoridades_municipales ?></td>
-                <td align="center"><?= $value->acuerdos ?></td>
-                <td align="center"><?= $value->observaciones ?></td>
+                <td align="center"><p style="font-size: 7pt"><?= $i++; ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->fechas = ($value->fechas)? Yii::$app->formatter->asDate($value->fechas, 'dd-MM-yyyy'): '';?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->actividad_realizar ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->nombre_ejecucion ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->nombre_supervisar ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $cumplio = ($value->cumplio == 1) ? 'SI' : 'NO' ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->observaciones ?></p></td>
             </tr>
         <?php }endif;?>
     </tbody>
 </table>
 <br>
-<hr>
 <br>
 <table class="table table-condensed">
-
-    <tr>
-        <td></td>
-        <td align="left" colspan="2">Claves:</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td align="left">F</td>
-        <td align="left">Federales</td>
-    </tr>
     <tr>
         <td align="center">_________________________________________________</td>
-        <td align="left">E</td>
-        <td align="left">Estatales</td>
+        <td align="center">_________________________________________________</td>
     </tr>
     <tr>
-        <td align="center">Nombre y firma del responsable de la Bitácora </td>
-        <td align="left">M</td>
-        <td align="left">Municipales</td>
+        <td align="center"><p style="font-size: 6pt">Nombre completo y firma del responsable del llenado de la bitácora</p> </td>
+        <td align="center"><p style="font-size: 6pt">Nombre completo y firma del responsable de validar la información</p> </td>
     </tr>
 </table>

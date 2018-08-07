@@ -147,3 +147,9 @@ a.desc:after {
     background-color: #6c9e31;
     border-color: #9fca52;
 }
+
+.alert-success-gray {
+    color: #000000;
+    background-color: #d9d9d9;
+    border-color: #d9d9d9;
+}

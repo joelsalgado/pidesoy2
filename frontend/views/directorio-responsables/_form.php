@@ -42,7 +42,7 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
             </div>
         </div>
         <br>
-        <div class="alert alert-success-alt">
+        <div class="alert alert-success-gray">
             <strong>TIPO DE PERSONAL</strong>
         </div>
         <div class="row">
@@ -59,7 +59,7 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
                 </div>
             </div>
         </div>
-        <div class="alert alert-success-alt">
+        <div class="alert alert-success-gray">
             <strong>DATOS PERSONALES</strong>
         </div>
         <div class="row">
@@ -127,7 +127,7 @@ $value = ($ext == 'jpg') ? 'image' : 'pdf';
             </div>
         </div>
     </div>
-        <div class="alert alert-success-alt">
+        <div class="alert alert-success-gray">
             <strong>DATOS PARA LOCALIZACIÓN</strong>
         </div>
         <div class="row">
