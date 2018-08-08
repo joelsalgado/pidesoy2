@@ -36,8 +36,8 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
     {
         return [
             [['fecha', 'fecha_nacimiento'], 'safe'],
-            [['resp_institucional', 'resp_comunitario', 'otro', 'codigo_posta', 'mun_id', 'loc_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at','tipo_personal_id'], 'integer','message' => 'Solo se aceptan números'],
-            [['fecha','apellido_paterno', 'apellido_materno', 'nombre', 'sexo', 'fecha_nacimiento', 'mun_id', 'loc_id'], 'required', 'message' => 'Campo Requerido'],
+            [['entidad_id', 'region_id', 'mun_id1', 'loc_id1','resp_institucional', 'resp_comunitario', 'otro', 'codigo_posta', 'mun_id', 'loc_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at','tipo_personal_id'], 'integer','message' => 'Solo se aceptan números'],
+            [['fecha','entidad_id', 'region_id', 'mun_id1', 'loc_id1','apellido_paterno', 'apellido_materno', 'nombre', 'sexo', 'fecha_nacimiento', 'mun_id', 'loc_id'], 'required', 'message' => 'Campo Requerido'],
             [['imagen', 'especifique', 'funcion'], 'string', 'max' => 255],
             [['apellido_paterno', 'apellido_materno', 'nombre'], 'string', 'max' => 60],
             [['sexo'], 'string', 'max' => 1],
@@ -94,6 +94,10 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'entidad_id' => 'Clave del Estado',
+            'region_id' => 'Region',
+            'mun_id1' => 'Municipio',
+            'loc_id1' => 'Localidad',
             'imageTemp' => 'Imagen',
             'fecha' => 'Fecha',
             'imagen' => 'Imagen',
@@ -133,6 +137,11 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
         return $this->hasOne(Localidades::className(), ['localidad_id' => 'loc_id']);
     }
 
+    public function getLoc1()
+    {
+        return $this->hasOne(Localidades::className(), ['localidad_id' => 'loc_id1']);
+    }
+
     public function getPesonal()
     {
         return $this->hasOne(TipoPersonal::className(), ['id' => 'tipo_personal_id']);
@@ -142,6 +151,12 @@ class DirectorioResponsables extends \yii\db\ActiveRecord
     public function getMun()
     {
         return $this->hasOne(Municpios::className(), ['id' => 'mun_id']);
+    }
+
+
+    public function getMun1()
+    {
+        return $this->hasOne(Municpios::className(), ['id' => 'mun_id1']);
     }
 
     public function  saveImage($imageFile, $name, $type, $tipo) {
