@@ -29,8 +29,8 @@
         <td colspan="12" align="right"><b>FECHA:</b> <?= $model->fecha = ($model->fecha)? Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy'): ''; ?></td>
     </tr>
     <tr>
-        <td colspan="6"><b>MUNICIPIO: </b><?= $model->mun->desc_mun ?></td>
-        <td colspan="6"><b>LOCALIDAD: </b><?= $model->loc->nombre_loc ?></td>
+        <td colspan="6"><b>MUNICIPIO: </b><?= $model->mun1->desc_mun ?></td>
+        <td colspan="6"><b>LOCALIDAD: </b><?= $model->loc1->nombre_loc ?></td>
     </tr>
 </table>
 
