@@ -1874,7 +1874,7 @@ class Seguimiento extends \yii\db\ActiveRecord
                                     //echo $diff1; die;
                                     $div = $diff2 / $diff1;
                                     //echo $div; die;
-                                    $de_3_15_escuela = $div * 100;
+                                    $de3_15_escuela = $div * 100;
                                 } else {
                                     if ($diff1 > 0) {
                                         $de3_15_escuela = 100 / $diff1;
