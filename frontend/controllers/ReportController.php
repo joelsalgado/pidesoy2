@@ -508,7 +508,7 @@ class ReportController extends Controller
                                 <td width="25%"></td>
                                 <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
                                 <td width="25%" align="right">
-                                    <p style="font-size: 5pt">Elaboró: CIEPS &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Revisó: UDITI </p>
+                                    <p style="font-size: 5pt">Elaboró: UDITI </p>
                                 </td>
                             </tr>
                             <tr>
