@@ -110,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             case ($resultado >= 61):
                                                 return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/3.png" height="30" width="30"></p>';
                                                 break;
-                                            case ($resultado <= 60):
+                                            case ($resultado < 61):
                                                 return '<p align= "center"><img src="'.Yii::$app->homeUrl.'images/4.png" height="30" width="30"></p>';
                                                 break;
                                         }
