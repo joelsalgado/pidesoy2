@@ -209,7 +209,7 @@ class DesgCenso extends \yii\db\ActiveRecord
             ),
 
             "elemento-2" => array (
-                "nombre" => "Necesito que halla campañas de vacunación y jornadas de salud (que me tomen presión, azúcar, revisen mis dientes, papanicolau, etc).",
+                "nombre" => "Necesito que haya campañas de vacunación y jornadas de salud (que me tomen presión, azúcar, revisen mis dientes, papanicolau, etc).",
                 "orden"  => $value->vacunacion
             ),
 

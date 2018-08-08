@@ -18,15 +18,15 @@
     </tr>
     <tr>
         <td align="right" style="background-color: #9BBB59; color: white;" width="85%">
-            <b><p>REPORTE CENSO DE LA LOCALIDAD: <?= $model->desc_loc?></p></b>
+            <b><p style="font-size: 10pt">REPORTE CENSO DE LA LOCALIDAD: <?= $model->desc_loc?></p></b>
         </td>
     </tr>
 </table><br>
 
 <div class="alert alert-success-censo" role="alert">
-    <b>5 Necesidades más importantes de la localidad</b>
+    <b><p style="font-size: 10pt" align="center">5 Necesidades más importantes de la localidad</p></b>
 </div>
-<table class="table table-bordered">
+<table class="table table-condensed">
     <thead>
     <tr>
         <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">No</p></b></td>
@@ -43,9 +43,9 @@
 </table>
 
 <div class="alert alert-success-censo" role="alert">
-    <b>5 aspectos que más necesita la localidad</b>
+    <b><p style="font-size: 10pt;" align="center">5 aspectos que más necesita la localidad</p></b>
 </div>
-<table class="table table-bordered">
+<table class="table table-condensed ">
     <thead>
     <tr>
         <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">No</p></b></td>
@@ -62,9 +62,9 @@
 </table>
 
 <div class="alert alert-success-censo" role="alert">
-    <b>Es miembro de alguna organización de vecinos u otro grupo comunitario</b>
+    <b><p style="font-size: 10pt;" align="center">Es miembro de alguna organización de vecinos u otro grupo comunitario</p></b>
 </div>
-<table class="table table-bordered">
+<table class="table table-condensed">
     <thead>
     <tr>
         <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Si</p></b></td>
@@ -73,15 +73,15 @@
     </thead>
     <tbody>
     <tr>
-        <td><?= $model->grupo_comunitario_si?></td>
-        <td><?= $model->grupo_comunitario_no?></td>
+        <td align="center"><p style="font-size: 7pt"><?= $model->grupo_comunitario_si?></p></td>
+        <td align="center"><p style="font-size: 7pt"><?= $model->grupo_comunitario_no?></p></td>
     </tr>
     </tbody>
 </table>
 <div class="alert alert-success-censo" role="alert">
-    <b>Le gustaría participar con las autoridades municipales y estatales para mejorar las condiciones de su localidad y vivienda</b>
+    <b><p style="font-size: 9pt" align="center">Le gustaría participar con las autoridades municipales y estatales para mejorar las condiciones de su localidad y vivienda</p></b>
 </div>
-<table class="table table-bordered">
+<table class="table table-condensed">
     <thead>
     <tr>
         <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Si</p></b></td>
@@ -90,15 +90,15 @@
     </thead>
     <tbody>
     <tr>
-        <td><?= $model->autoridades_estatales_si?></td>
-        <td><?= $model->autoridades_estatales_no?></td>
+        <td align="center"><p style="font-size: 7pt"><?= $model->autoridades_estatales_si?></p></td>
+        <td align="center"><p style="font-size: 7pt"><?= $model->autoridades_estatales_no?></p></td>
     </tr>
     </tbody>
 </table>
 <div class="alert alert-success-censo" role="alert">
-    <b>Cuenta con tiempo disponible para participar en las acciones de mejora para su localidad y vivienda</b>
+    <b><p style="font-size: 9pt" align="center">Cuenta con tiempo disponible para participar en las acciones de mejora para su localidad y vivienda</p></b>
 </div>
-<table class="table table-bordered">
+<table class="table table-condensed">
     <thead>
     <tr>
         <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Si</p></b></td>
@@ -107,8 +107,8 @@
     </thead>
     <tbody>
     <tr>
-        <td><?= $model->acciones_si?></td>
-        <td><?= $model->acciones_no?></td>
+        <td align="center"><p style="font-size: 7pt"><?= $model->acciones_si?></p></td>
+        <td align="center"><p style="font-size: 7pt"><?= $model->acciones_no?></p></td>
     </tr>
     </tbody>
 </table>

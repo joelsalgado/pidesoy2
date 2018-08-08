@@ -26,7 +26,7 @@ $total = 0;
                 </thead>
                 <tbody>
                 <?php $y=1; foreach ($model as $data){ ?>
-                    <tr <?php if($y%2==0){ echo 'bgcolor="#A8AC90"'; }?>>
+                    <tr <?php if($y%2==0){ echo 'bgcolor="#9BBB59"'; }?>>
                         <td><b><?=  mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8")?></b></td>
                         <td><?= $data->total ?></td>
                         <td><?= \yii\helpers\Html::a('Ver',['/report/pdfcenso', 'id' => $data->desc_loc]) ?> <br></td>

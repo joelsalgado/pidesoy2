@@ -162,7 +162,7 @@ class Censo extends \yii\db\ActiveRecord
             'cual1' => '¿Cuál?',
 
             'documentos' => 'a) Necesito tener mis documentos personales (CURP, acta de nacimiento, etc.)',
-            'vacunacion' => 'b) Necesito que halla campañas de vacunación y jornadas de salud (que me tomen presión, azúcar, revisen mis dientes, papanicolau, etc).',
+            'vacunacion' => 'b) Necesito que haya campañas de vacunación y jornadas de salud (que me tomen presión, azúcar, revisen mis dientes, papanicolau, etc).',
             'ortopedicos' => 'c) Necesito aparatos ortopédicos, para escuchar mejor o lentes',
             'seguro_popular' => 'd) Necesito afiliarme al seguro popular',
 
