@@ -22,5 +22,6 @@ $total = 0;
         <?= \yii\helpers\Html::a('Resultados por Regiones',['/report/regtot']) ?><br>
         <?= \yii\helpers\Html::a('Resultados por Municipios',['/report/muntot']) ?><br>
         <?= \yii\helpers\Html::a('Resultados por Localidades',['/report/loctot']) ?><br>
+        <?= \yii\helpers\Html::a('Censo por Localidades',['/report/locen']) ?><br>
     </div>
 </div>

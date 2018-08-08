@@ -8,6 +8,7 @@
 
 namespace frontend\controllers;
 
+use common\models\DesgCenso;
 use common\models\LocDesg;
 use common\models\LocTot;
 use common\models\MunDesg;
@@ -391,6 +392,21 @@ class ReportController extends Controller
         }
     }
 
+    public function actionLocalidadcen(array $localidades)
+    {
+        if ($localidades){
+            $model = DesgCenso::find()
+                ->where(['desc_loc' => $localidades])
+                ->all();
+            return $this->render('localidadcen', [
+                'model' => $model,
+                'excel' => $localidades
+            ]);
+        }else{
+            return $this->render('locen');
+        }
+    }
+
     public function actionLocalidadpdf(array $excel)
     {
         if ($excel){
@@ -429,6 +445,85 @@ class ReportController extends Controller
             return $pdf->render();
         }else{
             return $this->render('loc');
+        }
+    }
+
+    public function actionPdfcenso($id)
+    {
+        if ($id){
+            $model = DesgCenso::find()->where(['desc_loc' => $id])->one();
+            $x = new DesgCenso();
+            $y = $x->actionCenso($model->desc_loc);
+            $p = $x->actionCenso2($model->desc_loc);
+            $content = $this->renderPartial('_desg_loc_censo', [
+                'model'=> $model,
+                'necesidades' => $y,
+                'necesita' => $p
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'censodetails.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 22,
+                'marginBottom'=> 13,
+                'marginHeader'=> 5,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Censos'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '   
+                    .alert-success-censo {
+                        color: white;
+                        background-color: #9BBB59;
+                        border-color: #9BBB59;
+                    }
+                ',
+                'methods' =>[
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: CIEPS &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Revisó: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
+                ]
+
+            ]);
+            return $pdf->render();
+        }else{
+            return $this->render('locen');
         }
     }
 
@@ -546,6 +641,11 @@ class ReportController extends Controller
     public function actionLoc()
     {
         return $this->render('loc');
+    }
+
+    public function actionLocen()
+    {
+        return $this->render('locen');
     }
 
     public function actionMun()
