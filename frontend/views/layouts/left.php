@@ -11,6 +11,10 @@
                     ['label' => 'Reporte', 'icon' => 'list-alt', 'url' => ['/report'], 'visible' => $user = (Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40) ? true : false],
                     ['label' => 'Participantes', 'icon' => 'user', 'url' => ['/solicitantes']],
                     ['label' => 'Mapas', 'icon' => 'map', 'url' => ['/mapas']],
+                    ['label' => 'Formatos', 'icon' => 'file-pdf-o', 'url' => ['product/index'], 'items' => [
+                        ['label' => 'Directorio', 'url' => ['/directorio-responsables']],
+                        ['label' => 'Bitacora por  Localidad', 'url' => ['/bitacora-reunion']],
+                    ]],
                     ['label' => 'Formato de Localidades', 'icon' => 'folder', 'url' => ['/formato-loc']],
                     ['label' => 'Actividades Comunitarias', 'icon' => 'road', 'url' => ['/actividades-relevantes']],
                     ['label' => 'Programas', 'icon' => 'id-card', 'url' => ['/programas'], 'visible' => $user = (Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40) ? true : false],
