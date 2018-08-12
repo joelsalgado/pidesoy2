@@ -9,7 +9,9 @@
 namespace frontend\controllers;
 
 use common\models\DesgCenso;
+use common\models\DesgSeg;
 use common\models\LocDesg;
+use common\models\LocSeg;
 use common\models\LocTot;
 use common\models\MunDesg;
 use common\models\MunTot;
@@ -407,6 +409,21 @@ class ReportController extends Controller
         }
     }
 
+    public function actionLocalidadseg(array $localidades)
+    {
+        if ($localidades){
+            $model = LocSeg::find()
+                ->where(['desc_loc' => $localidades])
+                ->all();
+            return $this->render('localidadseg', [
+                'model' => $model,
+                'excel' => $localidades
+            ]);
+        }else{
+            return $this->render('locseg');
+        }
+    }
+
     public function actionLocalidadpdf(array $excel)
     {
         if ($excel){
@@ -625,6 +642,201 @@ class ReportController extends Controller
         }
     }
 
+    public function actionExcelseg($id)
+    {
+        if ($id){
+
+            $file = \Yii::createObject([
+                'class' => 'codemix\excelexport\ExcelFile',
+                'sheets' => [
+                    'Seguimiento Localidad' => [
+                        'class' => 'codemix\excelexport\ActiveExcelSheet',
+                        'query' => DesgSeg::find()->where(['loc_id' => $id]),
+                        'attributes' => [
+                            'id',
+                            'num_personas',
+                            'otra_referencia',
+                            'meta_piso',
+                            'acciones_piso',
+                            'acciones_pendientes_piso',
+                            'inversion_piso',
+                            'fecha_inicio_piso',
+                            'fecha_entrega_piso',
+                            'fecha_termino_piso',
+                            'programa_piso',
+                            'responsable_piso',
+                            'meta_techo',
+                            'acciones_techo',
+                            'acciones_pendientes_techo',
+                            'inversion_techo',
+                            'fecha_inicio_techo',
+                            'fecha_entrega_techo',
+                            'fecha_termino_techo',
+                            'programa_techo',
+                            'responsable_techo',
+                            'meta_muro',
+                            'acciones_muro',
+                            'acciones_pendientes_muro',
+                            'inversion_muro',
+                            'fecha_inicio_muro',
+                            'fecha_entrega_muro',
+                            'fecha_termino_muro',
+                            'programa_muro',
+                            'responsable_muro',
+                            'meta_cuarto',
+                            'acciones_cuarto',
+                            'acciones_pendientes_cuarto',
+                            'inversion_cuarto',
+                            'fecha_inicio_cuarto',
+                            'fecha_entrega_cuarto',
+                            'fecha_termino_cuarto',
+                            'programa_cuarto',
+                            'responsable_cuarto',
+                            'meta_calidad_espacios_vivienda',
+                            'acciones_calidad_espacios_vivienda',
+                            'acciones_pendientez_calidad_espacios_vivienda',
+                            'meta_agua_potable',
+                            'acciones_agua_potable',
+                            'acciones_pendientes_agua_potable',
+                            'inversion_agua_potable',
+                            'fecha_inicio_agua_potable',
+                            'fecha_entrega_agua_potable',
+                            'fecha_termino_agua_potable',
+                            'programa_agua_potable',
+                            'responsable_agua_potable',
+                            'meta_agua_interior',
+                            'acciones_agua_interior',
+                            'acciones_pendientes_agua_interior',
+                            'inversion_agua_interior',
+                            'fecha_inicio_agua_interior',
+                            'fecha_entrega_agua_interior',
+                            'fecha_termino_agua_interior',
+                            'programa_agua_interior',
+                            'responsable_agua_interior',
+                            'meta_drenaje',
+                            'acciones_drenaje',
+                            'acciones_pendientes_drenaje',
+                            'inversion_drenaje',
+                            'fecha_inicio_drenaje',
+                            'fecha_entrega_drenaje',
+                            'fecha_termino_drenaje',
+                            'programa_drenaje',
+                            'responsable_drenaje',
+                            'meta_luz',
+                            'acciones_luz',
+                            'acciones_pendientes_luz',
+                            'inversion_luz',
+                            'fecha_inicio_luz',
+                            'fecha_entrega_luz',
+                            'fecha_termino_luz',
+                            'programa_luz',
+                            'responsable_luz',
+                            'meta_estufa',
+                            'acciones_estufa',
+                            'acciones_pendientes_estufa',
+                            'inversion_estufa',
+                            'fecha_inicio_estufa',
+                            'fecha_entrega_estufa',
+                            'fecha_termino_estufa',
+                            'programa_estufa',
+                            'responsable_estufa',
+                            'meta_servicios_basicos',
+                            'acciones_servicios_basicos',
+                            'acciones_pendientez_servicios_basicos',
+                            'meta_seguro_popular',
+                            'acciones_seguro_popular',
+                            'acciones_pendientes_seguro_popular',
+                            'inversion_seguro_popular',
+                            'fecha_inicio_seguro_popular',
+                            'fecha_entrega_seguro_popular',
+                            'fecha_termino_seguro_popular',
+                            'programa_seguro_popular',
+                            'responsable_seguro_popular',
+                            'meta_3_15_escuela',
+                            'acciones_3_15_escuela',
+                            'acciones_pendientes_3_15_escuela',
+                            'inversion_3_15_escuela',
+                            'fecha_inicio_3_15_escuela',
+                            'fecha_entrega_3_15_escuela',
+                            'fecha_termino_3_15_escuela',
+                            'programa_3_15_escuela',
+                            'responsable_3_15_escuela',
+                            'meta_antes_1982_primaria',
+                            'acciones_antes_1982_primaria',
+                            'acciones_pendientes_antes_1982_primaria',
+                            'inversion_antes_1982_primaria',
+                            'fecha_inicio_antes_1982_primaria',
+                            'fecha_entrega_antes_1982_primaria',
+                            'fecha_termino_antes_1982_primaria',
+                            'programa_antes_1982_primaria',
+                            'responsable_antes_1982_primaria',
+                            'meta_despues_1982_secundaria',
+                            'acciones_despues_1982_secundaria',
+                            'acciones_pendientes_despues_1982_secundaria',
+                            'inversion_despues_1982_secundaria',
+                            'fecha_inicio_despues_1982_secundaria',
+                            'fecha_entrega_despues_1982_secundaria',
+                            'fecha_termino_despues_1982_secundaria',
+                            'programa_antes_1982_primaria',
+                            'responsable_despues_1982_secundaria',
+                            'meta_educacion',
+                            'acciones_educacion',
+                            'acciones_pendientez_educacion',
+                            'meta_despensas',
+                            'acciones_despensas',
+                            'acciones_pendientes_despensas',
+                            'inversion_despensas',
+                            'fecha_inicio_despensas',
+                            'fecha_entrega_despensas',
+                            'fecha_termino_despensas',
+                            'programa_despensas',
+                            'responsable_despensas',
+                            'meta_ss',
+                            'acciones_ss',
+                            'acciones_pendientes_ss',
+                            'inversion_ss',
+                            'fecha_inicio_ss',
+                            'fecha_entrega_ss',
+                            'fecha_termino_ss',
+                            'programa_ss',
+                            'responsable_ss',
+                            'meta_trabajadores_ss',
+                            'acciones_trabajadores_ss',
+                            'acciones_pendientes_trabajadores_ss',
+                            'inversion_trabajadores_ss',
+                            'fecha_inicio_trabajadores_ss',
+                            'fecha_entrega_trabajadores_ss',
+                            'fecha_termino_trabajadores_ss',
+                            'programa_trabajadores_ss',
+                            'responsable_trabajadores_ss',
+                            'meta_adultos_ss',
+                            'acciones_adultos_ss',
+                            'acciones_pendientes_adultos_ss',
+                            'inversion_adultos_ss',
+                            'fecha_inicio_adultos_ss',
+                            'fecha_entrega_adultos_ss',
+                            'fecha_termino_adultos_ss',
+                            'programa_adultos_ss',
+                            'responsable_adultos_ss',
+                            'meta_s_s',
+                            'acciones_s_s',
+                            'acciones_pendientez_s_s',
+                            'meta_vivienda',
+                            'acciones_vivienda',
+                            'acciones_pendientez_vivienda',
+                            'inversion_vivienda'
+
+                        ],
+                    ]
+                ]
+            ]);
+            return $file->send('seguimiento_loc'.$id.'.xlsx');
+        }
+        else{
+            return $this->render('locseg');
+        }
+    }
+
     public function actionTotal()
     {
         $model = TotalReg::find()->all();
@@ -646,6 +858,11 @@ class ReportController extends Controller
     public function actionLocen()
     {
         return $this->render('locen');
+    }
+
+    public function actionLocseg()
+    {
+        return $this->render('locseg');
     }
 
     public function actionMun()
