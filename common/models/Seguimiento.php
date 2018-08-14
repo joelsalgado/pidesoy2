@@ -1391,6 +1391,54 @@ class Seguimiento extends \yii\db\ActiveRecord
         return $this->hasOne(Solicitantes::className(), ['id' => 'solicitante_id']);
     }
 
+    public function getSemaforoLocalidad($id){
+
+        $suma = 0;
+        $seguimiento = Seguimiento::find()
+            ->joinWith('solicitante')
+            ->where(['solicitantes.loc_id' => $id])
+            ->andWhere(['solicitantes.status' => 1])
+            ->andWhere(['solicitantes.check' => 1])
+            ->andWhere(['seguimiento.status' => 2])
+            ->all();
+
+        $seguimiento2 = Seguimiento::find()
+            ->joinWith('solicitante')
+            ->where(['solicitantes.loc_id' => $id])
+            ->andWhere(['solicitantes.status' => 1])
+            ->andWhere(['solicitantes.check' => 1])
+            ->andWhere(['seguimiento.status' => 2])
+            ->count();
+
+        if ($seguimiento){
+            foreach ($seguimiento as $value){
+                $valor = Seguimiento::getSemaforo($value->solicitante_id);
+                $suma = $suma + $valor;
+            }
+        }
+
+        $resultado = ($seguimiento2 > 0) ? $suma/$seguimiento2 : 0;
+
+        if($resultado){
+            switch ($resultado) {
+                case ($resultado >= 100):
+                    return '<p><img src="'.Yii::$app->homeUrl.'images/1.png" height="30" width="30"></p>';
+                    break;
+                case ($resultado >= 91):
+                    return '<p><img src="'.Yii::$app->homeUrl.'images/2.png" height="30" width="30"></p>';
+                    break;
+                case ($resultado >= 61):
+                    return '<p><img src="'.Yii::$app->homeUrl.'images/3.png" height="30" width="30"></p>';
+                    break;
+                case ($resultado < 61):
+                    return '<p><img src="'.Yii::$app->homeUrl.'images/4.png" height="30" width="30"></p>';
+                    break;
+            }
+        }else{
+            return '';
+        }
+    }
+
     public static function getSemaforo($id){
         $model = self::find()->where(['solicitante_id' => $id])->one();
 
