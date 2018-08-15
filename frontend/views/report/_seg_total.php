@@ -7,19 +7,39 @@
  */
 
 ?>
-<p style="color:#CC0066; font-size: medium" xmlns="http://www.w3.org/1999/html"><b>FAMILIAS FUERTES, COMUNIDADES CON TODO</b></p>
+
+
+
+<table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="100%">
+    <tr>
+        <td width="50%">
+            <p style="color:#CC0066; font-size: medium" xmlns="http://www.w3.org/1999/html">
+                <b>FAMILIAS FUERTES, COMUNIDADES CON TODO</b>
+            </p>
+        </td>
+        <td align="right" width="50%">
+                <p style="color:#CC0066; font-size: medium" xmlns="http://www.w3.org/1999/html">
+                    <b>REPORTE DE SEGUIMIENTO</b>
+                </p>
+        </td>
+    </tr>
+</table>
 <table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="100%">
     <tr>
         <td rowspan="2"  width="15%">
             <img  src="<?= Yii::$app->homeUrl ?>images/colors.png" width="160" height="55">
         </td>
         <td align="right" style="background-color: #CC0066; color: white;" width="85%">
-            <b><p>REPORTE SEGUIMIENTO DE LA LOCALIDAD:</p></b>
+            <b>
+                <p>
+                    MUNICIPIO: <?=$municipio?>
+                </p>
+            </b>
         </td>
     </tr>
     <tr>
         <td align="right" style="background-color: #CC0066; color: white;" width="85%">
-            <b><p><?= $model->desc_loc ?></p></b>
+            <b><p>LOCALIDAD: <?= $model->desc_loc ?></p></b>
         </td>
     </tr>
 </table><br>
@@ -83,8 +103,8 @@
         <tr>
             <td align="left" style="background-color: #BFBFBF;"><b>Nombre de la Acción</b></td>
             <td align="center" style="background-color: #BFBFBF;"><b>Acciones Totales</b></td>
-            <td align="center" style="background-color: #BFBFBF;"><b>Acciones Terminadas</b></td>
-            <td align="center" style="background-color: #BFBFBF;"><b>Acciones por Terminar</b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b>Acciones Concluidas</b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b>Acciones Pendientes</b></td>
         </tr>
     </thead>
     <tbody>
@@ -192,14 +212,57 @@
         </tr>
         <tr>
             <td align="left"><b><?= mb_convert_case('TOTAL', MB_CASE_TITLE, "UTF-8")?></b></td>
-            <td align="center"><?=$model->meta_vivienda?></td>
-            <td align="center"><?=$model->acciones_vivienda?></td>
-            <td align="center"><?=$model->meta_vivienda - $model->acciones_vivienda?></td>
+            <td align="center"><b><?=$model->meta_vivienda?></b></td>
+            <td align="center"><b><?=$model->acciones_vivienda?></b></td>
+            <td align="center"><b><?=$model->meta_vivienda - $model->acciones_vivienda?></b></td>
         </tr>
     </tbody>
 
 </table>
+<br>
+<br>
+<table class="table table-bored">
+    <thead>
+    <tr>
+        <th>Semaforo</th>
+        <th>Descripción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <img src="<?=Yii::$app->homeUrl?>images/1.png" height="30" width="30">
+        </td>
+        <td>
+            <p>Excelente (100%), cuando se cumple de manera amplia y en tiempo la acción a realizar.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="<?=Yii::$app->homeUrl?>images/2.png" height="30" width="30">
+        </td>
+        <td>
+            <p>Buena (91-99%), cuando se tiene un avance significativo de la acción/gestión.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="<?=Yii::$app->homeUrl?>images/3.png" height="30" width="30">
+        </td>
+        <td>
+            <p>Regular (61-90%), cuando esta cumple mínimamente con el avance de la acción/gestión</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="<?=Yii::$app->homeUrl?>images/4.png" height="30" width="30">
+        </td>
+        <td>
+            <p>Insuficiente (0-60%), cuando la acción/gestión solo se ha desarrollado de forma o no se ha iniciado</p>
+        </td>
+    </tr>
+    </tbody>
 
-
+</table>
 
 

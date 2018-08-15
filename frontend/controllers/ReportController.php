@@ -472,6 +472,7 @@ class ReportController extends Controller
     {
         $localidad = Localidades::find()->where(['localidad_id' => $id])->one();
         if ($localidad){
+            $municipio = $localidad->mun->nombre_mun;
             $seguimiento = new Seguimiento();
             $semaforo = $seguimiento->getSemaforoLocalidad($localidad->localidad_id,90);
             $semaforos = $seguimiento->getSemaforosLocalidad($localidad->localidad_id);
@@ -482,6 +483,7 @@ class ReportController extends Controller
                 'model'=> $model,
                 'semaforo' => $semaforo,
                 'semaforos' => $semaforos,
+                'municipio' => $municipio
             ]);
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
