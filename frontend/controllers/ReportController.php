@@ -17,6 +17,7 @@ use common\models\MunDesg;
 use common\models\MunTot;
 use common\models\RegDesg;
 use common\models\RegTot;
+use common\models\Seguimiento;
 use common\models\TotalReg;
 use kartik\mpdf\Pdf;
 use Yii;

@@ -1439,6 +1439,54 @@ class Seguimiento extends \yii\db\ActiveRecord
         }
     }
 
+    public function getSemaforosLocalidad($id){
+
+
+        $excelente = 0;
+        $bueno = 0;
+        $regular = 0;
+        $insuficiente = 0;
+        $seguimiento = Seguimiento::find()
+            ->joinWith('solicitante')
+            ->where(['solicitantes.loc_id' => $id])
+            ->andWhere(['solicitantes.status' => 1])
+            ->andWhere(['solicitantes.check' => 1])
+            ->andWhere(['seguimiento.status' => 2])
+            ->all();
+
+        if ($seguimiento){
+            foreach ($seguimiento as $value){
+                $resultado = Seguimiento::getSemaforo($value->solicitante_id);
+                if($resultado){
+                    switch ($resultado) {
+                        case ($resultado >= 100):
+                            $excelente++;
+                            break;
+                        case ($resultado >= 91):
+                            $bueno++;
+                            break;
+                        case ($resultado >= 61):
+                            $regular++;
+                            break;
+                        case ($resultado < 61):
+                            $insuficiente++;
+                    }
+                }
+
+            }
+        }
+
+        $array =[
+            'excelente' => $excelente,
+            'bueno' => $bueno,
+            'regular' => $regular,
+            'insuficiente' => $insuficiente
+        ];
+
+        return $array;
+
+    }
+
     public static function getSemaforo($id){
         $model = self::find()->where(['solicitante_id' => $id])->one();
 
