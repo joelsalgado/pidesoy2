@@ -1391,7 +1391,7 @@ class Seguimiento extends \yii\db\ActiveRecord
         return $this->hasOne(Solicitantes::className(), ['id' => 'solicitante_id']);
     }
 
-    public function getSemaforoLocalidad($id){
+    public function getSemaforoLocalidad($id, $size){
 
         $suma = 0;
         $seguimiento = Seguimiento::find()
@@ -1422,21 +1422,69 @@ class Seguimiento extends \yii\db\ActiveRecord
         if($resultado){
             switch ($resultado) {
                 case ($resultado >= 100):
-                    return '<p><img src="'.Yii::$app->homeUrl.'images/1.png" height="30" width="30"></p>';
+                    return '<img src="'.Yii::$app->homeUrl.'images/1.png" height="'.$size.'" width="'.$size.'">';
                     break;
                 case ($resultado >= 91):
-                    return '<p><img src="'.Yii::$app->homeUrl.'images/2.png" height="30" width="30"></p>';
+                    return '<img src="'.Yii::$app->homeUrl.'images/2.png" height="'.$size.'" width="'.$size.'">';
                     break;
                 case ($resultado >= 61):
-                    return '<p><img src="'.Yii::$app->homeUrl.'images/3.png" height="30" width="30"></p>';
+                    return '<img src="'.Yii::$app->homeUrl.'images/3.png" height="'.$size.'" width="'.$size.'">';
                     break;
                 case ($resultado < 61):
-                    return '<p><img src="'.Yii::$app->homeUrl.'images/4.png" height="30" width="30"></p>';
+                    return '<img src="'.Yii::$app->homeUrl.'images/4.png" height="'.$size.'" width="'.$size.'">';
                     break;
             }
         }else{
             return '';
         }
+    }
+
+    public function getSemaforosLocalidad($id){
+
+
+        $excelente = 0;
+        $bueno = 0;
+        $regular = 0;
+        $insuficiente = 0;
+        $seguimiento = Seguimiento::find()
+            ->joinWith('solicitante')
+            ->where(['solicitantes.loc_id' => $id])
+            ->andWhere(['solicitantes.status' => 1])
+            ->andWhere(['solicitantes.check' => 1])
+            ->andWhere(['seguimiento.status' => 2])
+            ->all();
+
+        if ($seguimiento){
+            foreach ($seguimiento as $value){
+                $resultado = Seguimiento::getSemaforo($value->solicitante_id);
+                if($resultado){
+                    switch ($resultado) {
+                        case ($resultado >= 100):
+                            $excelente++;
+                            break;
+                        case ($resultado >= 91):
+                            $bueno++;
+                            break;
+                        case ($resultado >= 61):
+                            $regular++;
+                            break;
+                        case ($resultado < 61):
+                            $insuficiente++;
+                    }
+                }
+
+            }
+        }
+
+        $array =[
+            'excelente' => $excelente,
+            'bueno' => $bueno,
+            'regular' => $regular,
+            'insuficiente' => $insuficiente
+        ];
+
+        return $array;
+
     }
 
     public static function getSemaforo($id){
