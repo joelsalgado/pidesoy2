@@ -1391,7 +1391,7 @@ class Seguimiento extends \yii\db\ActiveRecord
         return $this->hasOne(Solicitantes::className(), ['id' => 'solicitante_id']);
     }
 
-    public function getSemaforoLocalidad($id){
+    public function getSemaforoLocalidad($id, $size){
 
         $suma = 0;
         $seguimiento = Seguimiento::find()
@@ -1422,16 +1422,16 @@ class Seguimiento extends \yii\db\ActiveRecord
         if($resultado){
             switch ($resultado) {
                 case ($resultado >= 100):
-                    return '<p><img src="'.Yii::$app->homeUrl.'images/1.png" height="30" width="30"></p>';
+                    return '<img src="'.Yii::$app->homeUrl.'images/1.png" height="'.$size.'" width="'.$size.'">';
                     break;
                 case ($resultado >= 91):
-                    return '<p><img src="'.Yii::$app->homeUrl.'images/2.png" height="30" width="30"></p>';
+                    return '<img src="'.Yii::$app->homeUrl.'images/2.png" height="'.$size.'" width="'.$size.'">';
                     break;
                 case ($resultado >= 61):
-                    return '<p><img src="'.Yii::$app->homeUrl.'images/3.png" height="30" width="30"></p>';
+                    return '<img src="'.Yii::$app->homeUrl.'images/3.png" height="'.$size.'" width="'.$size.'">';
                     break;
                 case ($resultado < 61):
-                    return '<p><img src="'.Yii::$app->homeUrl.'images/4.png" height="30" width="30"></p>';
+                    return '<img src="'.Yii::$app->homeUrl.'images/4.png" height="'.$size.'" width="'.$size.'">';
                     break;
             }
         }else{

@@ -10,8 +10,10 @@ namespace frontend\controllers;
 
 use common\models\DesgCenso;
 use common\models\DesgSeg;
+use common\models\Localidades;
 use common\models\LocDesg;
 use common\models\LocSeg;
+use common\models\LocSegtotal;
 use common\models\LocTot;
 use common\models\MunDesg;
 use common\models\MunTot;
@@ -459,6 +461,93 @@ class ReportController extends Controller
                 }
                 
                 tr:nth-child(even){background-color: #A8AC90}',
+            ]);
+            return $pdf->render();
+        }else{
+            return $this->render('loc');
+        }
+    }
+
+    public function actionLocalidadsegpdf($id)
+    {
+        $localidad = Localidades::find()->where(['localidad_id' => $id])->one();
+        if ($localidad){
+            $seguimiento = new Seguimiento();
+            $semaforo = $seguimiento->getSemaforoLocalidad($localidad->localidad_id,90);
+            $semaforos = $seguimiento->getSemaforosLocalidad($localidad->localidad_id);
+
+            //var_dump($semaforos); die;
+            $model = LocSegtotal::find()->where(['loc_id' => $localidad->localidad_id])->one();
+            $content = $this->renderPartial('_seg_total', [
+                'model'=> $model,
+                'semaforo' => $semaforo,
+                'semaforos' => $semaforos,
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'desg_loc.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 22,
+                'marginBottom'=> 22,
+                'marginHeader'=> 5,
+                'options' => [
+                    'title' => 'Localidad Seguimiento'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '   
+                    .alert-success-seg {
+                        color: white;
+                        background-color: #CC0066;
+                        border-color: #CC0066;
+                    },
+                    .container {
+                      display: table;
+                      width: 100%;
+                    }
+                    .container div {
+                      display: table-cell;
+                    }
+                ',
+                'methods' =>[
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
+                ]
             ]);
             return $pdf->render();
         }else{

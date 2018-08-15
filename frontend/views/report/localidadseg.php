@@ -30,8 +30,12 @@ $seguimiento = new \common\models\Seguimiento();
                     <tr <?php if($y%2==0){ echo 'bgcolor="#9BBB59"'; }?>>
                         <td><b><?=  mb_convert_case($data->desc_loc, MB_CASE_TITLE, "UTF-8")?></b></td>
                         <td><?= $data->total ?></td>
-                        <td><?= $seguimiento->getSemaforoLocalidad($data->loc_id) ?></td>
-                        <td><?= \yii\helpers\Html::a('Excel',['/report/excelseg', 'id' => $data->loc_id]) ?> <br></td>
+                        <td><?= $seguimiento->getSemaforoLocalidad($data->loc_id,30) ?></td>
+                        <td><?= \yii\helpers\Html::a('<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+',['/report/excelseg', 'id' => $data->loc_id]) ?>
+                            <?= \yii\helpers\Html::a('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+',['/report/localidadsegpdf', 'id' => $data->loc_id]) ?>
+                        </td>
                         <?php $total = $total + $data->total ?>
                     </tr>
                     <?php $y++;} ?>
@@ -86,6 +90,7 @@ $seguimiento = new \common\models\Seguimiento();
             </tbody>
 
         </table>
+
     </div>
 </div>
 
