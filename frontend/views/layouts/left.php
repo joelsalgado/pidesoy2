@@ -8,7 +8,7 @@
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
                     ['label' => 'Usuarios', 'icon' => 'address-book', 'url' => ['/user'], 'visible' => $user = (Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 20) ? true : false],
-                    ['label' => 'Reporte', 'icon' => 'list-alt', 'url' => ['/report'], 'visible' => $user = (Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40) ? true : false],
+                    ['label' => 'Reporte', 'icon' => 'list-alt', 'url' => ['/report'], 'visible' => $user = (Yii::$app->user->identity->role >= 20) ? true : false],
                     ['label' => 'Participantes', 'icon' => 'user', 'url' => ['/solicitantes']],
                     ['label' => 'Mapas', 'icon' => 'map', 'url' => ['/mapas']],
                     ['label' => 'Formatos', 'icon' => 'file-pdf-o', 'url' => ['product/index'], 'items' => [
