@@ -150,6 +150,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_piso){
+                    $this->addError('programa_piso', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -201,6 +206,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_techo){
+                    $this->addError('programa_techo', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -249,6 +259,11 @@ class Seguimiento extends \yii\db\ActiveRecord
 
                 if(!$fecha_termino){
                     $this->addError('fecha_termino_muro', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if(!$this->programa_muro){
+                    $this->addError('programa_muro', 'Programa Obligatorio');
                     $this->fechas();
                 }
 
@@ -304,6 +319,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_cuarto){
+                    $this->addError('programa_cuarto', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -352,6 +372,11 @@ class Seguimiento extends \yii\db\ActiveRecord
 
                 if(!$fecha_termino){
                     $this->addError('fecha_termino_agua_potable', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if(!$this->programa_agua_potable){
+                    $this->addError('programa_agua_potable', 'Programa Obligatorio');
                     $this->fechas();
                 }
 
@@ -413,6 +438,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_agua_interior){
+                    $this->addError('programa_agua_interior', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -461,6 +491,11 @@ class Seguimiento extends \yii\db\ActiveRecord
 
                 if(!$fecha_termino){
                     $this->addError('fecha_termino_drenaje', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if(!$this->programa_drenaje){
+                    $this->addError('programa_drenaje', 'Programa Obligatorio');
                     $this->fechas();
                 }
 
@@ -515,6 +550,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_luz){
+                    $this->addError('programa_luz', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -563,6 +603,11 @@ class Seguimiento extends \yii\db\ActiveRecord
 
                 if(!$fecha_termino){
                     $this->addError('fecha_termino_estufa', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if(!$this->programa_estufa){
+                    $this->addError('programa_estufa', 'Programa Obligatorio');
                     $this->fechas();
                 }
 
@@ -617,6 +662,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_seguro_popular){
+                    $this->addError('programa_seguro_popular', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -665,6 +715,11 @@ class Seguimiento extends \yii\db\ActiveRecord
 
                 if(!$fecha_termino){
                     $this->addError('fecha_termino_3_15_escuela', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if(!$this->programa_3_15_escuela){
+                    $this->addError('programa_3_15_escuela', 'Programa Obligatorio');
                     $this->fechas();
                 }
 
@@ -719,6 +774,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_antes_1982_primaria){
+                    $this->addError('programa_antes_1982_primaria', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -767,6 +827,11 @@ class Seguimiento extends \yii\db\ActiveRecord
 
                 if(!$fecha_termino){
                     $this->addError('fecha_termino_despues_1982_secundaria', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if(!$this->programa_despues_1982_secundaria){
+                    $this->addError('programa_despues_1982_secundaria', 'Programa Obligatorio');
                     $this->fechas();
                 }
 
@@ -821,6 +886,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_despensas){
+                    $this->addError('programa_despensas', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -869,6 +939,11 @@ class Seguimiento extends \yii\db\ActiveRecord
 
                 if(!$fecha_termino){
                     $this->addError('fecha_termino_ss', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if(!$this->programa_ss){
+                    $this->addError('programa_ss', 'Programa Obligatorio');
                     $this->fechas();
                 }
 
@@ -923,6 +998,11 @@ class Seguimiento extends \yii\db\ActiveRecord
                     $this->fechas();
                 }
 
+                if(!$this->programa_trabajadores_ss){
+                    $this->addError('programa_trabajadores_ss', 'Programa Obligatorio');
+                    $this->fechas();
+                }
+
                 if($fecha_inicio && $fecha_termino){
                     $date1 = date_create($fecha_inicio);
                     $date2 = date_create($fecha_termino);
@@ -971,6 +1051,11 @@ class Seguimiento extends \yii\db\ActiveRecord
 
                 if(!$fecha_termino){
                     $this->addError('fecha_termino_adultos_ss', 'Fecha Obligatoria');
+                    $this->fechas();
+                }
+
+                if(!$this->programa_adultos_ss){
+                    $this->addError('programa_adultos_ss', 'Programa Obligatorio');
                     $this->fechas();
                 }
 
