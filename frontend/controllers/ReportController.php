@@ -46,7 +46,7 @@ class ReportController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            $valid_roles = [Usuarios::ROLE_ADMIN, Usuarios::ROLE_DEP];
+                            $valid_roles = [Usuarios::ROLE_ADMIN, Usuarios::ROLE_DEP, Usuarios::ROLE_SUP];
                             return Usuarios::roleInArray($valid_roles);
                         }
                     ],
@@ -102,7 +102,6 @@ class ReportController extends Controller
                 'marginRight'=> 10,
                 'marginTop'=> 10,
                 'marginBottom'=> 13,
-                'orientation' => Pdf::FORMAT_A4,
                 'options' => [
                     'title' => 'Desgloce Region'
                 ],
@@ -258,7 +257,6 @@ class ReportController extends Controller
                 'marginRight'=> 10,
                 'marginTop'=> 10,
                 'marginBottom'=> 13,
-                'orientation' => Pdf::FORMAT_A4,
                 'options' => [
                     'title' => 'Desgloce Municipio'
                 ],
@@ -444,7 +442,6 @@ class ReportController extends Controller
                 'marginRight'=> 10,
                 'marginTop'=> 10,
                 'marginBottom'=> 13,
-                'orientation' => Pdf::FORMAT_A4,
                 'options' => [
                     'title' => 'Desgloce Localidades'
                 ],
@@ -559,7 +556,9 @@ class ReportController extends Controller
 
     public function actionPdfcenso($id)
     {
-        if ($id){
+        $localidad = Localidades::find()->where(['desc_loc' => $id])->one();
+        if ($localidad){
+            $municipio = $localidad->mun->nombre_mun;
             $model = DesgCenso::find()->where(['desc_loc' => $id])->one();
             $x = new DesgCenso();
             $y = $x->actionCenso($model->desc_loc);
@@ -567,7 +566,8 @@ class ReportController extends Controller
             $content = $this->renderPartial('_desg_loc_censo', [
                 'model'=> $model,
                 'necesidades' => $y,
-                'necesita' => $p
+                'necesita' => $p,
+                'municipio' => $municipio
             ]);
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
@@ -580,7 +580,6 @@ class ReportController extends Controller
                 'marginTop'=> 22,
                 'marginBottom'=> 13,
                 'marginHeader'=> 5,
-                'orientation' => Pdf::FORMAT_A4,
                 'options' => [
                     'title' => 'Censos'
                 ],

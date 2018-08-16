@@ -6,19 +6,32 @@
  * Time: 10:52 PM
  */
 ?>
-
+<table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="100%">
+    <tr>
+        <td width="50%">
+            <p style="color:#9BBB59; font-size: medium" xmlns="http://www.w3.org/1999/html">
+                <b>FAMILIAS FUERTES, COMUNIDADES CON TODO</b>
+            </p>
+        </td>
+        <td align="right" width="50%">
+            <p style="color:#9BBB59; font-size: medium" xmlns="http://www.w3.org/1999/html">
+                <b>REPORTE CENSO</b>
+            </p>
+        </td>
+    </tr>
+</table>
 <table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="100%">
     <tr>
         <td rowspan="2"  width="15%">
             <img  src="<?= Yii::$app->homeUrl ?>images/colors.png" width="160" height="55">
         </td>
-        <td align="left" width="85%">
-            <b><p style="color:#9BBB59; font-size: xx-small">FAMILIAS FUERTES, COMUNIDADES CON TODO</p></b>
+        <td align="right" style="background-color: #9BBB59; color: white;" width="85%">
+            <b><p style="font-size: 10pt">MUNICIPIO: <?= $municipio?></p></b>
         </td>
     </tr>
     <tr>
         <td align="right" style="background-color: #9BBB59; color: white;" width="85%">
-            <b><p style="font-size: 10pt">REPORTE CENSO DE LA LOCALIDAD: <?= $model->desc_loc?></p></b>
+            <b><p style="font-size: 10pt">LOCALIDAD: <?= $model->desc_loc?></p></b>
         </td>
     </tr>
 </table><br>
