@@ -19,7 +19,7 @@ $total = 0;
         <?= \yii\helpers\Html::a('Totales',['/report/total']) ?> <br>
             <?= \yii\helpers\Html::a('Resultados por Regiones',['/report/regtot']) ?><br>
             <?= \yii\helpers\Html::a('Resultados por Municipios',['/report/muntot']) ?><br>
-            <?= \yii\helpers\Html::a('Resultados por Localidades',['/report/loctot']) ?><br><br>
+            <?= \yii\helpers\Html::a('Resultados por Localidades',['/report/loctot']) ?><br>
         <?php endif ?>
 
         <?= \yii\helpers\Html::a('Desgloce por Regiones',['/report/reg']) ?><br>
