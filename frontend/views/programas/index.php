@@ -27,8 +27,8 @@ $this->title = 'Programas';
                     ['class' => 'yii\grid\SerialColumn'],
 
                     //'id',
-                    'nomb_programa',
-                    //'desc_programa',
+                    //'nomb_programa',
+                    'desc_programa',
                     'responsable',
                     //'status',
 
