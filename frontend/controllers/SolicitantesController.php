@@ -8,6 +8,7 @@ use common\models\Localidades;
 use common\models\Municpios;
 use common\models\PobrezaMultidimensional;
 use common\models\Documentos;
+use common\models\Seguimiento;
 use kartik\mpdf\Pdf;
 use Yii;
 use common\models\Solicitantes;
@@ -196,6 +197,116 @@ class SolicitantesController extends Controller
             throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
         }
 
+    }
+
+    public function actionPdfgeneral($id) {
+        $model = Solicitantes::findOne($id);
+            //PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
+        if ($model){
+            $seguimiento = Seguimiento::find()->where(['solicitante_id'=> $id, 'status' =>2])->one();
+            $birthday = $model->fecha_nacimiento;
+            list($year, $month, $day) = explode("-", $birthday);
+            $year_diff  = date("Y") - $year;
+            $month_diff = date("m") - $month;
+            $day_diff   = date("d") - $day;
+            if($month_diff < 0)
+            {
+                $year_diff--;
+            }
+            else if(($month_diff == 0) && ($day_diff < 0))
+            {
+                $year_diff--;
+            }
+
+            $content = $this->renderPartial('_general', [
+                'model'=> $model,
+                'edad' => $year_diff,
+                'seguimiento' => $seguimiento
+            ]);
+
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'censodetails.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 22,
+                'marginBottom'=> 13,
+                'marginHeader'=> 5,
+                'options' => [
+                    'title' => 'Censos'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '   
+                    .alert-success-general {
+                        color: white;
+                        background-color: #CC0066;
+                        border-color: #CC0066;
+                    }
+                    
+                    hr.style17 {
+                        border-top: 1px solid #8c8b8b;
+                        text-align: center;
+                    }
+                    hr.style17:after {
+                        content: \'§\';
+                        display: inline-block;
+                        position: relative;
+                        top: -14px;
+                        padding: 0 10px;
+                        background: #f0f0f0;
+                        color: #8c8b8b;
+                        font-size: 18px;
+                        -webkit-transform: rotate(60deg);
+                        -moz-transform: rotate(60deg);
+                        transform: rotate(60deg);
+                    }
+                ',
+                'methods' =>[
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
+                ]
+
+            ]);
+            return $pdf->render();
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 
     public function actionPobreza($id) {
