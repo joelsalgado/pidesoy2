@@ -18,7 +18,7 @@ $this->title = 'Programas';
             <p class="pull-right">
                 <?= Html::a('Nuevo Programa', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
-
+            <div class="table table-responsive">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
@@ -26,15 +26,15 @@ $this->title = 'Programas';
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
-                    'id',
+                    //'id',
                     'nomb_programa',
-                    'desc_programa',
+                    //'desc_programa',
                     'responsable',
                     //'status',
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
-            ]); ?>
+            ]); ?></div>
         </div>
     </div>
 </div>
