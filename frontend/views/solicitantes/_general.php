@@ -136,6 +136,19 @@
                 </td>
             </tr>
         </table>
+        <table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+            <tr>
+                <td width="30%" align="left">
+                    <font  color="#CC0066;"><b>Inversión (Costo): </b></font><?= $seguimiento->inversion_piso ?>
+                </td>
+                <td width="35%" align="right">
+                    <font  color="#CC0066;"><b>Programa Mediante El Cual Se Realiza La Acción: </b></font><?= $programa = ($seguimiento->programa_piso) ? $seguimiento->programaPiso->desc_programa  : ''?>
+                </td>
+                <td width="35%" align="right">
+                    <font  color="#CC0066;"><b>Acciones Realizadas (Avance): </b></font><?= $seguimiento->acciones_piso ?>
+                </td>
+            </tr>
+        </table>
 
     <?php endif; ?>
 
