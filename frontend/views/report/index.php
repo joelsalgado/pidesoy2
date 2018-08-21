@@ -27,6 +27,6 @@ $total = 0;
         <?= \yii\helpers\Html::a('Desgloce por Localidades',['/report/loc']) ?><br>
         <?= \yii\helpers\Html::a('Censo por Localidades',['/report/locen']) ?><br>
         <?= \yii\helpers\Html::a('Seguimiento por Localidades',['/report/locseg']) ?><br>
-        
+
     </div>
 </div>
