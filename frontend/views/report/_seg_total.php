@@ -6,6 +6,12 @@
  * Time: 11:39 AM
  */
 
+
+$suma1 = $model->meta_piso + $model->meta_techo + $model->meta_muro + $model->meta_cuarto + $model->meta_agua_potable+$model->meta_agua_interior + $model->meta_drenaje + $model->meta_luz + $model->meta_estufa + $model->meta_seguro_popular + $model->meta_3_15_escuela + $model->meta_antes_1982_primaria + $model->meta_despues_1982_secundaria + $model->meta_despensas + $model->meta_ss + $model->meta_trabajadores_ss + $model->meta_adultos_ss;
+
+
+$suma2 = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro + $model->acciones_cuarto + $model->acciones_agua_potable + $model->acciones_agua_interior + $model->acciones_drenaje + $model->acciones_luz + $model->acciones_estufa + $model->acciones_seguro_popular + $model->acciones_3_15_escuela + $model->acciones_antes_1982_primaria + $model->acciones_despues_1982_secundaria + $model->acciones_despensas + $model->acciones_ss + $model->acciones_trabajadores_ss + $model->acciones_adultos_ss ;
+
 ?>
 
 
@@ -212,9 +218,9 @@
         </tr>
         <tr>
             <td align="left"><b><?= mb_convert_case('TOTAL', MB_CASE_TITLE, "UTF-8")?></b></td>
-            <td align="center"><b><?=$model->meta_vivienda ?></b></td>
-            <td align="center"><b><?=$model->acciones_vivienda?></b></td>
-            <td align="center"><b><?=$model->meta_vivienda - $model->acciones_vivienda?></b></td>
+            <td align="center"><b><?=$suma1 ?></b></td>
+            <td align="center"><b><?=$suma2?></b></td>
+            <td align="center"><b><?=$suma1 - $suma2?></b></td>
         </tr>
     </tbody>
 
