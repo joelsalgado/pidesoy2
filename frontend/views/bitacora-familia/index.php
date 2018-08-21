@@ -3,15 +3,13 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bitácora De Trabajo Por Familia';
+$this->title = 'Bitácora De Trabajo Por Vivienda';
 ?>
 <div class="bitacora-familia-index">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Bitácora De Trabajo Por Familia</h3>
+            <h3 class="box-title">Bitácora De Trabajo Por Vivienda</h3>
         </div>
         <div class="box-body">
             <p class="pull-right">
@@ -20,12 +18,13 @@ $this->title = 'Bitácora De Trabajo Por Familia';
 
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
                 'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
                 'emptyText' => "No se encontró ningún elemento",
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
-                    'id',
+                    //'id',
                     [
                         'attribute' => 'mun_id',
                         'value' => function($data){
@@ -38,7 +37,10 @@ $this->title = 'Bitácora De Trabajo Por Familia';
                             }
 
                             return $role;
-                        }
+                        },
+                        'filter' => Html::activeDropDownList($searchModel, 'mun_id',
+                            \yii\helpers\ArrayHelper::map(\common\models\Municpios::getMunOk(), 'id', 'desc_mun'),
+                            ['class'=>'form-control','prompt' => 'Seleccione un municipio']),
                     ],
                     [
                         'attribute' => 'loc_id',
@@ -48,15 +50,37 @@ $this->title = 'Bitácora De Trabajo Por Familia';
                                 $role = "";
                             }else {
                                 $reg = \common\models\Localidades::find()->where(['localidad_id' => $data->loc_id])->one();
-                                $role = $reg->nombre_loc;
+                                $role = $reg->desc_loc;
                             }
 
                             return $role;
-                        }
+                        },
+                        'filter' =>
+                            Html::activeDropDownList($searchModel, 'loc_id',
+                                \yii\helpers\ArrayHelper::map(\common\models\Localidades::getLocIndex($searchModel->mun_id),
+                                    'localidad_id', 'desc_loc'),
+
+                                ['class'=>'form-control','prompt' => 'Seleccione una Localidad']),
                     ],
                     //'resp_institucional',
                     //'resp_comunitario',
-                    'fecha',
+                    [
+                        'attribute' => 'fecha',
+                        'value' => 'fecha',
+                        'filter' => \kartik\date\DatePicker::widget([
+                            'name' => 'BitacoraReunionSearch[fecha]',
+                            'type' => \kartik\date\DatePicker::TYPE_COMPONENT_PREPEND,
+                            'language' => 'es',
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'yyyy-mm-dd',
+                                'startDate' => '2017-01-01',
+                                'endDate' => '2020-01-01',
+                                //'value' => '22-10-1999'
+                            ]
+                        ]),
+                        'format' => 'html',
+                    ],
                     //'status',
                     //'created_by',
                     //'updated_by',

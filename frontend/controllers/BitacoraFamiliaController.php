@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\BitacoraFamilia2;
+use common\models\BitacoraFamiliaSearch;
 use kartik\mpdf\Pdf;
 use Yii;
 use common\models\BitacoraFamilia;
@@ -27,18 +28,11 @@ class BitacoraFamiliaController extends Controller
 
     public function actionIndex()
     {
-        if (Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20) {
-            $region = Yii::$app->user->identity->region_id;
-            $query = BitacoraFamilia::find()->where(['region_id' => $region]);
-        }else{
-            $query = BitacoraFamilia::find();
-        }
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        $searchModel = new BitacoraFamiliaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -56,12 +50,11 @@ class BitacoraFamiliaController extends Controller
         $model = new BitacoraFamilia();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->resp_institucional = trim(strtoupper($model->resp_institucional));
-            $model->resp_comunitario = trim(strtoupper($model->resp_comunitario));
-            $model->familia = trim(strtoupper($model->familia));
-            $model->domicilio = trim(strtoupper($model->domicilio));
+            $mes = Yii::$app->formatter->asDate($model->fecha, 'MM');
             $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
             $model->status = 1;
+            $model->mes = $mes;
+            $model->periodo = '2018';
             if($model->save()){
                 return $this->redirect(['/bitacora-familia2', 'id' => $model->id]);
             }
@@ -78,10 +71,6 @@ class BitacoraFamiliaController extends Controller
         if($model){
             $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy');
             if ($model->load(Yii::$app->request->post())) {
-                $model->resp_institucional = trim(strtoupper($model->resp_institucional));
-                $model->resp_comunitario = trim(strtoupper($model->resp_comunitario));
-                $model->familia = trim(strtoupper($model->familia));
-                $model->domicilio = trim(strtoupper($model->domicilio));
                 $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
                 if($model->save()) {
                     return $this->redirect(['/bitacora-familia2', 'id' => $model->id]);
@@ -139,15 +128,49 @@ class BitacoraFamiliaController extends Controller
                 'filename' => 'bitacora-familia '.$model->id.'.pdf',
                 'marginLeft'=> 10,
                 'marginRight'=> 10,
-                'marginTop'=> 10,
+                'marginTop'=> 22,
                 'marginBottom'=> 13,
-                'orientation' => Pdf::FORMAT_A4,
+                'marginHeader'=> 5,
+                'orientation' => Pdf::ORIENT_LANDSCAPE,
                 'options' => [
-                    'title' => 'Bitacora de Trabajo por Familia'
+                    'title' => 'Bitacora de Reuniones'
                 ],
                 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
                 'methods' => [
-                    'SetFooter' => ['|Pagina {PAGENO}|'],
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: CIEPS &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Revisó: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
                 ]
             ]);
             return $pdf->render();

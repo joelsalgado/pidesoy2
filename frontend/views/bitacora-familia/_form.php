@@ -94,23 +94,15 @@ use kartik\date\DatePicker;
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'resp_institucional')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'resp_comunitario')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <div class="form-group">
                     <?= $form->field($model, 'fecha')->widget(DatePicker::className(), [
                         'name' => 'dp_2',
                         'language' => 'es',
                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                        //'value' => 	date("d/m/Y", strtotime($model->fecha_nacimiento)),
+                        //'readonly' => ($model->isNewRecord) ? false : true,
+                        'disabled' => ($model->isNewRecord) ? false : true,
+                        //'value' => 	date("d/m/Y", strtotime($model->fecha)),
                         'pluginOptions' => [
                             'autoclose'=>true,
                             'format' => 'dd-mm-yyyy',
@@ -119,18 +111,6 @@ use kartik\date\DatePicker;
                             //'value' => '22-10-1999'
                         ]
                     ]) ?>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'familia')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <?= $form->field($model, 'domicilio')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
         </div>

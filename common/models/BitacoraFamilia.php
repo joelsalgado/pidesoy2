@@ -3,9 +3,22 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 class BitacoraFamilia extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::className(),
+            ],
+            [
+                'class' => TimestampBehavior::className()
+            ]
+        ];
+    }
 
     public static function tableName()
     {
@@ -15,15 +28,47 @@ class BitacoraFamilia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entidad_id', 'region_id', 'mun_id', 'familia', 'loc_id', 'resp_institucional', 'resp_comunitario', 'fecha'], 'required', 'message' => 'Campo Requerido'],
+            [['entidad_id', 'region_id', 'mun_id', 'loc_id', 'fecha'], 'required', 'message' => 'Campo Requerido'],
             [['entidad_id', 'region_id', 'mun_id', 'loc_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['fecha'], 'safe'],
-            [['familia', 'resp_institucional', 'resp_comunitario', 'domicilio'], 'string', 'max' => 255],
+            ['fecha', 'validateDate'],
+            [['resp_institucional', 'resp_comunitario'], 'string', 'max' => 255],
+            [['mes'], 'string', 'max' => 2],
+            [['periodo'], 'string', 'max' => 4],
             [['entidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => EntidadNacimiento::className(), 'targetAttribute' => ['entidad_id' => 'id']],
             [['loc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Localidades::className(), 'targetAttribute' => ['loc_id' => 'localidad_id']],
             [['mun_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municpios::className(), 'targetAttribute' => ['mun_id' => 'id']],
             [['region_id'], 'exist', 'skipOnError' => true, 'targetClass' => Regiones::className(), 'targetAttribute' => ['region_id' => 'id']],
         ];
+    }
+
+
+    public function validateDate(){
+        $año = Yii::$app->formatter->asDate($this->fecha, 'yyyy');
+
+        if($año == 2018){
+            if ($this->isNewRecord) {
+                $dup = self::find()->where([
+                    'loc_id' => $this->loc_id,
+                    //'created_by' => Yii::$app->user->id
+                ])
+                    ->andWhere(['mes' => $this->mes])
+                    ->andWhere(['periodo' => $this->periodo])
+                    ->andWhere(['status' => 1])
+                    ->all();
+                if ($dup) {
+                    $this->addError('fecha', 'Este mes ya existe en esta localidad');
+                    $fecha = Yii::$app->formatter->asDate($this->fecha, 'dd-MM-yyyy');
+                    $this->fecha = $fecha;
+                }
+            }
+
+        }
+        else{
+            $this->addError('fecha', 'Fecha incorrecta');
+            $fecha =  Yii::$app->formatter->asDate($this->fecha, 'dd-MM-yyyy');
+            $this->fecha = $fecha;
+        }
     }
 
     public function attributeLabels()
@@ -34,11 +79,11 @@ class BitacoraFamilia extends \yii\db\ActiveRecord
             'region_id' => 'Region',
             'mun_id' => 'Municipio',
             'loc_id' => 'Localidad',
-            'familia' => 'Familia',
             'resp_institucional' => 'Nombre del Responsable Institucional:',
             'resp_comunitario' => 'Nombre del Responsable Comunitario',
             'fecha' => 'Fecha',
-            'domicilio' => 'Anote el domicilio de la Familia con las referencias de localización inlcuidas:',
+            'mes' => 'Mes',
+            'periodo' => 'Periodo',
             'status' => 'Status',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
