@@ -49,7 +49,7 @@
 <table border="4" cellspacing="2" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="100%">
 
     <tr>
-        <td width="30%" align="right"><b>Número de Viendas Censadas:</b></td>
+        <td width="30%" align="right"><b>Número de Viviendas Censadas:</b></td>
         <td width="10%" align="center"><?=$model->total ?></td>
     </tr>
     <tr>
