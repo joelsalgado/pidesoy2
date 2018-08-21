@@ -25,10 +25,8 @@ $total = 0;
         <?= \yii\helpers\Html::a('Desgloce por Regiones',['/report/reg']) ?><br>
         <?= \yii\helpers\Html::a('Desgloce por Municipios',['/report/mun']) ?><br>
         <?= \yii\helpers\Html::a('Desgloce por Localidades',['/report/loc']) ?><br>
-
         <?= \yii\helpers\Html::a('Censo por Localidades',['/report/locen']) ?><br>
-        <?php if(Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40) : ?>
         <?= \yii\helpers\Html::a('Seguimiento por Localidades',['/report/locseg']) ?><br>
-        <?php endif ?>
+        
     </div>
 </div>
