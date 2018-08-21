@@ -141,7 +141,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'class' => 'yii\grid\ActionColumn',
                                 'header' => 'Acciones',
                                 'headerOptions' => ['style' => 'color:#337ab7'],
-                                'template' => '{update}{borrar}{pobreza}',
+                                'template' => '{update}{borrar}{pobreza}{pdf}',
                                 'buttons' => [
                                     'update' => function ($url, $model) {
                                         if(Yii::$app->user->identity->role != 40){
@@ -155,6 +155,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'pobreza' => function ($url, $model) {
                                         return Html::a('<span class="glyphicon glyphicon-file"></span>', $url, [
                                             'title' => Yii::t('app', 'pobreza'),
+                                        ]);
+                                    },
+                                    'pdf' => function ($url, $model) {
+                                        return Html::a('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>', $url, [
+                                            'title' => Yii::t('app', 'pdf'),
                                         ]);
                                     },
 
@@ -184,6 +189,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
                                     if ($action === 'pobreza') {
                                         $url =Yii::$app->homeUrl.'solicitantes/pobreza?id='.$model->id;
+                                        return $url;
+                                    }
+                                    if ($action === 'pdf') {
+                                        $url =Yii::$app->homeUrl.'solicitantes/pdfgeneral?id='.$model->id;
                                         return $url;
                                     }
                                 }
