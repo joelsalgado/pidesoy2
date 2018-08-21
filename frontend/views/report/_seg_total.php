@@ -141,7 +141,7 @@
         <tr>
             <td align="left"><b><?= mb_convert_case('VIVIENDAS CON CONEXIÓN DE TOMA DE AGUA AL INTERIOR DE LA VIVIENDA', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_agua_interior?></td>
-            <td align="center"><?=$model->acciones_agua_potable?></td>
+            <td align="center"><?=$model->acciones_interior ?></td>
             <td align="center"><?=$model->meta_agua_interior - $model->acciones_agua_interior?></td>
         </tr>
         <tr>
@@ -212,7 +212,7 @@
         </tr>
         <tr>
             <td align="left"><b><?= mb_convert_case('TOTAL', MB_CASE_TITLE, "UTF-8")?></b></td>
-            <td align="center"><b><?=$model->meta_vivienda?></b></td>
+            <td align="center"><b><?=$model->meta_vivienda ?></b></td>
             <td align="center"><b><?=$model->acciones_vivienda?></b></td>
             <td align="center"><b><?=$model->meta_vivienda - $model->acciones_vivienda?></b></td>
         </tr>
