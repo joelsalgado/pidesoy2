@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\AccionesAdicionales;
 use common\models\Apartados;
 use common\models\CedulaPobreza;
 use common\models\Localidades;
@@ -204,6 +205,7 @@ class SolicitantesController extends Controller
             //PobrezaMultidimensional::find()->where(['solicitante_id' => $id])->one();
         if ($model){
             $seguimiento = Seguimiento::find()->where(['solicitante_id'=> $id, 'status' =>2])->one();
+            $adicionales = AccionesAdicionales::find()->where(['solicitante_id'=> $id])->all();
             $birthday = $model->fecha_nacimiento;
             list($year, $month, $day) = explode("-", $birthday);
             $year_diff  = date("Y") - $year;
@@ -221,7 +223,8 @@ class SolicitantesController extends Controller
             $content = $this->renderPartial('_general', [
                 'model'=> $model,
                 'edad' => $year_diff,
-                'seguimiento' => $seguimiento
+                'seguimiento' => $seguimiento,
+                'adicionales' => $adicionales
             ]);
 
             $pdf = new Pdf([
@@ -233,7 +236,7 @@ class SolicitantesController extends Controller
                 'marginLeft'=> 10,
                 'marginRight'=> 10,
                 'marginTop'=> 22,
-                'marginBottom'=> 13,
+                'marginBottom'=> 30,
                 'marginHeader'=> 5,
                 'options' => [
                     'title' => 'Censos'
