@@ -35,14 +35,21 @@ use kartik\date\DatePicker;
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <?= $form->field($model, 'objetivo')->textarea() ?>
+                    <?= $form->field($model, 'actividad_realizar')->textInput() ?>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <?= $form->field($model, 'acciones')->textarea() ?>
+                    <?= $form->field($model, 'nombre_ejecucion')->textInput() ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <?= $form->field($model, 'nombre_supervisar')->textInput() ?>
                 </div>
             </div>
         </div>
@@ -52,7 +59,6 @@ use kartik\date\DatePicker;
                     <?= $form->field($model, 'cumplio')->radioList([1 => 'Si', 0 => 'No']) ?>
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="col-sm-12">

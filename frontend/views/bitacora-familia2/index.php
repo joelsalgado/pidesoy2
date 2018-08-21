@@ -34,7 +34,7 @@ $this->title = 'Objetivos';
                     'id',
                     //'bitacora_familia_id',
                     'fechas',
-                    'objetivo',
+                    'actividad_realizar',
                     //'acciones',
                     //'cumplio',
                     //'observaciones',

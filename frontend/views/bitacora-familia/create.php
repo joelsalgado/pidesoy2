@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Bitacorafamilia */
 
-$this->title = 'Nueva Bitacora de familia';
+$this->title = 'Nueva Bitacora de Trabajo por Vivienda';
 ?>
 <div class="bitacora-familia-create">
 
@@ -16,7 +16,7 @@ $this->title = 'Nueva Bitacora de familia';
             <li><a href="#">Objetivos</a></li>
         </ul>
         <div class="box-header with-border">
-            <h3 class="box-title">Nueva Bitacora de familia</h3>
+            <h3 class="box-title">Nueva Bitacora de Trabajo por Vivienda</h3>
         </div>
         <div class="box-body">
             <?= $this->render('_form', [

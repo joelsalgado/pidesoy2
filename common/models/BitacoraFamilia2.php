@@ -29,23 +29,41 @@ class BitacoraFamilia2 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bitacora_familia_id', 'cumplio','fechas', 'objetivo', 'acciones', 'observaciones'], 'required', 'message' => 'Campo requerido'],
-            [['bitacora_familia_id', 'cumplio', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['bitacora_familia_id', 'fechas', 'observaciones', 'actividad_realizar', 'nombre_ejecucion', 'nombre_supervisar', 'cumplio'], 'required' , 'message' => 'Campo Requerido'],
+            [['bitacora_familia_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at', 'cumplio'], 'integer', 'message'=> 'Dede ser Numerico'],
             [['fechas'], 'safe'],
-            [['objetivo', 'acciones', 'observaciones'], 'string', 'max' => 255],
+            [['fechas'], 'validateDates'],
+            [['objetivo', 'observaciones'], 'string', 'max' => 2000],
+            [['nombre_ejecucion', 'nombre_supervisar', 'actividad_realizar'], 'string', 'max' => 255],
             [['bitacora_familia_id'], 'exist', 'skipOnError' => true, 'targetClass' => BitacoraFamilia::className(), 'targetAttribute' => ['bitacora_familia_id' => 'id']],
         ];
+    }
+
+    public function validateDates(){
+        $año = Yii::$app->formatter->asDate($this->fechas, 'yyyy');
+        $mes = Yii::$app->formatter->asDate($this->fechas, 'MM');
+
+        if ($año == $this->bitacoraFamilia->periodo && $mes == $this->bitacoraFamilia->mes ){
+            echo 'bien';
+        }
+        else{
+            $this->addError('fechas', 'Este fecha no es valida');
+            $fecha = Yii::$app->formatter->asDate($this->fechas, 'dd-MM-yyyy');
+            $this->fechas = $fecha;
+        }
     }
 
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'bitacora_familia_id' => 'Bitacora Familia ID',
-            'fechas' => 'Fechas',
-            'objetivo' => 'Objetivo',
-            'acciones' => 'Acciones',
-            'cumplio' => 'Se Cumplio?',
+            'bitacora_familia_id' => 'Bitacora familia ID',
+            'fechas' => 'Fecha De Reunión',
+            'actividad_realizar' => 'Actividad a Realizar',
+            'nombre_ejecucion' => 'Nombre del Responsable de la Ejecución de la Actividad',
+            'nombre_supervisar' => 'Nombre del Responsable de Supervisar el Cumplimiento de la Actividad',
+            'cumplio' => '¿Se cumplio?',
+            'objetivo' => 'Objetivo De La Reunión',
             'observaciones' => 'Observaciones',
             'status' => 'Status',
             'created_by' => 'Created By',
