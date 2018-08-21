@@ -734,11 +734,11 @@
                     <font  color="#CC0066;"><b>Programa Mediante El Cual Se Realiza La Acción: </b></font><?= $programa_ss = ($seguimiento->programa_ss) ? $seguimiento->programaSs->desc_programa  : ''?>
                 </td>
                 <td width="35%" align="right">
-                    <font  color="#CC0066;"><b>Acciones Realizadas (Avance): </b></font><?= $seguimiento->acciones_pendientes_ss ?>
+                    <font  color="#CC0066;"><b>Acciones Realizadas (Avance): </b></font><?= $seguimiento->acciones_ss ?>
                 </td>
             </tr>
         </table>
-        <?php if($seguimiento->acciones_pendientes_ss == 1):?>
+        <?php if($seguimiento->acciones_ss == 1):?>
             <table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
                 <tr>
                     <td width="100%" align="left">
@@ -837,7 +837,7 @@
 <?php endif; ?>
 
 
-<?php if($adicionales):?>
+<?php if($adicionales): ?>
     <hr class="style18">
     <b><p style="color:#CC0066; font-size: XX-large" align="center" >ACCIONES ADICIONALES</p></b>
     <?php foreach ($adicionales as $value) {?>
