@@ -6,41 +6,51 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Programacion2s';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Actividades';
 ?>
 <div class="programacion2-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box">
+        <ul class="nav nav-tabs">
+            <li><?= Html::a('Bitacora',['programacion/update', 'id' => $id])?></li>
+            <li class="active"><a href="#">Objetivos</a></li>
+        </ul>
+        <div class="box-header with-border">
+            <h3 class="box-title">Objetivos</h3>
+        </div>
+        <div class="box-body">
+            <p class="pull-right">
+                <?= Html::a('Finalizar', ['/programacion'], ['class' => 'btn btn-danger']) ?>
+                <?= Html::a('Nueva Actividad', ['create', 'id' => $id], ['class' => 'btn btn-success']) ?>
+            </p>
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
+                    'emptyText' => "No se encontró ningún elemento",
+                    'columns' => [
+                        ['class' => 'yii\grid\SerialColumn'],
 
-    <p>
-        <?= Html::a('Create Programacion2', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+                        'id',
+                        'programacion_id',
+                        'actividad',
+                        'ubicacion',
+                        'hora',
+                        //'fecha_inicio',
+                        //'fecha_termino',
+                        //'objetivos',
+                        //'asistentes',
+                        //'responsable_actividad',
+                        //'responsable_vivienda',
+                        //'acuerdos',
+                        //'status',
+                        //'created_by',
+                        //'updated_by',
+                        //'created_at',
+                        //'updated_at',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'programacion_id',
-            'actividad',
-            'ubicacion',
-            'hora',
-            //'fecha_inicio',
-            //'fecha_termino',
-            //'objetivos',
-            //'asistentes',
-            //'responsable_actividad',
-            //'responsable_vivienda',
-            //'acuerdos',
-            //'status',
-            //'created_by',
-            //'updated_by',
-            //'created_at',
-            //'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                        ['class' => 'yii\grid\ActionColumn'],
+                    ],
+                ]); ?>
+        </div>
+    </div>
 </div>

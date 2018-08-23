@@ -2,9 +2,11 @@
 
 namespace frontend\controllers;
 
+use common\models\Programacion;
 use Yii;
 use common\models\Programacion2;
 use yii\data\ActiveDataProvider;
+use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,15 +35,27 @@ class Programacion2Controller extends Controller
      * Lists all Programacion2 models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Programacion2::find(),
-        ]);
+        try{
+            $model2 = Programacion::findOne($id);
+        }
+        catch (Exception $exception){
+            $model2 = null;
+        }
+        if ($model2) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Programacion2::find()->where(['programacion_id' => $id]),
+            ]);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'dataProvider' => $dataProvider,
+                'id' => $id
+            ]);
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 
     /**
@@ -61,12 +75,18 @@ class Programacion2Controller extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Programacion2();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->fecha_inicio = Yii::$app->formatter->asDate($model->fecha_inicio, 'yyyy-MM-dd');
+            $model->fecha_termino = Yii::$app->formatter->asDate($model->fecha_termino, 'yyyy-MM-dd');
+            $model->programacion_id = $id;
+            $model->status = 1;
+            if($model->save()) {
+                return $this->redirect(['index', 'id' => $id]);
+            }
         }
 
         return $this->render('create', [

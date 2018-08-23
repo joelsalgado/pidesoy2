@@ -8,11 +8,9 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="programacion2-form">
+<div class="container-fluid">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'programacion_id')->textInput() ?>
 
     <?= $form->field($model, 'actividad')->textInput(['maxlength' => true]) ?>
 
@@ -33,16 +31,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'responsable_vivienda')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'acuerdos')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
