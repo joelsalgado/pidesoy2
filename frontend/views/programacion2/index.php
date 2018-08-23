@@ -23,6 +23,7 @@ $this->title = 'Actividades';
                 <?= Html::a('Finalizar', ['/programacion'], ['class' => 'btn btn-danger']) ?>
                 <?= Html::a('Nueva Actividad', ['create', 'id' => $id], ['class' => 'btn btn-success']) ?>
             </p>
+            <div class="table table-responsive">
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
@@ -30,13 +31,13 @@ $this->title = 'Actividades';
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
 
-                        'id',
-                        'programacion_id',
+                        //'id',
+                        //'programacion_id',
                         'actividad',
-                        'ubicacion',
-                        'hora',
-                        //'fecha_inicio',
-                        //'fecha_termino',
+                        //'ubicacion',
+                        //'hora',
+                        'fecha_inicio',
+                        'fecha_termino',
                         //'objetivos',
                         //'asistentes',
                         //'responsable_actividad',
@@ -51,6 +52,7 @@ $this->title = 'Actividades';
                         ['class' => 'yii\grid\ActionColumn'],
                     ],
                 ]); ?>
+            </div>
         </div>
     </div>
 </div>
