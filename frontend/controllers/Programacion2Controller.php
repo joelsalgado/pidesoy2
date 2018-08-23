@@ -103,14 +103,21 @@ class Programacion2Controller extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if ($model) {
+            $model->fecha_inicio = Yii::$app->formatter->asDate($model->fecha_inicio, 'dd-MM-yyyy');
+            $model->fecha_termino = Yii::$app->formatter->asDate($model->fecha_termino, 'dd-MM-yyyy');
+            if ($model->load(Yii::$app->request->post())) {
+                $model->fecha_inicio = Yii::$app->formatter->asDate($model->fecha_inicio, 'yyyy-MM-dd');
+                $model->fecha_termino = Yii::$app->formatter->asDate($model->fecha_termino, 'yyyy-MM-dd');
+                if($model->save()) {
+                    return $this->redirect(['index', 'id' => $model->programacion_id]);
+                }
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**

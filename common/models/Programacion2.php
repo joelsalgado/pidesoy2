@@ -32,12 +32,44 @@ class Programacion2 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['programacion_id'], 'required'],
-            [['programacion_id', 'asistentes', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['programacion_id', 'asistentes','fecha_inicio', 'fecha_termino', 'actividad', 'ubicacion', 'hora', 'objetivos', 'responsable_actividad', 'responsable_vivienda', 'acuerdos'], 'required', 'message' => 'Campo Requerido'],
+            [['programacion_id', 'asistentes', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer', 'message' => 'Debe ser un campo numerico'],
             [['fecha_inicio', 'fecha_termino'], 'safe'],
+            [['fecha_termino'], 'validateDates'],
             [['actividad', 'ubicacion', 'hora', 'objetivos', 'responsable_actividad', 'responsable_vivienda', 'acuerdos'], 'string', 'max' => 255],
             [['programacion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Programacion::className(), 'targetAttribute' => ['programacion_id' => 'id']],
         ];
+    }
+
+    public function validateDates(){
+        $fecha_inicio = $this->fecha_inicio;
+        $fecha_termino = $this->fecha_termino;
+
+        if ($fecha_inicio && $fecha_termino){
+            $date1 = date_create($fecha_inicio);
+            $date2 = date_create($fecha_termino);
+            if($date1 > $date2){
+                $this->addError('fecha_termino', 'Fecha es menor a la de inicio');
+                $this->fechas();
+            }
+        }
+
+        $anio = Yii::$app->formatter->asDate($this->fecha_inicio, 'yyyy');
+        $mes = Yii::$app->formatter->asDate($this->fecha_inicio, 'MM');
+
+        if ($anio == $this->programacion->periodo && $mes == $this->programacion->mes ){
+            echo 'bien';
+        }
+        else{
+            $this->addError('fecha_inicio', 'Este fecha no es valida');
+            $this->fechas();
+        }
+    }
+
+    public function fechas(){
+        $this->fecha_inicio = Yii::$app->formatter->asDate($this->fecha_inicio, 'dd-MM-yyyy');
+        $this->fecha_termino = Yii::$app->formatter->asDate($this->fecha_termino, 'dd-MM-yyyy');
+
     }
 
     /**

@@ -5,17 +5,19 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Programacion2 */
 
-$this->title = 'Update Programacion2: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Programacion2s', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Actualizar Actividad';
 ?>
 <div class="programacion2-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Actualizar Actividad</h3>
+        </div>
+        <div class="box-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 
 </div>
