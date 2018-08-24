@@ -15,6 +15,7 @@
                         ['label' => 'Directorio', 'url' => ['/directorio-responsables']],
                         ['label' => 'Bitacora por  Localidad', 'url' => ['/bitacora-reunion']],
                         ['label' => 'Bitacora por  Vivienda', 'url' => ['/bitacora-familia']],
+                        ['label' => 'Programacion', 'url' => ['/programacion']],
                     ]],
                     ['label' => 'Formato de Localidades', 'icon' => 'folder', 'url' => ['/formato-loc']],
                     ['label' => 'Actividades Comunitarias', 'icon' => 'road', 'url' => ['/actividades-relevantes']],
