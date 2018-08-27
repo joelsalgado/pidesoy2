@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\AccionesAdicionales;
 use common\models\Apartados;
 use common\models\CedulaPobreza;
+use common\models\CedulaPs;
 use common\models\Localidades;
 use common\models\Municpios;
 use common\models\PobrezaMultidimensional;
@@ -206,6 +207,14 @@ class SolicitantesController extends Controller
         if ($model){
             $seguimiento = Seguimiento::find()->where(['solicitante_id'=> $id, 'status' =>2])->one();
             $adicionales = AccionesAdicionales::find()->where(['solicitante_id'=> $id])->all();
+            $cedula = CedulaPobreza::find()->where(['solicitante_id'=> $id])->one();
+            if($cedula){
+                $cedula2 = CedulaPs::find()->where(['cedula_id'=> $cedula->id])->all();
+            }else{
+                $cedula2 = null;
+            }
+
+
             $birthday = $model->fecha_nacimiento;
             list($year, $month, $day) = explode("-", $birthday);
             $year_diff  = date("Y") - $year;
@@ -224,7 +233,9 @@ class SolicitantesController extends Controller
                 'model'=> $model,
                 'edad' => $year_diff,
                 'seguimiento' => $seguimiento,
-                'adicionales' => $adicionales
+                'adicionales' => $adicionales,
+                'cedula' => $cedula,
+                'cedula2' => $cedula2
             ]);
 
             $pdf = new Pdf([

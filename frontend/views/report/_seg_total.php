@@ -193,7 +193,7 @@ $suma2 = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro 
             <td align="center"><?=$model->meta_despues_1982_secundaria - $model->acciones_despues_1982_secundaria?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('DESPENSAS POR ENTREGAR', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left"><b><?= mb_convert_case('NECESIDAD ALIMENTARIA (DESPENSAS)', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_despensas?></td>
             <td align="center"><?=$model->acciones_despensas?></td>
             <td align="center"><?=$model->meta_despensas - $model->acciones_despensas?></td>

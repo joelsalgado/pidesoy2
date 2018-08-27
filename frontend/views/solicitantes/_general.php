@@ -668,7 +668,7 @@
 
     <?php if($seguimiento->meta_despensas == 1):?>
         <div class="alert alert-success-general" role="alert">
-            <strong>DESPENSAS POR ENTREGAR</strong>
+            <strong>NECESIDAD ALIMENTARIA (DESPENSAS)</strong>
         </div>
         <table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
             <tr>
@@ -884,3 +884,39 @@
         <?php endif; ?>
     <?php } ?>
 <?php endif; ?>
+
+
+<hr>
+<div class="alert alert-success-general" role="alert">
+    <strong>VINCULACIÓN A PROGRAMAS DE DESARROLLO SOCIAL (FEDERALES Y ESTATALES)</strong>
+</div>
+
+<font  color="#CC0066;"><b>¿La familia es beneficiaria del Programa de Inclusión Social PROSPERA?: </b> </font><?=$prospera = ($cedula->prospera == 1) ? 'SI' : 'NO'?>
+    <br>
+<font  color="#CC0066;"><b>En el hogar algún o algunos miembros tienen acceso a Programas de Desarrollo Social: </b> </font><?=$prospera = ($cedula->programa_desarrollo_social == 1) ? 'SI' : 'NO'?>
+
+<br><br>
+<?php if($cedula2): ?>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">No.</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Programa</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Nombre Recibe Programa</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Titular</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Parentesco</p></b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if($cedula2) : $i=1; foreach($cedula2 as $value){?>
+            <tr>
+                <td align="center"><p style="font-size: 7pt"><?= $i++; ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->programa->desc_programa ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->nombre_recibe_programa ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->titular ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->parentescoRecibePrograma->desc_parentesco ?></p></td>
+            </tr>
+        <?php }endif;?>
+        </tbody>
+    </table>
+<?php endif;?>
