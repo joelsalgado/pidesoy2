@@ -911,10 +911,10 @@
         <?php if($cedula2) : $i=1; foreach($cedula2 as $value){?>
             <tr>
                 <td align="center"><p style="font-size: 7pt"><?= $i++; ?></p></td>
-                <td align="center"><p style="font-size: 7pt"><?= $value->programa->desc_programa ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $programa = ($value->cual_programa) ? $value->programa->desc_programa : 'NINGUNO'?></p></td>
                 <td align="center"><p style="font-size: 7pt"><?= $value->nombre_recibe_programa ?></p></td>
                 <td align="center"><p style="font-size: 7pt"><?= $value->titular ?></p></td>
-                <td align="center"><p style="font-size: 7pt"><?= $value->parentescoRecibePrograma->desc_parentesco ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $parentesco = ($value->parentesco_recibe_programa) ? $value->parentescoRecibePrograma->desc_parentesco : ''  ?></p></td>
             </tr>
         <?php }endif;?>
         </tbody>
