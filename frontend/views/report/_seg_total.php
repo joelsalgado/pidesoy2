@@ -271,4 +271,31 @@ $suma2 = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro 
 
 </table>
 
+<br>
+
+<?php if ($adicionales) :?>
+    <pagebreak></pagebreak>
+<div class="alert alert-success-seg" role="alert">
+    <b>ACCIONES ADICIONALES</b>
+</div>
+
+
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">No.</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Nombre de la Acción</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Total</p></b></td>
+        </thead>
+        <tbody>
+        <?php if($adicionales) : $i=1; foreach($adicionales as $value){?>
+            <tr>
+                <td align="center"><p style="font-size: 7pt"><?= $i++; ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->nombre_accion ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->total ?></p></td>
+        <?php }endif;?>
+        </tbody>
+    </table>
+<?php endif;?>
+
 
