@@ -471,11 +471,17 @@ class ReportController extends Controller
         $localidad = Localidades::find()->where(['localidad_id' => $id])->one();
         if ($localidad){
             $query = AdicionalesPrimero::find()
-                ->select(['nombre_accion','COUNT(*) AS total'])
+                ->select(['nombre_accion',
+                    'sum((case when (meta > 0) then meta else 0 end)) AS total',
+                    'sum((case when (acciones > 0) then acciones else 0 end)) AS acciones'
+                ])
                 ->where(['loc_id' => $id])
                 ->groupBy(['nombre_accion'])
                 ->orderBy(['total' => SORT_DESC])
                 ->all();
+
+            //echo '<pre>';
+            //var_dump($query);die;
 
             $municipio = $localidad->mun->nombre_mun;
             $seguimiento = new Seguimiento();

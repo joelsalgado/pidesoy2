@@ -12,6 +12,10 @@ $suma1 = $model->meta_piso + $model->meta_techo + $model->meta_muro + $model->me
 
 $suma2 = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro + $model->acciones_cuarto + $model->acciones_agua_potable + $model->acciones_agua_interior + $model->acciones_drenaje + $model->acciones_luz + $model->acciones_estufa + $model->acciones_seguro_popular + $model->acciones_3_15_escuela + $model->acciones_antes_1982_primaria + $model->acciones_despues_1982_secundaria + $model->acciones_despensas + $model->acciones_ss + $model->acciones_trabajadores_ss + $model->acciones_adultos_ss ;
 
+$sumaad1 = 0;
+$sumaad2 = 0;
+$sumaad3 = 0;
+
 ?>
 
 
@@ -280,12 +284,15 @@ $suma2 = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro 
 </div>
 
 
-    <table class="table table-condensed">
+    <table class="table table-bored">
         <thead>
         <tr>
             <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">No.</p></b></td>
             <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Nombre de la Acción</p></b></td>
-            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Total</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Acciones Totales</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Acciones Concluidas</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Acciones Pendientes</p></b></td>
+        </tr>
         </thead>
         <tbody>
         <?php if($adicionales) : $i=1; foreach($adicionales as $value){?>
@@ -293,7 +300,23 @@ $suma2 = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro 
                 <td align="center"><p style="font-size: 7pt"><?= $i++; ?></p></td>
                 <td align="center"><p style="font-size: 7pt"><?= $value->nombre_accion ?></p></td>
                 <td align="center"><p style="font-size: 7pt"><?= $value->total ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->acciones ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $valor1 = $value->total - $value->acciones?></p></td>
+                <?php
+                    $sumaad1 = $sumaad1 + $value->total;
+                    $sumaad2 = $sumaad2 + $value->acciones;
+                    $sumaad3 = $sumaad3 + $valor1;
+                ?>
+            </tr>
         <?php }endif;?>
+
+        <tr>
+            <td align="center"><p style="font-size: 7pt"></p></td>
+            <td align="center"><p style="font-size: 7pt"><b>Total</b></p></td>
+            <td align="center"><p style="font-size: 7pt"><b><?= $sumaad1 ?></b></p></td>
+            <td align="center"><p style="font-size: 7pt"><b><?= $sumaad2 ?></b></p></td>
+            <td align="center"><p style="font-size: 7pt"><b><?= $sumaad3?></b></p></td>
+        </tr>
         </tbody>
     </table>
 <?php endif;?>
