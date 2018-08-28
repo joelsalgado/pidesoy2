@@ -8,6 +8,7 @@
 
 namespace frontend\controllers;
 
+use common\models\AdicionalesPrimero;
 use common\models\DesgCenso;
 use common\models\DesgSeg;
 use common\models\Localidades;
@@ -469,6 +470,13 @@ class ReportController extends Controller
     {
         $localidad = Localidades::find()->where(['localidad_id' => $id])->one();
         if ($localidad){
+            $query = AdicionalesPrimero::find()
+                ->select(['nombre_accion','COUNT(*) AS total'])
+                ->where(['loc_id' => $id])
+                ->groupBy(['nombre_accion'])
+                ->orderBy(['total' => SORT_DESC])
+                ->all();
+
             $municipio = $localidad->mun->nombre_mun;
             $seguimiento = new Seguimiento();
             $semaforo = $seguimiento->getSemaforoLocalidad($localidad->localidad_id,90);
@@ -480,7 +488,8 @@ class ReportController extends Controller
                 'model'=> $model,
                 'semaforo' => $semaforo,
                 'semaforos' => $semaforos,
-                'municipio' => $municipio
+                'municipio' => $municipio,
+                'adicionales' => $query
             ]);
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
