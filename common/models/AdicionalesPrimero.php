@@ -27,7 +27,7 @@ class AdicionalesPrimero extends \yii\db\ActiveRecord
     {
         return [
             [['loc_id', 'desc_loc'], 'required'],
-            [['loc_id'], 'integer'],
+            [['loc_id','acciones'], 'integer'],
             [['desc_loc'], 'string', 'max' => 150],
             [['nombre_accion'], 'string', 'max' => 120],
         ];
