@@ -40,9 +40,7 @@ class m180827_235321_create_table_ficha_tecnica extends Migration
             'otros' => $this->integer(10),
             'cual1' => $this->string(),
 
-            'de1a3' => $this->integer(10),
-            'de3a5' => $this->integer(10),
-            'de5mas' => $this->integer(10),
+            'ingreso_promedio' => $this->string(30),
 
             'catolica' => $this->integer(10),
             'testigos' => $this->integer(10),

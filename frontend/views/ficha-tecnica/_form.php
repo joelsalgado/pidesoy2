@@ -1,12 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
 use kartik\date\DatePicker;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\FichaTecnica */
@@ -120,55 +120,123 @@ use kartik\date\DatePicker;
             </div>
         </div>
 
-    <?= $form->field($model, 'indicaciones')->textarea() ?>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <?= $form->field($model, 'indicaciones')->textarea() ?>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <?= $form->field($model, 'tipo_acceso')->inline()->radioList([
+                            'Pavimentado' => 'Pavimentado',
+                            'Terracería' => 'Terracería',
+                            'Sin Acceso' => 'Sin Acceso'
+                    ]) ?>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <?= $form->field($model, 'estado')->inline()->radioList([
+                        'Bueno' => 'Bueno',
+                        'Regular' => 'Regular',
+                        'Malo' => 'Malo'
+                    ]) ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'acceso_facil')->inline()->radioList([1 => 'Si', 0 => 'No']) ?>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'tiempo')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="form-group">
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <?= $form->field($model, 'cedulas_aplicadas')->textInput() ?>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <?= $form->field($model, 'habitantes')->textInput() ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'ocupantes')->textInput() ?>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <?= $form->field($model, 'indice_marginacion')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <?= $form->field($model, 'indice_desarrollo_humano')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
 
-    <?= $form->field($model, 'tipo_acceso')->radioList([
-            'Pavimentado' => 'Pavimentado',
-            'Terracería' => 'Terracería',
-            'Sin Acceso' => 'Sin Acceso'
-    ]) ?>
+                    <?= $form->field($model, 'campesinos', [
+                        'template' =>
+                            '<div class="input-group"><span class="input-group-addon">Campesinos</span>{input}<span class="input-group-addon">%</span></div>{error}'
 
-    <?= $form->field($model, 'estado')->radioList([
-        'Bueno' => 'Bueno',
-        'Regular' => 'Regular',
-        'Malo' => 'Malo'
-    ]) ?>
+                    ]) ?>
 
-    <?= $form->field($model, 'acceso_facil')->radioList([1 => 'Si', 0 => 'No']) ?>
+                    <?= $form->field($model, 'obreros', [
+                        'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Obreros</span>{input}<span class="input-group-addon">%</span></div>',
+                    ])->label(false) ?>
 
-    <?= $form->field($model, 'tiempo')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'albaniles', [
+                        'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Albañiles</span>{input}<span class="input-group-addon">%</span></div>',
+                    ])->label(false) ?>
+
+                    <?= $form->field($model, 'amas', [
+                        'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Amas de casa</span>{input}<span class="input-group-addon">%</span></div>',
+                    ])->label(false) ?>
+
+                    <?= $form->field($model, 'empleados', [
+                        'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Empleados</span>{input}<span class="input-group-addon">%</span></div>',
+                    ])->label(false) ?>
+
+                    <?= $form->field($model, 'otros', [
+                        'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Otro</span>{input}<span class="input-group-addon">%</span></div>',
+                    ])->label(false) ?>
+
+                    <?= $form->field($model, 'cual1')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'ingreso_promedio')->radioList([
+                        'De 1 a 3 salarios mínimos' => 'De 1 a 3 salarios mínimos',
+                        'De 3 a 5 salarios mínimos' => 'De 3 a 5 salarios mínimos',
+                        '5 o más salarios mínimos' => '5 o más salarios mínimos'
+                    ]) ?>
+                </div>
+            </div>
+
+        </div>
 
 
 
-    <?= $form->field($model, 'cedulas_aplicadas')->textInput() ?>
 
-    <?= $form->field($model, 'habitantes')->textInput() ?>
-
-    <?= $form->field($model, 'ocupantes')->textInput() ?>
-
-    <?= $form->field($model, 'indice_marginacion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'indice_desarrollo_humano')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'campesinos')->textInput() ?>
-
-    <?= $form->field($model, 'obreros')->textInput() ?>
-
-    <?= $form->field($model, 'albañiles')->textInput() ?>
-
-    <?= $form->field($model, 'amas')->textInput() ?>
-
-    <?= $form->field($model, 'empleados')->textInput() ?>
-
-    <?= $form->field($model, 'otros')->textInput() ?>
-
-    <?= $form->field($model, 'cual1')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'de1a3')->textInput() ?>
-
-    <?= $form->field($model, 'de3a5')->textInput() ?>
-
-    <?= $form->field($model, 'de5mas')->textInput() ?>
 
     <?= $form->field($model, 'catolica')->textInput() ?>
 
@@ -182,15 +250,6 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'cual2')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
 </div>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

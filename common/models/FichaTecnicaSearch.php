@@ -18,7 +18,7 @@ class FichaTecnicaSearch extends FichaTecnica
     public function rules()
     {
         return [
-            [['id', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'acceso_facil', 'cedulas_aplicadas', 'habitantes', 'ocupantes', 'campesinos', 'obreros', 'albañiles', 'amas', 'empleados', 'otros', 'de1a3', 'de3a5', 'de5mas', 'catolica', 'testigos', 'evangelistas', 'cristiana', 'otra', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'acceso_facil', 'cedulas_aplicadas', 'habitantes', 'ocupantes', 'campesinos', 'obreros', 'albaniles', 'amas', 'empleados', 'otros', 'catolica', 'testigos', 'evangelistas', 'cristiana', 'otra', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['fecha', 'indicaciones', 'tipo_acceso', 'estado', 'tiempo', 'indice_marginacion', 'indice_desarrollo_humano', 'cual1', 'cual2'], 'safe'],
         ];
     }
@@ -71,13 +71,10 @@ class FichaTecnicaSearch extends FichaTecnica
             'ocupantes' => $this->ocupantes,
             'campesinos' => $this->campesinos,
             'obreros' => $this->obreros,
-            'albañiles' => $this->albañiles,
+            'albaniles' => $this->albaniles,
             'amas' => $this->amas,
             'empleados' => $this->empleados,
             'otros' => $this->otros,
-            'de1a3' => $this->de1a3,
-            'de3a5' => $this->de3a5,
-            'de5mas' => $this->de5mas,
             'catolica' => $this->catolica,
             'testigos' => $this->testigos,
             'evangelistas' => $this->evangelistas,
