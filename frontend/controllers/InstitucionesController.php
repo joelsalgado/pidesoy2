@@ -2,17 +2,19 @@
 
 namespace frontend\controllers;
 
-use Yii;
 use common\models\FichaTecnica;
-use common\models\FichaTecnicaSearch;
+use Yii;
+use common\models\Instituciones;
+use yii\data\ActiveDataProvider;
+use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * FichaTecnicaController implements the CRUD actions for FichaTecnica model.
+ * InstitucionesController implements the CRUD actions for Instituciones model.
  */
-class FichaTecnicaController extends Controller
+class InstitucionesController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,22 +32,34 @@ class FichaTecnicaController extends Controller
     }
 
     /**
-     * Lists all FichaTecnica models.
+     * Lists all Instituciones models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        $searchModel = new FichaTecnicaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        try{
+            $model2 = FichaTecnica::findOne($id);
+        }
+        catch (Exception $exception){
+            $model2 = null;
+        }
+        if ($model2) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Instituciones::find()->where(['ficha_id' => $id]),
+            ]);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'dataProvider' => $dataProvider,
+                'id' => $id
+            ]);
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 
     /**
-     * Displays a single FichaTecnica model.
+     * Displays a single Instituciones model.
      * @param integer $id
      * @return mixed
      */
@@ -57,21 +71,16 @@ class FichaTecnicaController extends Controller
     }
 
     /**
-     * Creates a new FichaTecnica model.
+     * Creates a new Instituciones model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new FichaTecnica();
+        $model = new Instituciones();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
-            $model->status = 1;
-            if($model->save()){
-                return $this->redirect(['index']);
-            }
-
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -80,7 +89,7 @@ class FichaTecnicaController extends Controller
     }
 
     /**
-     * Updates an existing FichaTecnica model.
+     * Updates an existing Instituciones model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -88,25 +97,18 @@ class FichaTecnicaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model){
-            $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'dd-MM-yyyy');
-            if ($model->load(Yii::$app->request->post())) {
-                $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
-                if($model->save()){
-                    return $this->redirect(['index']);
-                }
 
-            }
-
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
-     * Deletes an existing FichaTecnica model.
+     * Deletes an existing Instituciones model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -119,15 +121,15 @@ class FichaTecnicaController extends Controller
     }
 
     /**
-     * Finds the FichaTecnica model based on its primary key value.
+     * Finds the Instituciones model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return FichaTecnica the loaded model
+     * @return Instituciones the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = FichaTecnica::findOne($id)) !== null) {
+        if (($model = Instituciones::findOne($id)) !== null) {
             return $model;
         }
 

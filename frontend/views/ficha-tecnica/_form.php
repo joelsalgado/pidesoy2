@@ -17,7 +17,11 @@ use yii\bootstrap\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
+        <div class="alert alert-success-orange">
+            <strong>IDENTIFICACIÓN DE LA LOCALIDAD</strong>
+        </div>
         <div class="row">
+
             <div class="col-sm-6">
                 <div class="form-group">
                 </div>
@@ -29,7 +33,7 @@ use yii\bootstrap\ActiveForm;
                         'language' => 'es',
                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                         //'readonly' => ($model->isNewRecord) ? false : true,
-                        'disabled' => ($model->isNewRecord) ? false : true,
+                        //'disabled' => ($model->isNewRecord) ? false : true,
                         //'value' => 	date("d/m/Y", strtotime($model->fecha)),
                         'pluginOptions' => [
                             'autoclose'=>true,
@@ -158,6 +162,9 @@ use yii\bootstrap\ActiveForm;
             </div>
         </div>
         <br>
+        <div class="alert alert-success-orange">
+            <strong>ANÁLISIS GENERAL Y DESCRIPCIÓN SOCIOPOLÍTICA DE LA LOCALIDAD</strong>
+        </div>
         <div class="row">
             <div class="col-sm-1">
                 <div class="form-group">
@@ -180,17 +187,24 @@ use yii\bootstrap\ActiveForm;
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
-                    <?= $form->field($model, 'indice_marginacion')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'indice_marginacion')->dropDownList(
+                        ['Alto' => 'Alto', 'Medio' => 'Medio', 'Bajo' => 'Bajo', 'Muy Bajo' => 'Muy Bajo']
+                    ); ?>
                 </div>
             </div>
             <div class="col-sm-2">
                 <div class="form-group">
-                    <?= $form->field($model, 'indice_desarrollo_humano')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'indice_desarrollo_humano')->dropDownList(
+                        ['Alto' => 'Alto', 'Medio' => 'Medio', 'Bajo' => 'Bajo', 'Muy Bajo' => 'Muy Bajo']
+                    ); ?>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
+                <div class="alert alert-success-gray">
+                    <strong>Principales actividades a las que se dedican los habitantes</strong>
+                </div>
                 <div class="form-group">
 
                     <?= $form->field($model, 'campesinos', [
@@ -217,44 +231,67 @@ use yii\bootstrap\ActiveForm;
 
                     <?= $form->field($model, 'otros', [
                         'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Otro</span>{input}<span class="input-group-addon">%</span></div>',
-                    ])->label(false) ?>
-
-                    <?= $form->field($model, 'cual1')->textInput(['maxlength' => true]) ?>
+                    ])->textInput(["onKeyUp"=> "fncOtro1()"])->label(false) ?>
+                    <div class="cual1">
+                        <?= $form->field($model, 'cual1')->textInput(['maxlength' => true]) ?>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
+                <div class="alert alert-success-gray">
+                    <strong>Ingreso promedio mensual de los habitantes de la localidad</strong>
+                </div>
                 <div class="form-group">
                     <?= $form->field($model, 'ingreso_promedio')->radioList([
                         'De 1 a 3 salarios mínimos' => 'De 1 a 3 salarios mínimos',
                         'De 3 a 5 salarios mínimos' => 'De 3 a 5 salarios mínimos',
                         '5 o más salarios mínimos' => '5 o más salarios mínimos'
-                    ]) ?>
+                    ])->label(false) ?>
                 </div>
             </div>
 
         </div>
+        <div class="alert alert-success-gray">
+            <strong>Religión predominante en la localidad</strong>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+            <?= $form->field($model, 'catolica', [
+                'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Católica</span>{input}<span class="input-group-addon">%</span></div>',
+            ])->label(false) ?>
 
+            <?= $form->field($model, 'testigos', [
+                'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Testigo de Jehová</span>{input}<span class="input-group-addon">%</span></div>',
+            ])->label(false) ?>
 
+            <?= $form->field($model, 'evangelistas', [
+                'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Evangélica</span>{input}<span class="input-group-addon">%</span></div>',
+            ])->label(false) ?>
 
+            <?= $form->field($model, 'cristiana', [
+                'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Cristiana</span>{input}<span class="input-group-addon">%</span></div>',
+            ])->label(false) ?>
 
-
-    <?= $form->field($model, 'catolica')->textInput() ?>
-
-    <?= $form->field($model, 'testigos')->textInput() ?>
-
-    <?= $form->field($model, 'evangelistas')->textInput() ?>
-
-    <?= $form->field($model, 'cristiana')->textInput() ?>
-
-    <?= $form->field($model, 'otra')->textInput() ?>
-
-    <?= $form->field($model, 'cual2')->textInput(['maxlength' => true]) ?>
-
+            <?= $form->field($model, 'otra', [
+                'inputTemplate' => '<div class="input-group"><span class="input-group-addon">Otra</span>{input}<span class="input-group-addon">%</span></div>',
+            ])->textInput(["onKeyUp"=> "fncOtro2()"])->label(false) ?>
+            <div class="cual2">
+                <?= $form->field($model, 'cual2')->textInput(['maxlength' => true]) ?>
+            </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        </div>
 </div>
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+
 
     <?php ActiveForm::end(); ?>
 
 </div>
+<?=$this->registerJsFile(
+    '@web/frontend/assets/js/ficha.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+);?>

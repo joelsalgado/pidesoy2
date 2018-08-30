@@ -13,7 +13,7 @@ class FichaTecnica extends \yii\db\ActiveRecord
     {
         return [
             [
-                    'class' => BlameableBehavior::className(),
+                'class' => BlameableBehavior::className(),
             ],
             [
                 'class' => TimestampBehavior::className()
@@ -32,10 +32,14 @@ class FichaTecnica extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['entidad_id', 'region_id', 'mun_id', 'loc_id'], 'required'],
-            [['entidad_id', 'region_id', 'mun_id', 'loc_id', 'acceso_facil', 'cedulas_aplicadas', 'habitantes', 'ocupantes', 'campesinos', 'obreros', 'albaniles', 'amas', 'empleados', 'otros', 'catolica', 'testigos', 'evangelistas', 'cristiana', 'otra', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['entidad_id', 'region_id', 'mun_id', 'loc_id', 'indicaciones', 'tiempo', 'acceso_facil','estado',
+                'acceso_facil', 'tipo_acceso', 'fecha', 'cedulas_aplicadas','habitantes','ocupantes',
+                'indice_marginacion','indice_desarrollo_humano','ingreso_promedio'], 'required', 'message' => 'Campo Requerido'],
+            ['loc_id', 'unique', 'message' => 'Esta Localidad ya se encuentra'],
+            [['entidad_id', 'region_id', 'mun_id', 'loc_id', 'acceso_facil', 'cedulas_aplicadas', 'habitantes', 'ocupantes', 'campesinos', 'obreros', 'albaniles', 'amas', 'empleados', 'otros', 'catolica', 'testigos', 'evangelistas', 'cristiana', 'otra', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer', 'message' => 'Debe ser un campo numerico'],
             [['fecha'], 'safe'],
             [['indicaciones', 'tiempo', 'cual1', 'cual2'], 'string', 'max' => 255],
+            [['campesinos', 'obreros', 'albaniles', 'amas', 'empleados', 'otros', 'catolica', 'testigos', 'evangelistas', 'cristiana', 'otra'], 'integer', 'max' => 100, 'tooBig' => 'Números del 1 al 100'],
             [['tipo_acceso', 'estado', 'indice_marginacion', 'indice_desarrollo_humano'], 'string', 'max' => 20],
             [['ingreso_promedio'], 'string', 'max' => 30],
             [['entidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => EntidadNacimiento::className(), 'targetAttribute' => ['entidad_id' => 'id']],
