@@ -2,12 +2,17 @@
 
 namespace frontend\controllers;
 
+use common\models\AccionesComunitarias;
+use common\models\FichaNecesidades;
+use common\models\Instituciones;
+use common\models\Lideres;
 use Yii;
 use common\models\FichaTecnica;
 use common\models\FichaTecnicaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use kartik\mpdf\Pdf;
 
 /**
  * FichaTecnicaController implements the CRUD actions for FichaTecnica model.
@@ -132,5 +137,109 @@ class FichaTecnicaController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionPdf($id)
+    {
+        $model = FichaTecnica::findOne($id);
+        if ($model){
+            $model2 = Lideres::find()->where(['ficha_id' => $id])->all();
+            $model3 = Instituciones::find()->where(['ficha_id' => $id])->all();
+            $model4 = FichaNecesidades::find()->where(['ficha_id' => $id])->one();
+            $model5 = AccionesComunitarias::find()->where(['ficha_id' => $id])->all();
+
+            $content = $this->renderPartial('_reportView', [
+                'model'=> $model,
+                'model2' => $model2,
+                'model3' => $model3,
+                'model4' => $model4,
+                'model5' => $model5,
+            ]);
+
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'FichaTecnica '.$model->loc_id.'.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 40,
+                'marginBottom'=> 13,
+                'marginHeader'=> 5,
+                'orientation' => Pdf::FORMAT_A4,
+                'options' => [
+                    'title' => 'Directorio De Responsables Y Enlaces'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '   
+                    .alert-success-gray {
+                        color: #000000;
+                        background-color: #d9d9d9;
+                        border-color: #d9d9d9;
+                    }
+                    .alert-success-orange {
+                        color: #000000;
+                        background-color: #FF9933;
+                        border-color: #c9802a;
+                    }
+                ',
+
+                'methods' =>[
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                            <table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="100%">
+                                <tr>
+                                    <td rowspan="2"  width="15%">
+                                        <img src="'.Yii::$app->homeUrl.'images/colors.png" width="160" height="55">
+                                    </td>
+                                    <td align="right" width="85%">
+                                        <b><p style="color:#FF9933; font-size: xx-small">FAMILIAS FUERTES, COMUNIDADES CON TODO</p></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="background-color: #FF9933; color: white;" width="85%">
+                                        <b><p>FICHA TECNICA</p></b>
+                                    </td>
+                                </tr>
+                            </table>                     
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: CIEPS &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Revisó: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
+                ]
+            ]);
+            return $pdf->render();
+        }
+        else{
+            throw new \yii\web\NotFoundHttpException('ID INCORRECTO');
+        }
     }
 }

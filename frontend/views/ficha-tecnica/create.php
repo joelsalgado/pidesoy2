@@ -16,6 +16,7 @@ $this->title = 'Nueva Ficha Tecnica';
             <li><a href="#">LIderes</a></li>
             <li><a href="#">Intituciones</a></li>
             <li><a href="#">Necesidades</a></li>
+            <li><a href="#">Acciones Comunitarias</a></li>
         </ul>
         <div class="box-header with-border">
             <h3 class="box-title">Nueva Ficha Tecnica</h3>

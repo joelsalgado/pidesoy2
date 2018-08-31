@@ -44,6 +44,11 @@ class FichaTecnicaSearch extends FichaTecnica
         $query = FichaTecnica::find();
 
         // add conditions that should always apply here
+        if (Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20){
+            $region = Yii::$app->user->identity->region_id;
+            $query->andWhere(['region_id' => $region]);
+        }
+        $query->orderBy(['id' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
