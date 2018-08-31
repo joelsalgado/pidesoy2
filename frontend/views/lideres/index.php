@@ -14,8 +14,9 @@ $this->title = 'Lideres';
 
             <li><?= Html::a('Ficha',['/ficha-tecnica/update', 'id' => $id])?></li>
             <li class="active"><a href="#">LIderes</a></li>
-            <li><?= Html::a('Intituciones',['/bitacora-familia2', 'id' => $id])?></li>
-            <li><?= Html::a('Necesidades',['/bitacora-familia2', 'id' => $id])?></li>
+            <li><?= Html::a('Intituciones',['/instituciones', 'id' => $id])?></li>
+            <li><?= Html::a('Necesidades',['/ficha-necesidades/update', 'id' => $id])?></li>
+            <li><?= Html::a('Acciones Comunitarias',['/acciones-comunitarias', 'id' => $id])?></li>
         </ul>
         <div class="box-header with-border">
             <h3 class="box-title">Lideres</h3>

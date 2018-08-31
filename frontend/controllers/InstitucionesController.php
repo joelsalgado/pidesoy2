@@ -75,12 +75,17 @@ class InstitucionesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Instituciones();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->ficha_id = $id;
+            $model->status = 1;
+            if($model->save()){
+                return $this->redirect(['index', 'id' => $id]);
+            }
+
         }
 
         return $this->render('create', [
@@ -99,7 +104,7 @@ class InstitucionesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index', 'id' => $model->ficha_id]);
         }
 
         return $this->render('update', [
@@ -115,9 +120,12 @@ class InstitucionesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $instituciones = Instituciones::findOne($id);
+        if ($instituciones){
+            $this->findModel($id)->delete();
+            return $this->redirect(['index', 'id' => $instituciones->ficha_id]);
+        }
 
-        return $this->redirect(['index']);
     }
 
     /**

@@ -6,39 +6,43 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Instituciones */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Instituciones', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Institución';
 ?>
 <div class="instituciones-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Mostrar Institución</h3>
+        </div>
+        <div class="box-body">
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+            <p>
+                <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Estas seguro de borrar este registro?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'ficha_id',
-            'grado_id',
-            'nombre_escuela',
-            'total_alumnos',
-            'status',
-            'created_by',
-            'updated_by',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    //'id',
+                    //'ficha_id',
+                    //'grado_id',
+                    'nombre_escuela',
+                    'total_alumnos',
+                    //'status',
+                    //'created_by',
+                    //'updated_by',
+                    //'created_at',
+                    //'updated_at',
+                ],
+            ]) ?>
+        </div>
+    </div>
 
 </div>

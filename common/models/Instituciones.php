@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "instituciones".
@@ -26,6 +28,19 @@ class Instituciones extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::className(),
+            ],
+            [
+                'class' => TimestampBehavior::className()
+            ]
+        ];
+    }
+
     public static function tableName()
     {
         return 'instituciones';
@@ -37,8 +52,8 @@ class Instituciones extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ficha_id'], 'required'],
-            [['ficha_id', 'grado_id', 'total_alumnos', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['ficha_id', 'grado_id', 'total_alumnos', 'nombre_escuela'], 'required', 'message' => 'Campo Requerido'],
+            [['ficha_id', 'grado_id', 'total_alumnos', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer', 'message' => 'Debe ser un numero entero'],
             [['nombre_escuela'], 'string', 'max' => 255],
             [['grado_id'], 'exist', 'skipOnError' => true, 'targetClass' => CatGradoEstudios::className(), 'targetAttribute' => ['grado_id' => 'id']],
             [['ficha_id'], 'exist', 'skipOnError' => true, 'targetClass' => FichaTecnica::className(), 'targetAttribute' => ['ficha_id' => 'id']],
@@ -53,7 +68,7 @@ class Instituciones extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'ficha_id' => 'Ficha ID',
-            'grado_id' => 'Grado ID',
+            'grado_id' => 'Nivel Educativo',
             'nombre_escuela' => 'Nombre Escuela',
             'total_alumnos' => 'Total Alumnos',
             'status' => 'Status',

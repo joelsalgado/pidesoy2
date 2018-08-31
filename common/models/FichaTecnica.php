@@ -130,4 +130,26 @@ class FichaTecnica extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Regiones::className(), ['id' => 'region_id']);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        if ($insert) {
+            $ficha = new FichaNecesidades();
+            $ficha->scenario = 'FICHA';
+
+            $ficha->ficha_id = $this->id;
+            $ficha->status = 1;
+
+            if ($ficha->save()){
+                echo "se guardo";
+            }else{
+                $mal = self::findOne($this->id);
+                echo "Error folio".$mal->id; die;
+            }
+
+
+        }
+
+    }
 }
