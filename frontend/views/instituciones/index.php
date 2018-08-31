@@ -24,6 +24,7 @@ $this->title = 'Instituciones';
         <div class="box-body">
 
             <p class="pull-right">
+                <?= Html::a('Necesidades', ['/ficha-necesidades/update', 'id' => $id], ['class' => 'btn btn-danger']) ?>
                 <?= Html::a('Nueva Institucion', ['create', 'id' => $id], ['class' => 'btn btn-success']) ?>
             </p>
 

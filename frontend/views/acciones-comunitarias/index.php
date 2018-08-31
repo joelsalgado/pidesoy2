@@ -26,6 +26,7 @@ $this->title = 'Acciones Comunitarias';
 
             <p class="pull-right">
                 <?= Html::a('Nueva Acción', ['create', 'id' => $id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Finalizar', ['finalizar'], ['class' => 'btn btn-danger']) ?>
             </p>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,

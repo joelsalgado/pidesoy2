@@ -85,7 +85,7 @@ class FichaNecesidadesController extends Controller
         $model = FichaNecesidades::find()->where(['ficha_id' => $id])->one();
         if($model){
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['/acciones-comunitarias', 'id' => $model->ficha_id]);
             }
 
             return $this->render('update', [

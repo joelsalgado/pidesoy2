@@ -69,7 +69,7 @@ class FichaTecnicaController extends Controller
             $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
             $model->status = 1;
             if($model->save()){
-                return $this->redirect(['index']);
+                return $this->redirect(['/lideres', 'id' => $model->id]);
             }
 
         }
@@ -93,7 +93,7 @@ class FichaTecnicaController extends Controller
             if ($model->load(Yii::$app->request->post())) {
                 $model->fecha = Yii::$app->formatter->asDate($model->fecha, 'yyyy-MM-dd');
                 if($model->save()){
-                    return $this->redirect(['index']);
+                    return $this->redirect(['/lideres', 'id' => $model->id]);
                 }
 
             }
