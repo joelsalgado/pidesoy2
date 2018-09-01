@@ -28,7 +28,7 @@ class FichaTecnicaController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -118,9 +118,38 @@ class FichaTecnicaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $ficha = FichaTecnica::findOne($id);
+        if($ficha){
+            $lideres = Lideres::find()->where(['ficha_id' => $id])->all();
+            if($lideres){
+                foreach ($lideres as $value){
+                    $value->delete();
+                }
+            }
+            $instituciones = Instituciones::find()->where(['ficha_id' => $id])->all();
+            if($instituciones){
+                foreach ($instituciones as $value){
+                    $value->delete();
+                }
+            }
 
-        return $this->redirect(['index']);
+            $necesidades = FichaNecesidades::find()->where(['ficha_id' => $id])->one();
+            if($necesidades){
+                $necesidades->delete();
+            }
+
+            $comunitarias = AccionesComunitarias::find()->where(['ficha_id' => $id])->all();
+            if($comunitarias){
+                foreach ($comunitarias as $value){
+                    $value->delete();
+                }
+            }
+
+            $this->findModel($id)->delete();
+
+            return $this->redirect(['index']);
+        }
+
     }
 
     /**
@@ -147,6 +176,15 @@ class FichaTecnicaController extends Controller
             $model3 = Instituciones::find()->where(['ficha_id' => $id])->all();
             $model4 = FichaNecesidades::find()->where(['ficha_id' => $id])->one();
             $model5 = AccionesComunitarias::find()->where(['ficha_id' => $id])->all();
+            $query = AccionesComunitarias::find()
+                ->select(['nombre_accion',
+                    'sum((case when (meta > 0) then meta else 0 end)) AS meta',
+                    'sum((case when (acciones > 0) then acciones else 0 end)) AS acciones'
+                ])
+                ->where(['loc_id' => $model->loc_id])
+                ->groupBy(['nombre_accion'])
+                ->orderBy(['meta' => SORT_DESC])
+                ->all();
 
             $content = $this->renderPartial('_reportView', [
                 'model'=> $model,
@@ -154,6 +192,7 @@ class FichaTecnicaController extends Controller
                 'model3' => $model3,
                 'model4' => $model4,
                 'model5' => $model5,
+                'query' => $query,
             ]);
 
             $pdf = new Pdf([
