@@ -12,5 +12,6 @@ return [
     'apartado6' => 'Acciones Adicionales',
     'apartado7' => 'Censo',
     'sizeImg' => 512,
+    'sizeImg2' => 1024,
 
 ];
