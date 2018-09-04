@@ -17,6 +17,7 @@
                         ['label' => 'Bitacora por  Vivienda', 'url' => ['/bitacora-familia']],
                         ['label' => 'Programacion', 'url' => ['/programacion']],
                         ['label' => 'Ficha Tecnica', 'url' => ['/ficha-tecnica']],
+                        ['label' => 'Minuta Autoridades', 'url' => ['/minuta-autoridades']],
                     ]],
                     ['label' => 'Formato de Localidades', 'icon' => 'folder', 'url' => ['/formato-loc']],
                     ['label' => 'Actividades Comunitarias', 'icon' => 'road', 'url' => ['/actividades-relevantes']],
