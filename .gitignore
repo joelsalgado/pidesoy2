@@ -5,6 +5,7 @@
 
 # phpstorm project files
 .idea
+.htaccess
 
 # netbeans project files
 nbproject
