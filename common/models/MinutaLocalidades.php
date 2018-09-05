@@ -6,7 +6,7 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
-class MinutaAutoridades extends \yii\db\ActiveRecord
+class MinutaLocalidades extends \yii\db\ActiveRecord
 {
     public $imageTemp;
     public $imageTemp2;
@@ -25,7 +25,7 @@ class MinutaAutoridades extends \yii\db\ActiveRecord
 
     public static function tableName()
     {
-        return 'minuta_autoridades';
+        return 'minuta_localidades';
     }
 
     /**

@@ -18,6 +18,7 @@
                         ['label' => 'Programacion', 'url' => ['/programacion']],
                         ['label' => 'Ficha Tecnica', 'url' => ['/ficha-tecnica']],
                         ['label' => 'Minuta Autoridades', 'url' => ['/minuta-autoridades']],
+                        ['label' => 'Minuta Localidades', 'url' => ['/minuta-localidades']],
                     ]],
                     ['label' => 'Formato de Localidades', 'icon' => 'folder', 'url' => ['/formato-loc']],
                     ['label' => 'Actividades Comunitarias', 'icon' => 'road', 'url' => ['/actividades-relevantes']],

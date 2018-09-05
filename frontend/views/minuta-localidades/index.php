@@ -7,13 +7,13 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\MinutaAutoridadesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'MINUTA DE REUNIÓN CON AUTORIDADES';
+$this->title = 'MINUTA DE REUNIÓN CON LA LOCALIDAD';
 ?>
 <div class="minuta-autoridades-index">
 
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">MINUTA DE REUNIÓN DE RESPONSABLES INSTITUCIONAL Y COMUNITARIO CON AUTORIDADES</h3>
+            <h3 class="box-title">MINUTA DE REUNIÓN DE RESPONSABLES INSTITUCIONAL Y COMUNITARIO CON LA LOCALIDAD</h3>
         </div>
         <div class="box-body">
             <p class="pull-right">
@@ -74,7 +74,7 @@ $this->title = 'MINUTA DE REUNIÓN CON AUTORIDADES';
                         'attribute' => 'fecha',
                         'value' => 'fecha',
                         'filter' => \kartik\date\DatePicker::widget([
-                            'name' => 'MinutaAutoridadesSearch[fecha]',
+                            'name' => 'MinutaLocalidadesSearch[fecha]',
                             'type' => \kartik\date\DatePicker::TYPE_COMPONENT_PREPEND,
                             'language' => 'es',
                             'pluginOptions' => [
@@ -148,19 +148,19 @@ $this->title = 'MINUTA DE REUNIÓN CON AUTORIDADES';
                         ],
                         'urlCreator' => function ($action, $model, $key, $index) {
                             if ($action === 'update') {
-                                $url =Yii::$app->homeUrl.'minuta-autoridades/update?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'minuta-localidades/update?id='.$model->id;
                                 return $url;
                             }
                             if ($action === 'borrar') {
-                                $url =Yii::$app->homeUrl.'minuta-autoridades/delete?id='.$model->id;
+                                $url =Yii::$app->homeUrl.'minuta-localidades/delete?id='.$model->id;
                                 return $url;
                             }
                             if ($action === 'minuta') {
-                                $url =Yii::$app->homeUrl.'images/minutasa/'.$model->id.'/'.$model->minuta;
+                                $url =Yii::$app->homeUrl.'images/minutasl/'.$model->id.'/'.$model->minuta;
                                 return $url;
                             }
                             if ($action === 'lista') {
-                                $url =Yii::$app->homeUrl.'images/minutasa/'.$model->id.'/'.$model->lista;
+                                $url =Yii::$app->homeUrl.'images/minutasl/'.$model->id.'/'.$model->lista;
                                 return $url;
                             }
                         }
