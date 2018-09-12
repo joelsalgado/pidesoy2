@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\DIrectorioResponsablesSearch;
 use kartik\mpdf\Pdf;
 use Yii;
 use common\models\DirectorioResponsables;
@@ -38,11 +39,11 @@ class DirectorioResponsablesController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => DirectorioResponsables::find(),
-        ]);
+        $searchModel = new DIrectorioResponsablesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

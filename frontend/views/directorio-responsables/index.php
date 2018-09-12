@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
                 'summary' => "Mostrando {begin}-{end} de {totalCount} Elementos",
                 'emptyText' => "No se encontró ningún elemento",
                 'columns' => [
@@ -34,7 +35,44 @@ $this->params['breadcrumbs'][] = $this->title;
                     //'resp_comunitario',
                     //'otro',
                     //'especifique',
-                    'funcion',
+                    //'funcion',
+                    [
+                        'attribute' => 'mun_id1',
+                        'value' => function($data){
+                            $role = "";
+                            if($data->mun_id1 == null){
+                                $role = "";
+                            }else {
+                                $reg = \common\models\Municpios::find()->where(['id' => $data->mun_id1])->one();
+                                $role = $reg->desc_mun;
+                            }
+
+                            return $role;
+                        },
+                        'filter' => Html::activeDropDownList($searchModel, 'mun_id1',
+                            \yii\helpers\ArrayHelper::map(\common\models\Municpios::getMunOk(), 'id', 'desc_mun'),
+                            ['class'=>'form-control','prompt' => 'Seleccione un municipio']),
+                    ],
+                    [
+                        'attribute' => 'loc_id1',
+                        'value' => function($data){
+                            $role = "";
+                            if($data->loc_id1 == null){
+                                $role = "";
+                            }else {
+                                $reg = \common\models\Localidades::find()->where(['localidad_id' => $data->loc_id1])->one();
+                                $role = $reg->desc_loc;
+                            }
+
+                            return $role;
+                        },
+                        'filter' =>
+                            Html::activeDropDownList($searchModel, 'loc_id1',
+                                \yii\helpers\ArrayHelper::map(\common\models\Localidades::getLocIndex($searchModel->mun_id1),
+                                    'localidad_id', 'desc_loc'),
+
+                                ['class'=>'form-control','prompt' => 'Seleccione una Localidad']),
+                    ],
                     'apellido_paterno',
                     'apellido_materno',
                     'nombre',
