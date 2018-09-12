@@ -513,7 +513,7 @@ $sumaad3= 0;
     <tr>
         <td align="center" width="5%">3.4</td>
         <td align="left" width="60%">Se requieren Jornadas de Salud</td>
-        <td align="center" width="20%"><?=$jornada_de_salud = ($model4->menor_no_edu_basica == 1) ? 'SI' : 'NO'?></td>
+        <td align="center" width="20%"><?=$jornada_de_salud = ($model4->jornada_de_salud == 1) ? 'SI' : 'NO'?></td>
     </tr>
     <tr>
         <td align="center" width="5%">3.5</td>
