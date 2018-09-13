@@ -363,7 +363,7 @@ $sumaad3= 0;
             <?php
             switch ($model->loc_id) {
                 case 1180120:
-                    echo '<img src="'.Yii::$app->homeUrl.'images/agua-blanca.png" width="600" height="600">';
+                    echo '<img src="'.Yii::$app->homeUrl.'images/agua_blanca.png" width="600" height="600">';
                     break;
                 case 800003:
                     echo '<img src="'.Yii::$app->homeUrl.'images/atzumpa.png" width="600" height="600">';
