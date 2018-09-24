@@ -7,10 +7,10 @@
  */
 
 
-$suma1 = $model->meta_piso + $model->meta_techo + $model->meta_muro + $model->meta_cuarto + $model->meta_agua_potable+$model->meta_agua_interior + $model->meta_drenaje + $model->meta_luz + $model->meta_estufa + $model->meta_seguro_popular + $model->meta_3_15_escuela + $model->meta_antes_1982_primaria + $model->meta_despues_1982_secundaria + $model->meta_despensas + $model->meta_ss + $model->meta_trabajadores_ss + $model->meta_adultos_ss;
+$suma1 = $model->meta_piso + $model->meta_techo + $model->meta_muro + $model->meta_cuarto + $model->meta_agua_potable+$model->meta_agua_interior + $model->meta_drenaje + $model->meta_luz + $model->meta_estufa + $model->meta_seguro_popular + $model->meta_3_15_escuela + $model->meta_antes_1982_primaria + $model->meta_despues_1982_secundaria + $model->meta_despensas + $model->meta_ss + $model->meta_adultos_ss;
 
 
-$suma2 = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro + $model->acciones_cuarto + $model->acciones_agua_potable + $model->acciones_agua_interior + $model->acciones_drenaje + $model->acciones_luz + $model->acciones_estufa + $model->acciones_seguro_popular + $model->acciones_3_15_escuela + $model->acciones_antes_1982_primaria + $model->acciones_despues_1982_secundaria + $model->acciones_despensas + $model->acciones_ss + $model->acciones_trabajadores_ss + $model->acciones_adultos_ss ;
+$suma2 = $model->acciones_piso + $model->acciones_techo + $model->acciones_muro + $model->acciones_cuarto + $model->acciones_agua_potable + $model->acciones_agua_interior + $model->acciones_drenaje + $model->acciones_luz + $model->acciones_estufa + $model->acciones_seguro_popular + $model->acciones_3_15_escuela + $model->acciones_antes_1982_primaria + $model->acciones_despues_1982_secundaria + $model->acciones_despensas + $model->acciones_ss + $model->acciones_adultos_ss ;
 
 $sumaad1 = 0;
 $sumaad2 = 0;
@@ -111,6 +111,7 @@ $sumaad3 = 0;
 <table class="table table-striped">
     <thead>
         <tr>
+            <td align="left" style="background-color: #BFBFBF;"><b>N.P.</b></td>
             <td align="left" style="background-color: #BFBFBF;"><b>Nombre de la Acción</b></td>
             <td align="center" style="background-color: #BFBFBF;"><b>Acciones Totales</b></td>
             <td align="center" style="background-color: #BFBFBF;"><b>Acciones Concluidas</b></td>
@@ -119,108 +120,119 @@ $sumaad3 = 0;
     </thead>
     <tbody>
         <tr>
-            <td align="left"><b><?= mb_convert_case('COLOCACIÓN DE PISO FIRME', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">1</td>
+            <td align="left"><b><?= mb_convert_case('Colocación de Piso Firme', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_piso?></td>
             <td align="center"><?=$model->acciones_piso?></td>
             <td align="center"><?=$model->meta_piso - $model->acciones_piso?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('COLOCACIÓN DE TECHO FIRME', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">2</td>
+            <td align="left"><b><?= mb_convert_case('Colocación de Techo Firme', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_techo?></td>
             <td align="center"><?=$model->acciones_techo?></td>
             <td align="center"><?=$model->meta_techo - $model->acciones_techo?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('COLOCACIÓN DE MURO FIRME', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">3</td>
+            <td align="left"><b><?= mb_convert_case('Colocación de Muro Firme', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_muro?></td>
             <td align="center"><?=$model->acciones_muro?></td>
             <td align="center"><?=$model->meta_muro - $model->acciones_muro?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('CONSTRUCCIÓN DE CUARTO ADICIONAL', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">4</td>
+            <td align="left"><b><?= mb_convert_case('Construcción de Cuarto Adicional', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_cuarto?></td>
             <td align="center"><?=$model->acciones_cuarto?></td>
             <td align="center"><?=$model->meta_cuarto - $model->acciones_cuarto?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('VIVIENDAS CON ACCESO AL SERVICIO DE AGUA POTABLE (RED PÚBLICA)', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">5</td>
+            <td align="left"><b><?= mb_convert_case('Viviendas sin acceso al Servicio de agua potable (Red Pública)', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_agua_potable?></td>
             <td align="center"><?=$model->acciones_agua_potable?></td>
             <td align="center"><?=$model->meta_agua_potable - $model->acciones_agua_potable?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('VIVIENDAS CON CONEXIÓN DE TOMA DE AGUA AL INTERIOR DE LA VIVIENDA', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">6</td>
+            <td align="left"><b><?= mb_convert_case('Viviendas sin toma de agua al interior de la vivienda', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_agua_interior?></td>
             <td align="center"><?=$model->acciones_agua_interior ?></td>
             <td align="center"><?=$model->meta_agua_interior - $model->acciones_agua_interior?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('VIVIENDAS CON CONEXIÓN AL DRENAJE PÚBLICO O BIOGIGESTORES', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">7</td>
+            <td align="left"><b><?= mb_convert_case('Viviendas sin conexión al drenaje público ó biodigestores', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_drenaje?></td>
             <td align="center"><?=$model->acciones_drenaje?></td>
             <td align="center"><?=$model->meta_drenaje - $model->acciones_drenaje?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('VIVIENDAS CON CONEXIÓN DE ENERGÍA ELÉCTRICA', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">8</td>
+            <td align="left"><b><?= mb_convert_case('Viviendas sin servicio de energía eléctrica', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_luz?></td>
             <td align="center"><?=$model->acciones_luz?></td>
             <td align="center"><?=$model->meta_luz - $model->acciones_luz?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('VIVIENDAS CON ESTUFAS ENTREGADAS', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">9</td>
+            <td align="left"><b><?= mb_convert_case('Viviendas con necesidad de estufa ecológica', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_estufa?></td>
             <td align="center"><?=$model->acciones_estufa?></td>
             <td align="center"><?=$model->meta_estufa - $model->acciones_estufa?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('AFILIADOS AL SEGURO POPULAR', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">10</td>
+            <td align="left"><b><?= mb_convert_case('Personas sin acceso al servicio de salud (Seguro Popular)', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_seguro_popular?></td>
             <td align="center"><?=$model->acciones_seguro_popular?></td>
             <td align="center"><?=$model->meta_seguro_popular - $model->acciones_seguro_popular?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('PERSONAS DE 3 A 15 AÑOS QUE ASISTEN A LA ESCUELA', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">11</td>
+            <td align="left"><b><?= mb_convert_case('Personas de 3 A 15 años que no asisten a la escuela', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_3_15_escuela?></td>
             <td align="center"><?=$model->acciones_3_15_escuela?></td>
             <td align="center"><?=$model->meta_3_15_escuela - $model->acciones_3_15_escuela?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('NACIDOS ANTES DE 1982 CON CERTIFICADO DE PRIMARIA', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">12</td>
+            <td align="left"><b><?= mb_convert_case('Personas mayores de 35 años sin Certificado de Primaria', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_antes_1982_primaria?></td>
             <td align="center"><?=$model->acciones_antes_1982_primaria?></td>
             <td align="center"><?=$model->meta_antes_1982_primaria - $model->acciones_antes_1982_primaria?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('NACIDOS DESPUÉS DE 1982 CON CERTIFICADO DE SECUNDARIA', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">13</td>
+            <td align="left"><b><?= mb_convert_case('Personas menores de 35 años  sin Certificado de Secundaria', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_despues_1982_secundaria?></td>
             <td align="center"><?=$model->acciones_despues_1982_secundaria?></td>
             <td align="center"><?=$model->meta_despues_1982_secundaria - $model->acciones_despues_1982_secundaria?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('NECESIDAD ALIMENTARIA (DESPENSAS)', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">14</td>
+            <td align="left"><b><?= mb_convert_case('Necesidad Alimentaria (Despensa)', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_despensas?></td>
             <td align="center"><?=$model->acciones_despensas?></td>
             <td align="center"><?=$model->meta_despensas - $model->acciones_despensas?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('TRABAJADOR AFILIADO A LA SEGURIDAD SOCIAL', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">15</td>
+            <td align="left"><b><?= mb_convert_case('Personas que trabajan sin acceso a seguridad social', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_ss?></td>
             <td align="center"><?=$model->acciones_ss?></td>
             <td align="center"><?=$model->meta_ss - $model->acciones_ss?></td>
         </tr>
         <tr>
-            <td align="left"><b><?= mb_convert_case('BENEFICIARIOS DE TRABAJADORES CON ACCESO A LA SEGURIDAD SOCIAL', MB_CASE_TITLE, "UTF-8")?></b></td>
-            <td align="center"><?=$model->meta_trabajadores_ss?></td>
-            <td align="center"><?=$model->acciones_trabajadores_ss?></td>
-            <td align="center"><?=$model->meta_trabajadores_ss - $model->acciones_trabajadores_ss?></td>
-        </tr>
-        <tr>
-            <td align="left"><b><?= mb_convert_case('PERSONAS MAYORES DE 65 AÑOS INSCRITOS AL PROGRAMA DE PENSIONES', MB_CASE_TITLE, "UTF-8")?></b></td>
+            <td align="left">16</td>
+            <td align="left"><b><?= mb_convert_case('Personas mayores de 65 años que no reciben pensión', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><?=$model->meta_adultos_ss?></td>
             <td align="center"><?=$model->acciones_adultos_ss?></td>
             <td align="center"><?=$model->meta_adultos_ss - $model->acciones_adultos_ss?></td>
         </tr>
         <tr>
+            <td></td>
             <td align="left"><b><?= mb_convert_case('TOTAL', MB_CASE_TITLE, "UTF-8")?></b></td>
             <td align="center"><b><?=$suma1 ?></b></td>
             <td align="center"><b><?=$suma2?></b></td>
