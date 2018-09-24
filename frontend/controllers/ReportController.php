@@ -101,8 +101,8 @@ class ReportController extends Controller
                 'filename' => 'desg_reg.pdf',
                 'marginLeft'=> 10,
                 'marginRight'=> 10,
-                'marginTop'=> 10,
-                'marginBottom'=> 13,
+                'marginTop'=> 28,
+                'marginBottom'=> 22,
                 'options' => [
                     'title' => 'Desgloce Region'
                 ],
@@ -119,6 +119,42 @@ class ReportController extends Controller
                 }
                 
                 tr:nth-child(even){background-color: #A8AC90}',
+                'methods' =>[
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%" class="table table-condensed">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
+                ]
             ]);
             return $pdf->render();
         }
@@ -256,8 +292,8 @@ class ReportController extends Controller
                 'filename' => 'desg_mun.pdf',
                 'marginLeft'=> 10,
                 'marginRight'=> 10,
-                'marginTop'=> 10,
-                'marginBottom'=> 13,
+                'marginTop'=> 28,
+                'marginBottom'=> 28,
                 'options' => [
                     'title' => 'Desgloce Municipio'
                 ],
@@ -274,6 +310,42 @@ class ReportController extends Controller
                 }
                 
                 tr:nth-child(even){background-color: #A8AC90}',
+                'methods' =>[
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%" class="table table-condensed">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
+                ]
             ]);
             return $pdf->render();
         }
@@ -441,8 +513,8 @@ class ReportController extends Controller
                 'filename' => 'desg_loc.pdf',
                 'marginLeft'=> 10,
                 'marginRight'=> 10,
-                'marginTop'=> 10,
-                'marginBottom'=> 13,
+                'marginTop'=> 28,
+                'marginBottom'=> 28,
                 'options' => [
                     'title' => 'Desgloce Localidades'
                 ],
@@ -459,6 +531,42 @@ class ReportController extends Controller
                 }
                 
                 tr:nth-child(even){background-color: #A8AC90}',
+                'methods' =>[
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%" class="table table-condensed">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
+                ]
             ]);
             return $pdf->render();
         }else{
@@ -507,7 +615,6 @@ class ReportController extends Controller
                 'marginRight'=> 10,
                 'marginTop'=> 22,
                 'marginBottom'=> 22,
-                'marginHeader'=> 5,
                 'options' => [
                     'title' => 'Localidad Seguimiento'
                 ],

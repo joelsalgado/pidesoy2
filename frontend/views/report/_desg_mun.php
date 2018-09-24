@@ -85,20 +85,7 @@ $total_vinc_prog_prospera = 0;
 ?>
 
 
-<table class="table table-condensed">
-    <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
-        </td>
-        <td align="center">
-            <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
-            <p align="center" style="font-size: small">DESGLOCE POR MUNICIPIO</p>
-        </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
-    </tr>
-</table>
+
 
 <table>
     <thead>
@@ -163,20 +150,7 @@ $total_vinc_prog_prospera = 0;
 
 <pagebreak />
 
-<table class="table table-condensed">
-    <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
-        </td>
-        <td align="center">
-            <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
-            <p align="center" style="font-size: small">DESGLOCE POR MUNICIPIO</p>
-        </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
-    </tr>
-</table>
+
 
 <table>
     <thead>
@@ -216,20 +190,7 @@ $total_vinc_prog_prospera = 0;
 </table>
 
 <pagebreak />
-<table class="table table-condensed">
-    <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
-        </td>
-        <td align="center">
-            <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
-            <p align="center" style="font-size: small">DESGLOCE POR MUNICIPIO</p>
-        </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
-    </tr>
-</table>
+
 
 <table>
     <thead>
@@ -310,20 +271,7 @@ $total_vinc_prog_prospera = 0;
 
 
 <pagebreak />
-<table class="table table-condensed">
-    <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
-        </td>
-        <td align="center">
-            <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
-            <p align="center" style="font-size: small">DESGLOCE POR MUNICIPIO</p>
-        </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
-    </tr>
-</table>
+
 
 <table>
     <thead>
@@ -375,20 +323,7 @@ $total_vinc_prog_prospera = 0;
 </table>
 
 <pagebreak />
-<table class="table table-condensed">
-    <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
-        </td>
-        <td align="center">
-            <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
-            <p align="center" style="font-size: small">DESGLOCE POR MUNICIPIO</p>
-        </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
-    </tr>
-</table>
+
 
 <table>
     <thead>
@@ -494,20 +429,7 @@ $total_vinc_prog_prospera = 0;
 
 
 <pagebreak />
-<table class="table table-condensed">
-    <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
-        </td>
-        <td align="center">
-            <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
-            <p align="center" style="font-size: small">DESGLOCE POR MUNICIPIO</p>
-        </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
-    </tr>
-</table>
+
 
 <table>
     <thead>
@@ -568,20 +490,7 @@ $total_vinc_prog_prospera = 0;
 
 
 <pagebreak />
-<table class="table table-condensed">
-    <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
-        </td>
-        <td align="center">
-            <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
-            <p align="center" style="font-size: small">DESGLOCE POR MUNICIPIO</p>
-        </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
-    </tr>
-</table>
+
 
 <table>
     <thead>
@@ -654,20 +563,7 @@ $total_vinc_prog_prospera = 0;
 
 
 <pagebreak />
-<table class="table table-condensed">
-    <tr>
-        <td>
-            <img class="rounded float-left" src="<?= Yii::$app->homeUrl ?>images/logoedo.png" height="75" width="75">
-        </td>
-        <td align="center">
-            <p align="center" style="font-size: small"><b>SECRETARÍA DE DESARROLLO SOCIAL</b></p>
-            <p align="center" style="font-size: small">DESGLOCE POR MUNICIPIO</p>
-        </td>
-        <td align="right">
-            <img style="text-align:right" src="<?= Yii::$app->homeUrl ?>images/logomex.png" height="75" width="75">
-        </td>
-    </tr>
-</table>
+
 
 <table>
     <thead>
