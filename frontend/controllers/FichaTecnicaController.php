@@ -260,9 +260,9 @@ class FichaTecnicaController extends Controller
                     'SetFooter' => ['
                         <table width="100%">
                             <tr>
-                                <td width="25%"></td>
-                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
-                                <td width="25%" align="right">
+                                <td width="40%"><p style="font-size: 7pt">Localidad: '.$model->loc->desc_loc.'</p></td>
+                                <td width="20%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="40%" align="right">
                                     <p style="font-size: 5pt">Elaboró: CIEPS &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Revisó: UDITI </p>
                                 </td>
                             </tr>
