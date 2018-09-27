@@ -308,8 +308,8 @@ $sumaad3= 0;
         <tbody>
             <?php if($model2) : $i=1; foreach($model2 as $value){?>
             <tr>
-                <td align="center" width="50%"><p><?= $value->nombre ?></p></td>
-                <td align="center" width="50%"><p><?= $value->cargo ?></p></td>
+                <td align="center" width="50%"><p><?= mb_convert_case($value->nombre, MB_CASE_TITLE, "UTF-8")  ?></p></td>
+                <td align="center" width="50%"><p><?= mb_convert_case($value->cargo, MB_CASE_TITLE, "UTF-8") ?></p></td>
             </tr>
             <?php }endif;?>
         </tbody>
@@ -341,9 +341,9 @@ $sumaad3= 0;
     <tbody>
     <?php if($model3) : $i=1; foreach($model3 as $value){?>
         <tr>
-            <td align="center" width="33%"><p><?= $value->grado->desc_grado ?></p></td>
-            <td align="center" width="33%"><p><?= $value->nombre_escuela ?></p></td>
-            <td align="center" width="33%"><p><?= $value->total_alumnos ?></p></td>
+            <td align="center" width="33%"><p><?= mb_convert_case($value->grado->desc_grado, MB_CASE_TITLE, "UTF-8")  ?></p></td>
+            <td align="center" width="33%"><p><?= mb_convert_case($value->nombre_escuela, MB_CASE_TITLE, "UTF-8")  ?></p></td>
+            <td align="center" width="33%"><p><?= mb_convert_case($value->total_alumnos, MB_CASE_TITLE, "UTF-8")  ?></p></td>
         </tr>
     <?php }endif;?>
     </tbody>
@@ -660,7 +660,7 @@ $sumaad3= 0;
         <?php if($query) : $i=1; foreach($query as $value){?>
             <tr>
                 <td align="center"><p style="font-size: 7pt"><?= $i++; ?></p></td>
-                <td align="center"><p style="font-size: 7pt"><?= $value->nombre_accion ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= mb_convert_case($value->nombre_accion, MB_CASE_TITLE, "UTF-8") ?></p></td>
                 <td align="center"><p style="font-size: 7pt"><?= $value->meta ?></p></td>
                 <td align="center"><p style="font-size: 7pt"><?= $value->acciones ?></p></td>
                 <td align="center"><p style="font-size: 7pt"><?= $valor1 = $value->meta - $value->acciones?></p></td>
