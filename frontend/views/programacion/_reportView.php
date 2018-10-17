@@ -42,22 +42,17 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">No.</p></b></td>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Actividad, sesión, evento y otros</p></b></td>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Ubicación exacta donde se va a realizar actividad, sesión, evento y otros</p></b></td>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Hora de inicio programada</p></b></td>
-        <td colspan="2" align="center" style="background-color: #70AD47; color: white;"><p style="font-size: 7pt">Fecha</p></td>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Objetivos y tareas a desarrollar</p></b></td>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Número de Asistentes a la actividad, sesión, evento y otros</p></b></td>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Responsable de la actividad, sesión, evento y otros</p></b></td>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Responsable de validar actividad, sesión, evento y otros</p></b></td>
-        <td rowspan="2" align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Acuerdos o compromisos</p></b></td>
-    </tr>
-    <tr>
-
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">No.</p></b></td>
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Actividad, sesión, evento y otros</p></b></td>
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Ubicación exacta donde se va a realizar actividad, sesión, evento y otros</p></b></td>
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Hora de inicio programada</p></b></td>
         <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Fecha Inicio </p></b></td>
         <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Fecha Termino</p></b></td>
-
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Objetivos y tareas a desarrollar</p></b></td>
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Número de Asistentes a la actividad, sesión, evento y otros</p></b></td>
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Responsable de la actividad, sesión, evento y otros</p></b></td>
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Responsable de validar actividad, sesión, evento y otros</p></b></td>
+        <td align="center" style="background-color: #70AD47; color: white;"><b><p style="font-size: 7pt">Acuerdos o compromisos</p></b></td>
     </tr>
     </thead>
     <tbody>
