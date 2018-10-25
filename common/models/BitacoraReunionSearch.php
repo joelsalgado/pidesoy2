@@ -47,7 +47,7 @@ class BitacoraReunionSearch extends BitacoraReunion
             $region = Yii::$app->user->identity->region_id;
             $query->andWhere(['region_id' => $region]);
         }
-        $query->orderBy(['id' => SORT_DESC]);
+        $query->orderBy(['fecha' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
