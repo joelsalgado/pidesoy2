@@ -678,7 +678,10 @@ class ReportController extends Controller
 
     public function actionPdfcenso($id)
     {
-        $localidad = Localidades::find()->where(['desc_loc' => $id])->one();
+        $localidad = Localidades::find()
+            ->where(['desc_loc' => $id])
+            ->andWhere('loc_fuertes_id > 0 ')
+            ->one();
         if ($localidad){
             $municipio = $localidad->mun->nombre_mun;
             $model = DesgCenso::find()->where(['desc_loc' => $id])->one();
