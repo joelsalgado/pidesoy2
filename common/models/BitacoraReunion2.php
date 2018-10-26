@@ -32,7 +32,7 @@ class BitacoraReunion2 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bitacora_reunion_id', 'fechas', 'observaciones', 'actividad_realizar', 'nombre_ejecucion', 'nombre_supervisar', 'cumplio'], 'required' , 'message' => 'Campo Requerido'],
+            [['bitacora_reunion_id', 'fechas', 'actividad_realizar', 'nombre_ejecucion', 'nombre_supervisar', 'cumplio'], 'required' , 'message' => 'Campo Requerido'],
             [['bitacora_reunion_id', 'autoridades_federales', 'autoridades_estatales', 'autoridades_municipales', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at', 'cumplio'], 'integer', 'message'=> 'Dede ser Numerico'],
             [['fechas'], 'safe'],
             [['fechas'], 'validateDates'],

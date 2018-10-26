@@ -29,7 +29,7 @@ class BitacoraFamilia2 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bitacora_familia_id', 'fechas', 'observaciones', 'actividad_realizar', 'nombre_ejecucion', 'nombre_supervisar', 'cumplio'], 'required' , 'message' => 'Campo Requerido'],
+            [['bitacora_familia_id', 'fechas', 'actividad_realizar', 'nombre_ejecucion', 'nombre_supervisar', 'cumplio'], 'required' , 'message' => 'Campo Requerido'],
             [['bitacora_familia_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at', 'cumplio'], 'integer', 'message'=> 'Dede ser Numerico'],
             [['fechas'], 'safe'],
             [['fechas'], 'validateDates'],
