@@ -20,6 +20,8 @@ use common\models\MunDesg;
 use common\models\MunTot;
 use common\models\RegDesg;
 use common\models\RegTot;
+use common\models\ReportSegProg2;
+use common\models\ReportSegProg3;
 use common\models\Seguimiento;
 use common\models\TotalReg;
 use kartik\mpdf\Pdf;
@@ -482,6 +484,19 @@ class ReportController extends Controller
             return $this->render('locen');
         }
     }
+    public function actionLocalidadprog(array $localidades)
+    {
+        if ($localidades){
+            $model = ReportSegProg3::find()
+                ->where(['loc_id' => $localidades])
+                ->all();
+            return $this->render('localidadprog', [
+                'model' => $model
+            ]);
+        }else{
+            return $this->render('progloc');
+        }
+    }
 
     public function actionLocalidadseg(array $localidades)
     {
@@ -604,6 +619,89 @@ class ReportController extends Controller
                 'semaforos' => $semaforos,
                 'municipio' => $municipio,
                 'adicionales' => $query
+            ]);
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                'format' => Pdf::FORMAT_A4,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $content,
+                'filename' => 'desg_loc.pdf',
+                'marginLeft'=> 10,
+                'marginRight'=> 10,
+                'marginTop'=> 22,
+                'marginBottom'=> 22,
+                'options' => [
+                    'title' => 'Localidad Seguimiento'
+                ],
+                'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+                'cssInline' => '   
+                    .alert-success-seg {
+                        color: white;
+                        background-color: #CC0066;
+                        border-color: #CC0066;
+                    },
+                    .container {
+                      display: table;
+                      width: 100%;
+                    }
+                    .container div {
+                      display: table-cell;
+                    }
+                ',
+                'methods' =>[
+                    'SetHeader' => [
+                        '
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td >
+                                        <img class="rounded float-left" src="'.Yii::$app->homeUrl.'images/escudo.png"  height="40" width="160">
+                                    </td>
+                                    <td align="center">
+                            
+                                    </td>
+                                    <td align="right">
+                                        <img style="text-align:right" src="'.Yii::$app->homeUrl.'images/edomex1.png" height="35" width="200">
+                                    </td>
+                                </tr>
+                            </table>
+                        
+                        ', 'line' => 1
+                    ],
+                    'SetFooter' => ['
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"></td>
+                                <td width="50%" align="center"><p style="font-size: 5pt">{PAGENO}/{nbpg}</p></td>                            
+                                <td width="25%" align="right">
+                                    <p style="font-size: 5pt">Elaboró: UDITI </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" width="100%">
+                                    <img src="'.Yii::$app->homeUrl.'images/footer.png" height="20" width="1045"> 
+                                </td>
+                            </tr>
+                        </table>'
+                    ],
+                ]
+            ]);
+            return $pdf->render();
+        }else{
+            return $this->render('loc');
+        }
+    }
+
+    public function actionLocalidadprogpdf($id)
+    {
+        $localidad = Localidades::find()->where(['localidad_id' => $id])->one();
+        if ($localidad){
+            $model = ReportSegProg2::find()->where(['loc_id' => $id])->orderBy(['total'=> SORT_DESC])->all();
+            $municipio = $localidad->mun->nombre_mun;
+
+            $content = $this->renderPartial('_rep_prog', [
+                'model'=> $model,
+                'localidad' => $localidad->desc_loc,
+                'municipio' => $municipio,
             ]);
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
@@ -1074,6 +1172,11 @@ class ReportController extends Controller
     public function actionLocen()
     {
         return $this->render('locen');
+    }
+
+    public function actionProgloc()
+    {
+        return $this->render('progloc');
     }
 
     public function actionLocseg()

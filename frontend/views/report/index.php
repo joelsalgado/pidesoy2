@@ -25,6 +25,7 @@ $total = 0;
             <?= \yii\helpers\Html::a('Desgloce por Regiones',['/report/reg']) ?><br>
             <?= \yii\helpers\Html::a('Desgloce por Municipios',['/report/mun']) ?><br>
             <?= \yii\helpers\Html::a('Desgloce por Localidades',['/report/loc']) ?><br>
+            <?= \yii\helpers\Html::a('Programas por Localidades',['/report/progloc']) ?><br>
         <?php endif ?>
 
         <?= \yii\helpers\Html::a('Censo por Localidades',['/report/locen']) ?><br>
