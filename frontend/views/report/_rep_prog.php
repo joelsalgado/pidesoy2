@@ -6,6 +6,7 @@
  * Time: 05:59 PM
  */
 $sumaad1 = 0;
+$sumaad2 = 0;
 ?>
 <table border="4" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" height="100%">
     <tr>
@@ -71,6 +72,41 @@ $sumaad1 = 0;
             <td align="center"><p style="font-size: 7pt"></p></td>
             <td align="center"><p style="font-size: 7pt"><b>Total</b></p></td>
             <td align="center"><p style="font-size: 7pt"><b><?= $sumaad1 ?></b></p></td>
+        </tr>
+        </tbody>
+    </table>
+<?php endif;?>
+
+<?php if ($query) :?>
+    <div class="alert alert-success-seg" role="alert">
+        <b>ADICIONALES</b>
+    </div>
+
+
+    <table class="table table-bored">
+        <thead>
+        <tr>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">No.</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Nombre del Programa</p></b></td>
+            <td align="center" style="background-color: #BFBFBF;"><b><p style="font-size: 7pt">Entregas Totales</p></b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if($query) : $i=1; foreach($query as $value){?>
+            <tr>
+                <td align="center"><p style="font-size: 7pt"><?= $i++; ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->programa ?></p></td>
+                <td align="center"><p style="font-size: 7pt"><?= $value->total ?></p></td>
+                <?php
+                $sumaad2 = $sumaad2 + $value->total;
+                ?>
+            </tr>
+        <?php }endif;?>
+
+        <tr>
+            <td align="center"><p style="font-size: 7pt"></p></td>
+            <td align="center"><p style="font-size: 7pt"><b>Total</b></p></td>
+            <td align="center"><p style="font-size: 7pt"><b><?= $sumaad2 ?></b></p></td>
         </tr>
         </tbody>
     </table>

@@ -29,6 +29,7 @@ class AdicionalesPrimero extends \yii\db\ActiveRecord
             [['loc_id', 'desc_loc'], 'required'],
             [['loc_id','acciones'], 'integer'],
             [['desc_loc'], 'string', 'max' => 150],
+            [['programa'], 'string', 'max' => 250],
             [['nombre_accion'], 'string', 'max' => 120],
         ];
     }
@@ -42,6 +43,7 @@ class AdicionalesPrimero extends \yii\db\ActiveRecord
             'loc_id' => 'Loc ID',
             'desc_loc' => 'Desc Loc',
             'nombre_accion' => 'Nombre Accion',
+            'programa' => 'Programa',
         ];
     }
 }

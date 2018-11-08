@@ -22,6 +22,7 @@ use common\models\RegDesg;
 use common\models\RegTot;
 use common\models\ReportSegProg2;
 use common\models\ReportSegProg3;
+use common\models\ReportSegProg4;
 use common\models\Seguimiento;
 use common\models\TotalReg;
 use kartik\mpdf\Pdf;
@@ -490,8 +491,12 @@ class ReportController extends Controller
             $model = ReportSegProg3::find()
                 ->where(['loc_id' => $localidades])
                 ->all();
+            $model2 = ReportSegProg4::find()
+                ->where(['loc_id' => $localidades])
+                ->all();
             return $this->render('localidadprog', [
-                'model' => $model
+                'model' => $model,
+                'model2' => $model2
             ]);
         }else{
             return $this->render('progloc');
@@ -698,11 +703,25 @@ class ReportController extends Controller
             $model = ReportSegProg2::find()->where(['loc_id' => $id])->orderBy(['total'=> SORT_DESC])->all();
             $municipio = $localidad->mun->nombre_mun;
 
+            $query = AdicionalesPrimero::find()
+                ->select(['programa',
+                    'sum((case when (acciones > 0) then acciones else 0 end)) AS total'
+                ])
+                ->where(['loc_id' => $id])
+                ->andWhere(['>','acciones', 0])
+                ->orderBy(['total' => SORT_DESC])
+                ->groupBy(['programa'])
+                ->all();
+
+
+
             $content = $this->renderPartial('_rep_prog', [
                 'model'=> $model,
                 'localidad' => $localidad->desc_loc,
                 'municipio' => $municipio,
+                'query' => $query
             ]);
+
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
                 'format' => Pdf::FORMAT_A4,
