@@ -21,14 +21,12 @@ $total = 0;
             <?= \yii\helpers\Html::a('Resultados por Municipios',['/report/muntot']) ?><br>
             <?= \yii\helpers\Html::a('Resultados por Localidades',['/report/loctot']) ?><br>
         <?php endif ?>
-            <?= \yii\helpers\Html::a('Desgloce por Regiones',['/report/reg']) ?><br>
-            <?= \yii\helpers\Html::a('Desgloce por Municipios',['/report/mun']) ?><br>
-            <?= \yii\helpers\Html::a('Desgloce por Localidades',['/report/loc']) ?><br>
-            <?= \yii\helpers\Html::a('Programas por Localidades',['/report/progloc']) ?><br>
 
-
+        <?= \yii\helpers\Html::a('Desgloce por Regiones',['/report/reg']) ?><br>
+        <?= \yii\helpers\Html::a('Desgloce por Municipios',['/report/mun']) ?><br>
+        <?= \yii\helpers\Html::a('Desgloce por Localidades',['/report/loc']) ?><br>
+        <?= \yii\helpers\Html::a('Programas por Localidades',['/report/progloc']) ?><br>
         <?= \yii\helpers\Html::a('Censo por Localidades',['/report/locen']) ?><br>
         <?= \yii\helpers\Html::a('Seguimiento por Localidades',['/report/locseg']) ?><br>
-
     </div>
 </div>
