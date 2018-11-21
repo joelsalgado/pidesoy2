@@ -129,6 +129,7 @@ class Municpios extends \yii\db\ActiveRecord
                 ->orWhere(['reg_fuertes_id' => 17])
                 ->orWhere(['reg_fuertes_id' => 18])
                 ->orWhere(['reg_fuertes_id' => 19])
+                ->orWhere(['reg_fuertes_id' => 21])
                 ->orderBy(['desc_mun' => 'DESC'])
                 ->all();
         }else{
