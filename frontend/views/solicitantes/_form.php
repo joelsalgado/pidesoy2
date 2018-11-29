@@ -144,7 +144,7 @@ use kartik\date\DatePicker;
                             'startDate' => '01-01-1910',
                             'endDate' => '01-01-2003',
                             //'value' => '22-10-1999'
-                            ]
+                        ]
                     ]) ?>
                 </div>
             </div>
@@ -161,6 +161,72 @@ use kartik\date\DatePicker;
             </div>
 
         </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'grado_id')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(\common\models\CatGradoEstudios::find()->all(),
+                            'id', 'desc_grado'),
+                        'options' => ['placeholder' => 'Selecciona un Grado', 'id' => 'desc_grado'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'ent_nac_id')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(\common\models\EntidadNacimiento::find()->all(),
+                            'id', 'desc_ent_nac'),
+                        'options' => ['placeholder' => 'Selecciona una Entidad', 'id' => 'desc_ent_nac'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'curp')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'cve_elector')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'celular')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'correo')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'red_id')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(\common\models\Redes::find()->all(),
+                            'id', 'desc_redes'),
+                        'options' => ['placeholder' => 'Selecciona una Entidad', 'id' => 'desc_redes'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]) ?>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <?= $form->field($model, 'red_social')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="row">
         <div class="alert alert-success-alt">
@@ -171,6 +237,19 @@ use kartik\date\DatePicker;
             <div class="col-sm-6">
                 <div class="form-group">
                     <?= $form->field($model, 'calle')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                    <?= $form->field($model, 'entre_calle')->textInput(['maxlength' => true]) ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <?= $form->field($model, 'y_calle')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
             <div class="col-sm-6">

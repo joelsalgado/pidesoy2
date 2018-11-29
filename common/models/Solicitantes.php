@@ -27,20 +27,23 @@ class Solicitantes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['periodo', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'edo_civil_id', 'edad', 'codigo_postal','check',
+            [['periodo','ent_nac_id','grado_id','red_id', 'entidad_id', 'region_id', 'mun_id', 'loc_id', 'edo_civil_id', 'edad', 'codigo_postal','check',
                 'status', 'created_by', 'updated_by'], 'integer', 'message' => 'Debe ser un numero entero'],
             [['region_id', 'mun_id', 'loc_id','nombre', 'apellido_paterno', 'edo_civil_id', 'fecha_nacimiento',
                 'sexo', 'calle', 'colonia', 'num_ext', 'codigo_postal',
                 'otra_referencia', 'created_at', 'updated_at'], 'required', 'message' => 'Campo requerido'],
-            [['fecha_nacimiento', 'created_at', 'updated_at'], 'string'],
+            [['fecha_nacimiento', 'created_at', 'updated_at', 'red_social'], 'string'],
             [['nombre', 'apellido_paterno', 'apellido_materno'], 'string', 'max' => 60],
             [['sexo'], 'string', 'max' => 1],
-            [['telefono'], 'string', 'max' => 15],
+            [['telefono', 'celular'], 'string', 'max' => 15],
+            [['curp', 'cve_elector'], 'string', 'max' => 18],
             [['otra_referencia'], 'string', 'max' => 100],
-            [['calle', 'colonia'], 'string', 'max' => 80],
+            [['calle','entre_calle','y_calle', 'colonia'], 'string', 'max' => 80],
             [['num_ext', 'num_int'], 'string', 'max' => 40],
             ['otra_referencia', 'validateDuplicados'],
             ['fecha_nacimiento', 'validateFecha'],
+            ['curp', 'validateCurp'],
+            ['cve_elector', 'validateCve'],
             //[['edo_civil_id'], 'exist', 'skipOnError' => true, 'targetClass' => EstadoCivil::className(), 'targetAttribute' => ['edo_civil_id' => 'id']],
             //[['entidad_id'], 'exist', 'skipOnError' => true, 'targetClass' => EntidadNacimiento::className(), 'targetAttribute' => ['entidad_id' => 'id']],
             //[['loc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Localidades::className(), 'targetAttribute' => ['loc_id' => 'localidad_id']],
@@ -48,11 +51,90 @@ class Solicitantes extends \yii\db\ActiveRecord
             //[['region_id'], 'exist', 'skipOnError' => true, 'targetClass' => Regiones::className(), 'targetAttribute' => ['region_id' => 'id']],
             [['apellido_paterno','apellido_materno', 'nombre'], 'match', 'pattern' => '/^[a-zñÑ\s]+$/i',
                 'message' => 'Sólo se aceptan letras sin acentos'],
-            [['fecha_nacimiento'],'date', 'format'=>'yyyy-MM-dd', 'message' => 'Formato no valido'],
-            //[['telefono'], 'match', 'pattern' => '/^[0-9+\s]+$/i', 'message' => 'Solo se aceptan números'],
+            [['entre_calle', 'y_calle'], 'match', 'pattern' => '/^[a-zñ0-9#()\s]+$/i',
+                'message' => 'Sólo se aceptan letras sin acentos y numéros'],
+            //[['fecha_nacimiento'],'date', 'format'=>'yyyy-MM-dd', 'message' => 'Formato no valido'],
+            [['curp', 'cve_elector'], 'match', 'pattern' => '/^.{1,18}$/', 'message' => 'Tiene que tener 18 caracteres'],
+            [['curp'], 'match', 'pattern' => '/[A-Z]{4}\d{6}[HM][A-Z]{2}[B-DF-HJ-NP-TV-Z]{3}[A-Z0-9][0-9]/', 'message' => 'Formato de CURP invalido'],
+            [['cve_elector'], 'match', 'pattern' => '/[A-Z]{6}\d{6}[0-9]{2}[HM][0-9]{3}/', 'message' => 'Formato de clave de Elector incorrecto'],
+            [['celular'], 'match', 'pattern' => '/^[0-9+\s]+$/i', 'message' => 'Solo se aceptan números'],
             [['codigo_postal'], 'match', 'pattern' => '/^[0-9]{5}/i', 'message' => 'Deben ser 5 digitos'],
             [['codigo_postal'], 'integer', 'max' => 90000,'tooBig' => '{attribute} no debe ser mayor a 9000' ],
+            [['curp'], 'unique', 'message' => 'Ya se encuentra un registro con este mismo valor'],
+            ['correo','email', 'message' => 'Formato de correo incorrecto'],
         ];
+    }
+
+
+    public function validateCurp()
+    {
+        $fecha = $this->fecha_nacimiento;
+        $curp = $this->curp;
+        $sexo = $this->sexo;
+        $entFed = EntidadNacimiento::findOne($this->ent_nac_id);
+        $ent = $entFed->abrev_ent_nac;
+
+        $fecha_esp = str_replace("-", "", $fecha);
+        $dia     = substr($fecha_esp, 6, 2);
+        $mes     = substr($fecha_esp, 4, 2);
+        $anio     = substr($fecha_esp, 2, 2);
+
+        $fechaCurp = substr($curp, 4, 6);
+        $sexoCurp = substr($curp, 10, 1);
+        $entCurp = substr($curp, 11, 2);
+        $armada = $anio.$mes.$dia;
+
+        if ($fechaCurp != $armada){
+            $this->addError('curp', 'El CURP no corrresponde a tu fecha de nacimiento.');
+            $this->fechas();
+        }
+
+        if ($sexo != $sexoCurp){
+            $this->addError('curp', 'El CURP no corrresponde a tu Sexo.');
+            $this->fechas();
+        }
+
+        if ($ent != $entCurp){
+            $this->addError('curp', 'El CURP no corrresponde a tu Entidad de Nacimiento.');
+            $this->fechas();
+        }
+    }
+
+    public function validateCVE()
+    {
+
+        $fecha = $this->fecha_nacimiento;
+        $cve = $this->cve_elector;
+        $sexo = $this->sexo;
+        $ent = $this->ent_nac_id;
+
+        $fecha_esp = str_replace("-", "", $fecha);
+        $dia     = substr($fecha_esp, 6, 2);
+        $mes     = substr($fecha_esp, 4, 2);
+        $anio     = substr($fecha_esp, 2, 2);
+
+        $fechaCve = substr($cve, 6, 6);
+        $entCve = substr($cve, 12, 2);
+        $sexoCve = substr($cve, 14, 1);
+        $armada = $anio.$mes.$dia;
+
+        if ($fechaCve != $armada){
+            $this->addError('cve_elector', 'Clave de Elector no corrresponde a tu fecha de nacimiento.');
+            $this->fechas();
+        }
+
+        if ($sexo != $sexoCve){
+            $this->addError('cve_elector', 'Clave de Elector no corrresponde a tu Sexo.');
+            $this->fechas();
+        }
+
+        if ($ent != $entCve){
+            $this->addError('cve_elector', 'Clave de Elector no corrresponde a tu Entidad de Nacimiento.');
+            $this->fechas();
+        }
+
+
+
     }
 
     public function validateDuplicados(){
@@ -70,6 +152,7 @@ class Solicitantes extends \yii\db\ActiveRecord
             if ($dup) {
                 echo "dup";
                 $this->addError('otra_referencia', 'Este registro ya se encuentra en base de datos');
+                $this->fechas();
             }
         }
     }
@@ -82,9 +165,15 @@ class Solicitantes extends \yii\db\ActiveRecord
         if ($anio < 1909 || $anio > 2004){
             echo "fecha";
             $this->addError('fecha_nacimiento', 'Fecha de Naciemiento incorrecta');
-            $fecha_nac =  Yii::$app->formatter->asDate($this->fecha_nacimiento, 'yyyy-MM-dd');
-            $this->fecha_nacimiento = $fecha_nac;
+            $this->fechas();
         }
+    }
+
+    public function fechas(){
+        $this->fecha_nacimiento = ($this->fecha_nacimiento)? Yii::$app->formatter->asDate($this->fecha_nacimiento, 'dd-MM-yyyy'): null;
+        $this->mun_id = ($this->mun_id)? $this->mun_id: null;
+        $this->loc_id = ($this->loc_id)? $this->loc_id: null;
+
     }
 
 
@@ -106,6 +195,16 @@ class Solicitantes extends \yii\db\ActiveRecord
             'apellido_materno' => 'Apellido Materno',
             'edo_civil_id' => 'Estado Civil',
             'fecha_nacimiento' => 'Fecha de Nacimiento',
+            'grado_id' => 'Grado de Estudios',
+            'ent_nac_id' => 'Entidad de Nacimiento',
+            'cve_elector' => 'Clave de Elector',
+            'curp' => 'CURP',
+            'celular' => 'Celular',
+            'correo' => 'Correo Electronico',
+            'red_id' => 'Tipo de Red Social',
+            'red_social' => 'Red Social',
+            'entre_calle' => 'Entre Calle',
+            'y_calle' => 'Y calle',
             'edad' => 'Edad',
             'sexo' => 'Sexo',
             'telefono' => 'Teléfono',
