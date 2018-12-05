@@ -14,7 +14,7 @@ use kartik\date\DatePicker;
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="alert alert-success-alt">
-            <strong>IDENTIFICAIÓN GEOFRÁFICA</strong>
+            <strong>IDENTIFICACIÓN GEOGRÁFICA</strong>
             <i class="fa fa-globe" aria-hidden="true"></i>
         </div>
         <div class="row">
