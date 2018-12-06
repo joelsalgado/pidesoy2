@@ -37,7 +37,7 @@ class Solicitantes extends \yii\db\ActiveRecord
             [['sexo'], 'string', 'max' => 1],
             [['telefono', 'celular'], 'string', 'max' => 15],
             [['curp', 'cve_elector'], 'string', 'max' => 18],
-            [['otra_referencia'], 'string', 'max' => 100],
+            [['otra_referencia', 'correo'], 'string', 'max' => 100],
             [['calle','entre_calle','y_calle', 'colonia'], 'string', 'max' => 80],
             [['num_ext', 'num_int'], 'string', 'max' => 40],
             ['otra_referencia', 'validateDuplicados'],
