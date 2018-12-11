@@ -57,11 +57,11 @@ class Solicitantes extends \yii\db\ActiveRecord
             [['curp', 'cve_elector'], 'match', 'pattern' => '/^.{1,18}$/', 'message' => 'Tiene que tener 18 caracteres'],
             [['curp'], 'match', 'pattern' => '/[A-Z]{4}\d{6}[HM][A-Z]{2}[B-DF-HJ-NP-TV-Z]{3}[A-Z0-9][0-9]/', 'message' => 'Formato de CURP invalido'],
             [['cve_elector'], 'match', 'pattern' => '/[A-Z]{6}\d{6}[0-9]{2}[HM][0-9]{3}/', 'message' => 'Formato de clave de Elector incorrecto'],
-            [['celular'], 'match', 'pattern' => '/^[0-9SsDd/+\s]+$/i', 'message' => 'Solo se aceptan números'],
+            [['celular'], 'match', 'pattern' => '/^[0-9+\s]+$/i', 'message' => 'Solo se aceptan números'],
             [['codigo_postal'], 'match', 'pattern' => '/^[0-9]{5}/i', 'message' => 'Deben ser 5 digitos'],
             [['codigo_postal'], 'integer', 'max' => 90000,'tooBig' => '{attribute} no debe ser mayor a 9000' ],
             [['curp'], 'unique', 'message' => 'Ya se encuentra un registro con este mismo valor'],
-            //['correo','email', 'message' => 'Formato de correo incorrecto'],
+            ['correo','email', 'message' => 'Formato de correo incorrecto'],
         ];
     }
 
