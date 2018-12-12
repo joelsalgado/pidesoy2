@@ -22,6 +22,7 @@
                     ]],
                     ['label' => 'Formato de Localidades', 'icon' => 'folder', 'url' => ['/formato-loc']],
                     ['label' => 'Actividades Comunitarias', 'icon' => 'road', 'url' => ['/actividades-relevantes']],
+                    ['label' => 'Informes', 'icon' => 'eercast', 'url' => ['/informes']],
                     ['label' => 'Programas', 'icon' => 'id-card', 'url' => ['/programas'], 'visible' => $user = (Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40) ? true : false],
                     ['label' => 'Actividades', 'icon' => 'navicon', 'url' => ['/actividades'], 'visible' => $user = (Yii::$app->user->identity->role == 30 || Yii::$app->user->identity->role == 40) ? true : false],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
